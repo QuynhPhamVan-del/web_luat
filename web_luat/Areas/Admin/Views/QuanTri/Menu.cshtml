@@ -1,0 +1,159 @@
+﻿@{
+    string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+    string controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+<ul class="menu-inner py-1">
+    <li class="menu-header small text-uppercase">
+        <span class="menu-header-text">Giao diện & Trang chủ</span>
+    </li>
+    <li class="menu-item  @(controllerName=="QuanTri"?"active":"")">
+        <a href="/Admin/QuanTri/Index" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+            <div data-i18n="Layouts">Trang chủ</div>
+        </a>
+    </li>
+    <li class="menu-item  @(controllerName=="Banners"||controllerName=="ChonChungToi"||controllerName=="GiaiPhap"||controllerName=="Menu"||controllerName=="ThuVienAnh"?"active":"")">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-layout"></i>
+            <div data-i18n="Layouts">Giao diện chính</div>
+        </a>
+
+        <ul class="menu-sub">
+            <li class="menu-item">
+                <a href="@Url.Action("Index", "Menu", new {TrenDuoi=0})" class="menu-link">
+                    <div data-i18n="Without menu">Menu trên</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index", "Menu", new {TrenDuoi=1})" class="menu-link">
+                    <div data-i18n="Without menu">Menu dưới</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","BannersGioiThieu")" class="menu-link">
+                    <div data-i18n="Without menu">Banner giới thiệu</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","Banners")" class="menu-link">
+                    <div data-i18n="Without menu">Banner chính</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","CongLienKet")" class="menu-link">
+                    <div data-i18n="Without menu">Cổng liên kết</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="@Url.Action("Index","GioiThieu")" class="menu-link">
+                    <div data-i18n="Without menu">Giới thiệu thông tin trường</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","Nganh")" class="menu-link">
+                    <div data-i18n="Without menu">Ngành</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","Videos")" class="menu-link">
+                    <div data-i18n="Without menu">Video</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","ThongSo")" class="menu-link">
+                    <div data-i18n="Without menu">Những con số ấn tượng</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","ThuVienAnh")" class="menu-link">
+                    <div data-i18n="Without menu">Nhịp sống</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","DoiTac")" class="menu-link">
+                    <div data-i18n="Without menu">Đối tác</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="menu-header small text-uppercase"><span class="menu-header-text">Tài nguyên</span></li>
+    <li class="menu-item @((controllerName=="LoaiVanBan" || controllerName=="VanBan") ?"active":"")">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-detail"></i>
+            <div data-i18n="Form Layouts">Tài nguyên</div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="@Url.Action("Index","LoaiVanBan")" class="menu-link">
+                    <div data-i18n="Without menu">Loại tài nguyên</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","VanBan")" class="menu-link">
+                    <div data-i18n="Without menu">Tài nguyên</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="menu-header small text-uppercase"><span class="menu-header-text">Tin tức &amp; Sự kiện</span></li>
+    <li class="menu-item @((controllerName=="TinTuc" || controllerName=="ChuyenMuc") ?"active":"")">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-detail"></i>
+            <div data-i18n="Form Layouts">Tin tức</div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="@Url.Action("Index","ChuyenMuc")" class="menu-link">
+                    <div data-i18n="Without menu">Chuyên mục tin tức</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","TinTuc")" class="menu-link">
+                    <div data-i18n="Vertical Form">Tin tức</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="menu-header small text-uppercase"><span class="menu-header-text">Đơn vị hành chính</span></li>
+    <li class="menu-item @((controllerName=="DonVi" || controllerName=="DonViHanhChinh"|| controllerName=="NhanSu") ?"active":"")">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-detail"></i>
+            <div data-i18n="Form Layouts">Đơn vị hành chính</div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="@Url.Action("Index","DonVi")" class="menu-link">
+                    <div data-i18n="Without menu">Đơn vị</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","DonViHanhChinh")" class="menu-link">
+                    <div data-i18n="Vertical Form">Các đơn vị hành chính</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="@Url.Action("Index","NhanSu")" class="menu-link">
+                    <div data-i18n="Vertical Form">Nhân sự</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="menu-header small text-uppercase"><span class="menu-header-text">Phân quyền người dùng</span></li>
+    <li class="menu-item ">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-detail"></i>
+            <div data-i18n="Form Layouts">Phân quyền</div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item">
+                <a href="@Url.Action("Index","NguoiDung")" class="menu-link">
+                    <div data-i18n="Without menu">Danh sách người dùng</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

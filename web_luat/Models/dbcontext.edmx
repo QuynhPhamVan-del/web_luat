@@ -1,0 +1,1636 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_LuatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GuiLienHe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar(max)" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayGui" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QuyTrinhDuyet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STT" Type="int" />
+          <Property Name="TenBuoc" Type="nvarchar(max)" />
+          <Property Name="IdNhomQuyen" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="STT" Type="int" />
+          <Property Name="IdDonVi" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_BoCuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDeBoCuc" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdBoCuc" Type="nvarchar" MaxLength="50" />
+          <Property Name="KichHoat" Type="bit" />
+          <Property Name="ẢnhBoCuc" Type="nvarchar(max)" />
+          <Property Name="STT" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_CamNhan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_ChuyenMuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenChuyenMuc" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_DoiTac">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDoiTac" Type="nvarchar" MaxLength="200" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="AnhDaiDien" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_DonVi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDonVi" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsLanguage" Type="int" />
+          <Property Name="STT" Type="int" />
+          <Property Name="Hotline" Type="nvarchar" MaxLength="500" />
+          <Property Name="LinkDangKy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_DonViChuyenMuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="IdChuyenMuc" Type="int" />
+          <Property Name="STT" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_GioiThieu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDeChinh" Type="nvarchar" MaxLength="200" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="TieuDePhu" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="DienThoai" Type="nvarchar" MaxLength="500" />
+          <Property Name="HomThu" Type="nvarchar(max)" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="500" />
+          <Property Name="Website" Type="nvarchar" MaxLength="500" />
+          <Property Name="Bac" Type="nvarchar" MaxLength="200" />
+          <Property Name="Mau" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_LienKetKhoa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GioiThieu" Type="nvarchar(max)" />
+          <Property Name="Icon" Type="nvarchar(max)" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="Link" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="Controller" Type="nvarchar(max)" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="NgayThucHien" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_LuanAn">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NCS" Type="nvarchar" MaxLength="150" />
+          <Property Name="ChuyenNganh" Type="nvarchar" MaxLength="250" />
+          <Property Name="LinkTomTat" Type="nvarchar(max)" />
+          <Property Name="LinkToanVan" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Menu" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ma" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Menu_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMenu" Type="int" />
+          <Property Name="IdNhomQuyen" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_MenuAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenMenu" Type="nvarchar" MaxLength="500" />
+          <Property Name="Link" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdCha" Type="int" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_MenuPage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDonVi" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdCha" Type="int" />
+          <Property Name="STT" Type="int" />
+          <Property Name="Link" Type="nvarchar" MaxLength="200" />
+          <Property Name="IdChuyenMuc" Type="int" />
+          <Property Name="IdBaiViet" Type="int" />
+          <Property Name="IdLoaiVB" Type="int" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="TrenDuoi" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_NhanSu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhanSu" Type="nvarchar" MaxLength="200" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="ChucVu" Type="nvarchar(max)" />
+          <Property Name="GioiThieu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_NhomQuyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhomQuyen" Type="nvarchar(max)" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MoTaNgan" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="View" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="NgayPhatHanh" Type="datetime" />
+          <Property Name="TacGia" Type="nvarchar(max)" />
+          <Property Name="IdChuyenMuc" Type="int" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="Nguon" Type="nvarchar" MaxLength="500" />
+          <Property Name="BuocDuyet" Type="int" />
+          <Property Name="TrangThai" Type="int" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="IsNoiBat" Type="bit" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="IsTab" Type="bit" />
+          <Property Name="STTUuTien" Type="int" />
+          <Property Name="IdPostCu" Type="int" />
+          <Property Name="CatID" Type="int" />
+          <Property Name="PageID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Post_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPost" Type="int" />
+          <Property Name="IdCategory" Type="int" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="IdPostCu" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Post_DonVi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPost" Type="int" />
+          <Property Name="IdDonVi" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Post_DuyetLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostId" Type="int" />
+          <Property Name="BuocDuyet" Type="int" />
+          <Property Name="NguoiXuLy" Type="int" />
+          <Property Name="TrangThai" Type="int" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
+          <Property Name="NgayXuLy" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Post_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_SoLuotTruyCap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoLuotTruyCap" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_SuKien">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar(max)" />
+          <Property Name="NgaySuKien" Type="datetime" />
+          <Property Name="Link" Type="time" Precision="7" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="DiaDiem" Type="nvarchar(max)" />
+          <Property Name="ChuTich" Type="nvarchar(max)" />
+          <Property Name="DeTai" Type="nvarchar(max)" />
+          <Property Name="Nganh" Type="nvarchar" MaxLength="250" />
+          <Property Name="NCS" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tbl_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTag" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_TaiSao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_ThongBao">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content" Type="ntext" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="File" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="NgayPhatHanh" Type="datetime" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="IdCategory" Type="int" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="IdLanguge" Type="int" />
+          <Property Name="MaThongBao" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_ThongSo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar(max)" />
+          <Property Name="ThongSo" Type="int" />
+          <Property Name="KiHieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_ThuVienAnh">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="200" />
+          <Property Name="STT" Type="int" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_ThuVienAnh_Album">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileImage" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdThuVienImage" Type="int" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="STT" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_ThuVienAnh_DanhMuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TenDanhMuc" Type="nvarchar(max)" />
+          <Property Name="STT" Type="int" />
+          <Property Name="IsLanguage" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="IdCu" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_ThuVienVideo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="TieuDe" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="LuotXem" Type="int" />
+          <Property Name="NgayDang" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="LoginToken" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_User_NhomQuyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="IdNhomQuyen" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_VanBan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="LinkFile" Type="nvarchar(max)" />
+          <Property Name="LoaiVB" Type="nvarchar" MaxLength="200" />
+          <Property Name="NgayBH" Type="datetime" />
+          <Property Name="CoQuanBanHanh" Type="nvarchar" MaxLength="500" />
+          <Property Name="SoHieuVB" Type="nvarchar" MaxLength="500" />
+          <Property Name="NguoiKy" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Luat.dbo.LoadMenu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LoadMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TenMenu" Type="nvarchar" MaxLength="500" />
+          <Property Name="Link" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdCha" Type="int" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Luat.dbo.LogUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LogUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="Controller" Type="nvarchar(max)" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="NgayThucHien" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Luat.dbo.TinMoiNhat_CheckTrung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TinMoiNhat_CheckTrung">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="TieuDe" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MoTaNgan" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="View" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="NgayPhatHanh" Type="datetime" />
+          <Property Name="TacGia" Type="nvarchar(max)" />
+          <Property Name="IdChuyenMuc" Type="int" />
+          <Property Name="IdDonVi" Type="int" />
+          <Property Name="Nguon" Type="nvarchar" MaxLength="500" />
+          <Property Name="BuocDuyet" Type="int" />
+          <Property Name="TrangThai" Type="int" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="IsNoiBat" Type="bit" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="IsTab" Type="bit" />
+          <Property Name="STTUuTien" Type="int" />
+          <Property Name="IdPostCu" Type="int" />
+          <Property Name="CatID" Type="int" />
+          <Property Name="PageID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="DB_LuatModelStoreContainer">
+          <EntitySet Name="GuiLienHe" EntityType="Self.GuiLienHe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuyTrinhDuyet" EntityType="Self.QuyTrinhDuyet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Banner" EntityType="Self.tbl_Banner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_BoCuc" EntityType="Self.tbl_BoCuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CamNhan" EntityType="Self.tbl_CamNhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ChuyenMuc" EntityType="Self.tbl_ChuyenMuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DoiTac" EntityType="Self.tbl_DoiTac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DonVi" EntityType="Self.tbl_DonVi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DonViChuyenMuc" EntityType="Self.tbl_DonViChuyenMuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_GioiThieu" EntityType="Self.tbl_GioiThieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_LienKetKhoa" EntityType="Self.tbl_LienKetKhoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Log" EntityType="Self.tbl_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_LuanAn" EntityType="Self.tbl_LuanAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Menu_User" EntityType="Self.tbl_Menu_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MenuAdmin" EntityType="Self.tbl_MenuAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MenuPage" EntityType="Self.tbl_MenuPage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_NhanSu" EntityType="Self.tbl_NhanSu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_NhomQuyen" EntityType="Self.tbl_NhomQuyen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Post" EntityType="Self.tbl_Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Post_Category" EntityType="Self.tbl_Post_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Post_DonVi" EntityType="Self.tbl_Post_DonVi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Post_DuyetLog" EntityType="Self.tbl_Post_DuyetLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Post_Tag" EntityType="Self.tbl_Post_Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SoLuotTruyCap" EntityType="Self.tbl_SoLuotTruyCap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SuKien" EntityType="Self.tbl_SuKien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Tag" EntityType="Self.tbl_Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TaiSao" EntityType="Self.tbl_TaiSao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ThongBao" EntityType="Self.tbl_ThongBao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ThongSo" EntityType="Self.tbl_ThongSo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ThuVienAnh" EntityType="Self.tbl_ThuVienAnh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ThuVienAnh_Album" EntityType="Self.tbl_ThuVienAnh_Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ThuVienAnh_DanhMuc" EntityType="Self.tbl_ThuVienAnh_DanhMuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ThuVienVideo" EntityType="Self.tbl_ThuVienVideo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User_NhomQuyen" EntityType="Self.tbl_User_NhomQuyen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VanBan" EntityType="Self.tbl_VanBan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoadMenu" EntityType="Self.LoadMenu" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[LoadMenu].[Id] AS [Id], 
+[LoadMenu].[TenMenu] AS [TenMenu], 
+[LoadMenu].[Link] AS [Link], 
+[LoadMenu].[IdCha] AS [IdCha], 
+[LoadMenu].[Icon] AS [Icon], 
+[LoadMenu].[IdUser] AS [IdUser]
+FROM [dbo].[LoadMenu] AS [LoadMenu]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LogUser" EntityType="Self.LogUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[LogUser].[FullName] AS [FullName], 
+[LogUser].[Id] AS [Id], 
+[LogUser].[MoTa] AS [MoTa], 
+[LogUser].[Action] AS [Action], 
+[LogUser].[Controller] AS [Controller], 
+[LogUser].[IdUser] AS [IdUser], 
+[LogUser].[NgayThucHien] AS [NgayThucHien]
+FROM [dbo].[LogUser] AS [LogUser]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TinMoiNhat_CheckTrung" EntityType="Self.TinMoiNhat_CheckTrung" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[TinMoiNhat_CheckTrung].[ID] AS [ID], 
+[TinMoiNhat_CheckTrung].[TieuDe] AS [TieuDe], 
+[TinMoiNhat_CheckTrung].[MoTaNgan] AS [MoTaNgan], 
+[TinMoiNhat_CheckTrung].[Image] AS [Image], 
+[TinMoiNhat_CheckTrung].[NoiDung] AS [NoiDung], 
+[TinMoiNhat_CheckTrung].[IsActive] AS [IsActive], 
+[TinMoiNhat_CheckTrung].[View] AS [View], 
+[TinMoiNhat_CheckTrung].[IsDelete] AS [IsDelete], 
+[TinMoiNhat_CheckTrung].[NgayPhatHanh] AS [NgayPhatHanh], 
+[TinMoiNhat_CheckTrung].[TacGia] AS [TacGia], 
+[TinMoiNhat_CheckTrung].[IdChuyenMuc] AS [IdChuyenMuc], 
+[TinMoiNhat_CheckTrung].[IdDonVi] AS [IdDonVi], 
+[TinMoiNhat_CheckTrung].[Nguon] AS [Nguon], 
+[TinMoiNhat_CheckTrung].[BuocDuyet] AS [BuocDuyet], 
+[TinMoiNhat_CheckTrung].[TrangThai] AS [TrangThai], 
+[TinMoiNhat_CheckTrung].[IdUser] AS [IdUser], 
+[TinMoiNhat_CheckTrung].[IsNoiBat] AS [IsNoiBat], 
+[TinMoiNhat_CheckTrung].[Link] AS [Link], 
+[TinMoiNhat_CheckTrung].[IsTab] AS [IsTab], 
+[TinMoiNhat_CheckTrung].[STTUuTien] AS [STTUuTien], 
+[TinMoiNhat_CheckTrung].[IdPostCu] AS [IdPostCu], 
+[TinMoiNhat_CheckTrung].[CatID] AS [CatID], 
+[TinMoiNhat_CheckTrung].[PageID] AS [PageID]
+FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_LuatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbcontext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GuiLienHes" EntityType="DB_LuatModel.GuiLienHe" />
+          <EntitySet Name="QuyTrinhDuyets" EntityType="DB_LuatModel.QuyTrinhDuyet" />
+          <EntitySet Name="tbl_Banner" EntityType="DB_LuatModel.tbl_Banner" />
+          <EntitySet Name="tbl_BoCuc" EntityType="DB_LuatModel.tbl_BoCuc" />
+          <EntitySet Name="tbl_ChuyenMuc" EntityType="DB_LuatModel.tbl_ChuyenMuc" />
+          <EntitySet Name="tbl_DonVi" EntityType="DB_LuatModel.tbl_DonVi" />
+          <EntitySet Name="tbl_DonViChuyenMuc" EntityType="DB_LuatModel.tbl_DonViChuyenMuc" />
+          <EntitySet Name="tbl_GioiThieu" EntityType="DB_LuatModel.tbl_GioiThieu" />
+          <EntitySet Name="tbl_LienKetKhoa" EntityType="DB_LuatModel.tbl_LienKetKhoa" />
+          <EntitySet Name="tbl_Log" EntityType="DB_LuatModel.tbl_Log" />
+          <EntitySet Name="tbl_LuanAn" EntityType="DB_LuatModel.tbl_LuanAn" />
+          <EntitySet Name="tbl_Menu" EntityType="DB_LuatModel.tbl_Menu" />
+          <EntitySet Name="tbl_Menu_User" EntityType="DB_LuatModel.tbl_Menu_User" />
+          <EntitySet Name="tbl_MenuAdmin" EntityType="DB_LuatModel.tbl_MenuAdmin" />
+          <EntitySet Name="tbl_MenuPage" EntityType="DB_LuatModel.tbl_MenuPage" />
+          <EntitySet Name="tbl_NhomQuyen" EntityType="DB_LuatModel.tbl_NhomQuyen" />
+          <EntitySet Name="tbl_Post" EntityType="DB_LuatModel.tbl_Post" />
+          <EntitySet Name="tbl_Post_DonVi" EntityType="DB_LuatModel.tbl_Post_DonVi" />
+          <EntitySet Name="tbl_Post_DuyetLog" EntityType="DB_LuatModel.tbl_Post_DuyetLog" />
+          <EntitySet Name="tbl_Post_Tag" EntityType="DB_LuatModel.tbl_Post_Tag" />
+          <EntitySet Name="tbl_SoLuotTruyCap" EntityType="DB_LuatModel.tbl_SoLuotTruyCap" />
+          <EntitySet Name="tbl_SuKien" EntityType="DB_LuatModel.tbl_SuKien" />
+          <EntitySet Name="tbl_Tag" EntityType="DB_LuatModel.tbl_Tag" />
+          <EntitySet Name="tbl_ThongBao" EntityType="DB_LuatModel.tbl_ThongBao" />
+          <EntitySet Name="tbl_ThongSo" EntityType="DB_LuatModel.tbl_ThongSo" />
+          <EntitySet Name="tbl_ThuVienAnh" EntityType="DB_LuatModel.tbl_ThuVienAnh" />
+          <EntitySet Name="tbl_ThuVienAnh_Album" EntityType="DB_LuatModel.tbl_ThuVienAnh_Album" />
+          <EntitySet Name="tbl_ThuVienAnh_DanhMuc" EntityType="DB_LuatModel.tbl_ThuVienAnh_DanhMuc" />
+          <EntitySet Name="tbl_ThuVienVideo" EntityType="DB_LuatModel.tbl_ThuVienVideo" />
+          <EntitySet Name="tbl_User" EntityType="DB_LuatModel.tbl_User" />
+          <EntitySet Name="tbl_User_NhomQuyen" EntityType="DB_LuatModel.tbl_User_NhomQuyen" />
+          <EntitySet Name="tbl_VanBan" EntityType="DB_LuatModel.tbl_VanBan" />
+          <EntitySet Name="LoadMenus" EntityType="DB_LuatModel.LoadMenu" />
+          <EntitySet Name="LogUsers" EntityType="DB_LuatModel.LogUser" />
+          <EntitySet Name="TinMoiNhat_CheckTrung" EntityType="DB_LuatModel.TinMoiNhat_CheckTrung" />
+          <EntitySet Name="tbl_NhanSu" EntityType="DB_LuatModel.tbl_NhanSu" />
+          <EntitySet Name="tbl_TaiSao" EntityType="DB_LuatModel.tbl_TaiSao" />
+          <EntitySet Name="tbl_DoiTac" EntityType="DB_LuatModel.tbl_DoiTac" />
+          <EntitySet Name="tbl_CamNhan" EntityType="DB_LuatModel.tbl_CamNhan" />
+          <EntitySet Name="tbl_Post_Category" EntityType="DB_LuatModel.tbl_Post_Category" />
+        </EntityContainer>
+        <EntityType Name="GuiLienHe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayGui" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="QuyTrinhDuyet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STT" Type="Int32" />
+          <Property Name="TenBuoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdNhomQuyen" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STT" Type="Int32" />
+          <Property Name="IdDonVi" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_BoCuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDeBoCuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdBoCuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KichHoat" Type="Boolean" />
+          <Property Name="ẢnhBoCuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_ChuyenMuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenChuyenMuc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_DonVi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDonVi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsLanguage" Type="Int32" />
+          <Property Name="STT" Type="Int32" />
+          <Property Name="Hotline" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LinkDangKy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_DonViChuyenMuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="IdChuyenMuc" Type="Int32" />
+          <Property Name="STT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_GioiThieu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDeChinh" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuDePhu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HomThu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Bac" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Mau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_LienKetKhoa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GioiThieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="NgayThucHien" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_LuanAn">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NCS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ChuyenNganh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LinkTomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkToanVan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Menu" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Menu_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMenu" Type="Int32" />
+          <Property Name="IdNhomQuyen" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_MenuAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenMenu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdCha" Type="Int32" />
+          <Property Name="Icon" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_MenuPage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDonVi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdCha" Type="Int32" />
+          <Property Name="STT" Type="Int32" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdChuyenMuc" Type="Int32" />
+          <Property Name="IdBaiViet" Type="Int32" />
+          <Property Name="IdLoaiVB" Type="Int32" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="TrenDuoi" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_NhomQuyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhomQuyen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaNgan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="View" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="NgayPhatHanh" Type="DateTime" Precision="3" />
+          <Property Name="TacGia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdChuyenMuc" Type="Int32" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="Nguon" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BuocDuyet" Type="Int32" />
+          <Property Name="TrangThai" Type="Int32" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="IsNoiBat" Type="Boolean" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsTab" Type="Boolean" />
+          <Property Name="STTUuTien" Type="Int32" />
+          <Property Name="IdPostCu" Type="Int32" />
+          <Property Name="CatID" Type="Int32" />
+          <Property Name="PageID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Post_DonVi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPost" Type="Int32" />
+          <Property Name="IdDonVi" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Post_DuyetLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Int32" />
+          <Property Name="BuocDuyet" Type="Int32" />
+          <Property Name="NguoiXuLy" Type="Int32" />
+          <Property Name="TrangThai" Type="Int32" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayXuLy" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Post_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tbl_SoLuotTruyCap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoLuotTruyCap" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_SuKien">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySuKien" Type="DateTime" Precision="3" />
+          <Property Name="Link" Type="Time" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaDiem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChuTich" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeTai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nganh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NCS" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTag" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ThongBao">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="File" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NgayPhatHanh" Type="DateTime" Precision="3" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="IdCategory" Type="Int32" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="IdLanguge" Type="Int32" />
+          <Property Name="MaThongBao" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ThongSo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThongSo" Type="Int32" />
+          <Property Name="KiHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ThuVienAnh">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="STT" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_ThuVienAnh_Album">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileImage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdThuVienImage" Type="Int32" />
+          <Property Name="MoTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="STT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_ThuVienAnh_DanhMuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TenDanhMuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STT" Type="Int32" />
+          <Property Name="IsLanguage" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="IdCu" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_ThuVienVideo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LuotXem" Type="Int32" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="LoginToken" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_User_NhomQuyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="IdNhomQuyen" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_VanBan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="LinkFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiVB" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBH" Type="DateTime" Precision="3" />
+          <Property Name="CoQuanBanHanh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SoHieuVB" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiKy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LoadMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TenMenu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdCha" Type="Int32" />
+          <Property Name="Icon" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="NgayThucHien" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TinMoiNhat_CheckTrung">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="TieuDe" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaNgan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="View" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="NgayPhatHanh" Type="DateTime" Precision="3" />
+          <Property Name="TacGia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdChuyenMuc" Type="Int32" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="Nguon" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BuocDuyet" Type="Int32" />
+          <Property Name="TrangThai" Type="Int32" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="IsNoiBat" Type="Boolean" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsTab" Type="Boolean" />
+          <Property Name="STTUuTien" Type="Int32" />
+          <Property Name="IdPostCu" Type="Int32" />
+          <Property Name="CatID" Type="Int32" />
+          <Property Name="PageID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_NhanSu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhanSu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GioiThieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_TaiSao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_DoiTac">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDoiTac" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnhDaiDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_CamNhan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Post_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPost" Type="Int32" />
+          <Property Name="IdCategory" Type="Int32" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="IdPostCu" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_LuatModelStoreContainer" CdmEntityContainer="dbcontext">
+          <EntitySetMapping Name="GuiLienHes">
+            <EntityTypeMapping TypeName="DB_LuatModel.GuiLienHe">
+              <MappingFragment StoreEntitySet="GuiLienHe">
+                <ScalarProperty Name="NgayGui" ColumnName="NgayGui" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuyTrinhDuyets">
+            <EntityTypeMapping TypeName="DB_LuatModel.QuyTrinhDuyet">
+              <MappingFragment StoreEntitySet="QuyTrinhDuyet">
+                <ScalarProperty Name="IdNhomQuyen" ColumnName="IdNhomQuyen" />
+                <ScalarProperty Name="TenBuoc" ColumnName="TenBuoc" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Banner">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Banner">
+              <MappingFragment StoreEntitySet="tbl_Banner">
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_BoCuc">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_BoCuc">
+              <MappingFragment StoreEntitySet="tbl_BoCuc">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="ẢnhBoCuc" ColumnName="ẢnhBoCuc" />
+                <ScalarProperty Name="KichHoat" ColumnName="KichHoat" />
+                <ScalarProperty Name="IdBoCuc" ColumnName="IdBoCuc" />
+                <ScalarProperty Name="TieuDeBoCuc" ColumnName="TieuDeBoCuc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ChuyenMuc">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_ChuyenMuc">
+              <MappingFragment StoreEntitySet="tbl_ChuyenMuc">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="TenChuyenMuc" ColumnName="TenChuyenMuc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DonVi">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_DonVi">
+              <MappingFragment StoreEntitySet="tbl_DonVi">
+                <ScalarProperty Name="LinkDangKy" ColumnName="LinkDangKy" />
+                <ScalarProperty Name="Hotline" ColumnName="Hotline" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="IsLanguage" ColumnName="IsLanguage" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DonViChuyenMuc">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_DonViChuyenMuc">
+              <MappingFragment StoreEntitySet="tbl_DonViChuyenMuc">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="IdChuyenMuc" ColumnName="IdChuyenMuc" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_GioiThieu">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_GioiThieu">
+              <MappingFragment StoreEntitySet="tbl_GioiThieu">
+                <ScalarProperty Name="Mau" ColumnName="Mau" />
+                <ScalarProperty Name="Bac" ColumnName="Bac" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="HomThu" ColumnName="HomThu" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="TieuDePhu" ColumnName="TieuDePhu" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuDeChinh" ColumnName="TieuDeChinh" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_LienKetKhoa">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_LienKetKhoa">
+              <MappingFragment StoreEntitySet="tbl_LienKetKhoa">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Log">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Log">
+              <MappingFragment StoreEntitySet="tbl_Log">
+                <ScalarProperty Name="NgayThucHien" ColumnName="NgayThucHien" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_LuanAn">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_LuanAn">
+              <MappingFragment StoreEntitySet="tbl_LuanAn">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="LinkToanVan" ColumnName="LinkToanVan" />
+                <ScalarProperty Name="LinkTomTat" ColumnName="LinkTomTat" />
+                <ScalarProperty Name="ChuyenNganh" ColumnName="ChuyenNganh" />
+                <ScalarProperty Name="NCS" ColumnName="NCS" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Menu">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Menu">
+              <MappingFragment StoreEntitySet="tbl_Menu">
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="Menu" ColumnName="Menu" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Menu_User">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Menu_User">
+              <MappingFragment StoreEntitySet="tbl_Menu_User">
+                <ScalarProperty Name="IdNhomQuyen" ColumnName="IdNhomQuyen" />
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MenuAdmin">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_MenuAdmin">
+              <MappingFragment StoreEntitySet="tbl_MenuAdmin">
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IdCha" ColumnName="IdCha" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="TenMenu" ColumnName="TenMenu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MenuPage">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_MenuPage">
+              <MappingFragment StoreEntitySet="tbl_MenuPage">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="TrenDuoi" ColumnName="TrenDuoi" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="IdLoaiVB" ColumnName="IdLoaiVB" />
+                <ScalarProperty Name="IdBaiViet" ColumnName="IdBaiViet" />
+                <ScalarProperty Name="IdChuyenMuc" ColumnName="IdChuyenMuc" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="IdCha" ColumnName="IdCha" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_NhomQuyen">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_NhomQuyen">
+              <MappingFragment StoreEntitySet="tbl_NhomQuyen">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="TenNhomQuyen" ColumnName="TenNhomQuyen" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Post">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post">
+              <MappingFragment StoreEntitySet="tbl_Post">
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="IdPostCu" ColumnName="IdPostCu" />
+                <ScalarProperty Name="STTUuTien" ColumnName="STTUuTien" />
+                <ScalarProperty Name="IsTab" ColumnName="IsTab" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IsNoiBat" ColumnName="IsNoiBat" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="BuocDuyet" ColumnName="BuocDuyet" />
+                <ScalarProperty Name="Nguon" ColumnName="Nguon" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="IdChuyenMuc" ColumnName="IdChuyenMuc" />
+                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
+                <ScalarProperty Name="NgayPhatHanh" ColumnName="NgayPhatHanh" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Post_DonVi">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post_DonVi">
+              <MappingFragment StoreEntitySet="tbl_Post_DonVi">
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Post_DuyetLog">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post_DuyetLog">
+              <MappingFragment StoreEntitySet="tbl_Post_DuyetLog">
+                <ScalarProperty Name="NgayXuLy" ColumnName="NgayXuLy" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NguoiXuLy" ColumnName="NguoiXuLy" />
+                <ScalarProperty Name="BuocDuyet" ColumnName="BuocDuyet" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Post_Tag">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post_Tag">
+              <MappingFragment StoreEntitySet="tbl_Post_Tag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SoLuotTruyCap">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_SoLuotTruyCap">
+              <MappingFragment StoreEntitySet="tbl_SoLuotTruyCap">
+                <ScalarProperty Name="SoLuotTruyCap" ColumnName="SoLuotTruyCap" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SuKien">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_SuKien">
+              <MappingFragment StoreEntitySet="tbl_SuKien">
+                <ScalarProperty Name="NCS" ColumnName="NCS" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="DeTai" ColumnName="DeTai" />
+                <ScalarProperty Name="ChuTich" ColumnName="ChuTich" />
+                <ScalarProperty Name="DiaDiem" ColumnName="DiaDiem" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="NgaySuKien" ColumnName="NgaySuKien" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Tag">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Tag">
+              <MappingFragment StoreEntitySet="tbl_Tag">
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="TenTag" ColumnName="TenTag" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ThongBao">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_ThongBao">
+              <MappingFragment StoreEntitySet="tbl_ThongBao">
+                <ScalarProperty Name="MaThongBao" ColumnName="MaThongBao" />
+                <ScalarProperty Name="IdLanguge" ColumnName="IdLanguge" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="NgayPhatHanh" ColumnName="NgayPhatHanh" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="File" ColumnName="File" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ThongSo">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_ThongSo">
+              <MappingFragment StoreEntitySet="tbl_ThongSo">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="KiHieu" ColumnName="KiHieu" />
+                <ScalarProperty Name="ThongSo" ColumnName="ThongSo" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ThuVienAnh">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_ThuVienAnh">
+              <MappingFragment StoreEntitySet="tbl_ThuVienAnh">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ThuVienAnh_Album">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_ThuVienAnh_Album">
+              <MappingFragment StoreEntitySet="tbl_ThuVienAnh_Album">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="IdThuVienImage" ColumnName="IdThuVienImage" />
+                <ScalarProperty Name="FileImage" ColumnName="FileImage" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ThuVienAnh_DanhMuc">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_ThuVienAnh_DanhMuc">
+              <MappingFragment StoreEntitySet="tbl_ThuVienAnh_DanhMuc">
+                <ScalarProperty Name="IdCu" ColumnName="IdCu" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsLanguage" ColumnName="IsLanguage" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ThuVienVideo">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_ThuVienVideo">
+              <MappingFragment StoreEntitySet="tbl_ThuVienVideo">
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="LoginToken" ColumnName="LoginToken" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User_NhomQuyen">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_User_NhomQuyen">
+              <MappingFragment StoreEntitySet="tbl_User_NhomQuyen">
+                <ScalarProperty Name="IdNhomQuyen" ColumnName="IdNhomQuyen" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VanBan">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_VanBan">
+              <MappingFragment StoreEntitySet="tbl_VanBan">
+                <ScalarProperty Name="NguoiKy" ColumnName="NguoiKy" />
+                <ScalarProperty Name="SoHieuVB" ColumnName="SoHieuVB" />
+                <ScalarProperty Name="CoQuanBanHanh" ColumnName="CoQuanBanHanh" />
+                <ScalarProperty Name="NgayBH" ColumnName="NgayBH" />
+                <ScalarProperty Name="LoaiVB" ColumnName="LoaiVB" />
+                <ScalarProperty Name="LinkFile" ColumnName="LinkFile" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoadMenus">
+            <EntityTypeMapping TypeName="DB_LuatModel.LoadMenu">
+              <MappingFragment StoreEntitySet="LoadMenu">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IdCha" ColumnName="IdCha" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="TenMenu" ColumnName="TenMenu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogUsers">
+            <EntityTypeMapping TypeName="DB_LuatModel.LogUser">
+              <MappingFragment StoreEntitySet="LogUser">
+                <ScalarProperty Name="NgayThucHien" ColumnName="NgayThucHien" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TinMoiNhat_CheckTrung">
+            <EntityTypeMapping TypeName="DB_LuatModel.TinMoiNhat_CheckTrung">
+              <MappingFragment StoreEntitySet="TinMoiNhat_CheckTrung">
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="IdPostCu" ColumnName="IdPostCu" />
+                <ScalarProperty Name="STTUuTien" ColumnName="STTUuTien" />
+                <ScalarProperty Name="IsTab" ColumnName="IsTab" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IsNoiBat" ColumnName="IsNoiBat" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="BuocDuyet" ColumnName="BuocDuyet" />
+                <ScalarProperty Name="Nguon" ColumnName="Nguon" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="IdChuyenMuc" ColumnName="IdChuyenMuc" />
+                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
+                <ScalarProperty Name="NgayPhatHanh" ColumnName="NgayPhatHanh" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_NhanSu">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_NhanSu">
+              <MappingFragment StoreEntitySet="tbl_NhanSu">
+                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="TenNhanSu" ColumnName="TenNhanSu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TaiSao">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_TaiSao">
+              <MappingFragment StoreEntitySet="tbl_TaiSao">
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DoiTac">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_DoiTac">
+              <MappingFragment StoreEntitySet="tbl_DoiTac">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="TenDoiTac" ColumnName="TenDoiTac" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CamNhan">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_CamNhan">
+              <MappingFragment StoreEntitySet="tbl_CamNhan">
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Post_Category">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post_Category">
+              <MappingFragment StoreEntitySet="tbl_Post_Category">
+                <ScalarProperty Name="IdPostCu" ColumnName="IdPostCu" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

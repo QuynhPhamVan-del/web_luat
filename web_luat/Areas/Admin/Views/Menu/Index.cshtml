@@ -1,0 +1,256 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@model PagedList.IPagedList<web_luat.Models.tbl_MenuPage>
+@using PagedList.Mvc;
+@using PagedList;
+@using web_luat.Models;
+@{
+    ViewBag.Title = "Danh sách banner";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+    var menu = ViewData["menu"] as List<tbl_MenuPage>;
+    var chuyenmuc = ViewData["chuyenmuc"] as List<tbl_ChuyenMuc>;
+}
+<div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    <div class="card">
+        <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
+            <h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Quản trị menu </h4>
+
+            @Ajax.ActionLink(
+
+         " Thêm ",
+         "Create",
+         "Menu",
+         new AjaxOptions
+         {
+             UpdateTargetId = "responsive",
+             InsertionMode = InsertionMode.Replace,
+             HttpMethod = "GET",
+             OnComplete = "load"
+         },
+         new { @class = "btn btn-primary col-md-1" }
+         )
+            <a href="@Url.Action("Index", new { isTrash = false,TrenDuoi= ViewBag.TrenDuoi })"
+               class="btn  btn-success col-md-1" style="margin:0 10px">
+                Danh sách
+            </a>
+
+            <a href="@Url.Action("Index", new { isTrash = true,TrenDuoi= ViewBag.TrenDuoi })"
+               class="btn btn-danger col-md-1">
+                Thùng rác
+            </a>
+        </div>
+
+        <div class="row" style="padding: 10px 25px; ">
+
+            <div class="col-md-2">
+                <input name="Key" id="Key" class="form-control" value="@ViewBag.Key" />
+            </div>
+
+            <div class="col-md-2">
+                <select class="form-control" name="IdMenu" id="IdMenu" style="margin-right:10px;" onchange="timkiem()">
+                    <option>-- Chọn menu cha --</option>
+                    @foreach (var item in menu.Where(g => g.IdCha == 0 || g.IdCha == null))
+                    {
+                        var lstMenu = menu.Where(g => g.IdCha == item.Id).ToList();
+                        <option value="@item.Id" @(ViewBag.IdMenu == item.Id ? "selected" : "")>@item.TenDonVi</option>
+                        if (lstMenu.Count > 0)
+                        {
+                            foreach (var i in lstMenu)
+                            {
+                                var lstMenu2 = menu.Where(g => g.IdCha == i.Id).ToList();
+                                <option value="@i.Id" @(ViewBag.IdMenu == i.Id ? "selected" : "")>@i.TenDonVi</option>
+
+                                if (lstMenu2.Count > 0)
+                                {
+                                    foreach (var i1 in lstMenu2)
+                                    {
+                                        <option value="@i1.Id" @(ViewBag.IdMenu == i1.Id ? "selected" : "")>- @i1.TenDonVi</option>
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control" name="IdChuyenMuc" id="IdChuyenMuc" style="margin-right:10px;" onchange="timkiem()">
+                    <option>-- Chọn chuyên mục --</option>
+                    @foreach (var item in chuyenmuc)
+                    {
+                        <option value="@item.Id" @(ViewBag.IdChuyenMuc == item.Id ? "selected" : "")>@item.TenChuyenMuc</option>
+                    }
+                </select>
+            </div>
+
+        </div>
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">STT</th>
+                        <th class="text-center">Tên menu</th>
+                        <th class="text-center">Link</th>
+                        <th class="text-center">Chuyên mục</th>
+
+                        <th class="text-center">Menu cha</th>
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr class="text-center">
+                            <td>
+                                @stt
+                            </td>
+                            <td>
+                                @item.TenDonVi
+                            </td>
+                            <td>@item.Link</td>
+                            <td>
+                                @if (item.IdChuyenMuc > 0 && @chuyenmuc.Count(g => g.Id == item.IdChuyenMuc) > 0)
+                                {
+                                    <span>@chuyenmuc.FirstOrDefault(g => g.Id == item.IdChuyenMuc).TenChuyenMuc</span>
+                                }
+                            </td>
+
+
+                            <td>
+                                @if (item.IdCha > 0 && menu.Count(g => g.Id == item.IdCha) > 0)
+                                {
+                                    <span>@menu.FirstOrDefault(g => g.Id == item.IdCha).TenDonVi</span>
+                                }
+                            </td>
+
+
+
+
+
+                            <td>
+                                @if (ViewBag.isTrash == true)
+                                {
+                                    <a class="btn btn-sm btn-outline-success" onclick="btnRestoreSingle(@item.Id, 'Menu')">
+                                        Khôi phục
+                                    </a>
+
+                                    <a class="btn btn-sm btn-outline-danger" onclick="btndeletetvc(@item.Id, 'Menu')">
+                                        Xóa vĩnh viễn
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-sm btn-outline-success"
+                                       href="@Url.Action("Edit","Menu", new { id = item.Id })"
+                                       data-ajax="true"
+                                       data-ajax-update="#responsive"
+                                       data-ajax-method="GET"
+                                       data-ajax-complete="loadfrmEditSussess">
+                                        Sửa
+                                    </a>
+
+                                    <a class="btn btn-sm btn-outline-danger"
+                                       onclick="btndelete(@item.Id,'Menu')">
+                                        Xóa
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <div class="col-md-12" style="text-align:right;color:black">
+                Tổng số bản ghi: @ViewBag.total &nbsp;
+            </div>
+            @{
+                int currentPage = Convert.ToInt32(ViewBag.pageNumber);
+                int totalPages = Model.PageCount;
+
+                // Số trang cần hiển thị
+                int showStart = 3;
+                int showMiddle = 2;
+                int showEnd = 3;
+
+                List<int> displayedPages = new List<int>();
+
+                // 3 trang đầu
+                for (int i = 1; i <= Math.Min(showStart, totalPages); i++)
+                {
+                    displayedPages.Add(i);
+                }
+
+                // 2 trang giữa (trang hiện tại +/- 1)
+                for (int i = currentPage - 1; i <= currentPage + 1; i++)
+                {
+                    if (i > showStart && i <= totalPages - showEnd && !displayedPages.Contains(i))
+                    {
+                        displayedPages.Add(i);
+                    }
+                }
+
+                // 3 trang cuối
+                for (int i = totalPages - showEnd + 1; i <= totalPages; i++)
+                {
+                    if (i > 0 && !displayedPages.Contains(i))
+                    {
+                        displayedPages.Add(i);
+                    }
+                }
+
+                // Sắp xếp danh sách trang để hiển thị theo thứ tự
+                displayedPages = displayedPages.Distinct().OrderBy(x => x).ToList();
+            }
+
+            <ul class="pagination" style="float:right;margin-right:20px">
+                @{
+                    int lastPage = 0;
+                    foreach (var page in displayedPages)
+                    {
+                        if (lastPage != 0 && page - lastPage > 1)
+                        {
+                            <li><span class="page-link">...</span></li>
+                        }
+
+                        <li>
+                            <a class="page-link @(currentPage == page ? "active" : "")" href="@Url.Action("Index", new { page = page, keyword = ViewBag.keyword,isTrash=ViewBag.isTrash })">@page</a>
+                        </li>
+
+                        lastPage = page;
+                    }
+                }
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(document).on("keypress", function (e) {
+                if (e.which === 13) { // Enter
+                    timkiem()
+                }
+            });
+        });
+     function timkiem() {
+    var url = "/Admin/Menu/Index?"
+        + "IdChuyenMuc=" + encodeURIComponent($('#IdChuyenMuc').val())
+        + "&IdMenu=" + encodeURIComponent($('#IdMenu').val())
+        + "&isTrash=@(ViewBag.isTrash ?? 0)"
+        + "&Key=" + encodeURIComponent($('#Key').val());
+
+    window.location.href = url;
+}
+    </script>
+}

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = null;
+    var loaitin = ViewData["loaitin"] as List<web_luat.Models.tbl_ChuyenMuc>;
+    var stt = ViewBag.stt;
+
+}
+<div id="@stt">
+    @*<div class="infor-details" @(ViewBag.IdDV > 0 ? "hidden" : "")>
+            <label for="txtmaKH">Đơn vị</label>
+            <select class="form-control" name="IdDonVi_@stt" id="IdDonVi_@stt" onclick="loadcm(@stt)">
+                <option value="0">-- Chọn đơn vị --</option>
+                @foreach (var item in donvi)
+                {
+                    <option value="@item.Id">@item.TenDVHC</option>
+                }
+            </select>
+
+        </div>*@
+    <div class="infor-details" id="CM">
+        <label for="txthoTen">Chuyên mục tin tức (<span style="color: red">*</span>)</label>
+        <select class="form-control" name="IdChuyenMuc_@stt" id="IdChuyenMuc_@stt">
+            <option value="0">-- Chọn chuyên mục tin tức --</option>
+            @foreach (var item in loaitin)
+            {
+                <option value="@item.Id">@item.TenChuyenMuc</option>
+
+            }
+        </select>
+    </div>
+    <div class="infor-details">
+        <a onclick="xoa(@stt)" class="btn btn-outline-danger">Xóa</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('select').select2({
+            width: '100%'
+        });
+    });
+</script>

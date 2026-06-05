@@ -1,0 +1,105 @@
+﻿@model PagedList.IPagedList<web_luat.Models.tbl_CauHoiMacDinh>
+@using PagedList.Mvc;
+@using PagedList;
+@using web_luat.Models;
+@{
+    ViewBag.Title = "Danh sách banner";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+
+}
+<div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    @*<h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Banner trang chính   </h4>*@
+    <div class="card">
+        <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
+            <h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Quản trị thông tin giới thiệu </h4>
+            @if (Model.Count() == 0 || Session["Admin"].ToString() == "1")
+            {
+                @Ajax.ActionLink(
+
+" Thêm ",
+"Create",
+"HoiDap",
+new AjaxOptions
+{
+    UpdateTargetId = "responsive",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "GET",
+    OnComplete = "load"
+},
+new { @class = "btn btn-primary col-md-1" }
+)
+            }
+
+
+        </div>
+
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th class="text-center">STT</th>
+
+                        <th class="text-center">Câu hỏi</th>
+
+                        <th class="text-center">Câu trả lời</th>
+
+
+
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr class="text-center">
+                            <td>
+                                @stt
+                            </td>
+
+                            <td>
+                                @Html.Raw(item.CauHoi)
+                            </td>
+
+                            <td>
+                                @Html.Raw(item.CauTraLoi)
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("Edit", "HoiDap", new { id = item.Id,isView=ViewBag.isView })"
+                                   class="btn btn-sm btn-outline-success"
+                                   title="Sửa"
+                                   data-ajax="true"
+                                   data-ajax-mode="replace"
+                                   data-ajax-update="#responsive"
+                                   data-ajax-method="GET"
+                                   data-ajax-complete="loadfrmEditSussess">
+                                    Sửa
+                                </a>
+                                <a class="btn btn-sm btn-outline-danger" title="Xóa" onclick="btndelete(@item.Id,'HoiDap')">
+                                    xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="col-md-12" style="text-align:right;color:black">
+                Tổng số bản ghi: @ViewBag.total &nbsp;
+            </div>
+            <ul class="pagination" style="float:right;margin-right:20px">
+
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li>
+                        <a class="page-link @(Convert.ToInt32(ViewBag.pageNumber)==i?"active":"")" href="@Url.Action("Index")">@i</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+</div>

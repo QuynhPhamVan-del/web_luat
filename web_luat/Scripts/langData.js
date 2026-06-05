@@ -1,0 +1,47 @@
+﻿var arrLang = {
+    "tv": {
+        "TinTucMoiNhat": "Tin tức mới nhất",
+        "ThongBao": "Thông báo",
+        "TinTucNoiBat": "Tin tức nôt bật",
+        "VanBan": "Văn bản",
+        "DaoTao": "ĐÀO TẠO",
+        "NghienCuuKhoaHoc": "Nghiên cứu khoa học",
+        "KhamChuaBenh": "Khám chữa bệnh",
+        "NoiDungDaoTao": "Đào tạo nguồn nhân lực y tế trình độ đại học, sau đại học bảo đảm hợp tác quốc tế; Nghiên cứu khoa học, ứng dụng và chuyển giao công nghệ đóng góp hiệu qủa",
+        "NoiDungNghienCuuKhoaHoc": "Phát triển Trường Đại học Kỹ thuật Y – Dược Đà Nẵng theo hướng ứng dụng và phát triển Bệnh viện Trường hiện đại, phục vụ nhu cầu đào tạo và chăm sóc sức khỏe nhân dân.",
+        "NoiDungKhamChuaBenh": "Trách nhiệm – hợp tác quốc tế – Hợp tác – Phát triển.",
+        "PhanMemQuanLy": "Phần mềm quản lý",
+        "MoTaPhanMemQuanLy": "Nhà trường có hệ thống phần mềm quản lý cho giáo viên & sinh viên trong việc tra cứu kết quả học tập, lịch thi, lịch công tác",
+        "PMCongNhapDiem": "Cổng nhập điểm",
+        "PMQuanLyTaiSan": "Quản lý tài sản ",
+        "PMCMSSinhVien": "Cổng thông tin sinh viên ",
+        "PMQLKhaoSat": "Quản lý Khảo sát, Đánh giá ",
+        "PMSinhVien": "Quản lý sinh viên",
+        "PMCHocTrucTuyen": "Quản lý học trực tuyến "
+    },
+    "ta": {
+        "TinTucMoiNhat": "News",
+        "ThongBao": "Notification",
+        "TinTucNoiBat": "Hot News",
+        "VanBan": "Document",
+        "DaoTao": "TRAINING",
+        "NghienCuuKhoaHoc": "Scientific Research",
+        "KhamChuaBenh": "Healthcare",
+        "NoiDungDaoTao": "Training medical human resources at university and post-graduate levels to ensure quality; Scientific research, application and technology transfer effectively contribute",
+        "NoiDungNghienCuuKhoaHoc": "To develop Da Nang University of Medical Technology - Pharmacy in the direction of application and development of a modern School Hospital, serving the needs of training and people's health care",
+        "NoiDungKhamChuaBenh": "Responsibility – Quality – Cooperation – Development.",
+        "PhanMemQuanLy": "Management Software",
+        "MoTaPhanMemQuanLy": "The school has a management software system for teachers and students to look up study results, exam schedules, and work schedules",
+        "PMCongNhapDiem": "Cổng nhập điểm",
+        "PMQuanLyTaiSan": "Quản lý tài sản ",
+        "PMCMSSinhVien": "Cổng thông tin sinh viên ",
+        "PMQLKhaoSat": "Quản lý Khảo sát, Đánh giá ",
+        "PMSinhVien": "Quản lý sinh viên m",
+        "PMCHocTrucTuyen": "Quản lý học trực tuyến "
+    },
+    "zh-tw": {
+        "HOME": "首頁",
+        "ABOUT": "關於我們",
+        "CONTACT": "聯絡我們",
+    }
+};

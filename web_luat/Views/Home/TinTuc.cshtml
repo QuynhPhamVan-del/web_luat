@@ -1,0 +1,220 @@
+﻿@using System.Globalization
+@{
+    ViewBag.Title = "TinTuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstMoiNhat = ViewData["lstMoiNhat"] as List<web_luat.Models.tbl_Post>;
+
+    <link href="~/css-moi/style2.css" rel="stylesheet" />
+}
+
+<div class="archive-header-banner text-center text-white">
+    <div class="container">
+        <span class="archive-subtitle text-uppercase">Thông tin chia sẻ</span>
+        <h1 class="archive-main-title fw-extrabold mt-2">Kiến Thức Pháp Luật</h1>
+        <p class="archive-description mx-auto mt-3 text-secondary">Cập nhật các văn bản pháp luật mới nhất, phân tích chuyên sâu và giải pháp pháp lý tối ưu từ đội ngũ chuyên gia Luật MV.</p>
+    </div>
+</div>
+
+<main class="archive-content-wrapper py-5">
+    <div class="container">
+        <div class="row g-4 lg-g-5">
+
+            <div class="col-lg-8">
+                <div class="row g-4" id="newsContainer">
+                </div>
+
+                <nav class="mt-5">
+                    <ul class="archive-pagination d-flex justify-content-center gap-2 list-unstyled" id="paginationContainer">
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-lg-4">
+                <aside class="archive-sidebar d-flex flex-column gap-4">
+
+                    <div class="sidebar-widget bg-white p-4 rounded-4 shadow-sm">
+                        <h3 class="widget-title text-uppercase">Tìm kiếm bài viết</h3>
+                        <div class="sidebar-search-form position-relative">
+                            <input type="text" id="sidebarSearchInput" placeholder="Nhập từ khóa tìm kiếm..." class="form-control shadow-none">
+                            <button type="button" id="btnSidebarSearch" class="search-submit-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget bg-premium-yellow p-4 rounded-4 shadow-sm">
+                        <h3 class="widget-title text-uppercase text-dark border-dark-sub">Tin tức gần đây</h3>
+                        <div class="widget-recent-posts d-flex flex-column gap-3">
+                            @foreach (var item in lstMoiNhat)
+                            {
+                                var link = "/chi-tiet-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TieuDe) + "_" + item.ID + ".html";
+                                <div class="recent-post-card-mini pb-3 border-bottom-dashed-dark">
+                                    <div class="mini-thumb"><img src="@item.Image" alt="@item.TieuDe"></div>
+                                    <div class="mini-content">
+                                        <h5><a href="@link">@item.TieuDe</a></h5>
+                                        <span>@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture) </span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</main>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Hứng giá trị ban đầu được truyền từ URL qua Controller (nếu có)
+            var currentPage = 1;
+            var pageSize = 4;
+            var searchKeyword = '@Html.Raw(ViewBag.KeyBanDau ?? "")';
+            var currentChuyenMucId = parseInt('@(ViewBag.IdChuyenMucBanDau ?? 0)');
+
+            // Đưa từ khóa tìm kiếm ban đầu vào ô input (nếu người dùng bấm tìm kiếm từ trang khác sang)
+            if(searchKeyword !== "") {
+                $("#sidebarSearchInput").val(searchKeyword);
+            }
+
+            // Hàm gọi AJAX lấy danh sách bài viết (Đã bổ sung thêm tham số idChuyenMuc)
+            function loadNews(page, search, idChuyenMuc) {
+                $("#newsContainer").html('<div class="col-12 text-center py-5 text-secondary"><i class="fas fa-spinner fa-spin fa-2x mb-2"></i><p>Đang tải danh sách bài viết...</p></div>');
+
+                $.ajax({
+                    url: '/Home/GetNewsJson',
+                    type: 'GET',
+                    data: {
+                        page: page,
+                        pageSize: pageSize,
+                        search: search,
+                        idChuyenMuc: idChuyenMuc // Gửi idChuyenMuc lên Server
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            renderNewsList(response.data);
+                            renderPagination(response.totalPages, response.currentPage);
+                        } else {
+                            $("#newsContainer").html('<div class="col-12 text-center py-5 text-muted"><p>Không thể tải dữ liệu từ hệ thống.</p></div>');
+                        }
+                    },
+                    error: function () {
+                        $("#newsContainer").html('<div class="col-12 text-center py-5 text-danger"><p>Có lỗi xảy ra khi kết nối máy chủ.</p></div>');
+                    }
+                });
+            }
+
+            // Hàm vẽ cấu trúc HTML danh sách bài viết
+            function renderNewsList(data) {
+                var html = "";
+                if (data.length === 0) {
+                    html = '<div class="col-12 text-center py-5 text-muted"><i class="far fa-folder-open fa-2x mb-2"></i><p>Không tìm thấy bài viết nào phù hợp.</p></div>';
+                    $("#newsContainer").html(html);
+                    return;
+                }
+
+                $.each(data, function (index, item) {
+                    html += '<div class="col-md-6">';
+                    html += '    <div class="news-grid-card h-100 bg-white rounded-4 overflow-hidden shadow-sm d-flex flex-column">';
+                    html += '        <div class="card-thumb-wrap">';
+                    html += '            <img src="' + item.Image + '" alt="' + item.TieuDe + '">';
+                    html += '            <span class="card-category-badge">' + item.ChuyenMuc + '</span>';
+                    html += '        </div>';
+                    html += '        <div class="card-body-wrap p-4 d-flex flex-column flex-grow-1">';
+                    html += '            <div class="card-meta-date mb-2"><i class="far fa-calendar-alt me-1"></i> ' + item.NgayDang + '</div>';
+                    html += '            <h3 class="card-news-title"><a href="' + item.Url + '">' + item.TieuDe + '</a></h3>';
+                    html += '            <p class="card-news-excerpt text-secondary">' + item.TomTat + '</p>';
+                    html += '            <a href="' + item.Url + '" class="card-readmore-btn mt-auto">Xem chi tiết <i class="fas fa-arrow-right"></i></a>';
+                    html += '        </div>';
+                    html += '    </div>';
+                    html += '</div>';
+                });
+
+                $("#newsContainer").html(html);
+            }
+
+            // Hàm vẽ hệ thống các nút phân trang
+            // Hàm vẽ hệ thống các nút phân trang có dấu ba chấm (...) thông minh
+            function renderPagination(totalPages, activePage) {
+                if (totalPages <= 1) {
+                    $("#paginationContainer").html("");
+                    return;
+                }
+
+                var html = "";
+
+                // 1. NÚT QUAY LẠI (PREV)
+                var prevClass = activePage === 1 ? "disabled opacity-50" : "";
+                html += '<li><a href="#" class="pag-item prev ' + prevClass + '" data-page="' + (activePage - 1) + '"><i class="fas fa-chevron-left"></i></a></li>';
+
+                // Cấu hình phạm vi hiển thị xung quanh trang hiện tại
+                var range = 1; // Số trang hiển thị trước và sau trang hiện tại (Ví dụ đang ở 5 sẽ hiện 4 và 6)
+
+                // 2. LUÔN IN TRANG ĐẦU TIÊN (Trang 1)
+                var firstActiveClass = activePage === 1 ? "active" : "";
+                html += '<li><a href="#" class="pag-item ' + firstActiveClass + '" data-page="1">1</a></li>';
+
+                // 3. XỬ LÝ DẤU BA CHẤM ĐẦU VÀ CÁC TRANG GIỮA
+                if (activePage > range + 2) {
+                    // Nếu trang hiện tại nằm quá xa trang 1, chèn dấu ba chấm
+                    html += '<li><span class="pag-item border-0 bg-transparent text-muted" style="cursor:default;">...</span></li>';
+                }
+
+                // Tính toán điểm bắt đầu và điểm kết thúc của các trang giữa
+                var start = Math.max(2, activePage - range);
+                var end = Math.min(totalPages - 1, activePage + range);
+
+                for (var i = start; i <= end; i++) {
+                    var activeClass = i === activePage ? "active" : "";
+                    html += '<li><a href="#" class="pag-item ' + activeClass + '" data-page="' + i + '">' + i + '</a></li>';
+                }
+
+                // 4. XỬ LÝ DẤU BA CHẤM CUỐI
+                if (activePage < totalPages - range - 1) {
+                    // Nếu trang hiện tại còn cách xa trang cuối, chèn dấu ba chấm
+                    html += '<li><span class="pag-item border-0 bg-transparent text-muted" style="cursor:default;">...</span></li>';
+                }
+
+                // 5. LUÔN IN TRANG CUỐI CÙNG (Trang cuối)
+                if (totalPages > 1) {
+                    var lastActiveClass = activePage === totalPages ? "active" : "";
+                    html += '<li><a href="#" class="pag-item ' + lastActiveClass + '" data-page="' + totalPages + '">' + totalPages + '</a></li>';
+                }
+
+                // 6. NÚT TIẾP THEO (NEXT)
+                var nextClass = activePage === totalPages ? "disabled opacity-50" : "";
+                html += '<li><a href="#" class="pag-item next ' + nextClass + '" data-page="' + (activePage + 1) + '"><i class="fas fa-chevron-right"></i></a></li>';
+
+                // Đẩy toàn bộ cấu trúc vào thẻ ul trên giao diện
+                $("#paginationContainer").html(html);
+            }
+
+            // Sự kiện click chọn số trang
+            $(document).on("click", "#paginationContainer .pag-item", function (e) {
+                e.preventDefault();
+                if ($(this).hasClass("disabled") || $(this).hasClass("active")) return;
+
+                currentPage = parseInt($(this).data("page"));
+                loadNews(currentPage, searchKeyword, currentChuyenMucId); // Gửi kèm cả 3 tham số
+
+                $('html, body').animate({ scrollTop: $(".archive-header-banner").height() }, 400);
+            });
+
+            // Sự kiện tìm kiếm dữ liệu tại Sidebar
+            $("#btnSidebarSearch").on("click", function () {
+                searchKeyword = $("#sidebarSearchInput").val().trim();
+                currentPage = 1;
+                loadNews(currentPage, searchKeyword, currentChuyenMucId);
+            });
+
+            $("#sidebarSearchInput").on("keypress", function (e) {
+                if (e.which === 13) {
+                    $("#btnSidebarSearch").click();
+                }
+            });
+
+            // Lần đầu chạy trang: Tự động tải dữ liệu theo Chuyên mục / Từ khóa ban đầu định sẵn
+            loadNews(currentPage, searchKeyword, currentChuyenMucId);
+        });
+    </script>
+}

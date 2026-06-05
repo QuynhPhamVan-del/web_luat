@@ -1,0 +1,20 @@
+﻿CKEDITOR.plugins.setLang( 'html5video', 'vi', {
+    button: 'Insert HTML5 video',
+    title: 'HTML5 video',
+    infoLabel: 'Thông tin video',
+    allowed: 'Chấp nhận file có đuôi: MP4, WebM, Ogv',
+    urlMissing: 'Không tìm thấy URL video.',
+    videoProperties: 'Thông tin video',
+    upload: 'Upload',
+    btnUpload: 'Upload',
+    advanced: 'Nâng cao',
+    autoplay: 'Tự động chạy',
+    allowdownload: 'Cho phép tải về',
+    advisorytitle: 'Advisory title',
+    yes: 'Có',
+    no: 'Không',
+    loop: 'Vòng lặp',
+    responsive: 'Responsive width',
+    controls: 'Show controls',
+    poster: 'Ảnh đại diện'
+} );

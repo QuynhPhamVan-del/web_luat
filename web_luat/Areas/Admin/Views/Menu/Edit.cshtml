@@ -1,0 +1,132 @@
+﻿@model web_luat.Models.tbl_MenuPage
+@using web_luat.Models;
+@{
+    ViewBag.Title = "Thêm banner mới";
+    var menu = ViewData["menu"] as List<tbl_MenuPage>;
+    var chuyenmuc = ViewData["chuyenmuc"] as List<tbl_ChuyenMuc>;
+
+    <style>
+        #preview {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+
+            #preview img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+    </style>
+}
+@using (Ajax.BeginForm("Edit", "Menu", null,
+                       new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           OnSuccess = "onEditSuccess",
+                           UpdateTargetId = "response",
+                           InsertionMode = InsertionMode.Replace,
+                       },
+                       new { enctype = "multipart/form-data" }
+                       ))
+{
+    <div class="dialog-model"></div>
+    <input name="Id" value="@Model.Id" hidden />
+    <input name="IdBaiViet" value="@Model.IdBaiViet" hidden />
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <div class="header-content">THÔNG TIN MENU</div>
+        </div>
+        <div class="dialog-main">
+            <div class="dialog-grid">
+                <div class="dialog-grid-center">
+                    <div class="grid-title">
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Tên menu(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.TenDonVi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenDonVi, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Số thứ tự(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.STT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.STT, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+                    <div class="infor-details">
+                        <label for="txtmaKH">Menu cha</label>
+                        <select class="form-control" name="IdCha">
+                            <option value="0">-- Chọn menu cha --</option>
+                            @foreach (var item in menu)
+                            {
+                                <option value="@item.Id" @(item.Id == Model.IdCha ? "selected" : "")>@item.TenDonVi</option>
+                            }
+                        </select>
+
+                    </div>
+                    <div class="infor-details" id="CM">
+                        <label for="txtmaKH">Chuyên mục tin tức</label>
+                        <select class="form-control" name="IdChuyenMuc" id="IdChuyenMuc">
+                            <option value="0">-- Chọn đơn vị --</option>
+                            @foreach (var item in chuyenmuc)
+                            {
+                                <option value="@item.Id" @(item.Id==Model.IdChuyenMuc?"selected":"")>@item.TenChuyenMuc</option>
+                            }
+                        </select>
+
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Link</label>
+                        @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-primary" type="submit">Lưu</button>
+            &nbsp;
+            <a class="btn btn-success" style="color:white;margin-right:10px" onclick="closedialog()">Đóng</a>
+        </div>
+    </div>
+
+}
+<script>
+    var IdDonVi =@Model.IdDonVi;
+       var IdChuyenMuc = @Model.IdChuyenMuc;
+    $(document).ready(function () {
+        if (IdDonVi > 0) {
+            $.ajax({
+                url: "/Admin/Menu/LoadCMEdit?IdDonVi=" + $('#IdDonVi').val() + "&Id=" + IdChuyenMuc,
+                type: "GET",
+                success: function (data) {
+                    $("#CM").html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Lỗi khi tải menu:", error);
+                }
+            });
+        }
+
+
+    });
+    function loadcm() {
+        $.ajax({
+            url: "/Admin/Menu/LoadCM?IdDonVi=" + $('#IdDonVi').val(),
+            type: "GET",
+            success: function (data) {
+                $("#CM").html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi tải menu:", error);
+            }
+        });
+    }
+</script>

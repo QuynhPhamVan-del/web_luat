@@ -1,0 +1,113 @@
+﻿@model PagedList.IPagedList<web_luat.Models.GuiLienHe>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Danh sách tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+}
+<div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    <div class="card">
+        <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
+            <h4 class="py-3 mb-4"><span class="text-muted fw-light">Trang chủ /</span> Gửi liên hệ  </h4>
+
+        </div>
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th style="width:50px" class="text-center">STT</th>
+                        <th class="text-center">Tiêu đề</th>
+                        <th class="text-center">
+                            Họ và tên
+                        </th>
+                        <th class="text-center">
+                            Số điện thoại
+                        </th>
+                        <th class="text-center">
+                            Email
+                        </th>
+                        <th class="text-center">
+                            Ngày gửi
+                        </th>
+                        <th class="text-center">
+                            Nội dung
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr class="text-center">
+                            <td>
+                                @stt
+                            </td>
+                            <td style=" max-width: 200px; word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+                                @item.TieuDe
+                            </td>
+                            <td>
+                                @item.HoTen
+                            </td>
+                            <td>@item.SDT</td>
+                            <td>@item.Email</td>
+                            <td>@item.NgayGui.Value.ToString("dd-MM-yyyy")</td>
+                            <td>@item.NoiDung</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="col-md-12" style="text-align:right;color:black">
+                Tổng số bản ghi: @ViewBag.total &nbsp;
+            </div>
+            @{
+                int currentPage = Convert.ToInt32(ViewBag.pageNumber);
+                int totalPages = Model.PageCount;
+            }
+
+            <ul class="pagination" style="float:right;margin-right:20px">
+
+                @* Hiển thị trang đầu tiên *@
+                <li style="margin:2px">
+                    <a class="page-link @(currentPage == 1 ? "active" : "")" href="@Url.Action("Index", new { page = 1})">1</a>
+                </li>
+
+                @* Hiển thị dấu ... nếu cần *@
+                @if (currentPage > 3)
+                {
+                    <li class="page-link disabled" style="margin:2px">...</li>
+                }
+
+                @* Hiển thị các trang lân cận trang hiện tại (trang -1, trang, trang +1) *@
+                @for (int i = currentPage - 1; i <= currentPage + 1; i++)
+                {
+                    if (i > 1 && i < totalPages)
+                    {
+                        <li style="margin:2px">
+                            <a class="page-link @(i == currentPage ? "active" : "")" href="@Url.Action("Index", new { page = i})">@i</a>
+                        </li>
+                    }
+                }
+
+                @* Hiển thị dấu ... nếu còn cách xa trang cuối *@
+                @if (currentPage < totalPages - 2)
+                {
+                    <li class="page-link disabled" style="margin:2px">...</li>
+                }
+
+                @* Hiển thị trang cuối *@
+                @if (totalPages > 1)
+                {
+                    <li style="margin:2px">
+                        <a class="page-link @(currentPage == totalPages ? "active" : "")" href="@Url.Action("Index", new { page = totalPages})">@totalPages</a>
+                    </li>
+                }
+            </ul>
+
+        </div>
+    </div>
+
+</div>

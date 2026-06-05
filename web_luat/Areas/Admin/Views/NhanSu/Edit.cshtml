@@ -1,0 +1,121 @@
+﻿@model web_luat.Models.tbl_NhanSu
+@using web_luat.Models;
+@{
+    ViewBag.Title = "Thêm banner mới";
+    <style>
+        #preview {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+
+            #preview img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+    </style>
+}
+@using (Ajax.BeginForm("Edit", "NhanSu", null,
+                       new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           OnSuccess = "onEditSuccess",
+                           UpdateTargetId = "response",
+                           InsertionMode = InsertionMode.Replace,
+                       },
+                       new { enctype = "multipart/form-data" }
+                       ))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Image)
+    <div class="dialog-model"></div>
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <div class="header-content">THÔNG TIN NHÂN SỰ</div>
+        </div>
+
+        <div class="dialog-main">
+            <div class="dialog-grid">
+                <div class="dialog-grid-center">
+
+                    <div class="infor-details">
+                        <label>Họ tên (<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.TenNhanSu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenNhanSu, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+
+                    <div class="infor-details">
+                        <label>Hình ảnh</label>
+                        <input type="file" name="file" id="imageInput" class="form-control" />
+                        <div id="preview"><img src="@Model.Image" /></div>
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Chức vụ</label>
+                        @Html.EditorFor(model => model.ChucVu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Giới thiệu</label>
+                        @Html.EditorFor(model => model.GioiThieu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GioiThieu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog-footer">
+            <button class="btn btn-primary" type="submit">Lưu</button>
+            &nbsp;
+            <a class="btn btn-success" style="color:white;margin-right:10px" onclick="closedialog()">Đóng</a>
+        </div>
+    </div>
+
+}
+
+<script>
+    if ($('#NoiDung').length > 0) {
+        var editor = CKEDITOR.replace("NoiDung", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Areas/Admin/assets/js/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Areas/Admin/assets/js/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Areas/Admin/assets/js/ckfinder/ckfinder.html?Type=Flash',
+            height: 300,
+
+            // Cấu hình loại bỏ thẻ span rác
+            disallowedContent: 'span; apple-converted-space',
+            pasteFromWordRemoveFontStyles: true,
+            pasteFromWordRemoveStyles: true,
+            allowedContent: true,
+
+            // Thiết lập giá trị Tab bằng 0 để tránh xung đột với cấu hình mặc định
+            tabSpaces: 0
+        });
+
+        editor.on('instanceReady', function () {
+            // 1. Định nghĩa lệnh chèn 4 khoảng trắng
+            editor.addCommand('insertTabSpace', {
+                exec: function (editor) {
+                    editor.insertHtml('&nbsp;&nbsp;&nbsp;&nbsp;');
+                }
+            });
+
+            // 2. Gán lệnh này cho duy nhất phím TAB (Mã phím 9)
+            // setKeystroke sẽ ghi đè hoàn toàn hành động mặc định của trình duyệt
+            editor.setKeystroke(9, 'insertTabSpace');
+
+            console.log("Đã kích hoạt phím TAB để thụt lề.");
+        });
+    }
+</script>
+

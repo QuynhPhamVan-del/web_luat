@@ -1,0 +1,155 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Công ty Luật TNHH MV | Trách nhiệm tạo niềm tin</title>
+
+    <meta name="description" content="" />
+    <link rel="icon" type="image/x-icon" href="~/css-moi/logo_luat.png" />
+    <!--====-->
+    <!--===
+    <img src="" />=-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--====-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--====-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--====-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/login/vendor/animate/animate.css">
+    <!--====-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--====-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/login/vendor/animsition/css/animsition.min.css">
+    <!--====-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/login/vendor/select2/select2.min.css">
+    <!--====-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/login/vendor/daterangepicker/daterangepicker.css">
+    <!--====-->
+    <link href="~/Areas/Admin/login/css/main.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/login/css/util.css" rel="stylesheet" />
+    <style>
+        a {
+            cursor: pointer;
+        }
+    </style>
+    <!--====-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('../../../../css-moi/gioi-thieu-banner.jpg'); background-size: cover ">
+            <div class="wrap-login100 p-t-30 p-b-50">
+                <span class="login100-form-title p-b-41" style="font-family:Arial;font-weight:700">
+                    Đăng nhập hệ thống
+                </span>
+                <div class="login100-form validate-form p-b-33 p-t-5">
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" type="text" name="username" id="user" placeholder="Tên đăng nhập">
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" name="pass" id="pass" placeholder="Mật khẩu">
+                        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-32">
+                        <a class="login100-form-btn" style="font-family:Arial;" onclick="login()">
+                            Đăng nhập
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--====-->
+    <script src="~/Areas/Admin/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--====-->
+    <script src="~/Areas/Admin/login/vendor/animsition/js/animsition.min.js"></script>
+    <!--====-->
+    <script src="~/Areas/Admin/login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Areas/Admin/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--====-->
+    <script src="~/Areas/Admin/login/vendor/select2/select2.min.js"></script>
+    <!--====-->
+    <script src="~/Areas/Admin/login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Areas/Admin/login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--====-->
+    <script src="~/Areas/Admin/login/vendor/countdowntime/countdowntime.js"></script>
+    <!--====-->
+    <script src="~/Areas/Admin/login/js/main.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on("keypress", function (e) {
+                if (e.which === 13) { // Enter
+                    login();
+                }
+            });
+        });
+        function login() {
+            var user = $("#user").val();
+            var pass = $("#pass").val();
+
+            if (user === "" || pass === "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Vui lòng nhập tài khoản và mật khẩu"
+                });
+                return;
+            }
+
+            $.ajax({
+                url: '/Admin/QuanTri/Login',
+                type: 'POST',
+                data: {
+                    Tendangnhap: user,
+                    MatKhau: pass
+                },
+                xhrFields: {
+                    withCredentials: true // ✅ đảm bảo cookie session
+                },
+                success: function (response) {
+                    if (response.status) {
+                        Swal.fire({
+                            icon: "success",
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+
+                        setTimeout(function () {
+                            window.location.replace(response.redirect);
+                        }, 1000);
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: response.message
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Lỗi server!"
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
