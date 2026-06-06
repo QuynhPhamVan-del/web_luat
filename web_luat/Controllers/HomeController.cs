@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -143,7 +144,7 @@ namespace web_luat.Controllers
                 return Json(new { success = false, message = "Lỗi hệ thống: " + ex.Message });
             }
         }
-        public ActionResult TinTuc(int IdChuyenMuc = 0, string Key = "")
+        public ActionResult TinTuc(int IdChuyenMuc = 0, string Key = "",int IdTag=0)
         {
             // Lấy 3 bài viết mới nhất cho Sidebar
             ViewData["lstMoiNhat"] = db.tbl_Post.OrderByDescending(g => g.NgayPhatHanh).Take(3).ToList();
@@ -151,13 +152,13 @@ namespace web_luat.Controllers
             // Truyền dữ liệu bộ lọc ban đầu xuống Giao diện (nếu có)
             ViewBag.IdChuyenMucBanDau = IdChuyenMuc;
             ViewBag.KeyBanDau = Key;
-
+            ViewBag.IdTag = IdTag;
             return View();
         }
 
         // ACTION CHUYÊN XỬ LÝ TRẢ VỀ JSON CHO ĐOẠN MÃ AJAX PHÂN TRANG (ĐÃ THÊM idChuyenMuc)
         [HttpGet]
-        public JsonResult GetNewsJson(int page = 1, int pageSize = 4, string search = "", int idChuyenMuc = 0)
+        public JsonResult GetNewsJson(int page = 1, int pageSize = 4, string search = "", int idChuyenMuc = 0,int IdTag=0)
         {
             try
             {
@@ -198,7 +199,11 @@ namespace web_luat.Controllers
                     search = search.Trim().ToLower();
                     baseQuery = baseQuery.Where(x => x.Post.TieuDe.ToLower().Contains(search) || x.Post.MoTaNgan.ToLower().Contains(search));
                 }
-
+                if (IdTag > 0)
+                {
+                    var lstIdPost = db.tbl_Post_Tag.Where(g => g.TagId == IdTag).Select(g => g.PostId).ToList();
+                    baseQuery = baseQuery.Where(x => lstIdPost.Contains(x.Post.ID));
+                }
                 // 4. Tính toán tổng số lượng bài viết và tổng số trang sau khi ĐÃ QUA BỘ LỌC
                 int totalRecords = baseQuery.Count();
                 int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
@@ -243,7 +248,8 @@ namespace web_luat.Controllers
         public ActionResult ChiTietTin(int Id)
         {
             ViewData["lstMoiNhat"] = db.tbl_Post.OrderByDescending(g => g.NgayPhatHanh).Take(3).ToList();
-
+            ViewData["lstIdTag"] = db.tbl_Post_Tag.Where(g => g.PostId == Id).ToList();
+            ViewData["tag"] = db.tbl_Tag.ToList();
             return View(db.tbl_Post.Find(Id));
         }
 

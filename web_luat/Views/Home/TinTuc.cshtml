@@ -71,6 +71,7 @@
             var pageSize = 4;
             var searchKeyword = '@Html.Raw(ViewBag.KeyBanDau ?? "")';
             var currentChuyenMucId = parseInt('@(ViewBag.IdChuyenMucBanDau ?? 0)');
+            var curentIdTag=IdTag=parseInt('@(ViewBag.IdTag ?? 0)');
 
             // Đưa từ khóa tìm kiếm ban đầu vào ô input (nếu người dùng bấm tìm kiếm từ trang khác sang)
             if(searchKeyword !== "") {
@@ -78,7 +79,7 @@
             }
 
             // Hàm gọi AJAX lấy danh sách bài viết (Đã bổ sung thêm tham số idChuyenMuc)
-            function loadNews(page, search, idChuyenMuc) {
+            function loadNews(page, search, idChuyenMuc, idTag) {
                 $("#newsContainer").html('<div class="col-12 text-center py-5 text-secondary"><i class="fas fa-spinner fa-spin fa-2x mb-2"></i><p>Đang tải danh sách bài viết...</p></div>');
 
                 $.ajax({
@@ -88,7 +89,8 @@
                         page: page,
                         pageSize: pageSize,
                         search: search,
-                        idChuyenMuc: idChuyenMuc // Gửi idChuyenMuc lên Server
+                        idChuyenMuc: idChuyenMuc,
+                        IdTag: idTag// Gửi idChuyenMuc lên Server
                     },
                     success: function (response) {
                         if (response.success) {
@@ -204,7 +206,7 @@
             $("#btnSidebarSearch").on("click", function () {
                 searchKeyword = $("#sidebarSearchInput").val().trim();
                 currentPage = 1;
-                loadNews(currentPage, searchKeyword, currentChuyenMucId);
+                loadNews(currentPage, searchKeyword, currentChuyenMucId,curentIdTag);
             });
 
             $("#sidebarSearchInput").on("keypress", function (e) {
@@ -214,7 +216,7 @@
             });
 
             // Lần đầu chạy trang: Tự động tải dữ liệu theo Chuyên mục / Từ khóa ban đầu định sẵn
-            loadNews(currentPage, searchKeyword, currentChuyenMucId);
+            loadNews(currentPage, searchKeyword, currentChuyenMucId, curentIdTag);
         });
     </script>
 }

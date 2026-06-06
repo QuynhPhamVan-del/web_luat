@@ -4,6 +4,8 @@
     ViewBag.Title = "ChiTietTin";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var lstMoiNhat = ViewData["lstMoiNhat"] as List<web_luat.Models.tbl_Post>;
+    var lstIdTag = ViewData["lstIdTag"] as List<web_luat.Models.tbl_Post_Tag>;
+    var tag = ViewData["tag"] as List<web_luat.Models.tbl_Tag>;
     <link href="~/css-moi/style2.css" rel="stylesheet" />
 
 }
@@ -48,9 +50,11 @@
                     <!-- Thẻ từ khóa Tags bài viết -->
                     <div class="article-tags-wrapper d-flex flex-wrap gap-2 mt-5 pt-3 border-top">
                         <span class="tag-title me-2 align-self-center"><i class="fas fa-tags"></i> Từ khóa:</span>
-                        <a href="#" class="tag-link-item">Ly hôn đơn phương</a>
-                        <a href="#" class="tag-link-item">Tư vấn ly hôn</a>
-                        <a href="#" class="tag-link-item">Luật sư hôn nhân</a>
+                        @foreach (var item in lstIdTag)
+                        {
+                            <a href="/danh-sach-tin-tuc.html?IdTag=@item.TagId" class="tag-link-item">@tag.FirstOrDefault(g=>g.Id==item.TagId).TenTag</a>
+
+                        }
                     </div>
                 </article>
             </div>
