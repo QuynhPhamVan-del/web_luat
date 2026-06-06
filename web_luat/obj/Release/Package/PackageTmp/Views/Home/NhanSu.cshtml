@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "NhanSu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var nhansu = ViewData["nhansu"] as List<web_luat.Models.tbl_NhanSu>;
+    <link href="~/css-moi/style2.css" rel="stylesheet" />
+}
+
+<div class="archive-header-banner text-center text-white">
+    <div class="container">
+        <span class="archive-subtitle text-uppercase">Chuyên gia pháp lý</span>
+        <h1 class="archive-main-title fw-extrabold mt-2">Đội ngũ luật sư</h1>
+        <p class="archive-description mx-auto mt-3 text-secondary">Hội tụ những luật sư, luật gia và chuyên viên pháp lý tận tâm, giàu kinh nghiệm thực chiến, luôn sẵn sàng đồng hành bảo vệ quyền lợi tối đa cho bạn.</p>
+    </div>
+</div>
+
+<!-- MAIN TEAM SECTION (Hệ thống phân cấp nhân sự cao cấp) -->
+<main class="team-page-wrapper py-5 bg-light-slate">
+    <div class="container">
+
+        <!-- PHÂN CẤP 1: BAN ĐIỀU HÀNH & LUẬT SƯ THÀNH VIÊN -->
+        <div class="team-group-section mb-5">
+
+            <!-- Thêm class row-equal-height vào đây để kích hoạt Flexbox cho các cột con -->
+            <div class="row g-4 row-equal-height justify-content-center justify-content-lg-start">
+
+                @foreach (var item in nhansu)
+                {
+                    <!-- Mỗi cột col giờ đây sẽ nhận thuộc tính display: flex để kéo giãn card bên trong -->
+                    <div class="col-sm-10 col-md-6 col-lg-4">
+                        <div class="lawyer-profile-card bg-white rounded-4 overflow-hidden shadow-sm border position-relative">
+                            <div class="lawyer-avatar-box">
+                                <img src="@item.Image" alt="@item.TenNhanSu">
+                                <div class="lawyer-social-overlay">
+                                    <a href="https://www.facebook.com/cty.luat.mv/" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="mailto:mvlawfirm.vn@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                                    <a href="tel:0903492866" class="social-btn"><i class="fas fa-phone-alt"></i></a>
+                                </div>
+                            </div>
+
+                            <!-- Đã đồng bộ phần padding nội dung vào file CSS của .lawyer-meta-box -->
+                            <div class="lawyer-meta-box text-center">
+                                <h3 class="lawyer-name text-uppercase">@item.TenNhanSu</h3>
+                                <p class="lawyer-position text-warning fw-bold small text-uppercase mb-3">@item.ChucVu</p>
+                                <p class="lawyer-brief-info text-secondary mb-0">@item.GioiThieu</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    </div>
+</main>

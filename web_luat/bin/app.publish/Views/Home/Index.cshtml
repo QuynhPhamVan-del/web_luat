@@ -1,0 +1,435 @@
+﻿@using System.Globalization
+@{
+    ViewBag.Title = "Home Page";
+    var banner = ViewData["banner"] as List<web_luat.Models.tbl_Banner>;
+    var vechungtoi = ViewBag.vechungtoi as web_luat.Models.tbl_GioiThieu;
+    var dichvu = ViewData["dichvu"] as List<web_luat.Models.tbl_LienKetKhoa>;
+    var nhansu = ViewData["nhansu"] as List<web_luat.Models.tbl_NhanSu>;
+    var thongso = ViewData["thongso"] as List<web_luat.Models.tbl_ThongSo>;
+    var taisao = ViewData["taisao"] as List<web_luat.Models.tbl_TaiSao>;
+    var doitac = ViewData["doitac"] as List<web_luat.Models.tbl_DoiTac>;
+    var camnhan = ViewData["camnhan"] as List<web_luat.Models.tbl_CamNhan>;
+    var lstMoiNhat = ViewData["lstMoiNhat"] as List<web_luat.Models.tbl_Post>;
+    var lst = ViewData["lst"] as List<web_luat.Models.tbl_Post>;
+}
+
+<section class="mv-hero-slider">
+    <div class="mv-slider-viewport">
+        <div class="mv-slider-track">
+            @foreach (var item in banner)
+            {
+                <div class="mv-slide">
+                    <img src="@item.Image" alt="Banner 1" class="mv-banner-img">
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="container">
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-5 col-xl-5">
+                <div class="about-content-card">
+                    <div class="about-sub">@vechungtoi.TieuDePhu</div>
+                    <h2 class="about-title">@vechungtoi.TieuDeChinh</h2>
+                    <p class="about-text">
+                        @Html.Raw(vechungtoi.NoiDung)
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-7 col-xl-7">
+                <div class="about-image-wrapper">
+                    <img src="@vechungtoi.Image" alt="Đội ngũ nhân sự công ty Luật MV" class="about-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <span class="section-tagline d-block mb-2">Tư vấn dịch vụ</span>
+                <h2 class="section-main-title">Dịch vụ của chúng tôi</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            @foreach (var item in dichvu)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="service-icon-box">
+                            <img src="@item.Icon" alt="" loading="lazy" />
+                        </div>
+                        <h3 class="service-card-title">@item.TieuDe</h3>
+                        <p class="service-card-text">
+                            @item.GioiThieu
+                        </p>
+                        <a href="@item.Link" class="service-btn-link">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="container">
+        <div class="team-title-area">
+            <div class="team-section-sub">Đội ngũ chuyên gia</div>
+            <h2 class="team-section-title">Chuyên Gia Pháp Lý</h2>
+            <a href="#" class="team-see-all">Xem Tất Cả ➔</a>
+        </div>
+        <div class="mv-team-viewport">
+            <div class="mv-team-track">
+                @foreach (var item in nhansu)
+                {
+                    <div class="mv-team-slide">
+                        <div class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="@item.Image" alt="@item.TenNhanSu" class="team-img-modern">
+                            </div>
+                            <div class="team-content">
+                                <h3 class="team-member-name">@item.TenNhanSu</h3>
+                                <p class="team-member-title">@item.ChucVu</p>
+                                <p class="team-member-desc">
+                                    @item.GioiThieu
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="team-pagination">
+            <button class="pag-btn team-prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="pag-btn team-next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<section class="history-section">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+                <div class="history-card-custom">
+                    <h2 class="history-title-custom">Lịch Sử Hình Thành</h2>
+                    <p class="history-text-custom mb-0">
+                        Công ty Luật TNHH MV được thành lập vào ngày 21/01/2021 theo Giấy chứng nhận Đăng ký hoạt động số 01021200 / TP-DKHD do Sở Tư pháp Thành phố Hà Nội cấp. Trải qua quá trình hình thành và phát triển, chúng tôi luôn nỗ lực không ngừng để bảo vệ tối đa quyền lợi hợp pháp cho khách hàng.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    @foreach (var item in thongso)
+                    {
+                        <div class="col-6">
+                            <div class="stat-box-modern">
+                                <div class="stat-num">@item.ThongSo@item.KiHieu</div>
+                                <p class="stat-info">@item.TieuDe</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- KHỐI FORM ĐĂNG KÝ TƯ VẤN MIỄN PHÍ (ĐÃ ĐỒNG BỘ ĐẦY ĐỦ LOGIC BẢO MẬT) -->
+<section class="consultation-section">
+    <div class="container">
+        <div class="form-wrapper-modern">
+            <h2 class="form-title-modern text-center">Đăng Ký Tư Vấn Miễn Phí</h2>
+            <p class="text-muted text-center small mb-4" style="max-width: 600px; margin: 0 auto 25px;">Quý khách vui lòng điền đầy đủ các thông tin dưới đây. Yêu cầu của quý khách sẽ được chuyển trực tiếp đến Luật sư để bảo mật thông tin và phản hồi sớm nhất.</p>
+
+            <form id="consultationForm" action="/Home/LienHe" method="POST" class="contact-page-form-element">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="custom-input-group">
+                            <input type="text" name="HoTen" class="form-control-custom" placeholder="Họ và tên của bạn*" required>
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="custom-input-group">
+                            <input type="tel" name="SoDienThoai" class="form-control-custom" placeholder="Số điện thoại liên hệ*" required>
+                            <i class="fas fa-phone"></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="custom-input-group">
+                            <input type="email" name="Email" class="form-control-custom" placeholder="Địa chỉ Email của bạn*" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="custom-input-group">
+                            <input type="text" name="TieuDe" class="form-control-custom" placeholder="Tiêu đề vụ việc cần hỗ trợ (Ví dụ: Doanh nghiệp, Đất đai, Hôn nhân...)*" required>
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <textarea name="NoiDung" class="form-control-custom" rows="5" placeholder="Tóm tắt nội dung sự việc hoặc câu hỏi pháp lý cần tư vấn chi tiết*" required></textarea>
+                    </div>
+
+                    <!-- TÍCH HỢP IMAGE CAPTCHA CHỐNG SPAM -->
+                    <div class="col-12 mb-2">
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <div class="rounded-3 overflow-hidden border" style="height: 45px;">
+                                <img id="imgHomeCaptcha" src="/Home/GetCaptchaImage" alt="Captcha" style="display:block; height:100%; cursor: pointer;" />
+                            </div>
+                            <button type="button" id="btnRefreshHomeCaptcha" class="btn btn-light border p-2 px-3" style="height: 45px;" title="Đổi mã khác">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <div class="custom-input-group flex-grow-1" style="min-width: 180px;">
+                                <input type="text" id="HomeCaptchaCode" name="CaptchaCode" class="form-control-custom" style="padding-left: 16px;" placeholder="Nhập 5 ký tự trong hình bên*" autocomplete="off" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <button type="submit" id="btnHomeSubmit" class="btn-submit-modern py-3 text-uppercase w-100">Gửi Yêu Cầu Tư Vấn</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="commitment-section">
+    <div class="container">
+        <div class="commitment-grid">
+            <div class="col-right">
+                <div class="commitment-content-card">
+                    <div class="commitment-section-sub">Chúng tôi cam kết</div>
+                    <h2 class="commitment-title">Tại sao khách hàng lựa chọn chúng tôi</h2>
+                    <ul class="commitment-list">
+                        @foreach (var item in taisao)
+                        {
+                            <li class="commitment-item">@item.TieuDe</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="partner-section">
+    <div class="container-fluid px-0">
+        <div class="partner-slider-track">
+            @foreach (var item in doitac)
+            {
+                <div class="partner-logo-wrapper">
+                    <img src="@item.AnhDaiDien" alt="@item.TenDoiTac" class="partner-logo-modern">
+                </div>
+            }
+            @foreach (var item in doitac)
+            {
+                <div class="partner-logo-wrapper">
+                    <img src="@item.AnhDaiDien" alt="@item.TenDoiTac" class="partner-logo-modern">
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="testimonial-section-modern">
+    <div class="container-fluid px-0">
+        <div class="row mb-2 mx-0">
+            <div class="col-12 text-center">
+                <span class="testimonial-tagline d-block mb-2">Lời chứng thực</span>
+                <h2 class="testimonial-main-title">Khách hàng nói gì về chúng tôi</h2>
+            </div>
+        </div>
+        <div class="testimonial-marquee-track">
+            @foreach (var item in camnhan)
+            {
+                string initials = string.Concat(item.HoTen.Split(' ')
+                                            .Where(w => !string.IsNullOrEmpty(w))
+                                            .Select(w => w[0]))
+                                        .ToUpper();
+                <div class="testimonial-box-card">
+                    <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-card-text">
+                        @Html.Raw(item.NoiDung)
+                    </p>
+                    <div class="testimonial-author-info">
+                        <div class="author-avatar-circle">@initials</div>
+                        <div class="author-meta">
+                            <h4 class="author-name-modern">@item.HoTen</h4>
+                            <p class="author-job-modern">Khách hàng Cá nhân</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            @foreach (var item in camnhan)
+            {
+                string initials = string.Concat(item.HoTen.Split(' ')
+                                            .Where(w => !string.IsNullOrEmpty(w))
+                                            .Select(w => w[0]))
+                                        .ToUpper();
+                <div class="testimonial-box-card">
+                    <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-card-text">
+                        @Html.Raw(item.NoiDung)
+                    </p>
+                    <div class="testimonial-author-info">
+                        <div class="author-avatar-circle">@initials</div>
+                        <div class="author-meta">
+                            <h4 class="author-name-modern">@item.HoTen</h4>
+                            <p class="author-job-modern">Khách hàng Cá nhân</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="news-section-modern">
+    <div class="container-fluid px-0">
+        <div class="row g-0 align-items-stretch">
+            <div class="col-lg-6 bg-news-left py-5 px-4 px-md-5">
+                <h2 class="news-block-title text-uppercase mb-4">Tin tức pháp luật</h2>
+                <div class="news-list-wrapper">
+                    @foreach (var item in lst)
+                    {
+                        var link = "/chi-tiet-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TieuDe) + "_" + item.ID + ".html";
+                        <div class="news-item-horizontal border-bottom-dashed pb-3 mb-3">
+                            <div class="news-thumb-box">
+                                <img src="@item.Image" alt="@item.TieuDe">
+                            </div>
+                            <div class="news-info-box">
+                                <h3 class="news-item-title"><a href="@link" class="text-dark-link">@item.TieuDe</a></h3>
+                                <div class="news-meta-data text-muted-dark">@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)  •  Dịch vụ, Hôn nhân gia đình, Tin tức, Tin tức thế giới</div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="col-lg-6 bg-news-right py-5 px-4 px-md-5 d-flex flex-column justify-content-between">
+                <div>
+                    <h2 class="news-block-title text-uppercase mb-4 text-white">Tin tức gần đây</h2>
+                    <div class="news-list-wrapper bg-white-card p-4 rounded-4 shadow-sm">
+                        @foreach (var item in lstMoiNhat)
+                        {
+                            var link = "/chi-tiet-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TieuDe) + "_" + item.ID + ".html";
+                            <div class="news-item-horizontal border-bottom-dashed pb-3 mb-3">
+                                <div class="news-thumb-box">
+                                    <img src="@item.Image" alt="@item.TieuDe">
+                                </div>
+                                <div class="news-info-box">
+                                    <h3 class="news-item-title"><a href="@link" class="text-dark-link">@item.TieuDe</a></h3>
+                                    <div class="news-meta-data text-muted-dark">@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)  •  Dịch vụ, Hôn nhân gia đình, Tin tức, Tin tức thế giới</div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <a href="/danh-sach-tin-tuc.html" class="view-more-news-btn text-uppercase">Xem nhiều tin tức hơn ➔</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Hàm tải mới mã Captcha tại Trang chủ
+            function refreshHomeCaptcha() {
+                $("#imgHomeCaptcha").attr("src", "/Home/GetCaptchaImage?t=" + new Date().getTime());
+                $("#HomeCaptchaCode").val("");
+            }
+
+            // Click vào ảnh hoặc nút reload để đổi mã
+            $("#btnRefreshHomeCaptcha, #imgHomeCaptcha").on("click", function () {
+                refreshHomeCaptcha();
+            });
+
+            // XỬ LÝ GỬI FORM QUA AJAX
+            $("#consultationForm").on("submit", function (e) {
+                e.preventDefault();
+
+                var $form = $(this);
+                var $btn = $("#btnHomeSubmit");
+
+                // 1. Kiểm tra định dạng dữ liệu phía Client
+                var emailVal = $form.find("input[name='Email']").val().trim();
+                var phoneVal = $form.find("input[name='SoDienThoai']").val().trim();
+
+                var emailRegex = /^([\w\.\-]+)@@([\w\-]+)((\.(\w){2,3})+)$/;
+                if (!emailRegex.test(emailVal)) {
+                    Swal.fire({
+                        title: "Email không hợp lệ!",
+                        text: "Vui lòng nhập đúng định dạng Email (Ví dụ: thongtin@mvlawfirm.vn).",
+                        icon: "warning",
+                        confirmButtonColor: "#C29900"
+                    });
+                    return false;
+                }
+
+                var phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
+                if (!phoneRegex.test(phoneVal)) {
+                    Swal.fire({
+                        title: "Số điện thoại không hợp lệ!",
+                        text: "Số điện thoại phải gồm 10 chữ số và thuộc các nhà mạng Việt Nam.",
+                        icon: "warning",
+                        confirmButtonColor: "#C29900"
+                    });
+                    return false;
+                }
+
+                // Đổi trạng thái hiển thị nút gửi dữ liệu
+                $btn.prop("disabled", true).text("Đang gửi yêu cầu...");
+
+                // 2. Gửi dữ liệu đồng bộ đến Action xử lý chung /Home/LienHe
+                $.ajax({
+                    url: $form.attr("action"),
+                    type: $form.attr("method"),
+                    data: $form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Đăng Ký Thành Công!",
+                                text: "Thông tin của quý khách đã được ghi nhận. Luật sư phụ trách sẽ liên hệ hỗ trợ trong thời gian sớm nhất!",
+                                icon: "success",
+                                confirmButtonColor: "#0F172A"
+                            });
+                            $form[0].reset(); // Xóa sạch dữ liệu trên Form
+                        } else {
+                            Swal.fire({
+                                title: "Thông báo lỗi!",
+                                text: response.message,
+                                icon: "warning",
+                                confirmButtonColor: "#C29900"
+                            });
+                        }
+                        refreshHomeCaptcha();
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Lỗi hệ thống!",
+                            text: "Không thể kết nối với máy chủ lúc này. Vui lòng thử lại sau hoặc liên hệ Hotline.",
+                            icon: "error",
+                            confirmButtonColor: "#EF4444"
+                        });
+                        refreshHomeCaptcha();
+                    },
+                    complete: function () {
+                        $btn.prop("disabled", false).text("Gửi Yêu Cầu Tư Vấn");
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,375 @@
+﻿@model PagedList.IPagedList<web_luat.Models.tbl_Post>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Danh sách chờ duyệt";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+    var loaitin = ViewData["loaitin"] as List<web_luat.Models.tbl_ChuyenMuc>;
+}
+
+<div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
+            <h4 class="py-3 mb-4">
+                <span class="text-muted fw-light">Trang chủ /</span> Chờ duyệt
+            </h4>
+        </div>
+
+        <!-- FILTER -->
+        <div class="row" style="padding: 10px 25px; ">
+            <div class="col-md-3">
+                <input class="form-control" id="KeyWord" value="@ViewBag.Keyword" placeholder="Tìm tiêu đề..." />
+            </div>
+
+            <div class="col-md-3">
+                <select class="form-control" id="IdChuyenMuc" onchange="timkiem()">
+                    <option value="0">-- Chọn chuyên mục --</option>
+                    @foreach (var item in loaitin)
+                    {
+                        <option value="@item.Id" @(ViewBag.IdChuyenMuc == item.Id ? "selected" : "")>
+                            @item.TenChuyenMuc
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width:50px" class="text-center">STT</th>
+                        <th class="text-center">Tiêu đề</th>
+                        <th class="text-center">Ảnh</th>
+                        <th class="text-center">Ngày tạo</th>
+                        <th class="text-center">Chuyên mục</th>
+                        <th class="text-center">Trạng thái</th>
+                        <th width="220" class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                @if (Model != null)
+                {
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            stt++;
+                            <tr class="text-center">
+                                <td>@stt</td>
+
+                                <td style="max-width:200px;word-wrap:break-word;">
+                                    @item.TieuDe
+                                </td>
+
+                                <td>
+                                    <img src="@item.Image" height="80" />
+                                </td>
+
+                                <td>
+                                    @(item.NgayPhatHanh != null ? item.NgayPhatHanh.Value.ToString("dd-MM-yyyy") : "")
+                                </td>
+
+                                <td>
+                                    @(loaitin.Count(g => g.Id == item.IdChuyenMuc) > 0
+                    ? loaitin.First(g => g.Id == item.IdChuyenMuc).TenChuyenMuc
+                    : "")
+                                </td>
+
+                                <!-- TRẠNG THÁI -->
+                                <td>
+                                    @{
+                                        string tt = "";
+                                        switch (item.TrangThai)
+                                        {
+                                            case 0: tt = "Nháp"; break;
+                                            case 1: tt = "Chờ duyệt"; break;
+                                            case 2: tt = "Bị từ chối"; break;
+                                            case 3: tt = "Đã duyệt"; break;
+                                        }
+                                    }
+                                    <span class="badge bg-warning">@tt</span>
+                                </td>
+
+                                <!-- ACTION -->
+                                <td>
+                                    @if (Session["Id"].ToString() == "6")
+                                    {
+                                        <button onclick="showNgayPhatHanh(@item.ID,'@(item.NgayPhatHanh.HasValue ? item.NgayPhatHanh.Value.ToString("yyyy-MM-ddTHH:mm") : "")')"
+                                                class="btn btn-info">
+                                            Sửa ngày phát hành
+                                        </button>
+                                    }
+                                    <button onclick="duyet(@item.ID,1)" class="btn btn-success btn-sm">
+                                        ✔ Duyệt
+                                    </button>
+
+                                    <button onclick="duyet(@item.ID,2)" class="btn btn-danger btn-sm">
+                                        ❌ Từ chối
+                                    </button>
+
+                                    <a href="@Url.Action("Edit", "TinTuc", new { id = item.ID })"
+                                       class="btn btn-sm btn-outline-primary"
+                                       data-ajax="true"
+                                       data-ajax-mode="replace"
+                                       data-ajax-update="#responsive"
+                                       data-ajax-method="GET"
+                                       data-ajax-complete="loadfrmEditSussess">
+                                        Sửa
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+else
+            {
+                <tbody>
+                    <tr>
+                        <td colspan="7" class="text-center">Không có dữ liệu</td>
+                    </tr>
+                </tbody>
+            }
+
+
+
+            </table>
+        </div>
+
+        <!-- FOOTER -->
+        @if (Model != null)
+        {
+            <div>
+                <div class="col-md-12" style="text-align:right;color:black">
+                    Tổng số bản ghi: @ViewBag.total
+                </div>
+
+                @{
+                    int currentPage = Convert.ToInt32(ViewBag.pageNumber);
+                    int totalPages = Model.PageCount;
+                }
+
+                <ul class="pagination" style="float:right;margin-right:20px">
+
+                    <!-- Trang 1 -->
+                    <li style="margin:2px">
+                        <a class="page-link @(currentPage == 1 ? "active" : "")"
+                           href="@Url.Action("ChoDuyet", new { page = 1, IdChuyenMuc = ViewBag.IdChuyenMuc, Keyword = ViewBag.Keyword })">
+                            1
+                        </a>
+                    </li>
+
+                    @if (currentPage > 3)
+                    {
+                        <li class="page-link disabled" style="margin:2px">...</li>
+                    }
+
+                    @for (int i = currentPage - 1; i <= currentPage + 1; i++)
+                    {
+                        if (i > 1 && i < totalPages)
+                        {
+                            <li style="margin:2px">
+                                <a class="page-link @(i == currentPage ? "active" : "")"
+                                   href="@Url.Action("ChoDuyet", new { page = i, IdChuyenMuc = ViewBag.IdChuyenMuc, Keyword = ViewBag.Keyword })">
+                                    @i
+                                </a>
+                            </li>
+                        }
+                    }
+
+                    @if (currentPage < totalPages - 2)
+                    {
+                        <li class="page-link disabled" style="margin:2px">...</li>
+                    }
+
+                    @if (totalPages > 1)
+                    {
+                        <li style="margin:2px">
+                            <a class="page-link @(currentPage == totalPages ? "active" : "")"
+                               href="@Url.Action("ChoDuyet", new { page = totalPages, IdChuyenMuc = ViewBag.IdChuyenMuc, Keyword = ViewBag.Keyword })">
+                                @totalPages
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
+
+    </div>
+</div>
+<div class="modal fade" id="modalNgayPhatHanh" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width:100%">
+
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Cập nhật ngày phát hành
+                </h5>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="postIdNgayPhatHanh" />
+
+                <label>Chọn ngày phát hành</label>
+
+                <input type="datetime-local"
+                       id="txtNgayPhatHanh"
+                       class="form-control" />
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="saveNgayPhatHanh()">
+                    Lưu
+                </button>
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Đóng
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function showNgayPhatHanh(id, ngay) {
+
+            $('#postIdNgayPhatHanh').val(id);
+
+            $('#txtNgayPhatHanh').val(ngay);
+
+            $('#modalNgayPhatHanh').modal('show');
+        }
+
+        function saveNgayPhatHanh() {
+
+            var id = $('#postIdNgayPhatHanh').val();
+
+            var ngay = $('#txtNgayPhatHanh').val();
+
+            if (ngay == '') {
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Thông báo',
+                    text: 'Vui lòng chọn ngày phát hành'
+                });
+
+                return;
+            }
+
+            $.post('/Admin/TinTuc/CapNhatNgayPhatHanh',
+                {
+                    id: id,
+                    ngayPhatHanh: ngay
+                },
+                function (res) {
+
+                    if (res.status) {
+
+                        $('#modalNgayPhatHanh').modal('hide');
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: res.message || 'Cập nhật ngày phát hành thành công',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+
+                            location.reload();
+
+                        });
+
+                    }
+                    else {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lỗi',
+                            text: res.message
+                        });
+
+                    }
+
+                }).fail(function () {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Có lỗi xảy ra khi cập nhật'
+                    });
+
+                });
+        }
+    // search enter
+    $('#KeyWord').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            timkiem();
+        }
+    });
+
+    function timkiem() {
+        window.location.href = "/Admin/TinTuc/ChoDuyet?Keyword="
+            + $('#KeyWord').val()
+            + "&&IdChuyenMuc=" + $('#IdChuyenMuc').val();
+    }
+        function duyet(id, action) {
+
+            Swal.fire({
+                title: action == 1 ? "Xác nhận duyệt?" : "Xác nhận từ chối?",
+                input: 'textarea',
+                inputLabel: 'Nhập ghi chú',
+                inputPlaceholder: 'Nhập lý do...',
+                inputAttributes: {
+                    'aria-label': 'Nhập ghi chú'
+                },
+                showCancelButton: true,
+                confirmButtonText: action == 1 ? '✔ Duyệt' : '❌ Từ chối',
+                cancelButtonText: 'Hủy',
+                confirmButtonColor: action == 1 ? '#28a745' : '#dc3545'
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    $.post('/Admin/TinTuc/Duyet', {
+                        id: id,
+                        action: action,
+                        ghiChu: result.value
+                    }, function (res) {
+
+                        if (res.status) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thành công!',
+                                text: 'Xử lý thành công',
+                                timer: 1500,
+                                showConfirmButton: false
+                            }).then(() => {
+                                location.reload();
+                            });
+                        }
+                        else {
+                            Swal.fire('Lỗi!', 'Không xử lý được', 'error');
+                        }
+
+                    });
+
+                }
+
+            });
+        }
+    </script>
+}

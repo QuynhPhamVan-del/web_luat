@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_LuatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="GuiLienHe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgayGui" Type="datetime" />
+  </EntityType>
+  <EntityType Name="QuyTrinhDuyet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STT" Type="int" />
+    <Property Name="TenBuoc" Type="nvarchar(max)" />
+    <Property Name="IdNhomQuyen" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="STT" Type="int" />
+    <Property Name="IdDonVi" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_BoCuc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDeBoCuc" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdBoCuc" Type="nvarchar" MaxLength="50" />
+    <Property Name="KichHoat" Type="bit" />
+    <Property Name="ẢnhBoCuc" Type="nvarchar(max)" />
+    <Property Name="STT" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_CamNhan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_ChuyenMuc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenChuyenMuc" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_DoiTac">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDoiTac" Type="nvarchar" MaxLength="200" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="AnhDaiDien" Type="nvarchar(max)" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_DonVi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDonVi" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsLanguage" Type="int" />
+    <Property Name="STT" Type="int" />
+    <Property Name="Hotline" Type="nvarchar" MaxLength="500" />
+    <Property Name="LinkDangKy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_DonViChuyenMuc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="IdChuyenMuc" Type="int" />
+    <Property Name="STT" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_GioiThieu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDeChinh" Type="nvarchar" MaxLength="200" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="TieuDePhu" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="DiaChi" Type="nvarchar(max)" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="500" />
+    <Property Name="HomThu" Type="nvarchar(max)" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="500" />
+    <Property Name="Website" Type="nvarchar" MaxLength="500" />
+    <Property Name="Bac" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mau" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_LienKetKhoa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GioiThieu" Type="nvarchar(max)" />
+    <Property Name="Icon" Type="nvarchar(max)" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="Link" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+    <Property Name="Action" Type="nvarchar(max)" />
+    <Property Name="Controller" Type="nvarchar(max)" />
+    <Property Name="IdUser" Type="int" />
+    <Property Name="NgayThucHien" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_LuanAn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="NCS" Type="nvarchar" MaxLength="150" />
+    <Property Name="ChuyenNganh" Type="nvarchar" MaxLength="250" />
+    <Property Name="LinkTomTat" Type="nvarchar(max)" />
+    <Property Name="LinkToanVan" Type="nvarchar(max)" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Menu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Menu" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Ma" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Menu_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMenu" Type="int" />
+    <Property Name="IdNhomQuyen" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_MenuAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenMenu" Type="nvarchar" MaxLength="500" />
+    <Property Name="Link" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdCha" Type="int" />
+    <Property Name="Icon" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_MenuPage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDonVi" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdCha" Type="int" />
+    <Property Name="STT" Type="int" />
+    <Property Name="Link" Type="nvarchar" MaxLength="200" />
+    <Property Name="IdChuyenMuc" Type="int" />
+    <Property Name="IdBaiViet" Type="int" />
+    <Property Name="IdLoaiVB" Type="int" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="TrenDuoi" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_NhanSu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNhanSu" Type="nvarchar" MaxLength="200" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="ChucVu" Type="nvarchar(max)" />
+    <Property Name="GioiThieu" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_NhomQuyen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNhomQuyen" Type="nvarchar(max)" />
+    <Property Name="IsAdmin" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Post">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MoTaNgan" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="View" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="NgayPhatHanh" Type="datetime" />
+    <Property Name="TacGia" Type="nvarchar(max)" />
+    <Property Name="IdChuyenMuc" Type="int" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="Nguon" Type="nvarchar" MaxLength="500" />
+    <Property Name="BuocDuyet" Type="int" />
+    <Property Name="TrangThai" Type="int" />
+    <Property Name="IdUser" Type="int" />
+    <Property Name="IsNoiBat" Type="bit" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="IsTab" Type="bit" />
+    <Property Name="STTUuTien" Type="int" />
+    <Property Name="IdPostCu" Type="int" />
+    <Property Name="CatID" Type="int" />
+    <Property Name="PageID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Post_Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPost" Type="int" />
+    <Property Name="IdCategory" Type="int" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="IdPostCu" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Post_DonVi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPost" Type="int" />
+    <Property Name="IdDonVi" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Post_DuyetLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostId" Type="int" />
+    <Property Name="BuocDuyet" Type="int" />
+    <Property Name="NguoiXuLy" Type="int" />
+    <Property Name="TrangThai" Type="int" />
+    <Property Name="GhiChu" Type="nvarchar(max)" />
+    <Property Name="NgayXuLy" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_Post_Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="TagId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_SoLuotTruyCap">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SoLuotTruyCap" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_SuKien">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="NgaySuKien" Type="datetime" />
+    <Property Name="Link" Type="time" Precision="7" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="DiaDiem" Type="nvarchar(max)" />
+    <Property Name="ChuTich" Type="nvarchar(max)" />
+    <Property Name="DeTai" Type="nvarchar(max)" />
+    <Property Name="Nganh" Type="nvarchar" MaxLength="250" />
+    <Property Name="NCS" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTag" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Slug" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_TaiSao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_ThongBao">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Content" Type="ntext" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="File" Type="nvarchar" MaxLength="500" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="NgayPhatHanh" Type="datetime" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="IdCategory" Type="int" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="IdLanguge" Type="int" />
+    <Property Name="MaThongBao" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_ThongSo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="ThongSo" Type="int" />
+    <Property Name="KiHieu" Type="nvarchar" MaxLength="50" />
+    <Property Name="Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_ThuVienAnh">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="200" />
+    <Property Name="STT" Type="int" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_ThuVienAnh_Album">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileImage" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdThuVienImage" Type="int" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="STT" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_ThuVienAnh_DanhMuc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TenDanhMuc" Type="nvarchar(max)" />
+    <Property Name="STT" Type="int" />
+    <Property Name="IsLanguage" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="IdCu" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_ThuVienVideo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="LuotXem" Type="int" />
+    <Property Name="NgayDang" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="255" />
+    <Property Name="Password" Type="varchar" MaxLength="255" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Email" Type="varchar" MaxLength="255" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="LoginToken" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbl_User_NhomQuyen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUser" Type="int" />
+    <Property Name="IdNhomQuyen" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_VanBan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="LinkFile" Type="nvarchar(max)" />
+    <Property Name="LoaiVB" Type="nvarchar" MaxLength="200" />
+    <Property Name="NgayBH" Type="datetime" />
+    <Property Name="CoQuanBanHanh" Type="nvarchar" MaxLength="500" />
+    <Property Name="SoHieuVB" Type="nvarchar" MaxLength="500" />
+    <Property Name="NguoiKy" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Luat.dbo.LoadMenu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LoadMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TenMenu" Type="nvarchar" MaxLength="500" />
+    <Property Name="Link" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdCha" Type="int" />
+    <Property Name="Icon" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Luat.dbo.LogUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LogUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+    <Property Name="Action" Type="nvarchar(max)" />
+    <Property Name="Controller" Type="nvarchar(max)" />
+    <Property Name="IdUser" Type="int" />
+    <Property Name="NgayThucHien" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Luat.dbo.TinMoiNhat_CheckTrung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TinMoiNhat_CheckTrung">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TieuDe" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MoTaNgan" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="View" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="NgayPhatHanh" Type="datetime" />
+    <Property Name="TacGia" Type="nvarchar(max)" />
+    <Property Name="IdChuyenMuc" Type="int" />
+    <Property Name="IdDonVi" Type="int" />
+    <Property Name="Nguon" Type="nvarchar" MaxLength="500" />
+    <Property Name="BuocDuyet" Type="int" />
+    <Property Name="TrangThai" Type="int" />
+    <Property Name="IdUser" Type="int" />
+    <Property Name="IsNoiBat" Type="bit" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="IsTab" Type="bit" />
+    <Property Name="STTUuTien" Type="int" />
+    <Property Name="IdPostCu" Type="int" />
+    <Property Name="CatID" Type="int" />
+    <Property Name="PageID" Type="int" />
+  </EntityType>
+  <EntityContainer Name="DB_LuatModelStoreContainer">
+    <EntitySet Name="GuiLienHe" EntityType="Self.GuiLienHe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuyTrinhDuyet" EntityType="Self.QuyTrinhDuyet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Banner" EntityType="Self.tbl_Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_BoCuc" EntityType="Self.tbl_BoCuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_CamNhan" EntityType="Self.tbl_CamNhan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ChuyenMuc" EntityType="Self.tbl_ChuyenMuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DoiTac" EntityType="Self.tbl_DoiTac" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DonVi" EntityType="Self.tbl_DonVi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DonViChuyenMuc" EntityType="Self.tbl_DonViChuyenMuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_GioiThieu" EntityType="Self.tbl_GioiThieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_LienKetKhoa" EntityType="Self.tbl_LienKetKhoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Log" EntityType="Self.tbl_Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_LuanAn" EntityType="Self.tbl_LuanAn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Menu_User" EntityType="Self.tbl_Menu_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_MenuAdmin" EntityType="Self.tbl_MenuAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_MenuPage" EntityType="Self.tbl_MenuPage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_NhanSu" EntityType="Self.tbl_NhanSu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_NhomQuyen" EntityType="Self.tbl_NhomQuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Post" EntityType="Self.tbl_Post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Post_Category" EntityType="Self.tbl_Post_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Post_DonVi" EntityType="Self.tbl_Post_DonVi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Post_DuyetLog" EntityType="Self.tbl_Post_DuyetLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Post_Tag" EntityType="Self.tbl_Post_Tag" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SoLuotTruyCap" EntityType="Self.tbl_SoLuotTruyCap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SuKien" EntityType="Self.tbl_SuKien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Tag" EntityType="Self.tbl_Tag" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_TaiSao" EntityType="Self.tbl_TaiSao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ThongBao" EntityType="Self.tbl_ThongBao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ThongSo" EntityType="Self.tbl_ThongSo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ThuVienAnh" EntityType="Self.tbl_ThuVienAnh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ThuVienAnh_Album" EntityType="Self.tbl_ThuVienAnh_Album" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ThuVienAnh_DanhMuc" EntityType="Self.tbl_ThuVienAnh_DanhMuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ThuVienVideo" EntityType="Self.tbl_ThuVienVideo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User_NhomQuyen" EntityType="Self.tbl_User_NhomQuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VanBan" EntityType="Self.tbl_VanBan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoadMenu" EntityType="Self.LoadMenu" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[LoadMenu].[Id] AS [Id], 
+[LoadMenu].[TenMenu] AS [TenMenu], 
+[LoadMenu].[Link] AS [Link], 
+[LoadMenu].[IdCha] AS [IdCha], 
+[LoadMenu].[Icon] AS [Icon], 
+[LoadMenu].[IdUser] AS [IdUser]
+FROM [dbo].[LoadMenu] AS [LoadMenu]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LogUser" EntityType="Self.LogUser" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[LogUser].[FullName] AS [FullName], 
+[LogUser].[Id] AS [Id], 
+[LogUser].[MoTa] AS [MoTa], 
+[LogUser].[Action] AS [Action], 
+[LogUser].[Controller] AS [Controller], 
+[LogUser].[IdUser] AS [IdUser], 
+[LogUser].[NgayThucHien] AS [NgayThucHien]
+FROM [dbo].[LogUser] AS [LogUser]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TinMoiNhat_CheckTrung" EntityType="Self.TinMoiNhat_CheckTrung" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[TinMoiNhat_CheckTrung].[ID] AS [ID], 
+[TinMoiNhat_CheckTrung].[TieuDe] AS [TieuDe], 
+[TinMoiNhat_CheckTrung].[MoTaNgan] AS [MoTaNgan], 
+[TinMoiNhat_CheckTrung].[Image] AS [Image], 
+[TinMoiNhat_CheckTrung].[NoiDung] AS [NoiDung], 
+[TinMoiNhat_CheckTrung].[IsActive] AS [IsActive], 
+[TinMoiNhat_CheckTrung].[View] AS [View], 
+[TinMoiNhat_CheckTrung].[IsDelete] AS [IsDelete], 
+[TinMoiNhat_CheckTrung].[NgayPhatHanh] AS [NgayPhatHanh], 
+[TinMoiNhat_CheckTrung].[TacGia] AS [TacGia], 
+[TinMoiNhat_CheckTrung].[IdChuyenMuc] AS [IdChuyenMuc], 
+[TinMoiNhat_CheckTrung].[IdDonVi] AS [IdDonVi], 
+[TinMoiNhat_CheckTrung].[Nguon] AS [Nguon], 
+[TinMoiNhat_CheckTrung].[BuocDuyet] AS [BuocDuyet], 
+[TinMoiNhat_CheckTrung].[TrangThai] AS [TrangThai], 
+[TinMoiNhat_CheckTrung].[IdUser] AS [IdUser], 
+[TinMoiNhat_CheckTrung].[IsNoiBat] AS [IsNoiBat], 
+[TinMoiNhat_CheckTrung].[Link] AS [Link], 
+[TinMoiNhat_CheckTrung].[IsTab] AS [IsTab], 
+[TinMoiNhat_CheckTrung].[STTUuTien] AS [STTUuTien], 
+[TinMoiNhat_CheckTrung].[IdPostCu] AS [IdPostCu], 
+[TinMoiNhat_CheckTrung].[CatID] AS [CatID], 
+[TinMoiNhat_CheckTrung].[PageID] AS [PageID]
+FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

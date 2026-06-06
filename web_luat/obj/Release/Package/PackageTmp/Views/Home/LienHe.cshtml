@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css-moi/style2.css" rel="stylesheet" />
+}
+<div class="archive-header-banner text-center text-white">
+    <div class="container">
+        <span class="archive-subtitle text-uppercase">Đặt lịch hẹn với chúng tôi</span>
+        <h1 class="archive-main-title fw-extrabold mt-2">Liên hệ</h1>
+        <p class="archive-description mx-auto mt-3 text-secondary">Bạn hãy để lại thông tin để được công ty hỗ trợ sớm nhất.</p>
+    </div>
+</div>
+<main class="contact-page-main py-5 bg-light-slate">
+    <div class="container">
+
+        <div class="contact-composite-card rounded-4 overflow-hidden shadow-sm border bg-white mb-5">
+            <div class="row g-0">
+
+                <div class="col-lg-5 p-4 p-md-5 text-white bg-contact-info d-flex flex-column justify-content-between">
+                    <div>
+                        <span class="archive-subtitle text-warning text-uppercase d-block mb-2">Kết nối ngay</span>
+                        <h2 class="fw-extrabold text-white mb-4 text-uppercase">Thông tin liên hệ</h2>
+                        <p class="text-secondary small-text mb-5">Hãy liên hệ với Công ty Luật TNHH MV qua bất kỳ phương thức nào dưới đây. Đội ngũ trợ lý và luật sư của chúng tôi sẽ phản hồi quý khách trong thời gian sớm nhất.</p>
+
+                        <ul class="contact-direct-list list-unstyled d-flex flex-column gap-4">
+                            <li class="d-flex align-items-start gap-3">
+                                <div class="contact-pane-icon text-warning"><i class="fas fa-map-marker-alt fa-lg"></i></div>
+                                <div>
+                                    <h5 class="fw-bold mb-1 text-white">Địa chỉ văn phòng</h5>
+                                    <p class="mb-0 text-secondary-light">Tòa K1, Chung cư Khai Sơn City, phường Thượng Thanh, quận Long Biên, Hà Nội</p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start gap-3">
+                                <div class="contact-pane-icon text-warning"><i class="fas fa-phone-alt fa-lg"></i></div>
+                                <div>
+                                    <h5 class="fw-bold mb-1 text-white">Hotline hỗ trợ 24/7</h5>
+                                    <p class="mb-0"><a href="tel:0903492866" class="text-secondary-light text-decoration-none fw-bold">0903 492 866</a></p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start gap-3">
+                                <div class="contact-pane-icon text-warning"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <h5 class="fw-bold mb-1 text-white">Email tiếp nhận</h5>
+                                    <p class="mb-0"><a href="mailto:mvlawfirm.vn@gmail.com" class="text-secondary-light text-decoration-none">mvlawfirm.vn@gmail.com</a></p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start gap-3">
+                                <div class="contact-pane-icon text-warning"><i class="fas fa-clock"></i></div>
+                                <div>
+                                    <h5 class="fw-bold mb-1 text-white">Thời gian làm việc</h5>
+                                    <p class="mb-0 text-secondary-light">Thứ 2 - Thứ 7 : 8h30 - 17h30</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="contact-pane-socials mt-5 pt-4 border-top-translucent">
+                        <div class="d-flex gap-3">
+                            <a href="#" class="social-box-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-box-link"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-box-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 p-4 p-md-5">
+                    <span class="section-tagline d-block mb-2">Gửi thông điệp trực tuyến</span>
+                    <h2 class="section-main-title mb-4" style="text-align: left;">Đặt lịch hẹn với Luật sư</h2>
+                    <p class="text-muted small mb-4">Quý khách vui lòng điền đầy đủ các thông tin có dấu (*) dưới đây. Yêu cầu tư vấn của quý khách sẽ được chuyển trực tiếp đến luật sư phụ trách lĩnh vực liên quan.</p>
+
+                    <form id="contactForm" action="/Home/LienHe" method="POST" class="contact-page-form-element">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="custom-input-group">
+                                    <input type="text" name="HoTen" class="form-control-custom" placeholder="Họ và tên của bạn*" required>
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="custom-input-group">
+                                    <input type="tel" name="SoDienThoai" class="form-control-custom" placeholder="Số điện thoại liên hệ*" required>
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="custom-input-group">
+                                    <input type="email" name="Email" class="form-control-custom" placeholder="Địa chỉ Email của bạn*" required>
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="custom-input-group">
+                                    <input type="text" name="TieuDe" class="form-control-custom" placeholder="Tiêu đề vụ việc (Ví dụ: Tranh chấp đất đai, Thủ tục ly hôn...)*" required>
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <textarea name="NoiDung" class="form-control-custom" rows="5" placeholder="Tóm tắt nội dung sự việc hoặc câu hỏi pháp lý cần tư vấn chi tiết*" required></textarea>
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <div class="d-flex align-items-center gap-2 flex-wrap">
+                                    <div class="rounded-3 overflow-hidden border" style="height: 45px;">
+                                        <img id="imgCaptcha" src="/Home/GetCaptchaImage" alt="Captcha" style="display:block; height:100%;" />
+                                    </div>
+                                    <button type="button" id="btnRefreshCaptcha" class="btn btn-light border p-2 px-3" style="height: 45px;" title="Đổi mã khác">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                    <div class="custom-input-group flex-grow-1" style="min-width: 180px;">
+                                        <input type="text" id="CaptchaCode" name="CaptchaCode" class="form-control-custom" style="padding-left: 16px;" placeholder="Nhập 5 ký tự trong hình bên*" autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" id="btnSubmit" class="btn-submit-modern py-3 text-uppercase">Gửi Thông Tin Hẹn Luật Sư</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="contact-map-wrapper rounded-4 overflow-hidden shadow-sm border bg-white p-2">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4736691456107!2d105.88298787595353!3d21.053735986835263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a975765089ef%3A0x6b8aa7571cc2ee1b!2zQ2h1bmcgY8awIEtoYWkgU8ahbiBDaXR5!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
+                    width="100%"
+                    height="450"
+                    style="border:0; display: block;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </div>
+</main>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // HÀM LÀM MỚI ẢNH CAPTCHA CHỐNG CACHE TRÌNH DUYỆT
+            function refreshCaptcha() {
+                // Thêm chuỗi dấu thời gian ngẫu nhiên (?t=...) để buộc trình duyệt phải tải ảnh mới từ server
+                $("#imgCaptcha").attr("src", "/Home/GetCaptchaImage?t=" + new Date().getTime());
+                $("#CaptchaCode").val(""); // Xóa trống ô điền cũ
+            }
+
+            // Click vào nút đổi mã hoặc click thẳng vào bức ảnh đều đổi được mã mới
+            $("#btnRefreshCaptcha, #imgCaptcha").on("click", function () {
+                refreshCaptcha();
+            });
+
+            // XỬ LÝ GỬI FORM QUA AJAX
+            $("#contactForm").on("submit", function (e) {
+                e.preventDefault();
+
+                var $form = $(this);
+                var $btn = $("#btnSubmit");
+
+                $btn.prop("disabled", true).text("Đang xử lý thông tin...");
+
+                $.ajax({
+                    url: $form.attr("action"),
+                    type: $form.attr("method"),
+                    data: $form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Thành Công!",
+                                text: "Yêu cầu tư vấn của quý khách đã được gửi tới Luật sư. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất!",
+                                icon: "success",
+                                confirmButtonColor: "#0F172A"
+                            });
+                            $form[0].reset();
+                        } else {
+                            // Nếu điền sai mã, xuất thông báo cảnh báo lỗi
+                            Swal.fire({
+                                title: "Xác thực không chính xác!",
+                                text: response.message,
+                                icon: "warning",
+                                confirmButtonColor: "#C29900"
+                            });
+                        }
+                        // Luôn đổi mã Captcha mới sau mỗi lượt gửi
+                        refreshCaptcha();
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Thất bại!",
+                            text: "Đã có lỗi xảy ra trong quá trình gửi. Vui lòng kiểm tra lại đường truyền.",
+                            icon: "error",
+                            confirmButtonColor: "#EF4444"
+                        });
+                        refreshCaptcha();
+                    },
+                    complete: function () {
+                        $btn.prop("disabled", false).text("Gửi Thông Tin Hẹn Luật Sư");
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,231 @@
+﻿@model PagedList.IPagedList<web_luat.Models.tbl_Post>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Danh sách bị từ chối";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+    var loaitin = ViewData["loaitin"] as List<web_luat.Models.tbl_ChuyenMuc>;
+}
+
+<div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
+            <h4 class="py-3 mb-4">
+                <span class="text-muted fw-light">Trang chủ /</span> Bị từ chối
+            </h4>
+        </div>
+
+        <!-- FILTER -->
+        <div class="row" style="padding: 10px 25px; ">
+            <div class="col-md-3">
+                <input class="form-control" id="KeyWord" value="@ViewBag.Keyword" placeholder="Tìm tiêu đề..." />
+            </div>
+
+            <div class="col-md-3">
+                <select class="form-control" id="IdChuyenMuc" onchange="timkiem()">
+                    <option value="0">-- Chọn chuyên mục --</option>
+                    @foreach (var item in loaitin)
+                    {
+                        <option value="@item.Id" @(ViewBag.IdChuyenMuc == item.Id ? "selected" : "")>
+                            @item.TenChuyenMuc
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th style="width:50px">STT</th>
+                        <th>Tiêu đề</th>
+                        <th>Ảnh</th>
+                        <th>Ngày tạo</th>
+                        <th>Chuyên mục</th>
+                        <th>Trạng thái</th>
+                        <th>Lý do</th>
+                        <th width="220">Thao tác</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr class="text-center">
+                            <td>@stt</td>
+
+                            <td style="max-width:200px;word-wrap:break-word;">
+                                @item.TieuDe
+                            </td>
+
+                            <td>
+                                <img src="@item.Image" height="80" />
+                            </td>
+
+                            <td>
+                                @(item.NgayPhatHanh != null ? item.NgayPhatHanh.Value.ToString("dd-MM-yyyy") : "")
+                            </td>
+
+                            <td>
+                                @(loaitin.Count(g => g.Id == item.IdChuyenMuc) > 0
+                                    ? loaitin.First(g => g.Id == item.IdChuyenMuc).TenChuyenMuc
+                                    : "")
+                            </td>
+
+                            <!-- TRẠNG THÁI -->
+                            <td>
+                                @{
+                                    string tt = "";
+                                    switch (item.TrangThai)
+                                    {
+                                        case 0: tt = "Nháp"; break;
+                                        case 1: tt = "Chờ duyệt"; break;
+                                        case 2: tt = "Bị từ chối"; break;
+                                        case 3: tt = "Đã duyệt"; break;
+                                    }
+                                }
+                                <span class="badge bg-warning">@tt</span>
+                            </td>
+                            <td>
+                                @{
+                                    web_luat.Models.dbcontext db = new web_luat.Models.dbcontext();
+                                    var log = db.tbl_Post_DuyetLog
+                                        .Where(x => x.PostId == item.ID && x.TrangThai == 2)
+                                        .OrderByDescending(x => x.Id)
+                                        .FirstOrDefault();
+                                }
+                                @(log != null ? log.GhiChu : "")
+                            </td>
+                            <!-- ACTION -->
+                            <td>
+                                @if (item.TrangThai == 2)
+                                {
+                                    <button onclick="guiDuyet(@item.ID)" class="btn btn-warning btn-sm">
+                                        🔄 Gửi lại duyệt
+                                    </button>
+                                }
+
+                                <a href="@Url.Action("Edit", "TinTuc", new { id = item.ID })"
+                                   class="btn btn-sm btn-outline-primary"
+                                   data-ajax="true"
+                                   data-ajax-mode="replace"
+                                   data-ajax-update="#responsive"
+                                   data-ajax-method="GET"
+                                   data-ajax-complete="loadfrmEditSussess">
+                                    Sửa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FOOTER -->
+        <div>
+            <div class="col-md-12" style="text-align:right;color:black">
+                Tổng số bản ghi: @ViewBag.total
+            </div>
+
+            @{
+                int currentPage = Convert.ToInt32(ViewBag.pageNumber);
+                int totalPages = Model.PageCount;
+            }
+
+            <ul class="pagination" style="float:right;margin-right:20px">
+
+                <!-- Trang 1 -->
+                <li style="margin:2px">
+                    <a class="page-link @(currentPage == 1 ? "active" : "")"
+                       href="@Url.Action("BiTuChoi", new { page = 1, IdChuyenMuc = ViewBag.IdChuyenMuc, Keyword = ViewBag.Keyword })">
+                        1
+                    </a>
+                </li>
+
+                @if (currentPage > 3)
+                {
+                    <li class="page-link disabled" style="margin:2px">...</li>
+                }
+
+                @for (int i = currentPage - 1; i <= currentPage + 1; i++)
+                {
+                    if (i > 1 && i < totalPages)
+                    {
+                        <li style="margin:2px">
+                            <a class="page-link @(i == currentPage ? "active" : "")"
+                               href="@Url.Action("BiTuChoi", new { page = i, IdChuyenMuc = ViewBag.IdChuyenMuc, Keyword = ViewBag.Keyword })">
+                                @i
+                            </a>
+                        </li>
+                    }
+                }
+
+                @if (currentPage < totalPages - 2)
+                {
+                    <li class="page-link disabled" style="margin:2px">...</li>
+                }
+
+                @if (totalPages > 1)
+                {
+                    <li style="margin:2px">
+                        <a class="page-link @(currentPage == totalPages ? "active" : "")"
+                           href="@Url.Action("BiTuChoi", new { page = totalPages, IdChuyenMuc = ViewBag.IdChuyenMuc, Keyword = ViewBag.Keyword })">
+                            @totalPages
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    // search enter
+    $('#KeyWord').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            timkiem();
+        }
+    });
+
+    function timkiem() {
+        window.location.href = "/Admin/TinTuc/BiTuChoi?Keyword="
+            + $('#KeyWord').val()
+            + "&&IdChuyenMuc=" + $('#IdChuyenMuc').val();
+    }
+
+        function guiDuyet(id) {
+            Swal.fire({
+                title: 'Gửi duyệt bài viết?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Gửi',
+                cancelButtonText: 'Hủy',
+                confirmButtonColor: '#ffc107'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('/Admin/TinTuc/GuiDuyet', { id: id }, function (res) {
+                        if (res.status) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Đã gửi duyệt',
+                                timer: 1500,
+                                showConfirmButton: false
+                            }).then(() => {
+                                location.reload();
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

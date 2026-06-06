@@ -1,0 +1,85 @@
+﻿@model web_luat.Models.tbl_VanBan
+
+@{
+    ViewBag.Title = "Thêm tài nguyên mới";
+    <style>
+        #preview {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+
+            #preview img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+    </style>
+}
+@using (Ajax.BeginForm("Create", "VanBan", null,
+                       new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           OnSuccess = "onAddSuccess",
+                           UpdateTargetId = "response",
+                           InsertionMode = InsertionMode.Replace,
+                       },
+                       new { enctype = "multipart/form-data" }
+                       ))
+{
+    <div class="dialog-model"></div>
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <div class="header-content">THÔNG TIN VĂN BẢN</div>
+        </div>
+        <div class="dialog-main">
+            <div class="dialog-grid">
+                <div class="dialog-grid-center">
+                    <div class="grid-title">
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Tiêu đề(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
+                        <label for="txthoTen">File (<span style="color: red">*</span>)</label>
+                        <input type="file" name="file" class="form-control" id="imageInput" />
+
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Loại văn bản(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.LoaiVB, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LoaiVB, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Cơ quan ban hành(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.CoQuanBanHanh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CoQuanBanHanh, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Số hiệu văn bản(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.SoHieuVB, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SoHieuVB, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Người ký(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.NguoiKy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NguoiKy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-primary" type="submit">Lưu</button>
+            &nbsp;
+            <a class="btn btn-success" style="color:white;margin-right:10px" onclick="closedialog()">Đóng</a>
+        </div>
+    </div>
+
+}

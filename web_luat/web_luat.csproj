@@ -1778,6 +1778,7 @@
     <Content Include="Areas\Admin\login\vendor\select2\select2.js" />
     <Content Include="Areas\Admin\login\vendor\select2\select2.min.css" />
     <Content Include="Areas\Admin\login\vendor\select2\select2.min.js" />
+    <Content Include="bin\CKFinder.dll" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />

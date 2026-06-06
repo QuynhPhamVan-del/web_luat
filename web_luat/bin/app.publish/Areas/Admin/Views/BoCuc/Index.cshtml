@@ -1,0 +1,158 @@
+﻿@model PagedList.IPagedList<web_luat.Models.tbl_BoCuc>
+@using PagedList.Mvc;
+@using PagedList;
+@using web_luat.Models;
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ccc;
+            transition: .3s;
+            border-radius: 34px;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+                background: white;
+                transition: .3s;
+                border-radius: 50%;
+            }
+
+        input:checked + .slider {
+            background: #28a745;
+        }
+
+            input:checked + .slider:before {
+                transform: translateX(22px);
+            }
+    </style>
+}
+<div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    @*<h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Banner trang chính   </h4>*@
+    <div class="card">
+        <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
+            <h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Quản trị bố cục trang web</h4>
+         
+        </div>
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th class="text-center">STT</th>
+                        <th class="text-center">Tiêu đề bố cục</th>
+                        <th class="text-center">IdBoCuc</th>
+
+                        <th class="text-center">
+                            ảnh bố cục
+                        </th>
+                        <th class="text-center">
+                            Trạng thái
+                        </th>
+
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr class="text-center">
+                            <td>
+                                @item.STT
+                            </td>
+                            <td>
+                                @item.TieuDeBoCuc
+                            </td>
+                            <td>
+                                @item.IdBoCuc
+                            </td>
+                            <td>
+                               <img src="@item.ẢnhBoCuc"  height="50"/>
+                            </td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox"
+                                           @(item.KichHoat == true ? "checked" : "")
+                                           onchange="toggleStatus(@item.Id, this)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                            <td>
+                  
+                                    <a class="btn btn-sm btn-outline-success"
+                                       href="@Url.Action("Edit","BoCuc", new { id = item.Id })"
+                                       data-ajax="true"
+                                       data-ajax-update="#responsive"
+                                       data-ajax-method="GET"
+                                       data-ajax-complete="loadfrmEditSussess">
+                                        Sửa
+                                    </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+    function toggleStatus(id, el) {
+        var isActive = el.checked;
+
+        $.ajax({
+            url: '/Admin/BoCuc/ToggleStatus',
+            type: 'POST',
+            data: {
+                id: id,
+                isActive: isActive
+            },
+            success: function (res) {
+                if (!res.success) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Cập nhật thất bại",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    el.checked = !isActive; // rollback
+                }
+                Swal.fire({
+                    icon: "success",
+                    title: "Cập nhật thành công",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            },
+            error: function () {
+                alert("Lỗi hệ thống!");
+                el.checked = !isActive;
+            }
+        });
+    }
+</script>

@@ -1,0 +1,112 @@
+﻿@using System.Globalization
+@model web_luat.Models.tbl_Post
+@{
+    ViewBag.Title = "ChiTietTin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstMoiNhat = ViewData["lstMoiNhat"] as List<web_luat.Models.tbl_Post>;
+    var lstIdTag = ViewData["lstIdTag"] as List<web_luat.Models.tbl_Post_Tag>;
+    var tag = ViewData["tag"] as List<web_luat.Models.tbl_Tag>;
+    <link href="~/css-moi/style2.css" rel="stylesheet" />
+
+}
+
+<div class="archive-header-banner text-center text-white">
+    <div class="container">
+        <span class="archive-subtitle text-uppercase">Trang chủ</span>
+        <h1 class="archive-main-title fw-extrabold mt-2">Tin tức</h1>
+        <p class="archive-description mx-auto mt-3 text-secondary">Tìm hiểu về tầm nhìn, sứ mệnh lịch sử và hệ giá trị cốt lõi tạo dựng nên niềm tin vững chắc của Công ty Luật TNHH MV.</p>
+    </div>
+</div>
+
+<!-- MAIN CONTENT AREA (Bố cục Split 2 cột cao cấp) -->
+<main class="main-news-detail-wrapper py-5">
+    <div class="container">
+        <div class="row g-4 lg-g-5">
+
+            <!-- CỘT TRÁI: NỘI DUNG CHI TIẾT BÀI VIẾT (75% chiều rộng trên PC) -->
+            <div class="col-lg-8">
+                <article class="news-detail-article bg-white p-4 p-md-5 rounded-4 shadow-sm">
+
+                    <!-- Tiêu đề bài viết lớn -->
+                    <h1 class="article-main-title">@Model.TieuDe</h1>
+
+                    <!-- Thanh thông tin Meta bài viết -->
+                    <div class="article-meta-bar d-flex flex-wrap gap-3 align-items-center my-4 pb-3 border-bottom">
+                        <div class="meta-item"><i class="far fa-calendar-alt text-warning"></i> June 19, 2025</div>
+                        <div class="meta-item"><i class="far fa-folder text-warning"></i> Hôn nhân gia đình, Dịch vụ</div>
+                        <div class="meta-item"><i class="far fa-user text-warning"></i> @Model.TacGia</div>
+                    </div>
+
+                    <!-- Thẻ trích dẫn Sa-pô (Lead Paragraph) -->
+                    <blockquote class="article-lead-blockquote mb-4">
+                        @Model.MoTaNgan
+                    </blockquote>
+
+                    <!-- Nội dung chi tiết bài viết (Rich Text Area) -->
+                    <div class="article-rich-content">
+                        @Html.Raw(Model.NoiDung)
+                    </div>
+
+                    <!-- Thẻ từ khóa Tags bài viết -->
+                    <div class="article-tags-wrapper d-flex flex-wrap gap-2 mt-5 pt-3 border-top">
+                        <span class="tag-title me-2 align-self-center"><i class="fas fa-tags"></i> Từ khóa:</span>
+                        @foreach (var item in lstIdTag)
+                        {
+                            <a href="/danh-sach-tin-tuc.html?IdTag=@item.TagId" class="tag-link-item">@tag.FirstOrDefault(g=>g.Id==item.TagId).TenTag</a>
+
+                        }
+                    </div>
+                </article>
+            </div>
+
+            <!-- CỘT PHẢI: SIDEBAR THÔNG TIN BỔ TRỢ (25% chiều rộng trên PC) -->
+            <div class="col-lg-4">
+                <aside class="sticky-sidebar-news-detail d-flex flex-column gap-4">
+
+                    <!-- Widget 1: Danh mục kiến thức -->
+                    @*<div class="sidebar-widget bg-white p-4 rounded-4 shadow-sm">
+                        <h3 class="widget-title text-uppercase">Chuyên mục kiến thức</h3>
+                        <ul class="widget-categories-list">
+                            <li><a href="#">Luật Hôn nhân & Gia đình <span class="count-badge">12</span></a></li>
+                            <li><a href="#">Luật Đất đai & Thừa kế <span class="count-badge">18</span></a></li>
+                            <li><a href="#">Luật Doanh nghiệp & Thương mại <span class="count-badge">25</span></a></li>
+                            <li><a href="#">Luật Lao động <span class="count-badge">9</span></a></li>
+                            <li><a href="#">Luật Hình sự thực chiến <span class="count-badge">14</span></a></li>
+                            <li><a href="#">Tư vấn biểu mẫu Hợp đồng <span class="count-badge">31</span></a></li>
+                        </ul>
+                    </div>*@
+
+                    <!-- Widget 2: Khối Tin tức gần đây (Thừa hưởng Tone Vàng Gold cao cấp) -->
+                    <div class="sidebar-widget bg-premium-yellow p-4 rounded-4 shadow-sm">
+                        <h3 class="widget-title text-uppercase text-dark border-dark-sub">Tin tức gần đây</h3>
+                        <div class="widget-recent-posts d-flex flex-column gap-3">
+
+                            @foreach (var item in lstMoiNhat)
+                            {
+                                var link = "/chi-tiet-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TieuDe) + "_" + item.ID + ".html";
+                                <div class="recent-post-card-mini pb-3 border-bottom-dashed-dark">
+                                    <div class="mini-thumb"><img src="@item.Image" alt="@item.TieuDe"></div>
+                                    <div class="mini-content">
+                                        <h5><a href="@link">@item.TieuDe</a></h5>
+                                        <span>@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture) </span>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                    <!-- Widget 3: CTA Đăng ký tư vấn nhanh gọn dạng Card nhỏ -->
+                    <div class="sidebar-widget bg-dark text-white p-4 rounded-4 shadow-sm text-center">
+                        <div class="cta-icon mb-3 text-warning"><i class="fas fa-gavel fa-2x"></i></div>
+                        <h4 class="text-uppercase fw-bold text-warning mb-2">Bạn cần tư vấn pháp lý?</h4>
+                        <p class="small text-secondary mb-4">Đội ngũ luật sư giàu kinh nghiệm của MV Law Firm luôn sẵn sàng lắng nghe và giải đáp mọi thắc mắc của bạn 24/7.</p>
+                        <a href="tel:0903492866" class="btn btn-warning w-100 fw-bold py-2 rounded-3">GỌI HOTLINE NGAY</a>
+                    </div>
+
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</main>

@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công ty Luật TNHH MV | Trách nhiệm tạo niềm tin</title>
+    <meta name="description" content="Công ty Luật TNHH MTV - Cung cấp dịch vụ tư vấn pháp luật chuyên nghiệp, bào chữa, tranh tụng và hỗ trợ thủ tục pháp lý uy tín, hiệu quả hàng đầu.">
+    <meta name="keywords" content="Cong ty Luat TNHH MTV">
+    <meta name="author" content="Công ty Luật TNHH MTV">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="~/css-moi/style.css">
+    <link rel="icon" type="image/x-icon" href="~/css-moi/logo_luat.png">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg py-3 sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="~/css-moi/logo_luat.png" alt="Logo Luật MV">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mvNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="mvNavbar">
+                @{ Html.RenderAction("Menu", "Home"); }
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <footer class="main-footer-modern">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-lg-3 col-md-6 footer-brand-column text-center text-md-start">
+                    <div class="footer-logo-wrapper mb-3">
+                        <img src="~/css-moi/logo_luat.png" alt="Công Ty Luật TNHH MV" class="img-fluid footer-logo" style="filter: brightness(0) invert(1); max-height: 50px;">
+                    </div>
+                    <h3 class="footer-brand-name text-uppercase">Công Ty Luật TNHH MV</h3>
+                    <p class="footer-brand-slogan">Trách nhiệm tạo niềm tin</p>
+                    <p class="footer-copyright">Copyright 2025 © Công ty Luật TNHH MV</p>
+                </div>
+                <div class="col-lg-2 col-md-6 ps-lg-4">
+                    <h4 class="footer-column-title text-uppercase">Giới thiệu</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#">Dịch vụ</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Kiến thức</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="footer-column-title text-uppercase">Công Ty Luật TNHH MV</h4>
+                    <ul class="footer-contact-info">
+                        <li><i class="fas fa-map-marker-alt contact-icon"></i><span><strong>Địa chỉ:</strong> Tòa K1, Chung cư Khai Sơn City, Thượng Thanh, Long Biên, Hà Nội</span></li>
+                        <li><i class="fas fa-phone-alt contact-icon"></i><span><strong>Số điện thoại:</strong> 0903 492 866</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-map-card shadow-sm">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4736691456107!2d105.88298787595353!3d21.053735986835263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a975765089ef%3A0x6b8aa7571cc2ee1b!2zQ2h1bmcgY8awIEtoYWkgU8ahbiBDaXR5!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s" width="100%" height="180" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="sticky-social-widgets">
+        <a href="https://zalo.me/0903492866" target="_blank" class="widget-icon zalo-bg" title="Chat Zalo">
+            <i class="fa-solid fa-comment-dots"></i>
+        </a>
+        <a href="tel:0903492866" class="widget-icon phone-bg" title="Gọi ngay">
+            <i class="fa-solid fa-phone animate-shake"></i>
+        </a>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/css-moi/script.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

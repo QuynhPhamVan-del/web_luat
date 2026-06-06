@@ -1,0 +1,98 @@
+﻿@model web_luat.Models.tbl_Post
+
+@{
+    ViewBag.Title = "Thêm tin tức mới";
+    var stt = 0;
+    var lst = ViewData["lst"] as List<web_luat.Models.tbl_Post_Category>;
+    if (lst.Count() > 0)
+    {
+        stt = lst.Count();
+    }
+    var loaitin = ViewData["loaitin"] as List<web_luat.Models.tbl_ChuyenMuc>;
+    var stt_tt = 0;
+} 
+@using (Ajax.BeginForm("AddChuyenMuc", "TinTuc", null,
+                       new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           OnSuccess = "onEditSuccess",
+                           UpdateTargetId = "response",
+                           InsertionMode = InsertionMode.Replace,
+                       },
+                       new { enctype = "multipart/form-data" }
+                       ))
+{
+    <div class="dialog-model"></div>
+    <input name="IdPost" value="@Model.ID" hidden />
+    <input id="stt" name="stt" value="@(stt>0?stt:0)" hidden />
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <div class="header-content">CẤU HÌNH TIN TỨC</div>
+        </div>
+        <div class="dialog-main">
+            <div class="dialog-grid">
+                <div class="dialog-grid-center">
+                    <div class="grid-title">
+                    </div>
+                    <div class="infor-details">
+                        <a onclick="themcm()" class="btn btn-primary">Thêm</a>
+                    </div>
+                    <div id="addCM">
+                        @if (lst.Count() > 0)
+                        {
+                            foreach (var item in lst)
+                            {
+                                stt_tt++;
+                                <div id="@stt_tt">
+                                    <div class="infor-details" id="CM">
+                                        <label for="txthoTen">Chuyên mục tin tức (<span style="color: red">*</span>)</label>
+                                        <select class="form-control" name="IdChuyenMuc_@stt_tt" id="IdChuyenMuc_@stt_tt">
+                                            <option value="0">-- Chọn chuyên mục tin tức --</option>
+                                            @foreach (var item1 in loaitin)
+                                            {
+                                                <option value="@item1.Id" @(item.IdCategory==item1.Id?"selected":"")>@item1.TenChuyenMuc</option>
+
+                                            }
+                                        </select>
+                                    </div>
+    
+                                    <div class="infor-details">
+                                        <a onclick="xoa(@stt_tt)" class="btn btn-outline-danger">Xóa</a>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-primary" type="submit">Lưu</button>
+            &nbsp;
+            <a class="btn btn-success" style="color:white;margin-right:10px" onclick="closedialog()">Đóng</a>
+        </div>
+    </div>
+
+}
+<script>
+    let stt = parseInt($('#stt').val()) || 0;
+    function themcm() {
+        stt = stt + 1;
+        $('#stt').val(stt);
+        $.ajax({
+            url: "/Admin/TinTuc/Add?STT=" + stt,
+            type: "GET",
+            success: function (data) {
+                $("#addCM").append(data);
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi tải menu:", error);
+            }
+        });
+    }
+    function xoa(tt) {
+        $(`#${tt}`).remove();
+    }
+</script>

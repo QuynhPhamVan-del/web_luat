@@ -1,0 +1,95 @@
+﻿.message-model, .message-delete {
+    display: none;
+    z-index: 1000;
+    position:sticky;
+}
+.message-model, .message-giao {
+    display: none;
+    z-index: 1000;
+    position: sticky;
+}
+.message-model, .message-hoi {
+    display: none;
+    z-index: 1000;
+    position: sticky;
+}
+.message-content {
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    top: 0;
+    opacity: .4;
+    position: fixed;
+}
+.message-box {
+    border: 1px solid #e5e5e5;
+    height: 240px;
+    width: 350px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+.message-header {
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
+    padding: 20px;
+    font-weight: bold;
+    background: #126338;
+    color: white;
+}
+.message-main {
+    height: 90px;
+    text-align: center;
+    margin-top: 30px;
+}
+.message-footer{
+    height: 60px;
+    width: 100%;
+    background-color: #e5e5e5;
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center
+}
+.btn-yes, .btn-no, .btn-ok {
+    height: 40px;
+    width: 80px;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+.btn-yes, .btn-ok {
+    background-color: #2FBE8E
+}
+    .btn-yes:hover {
+        background-color: #F65454
+    }
+    .btn-no{
+        background-color: #e5e5e5;
+    }
+        .btn-no:hover {
+            background-color: #BBBBBB;
+        }
+.timkiem {
+    height: 40px;
+    background-color: #019160;
+    border: none;
+    color: #ffff;
+    border-radius: 4px;
+    padding-left: 4px;
+    width: 100px;
+    text-align: center;
+    margin-left: 30px;
+}
+#notify{
+    font-size:18px;
+    margin-top:65px;
+    color:#ff0000;
+}
+.message-main #xoa {
+    font-size: 20px;
+}

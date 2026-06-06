@@ -1,0 +1,51 @@
+﻿@model web_luat.Models.tbl_User
+
+@{
+    ViewBag.Title = "ThongTin";
+}
+@using (Ajax.BeginForm("DoiMK", "QuanTri", null,
+                       new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           OnSuccess = "onEditSuccess",
+                           UpdateTargetId = "response",
+                           InsertionMode = InsertionMode.Replace,
+                       },
+                       new { enctype = "multipart/form-data" }
+                       ))
+{
+    <input name="Id" value="@Model.ID" hidden />
+    <div class="dialog-model"></div>
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <div class="header-content">THÔNG TIN TÀI KHOẢN</div>
+        </div>
+        <div class="dialog-main">
+            <div class="dialog-grid">
+                <div class="dialog-grid-center">
+                    <div class="grid-title">
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Mật khẩu cũ(<span style="color: red">*</span>)</label>
+                        <input class="form-control" name="PassCu" type="password"/>
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Mật khẩu mới(<span style="color: red">*</span>)</label>
+                        <input class="form-control" name="PassMoi" type="password"/>
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Xác nhận lại mật khẩu(<span style="color: red">*</span>)</label>
+                        <input class="form-control" name="PassXN" type="password"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-primary" type="submit">Lưu</button>
+            &nbsp;
+            <a class="btn btn-success" style="color: white; margin-right: 10px" onclick="closedialog()">Đóng</a>
+        </div>
+    </div>
+
+}
+

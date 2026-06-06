@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+    var lstCM = ViewData["lstCM"] as List<web_luat.Models.tbl_ChuyenMuc>;
+}
+<label for="txtmaKH">Chuyên mục tin tức</label>
+<select class="form-control" name="IdChuyenMuc">
+    <option value="0">-- Chọn chuyên mục --</option>
+    @foreach (var item in lstCM)
+    {
+        <option value="@item.Id">@item.TenChuyenMuc</option>
+    }
+</select>
+
+

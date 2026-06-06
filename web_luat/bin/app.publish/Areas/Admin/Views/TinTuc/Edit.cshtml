@@ -1,0 +1,337 @@
+﻿@model web_luat.Models.tbl_Post
+
+@{
+    var loaitin = ViewData["loaitin"] as List<web_luat.Models.tbl_ChuyenMuc>;
+    var lst = ViewData["lst"] as List<web_luat.Models.tbl_Post_Category>;
+    var stt = 0;
+    if (lst.Count() > 0)
+    {
+        stt = lst.Count();
+    }
+    var stt_tt = 0;
+    ViewBag.Title = "Cập nhật tin tức";
+}
+
+@using (Ajax.BeginForm("Edit", "TinTuc", null,
+                       new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           OnSuccess = "onEditSuccess",
+                           UpdateTargetId = "response",
+                           InsertionMode = InsertionMode.Replace,
+                       },
+                       new { enctype = "multipart/form-data" }
+                       ))
+{
+    <div class="dialog-model"></div>
+    <input name="Id" value="@Model.ID" hidden />
+    <input name="Image" value="@Model.Image" hidden />
+    <input name="View" value="@Model.View" hidden />
+    <input name="IdUser" value="@Model.IdUser" hidden />
+    <input id="stt" name="stt" value="@(stt>0?stt:0)" hidden />
+
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <div class="header-content">THÔNG TIN TIN TỨC</div>
+        </div>
+        <div class="dialog-main">
+            <div class="dialog-grid">
+                <div class="dialog-grid-center">
+                    <div class="grid-title"></div>
+
+                    <div class="infor-details">
+                        <label for="txtmaKH">Tiêu đề(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label for="txtmaKH">Mô tả ngắn(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.MoTaNgan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MoTaNgan, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="infor-details">
+                        <label for="txtmaKH">Cấu hình chuyên mục tin tức</label>
+                        <a onclick="themcm()" class="btn btn-primary">Thêm</a>
+                        <div id="addCM">
+                            @if (lst.Count() > 0)
+                            {
+                                foreach (var item in lst)
+                                {
+                                    stt_tt++;
+                                    <div id="@stt_tt">
+                                        <div class="infor-details" id="CM">
+                                            <label for="txthoTen">Chuyên mục tin tức (<span style="color: red">*</span>)</label>
+                                            <select class="form-control" name="IdChuyenMuc_@stt_tt" id="IdChuyenMuc_@stt_tt">
+                                                <option value="0">-- Chọn chuyên mục tin tức --</option>
+                                                @foreach (var item1 in loaitin)
+                                                {
+                                                    <option value="@item1.Id" @(item.IdCategory == item1.Id ? "selected" : "")>@item1.TenChuyenMuc</option>
+
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="infor-details">
+                                            <a onclick="xoa(@stt_tt)" class="btn btn-outline-danger">Xóa</a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="infor-details">
+                        <label for="NgayPhatHanh">Ngày phát hành (<span style="color: red">*</span>)</label>
+                        <input type="date" name="NgayPhatHanh" id="NgayPhatHanh" class="form-control"
+                               value="@(Model.NgayPhatHanh != null ? Model.NgayPhatHanh.Value.ToString("yyyy-MM-dd") : "")" />
+                        @Html.ValidationMessageFor(model => model.NgayPhatHanh, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label for="txthoTen">Ảnh đại diện</label>
+                        <input type="file" name="file" class="form-control" />
+                        <br />
+                        <div id="preview">
+                            @if (!string.IsNullOrEmpty(Model.Image))
+                            {
+                                <img loading="lazy" src="@Model.Image" alt="" width="100" />
+                            }
+                        </div>
+                    </div>
+
+                    <div class="infor-details">
+                        <label class="fw-bold">Tags</label>
+                        <select id="Tags" name="Tags" class="form-control" multiple="multiple" style="width:100%"></select>
+                    </div>
+
+                    <div class="infor-details">
+                        <div style="margin-top:8px">
+                            <input type="file" id="pdfUpload" accept="application/pdf" hidden />
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="openPdfUpload()">
+                                📄 Chèn file PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="infor-details">
+                        <div style="margin-top:8px">
+                            <input type="file" id="videoUpload" accept="video/*" hidden />
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="openVideoUpload()">
+                                🎬 Chèn Video
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="infor-details">
+                        <label for="txtmaKH">Nội dung(<span style="color: red">*</span>)</label>
+                        <textarea name="NoiDung" id="NoiDung" class="form-control" rows="20">@Model.NoiDung</textarea>
+                    </div>
+
+                    <div class="infor-details">
+                        <label for="txtmaKH">Nguồn</label>
+                        @Html.EditorFor(model => model.Nguon, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nguon, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label for="txtmaKH">Tác giả</label>
+                        @Html.EditorFor(model => model.TacGia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-primary" type="submit">Lưu</button>
+            &nbsp;
+            <a class="btn btn-success" style="color:white;margin-right:10px" onclick="closedialog()">Đóng</a>
+        </div>
+    </div>
+}
+
+<script>
+    if ($('#NoiDung').length > 0) {
+        var editor = CKEDITOR.replace("NoiDung", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Areas/Admin/assets/js/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Areas/Admin/assets/js/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Areas/Admin/assets/js/ckfinder/ckfinder.html?Type=Flash',
+            height: 300,
+            disallowedContent: 'span; apple-converted-space',
+            pasteFromWordRemoveFontStyles: true,
+            pasteFromWordRemoveStyles: true,
+            allowedContent: true,
+            tabSpaces: 0
+        });
+
+        editor.on('instanceReady', function () {
+            editor.addCommand('insertTabSpace', {
+                exec: function (editor) {
+                    editor.insertHtml('&nbsp;&nbsp;&nbsp;&nbsp;');
+                }
+            });
+            editor.setKeystroke(9, 'insertTabSpace');
+            console.log("Đã kích hoạt phím TAB để thụt lề.");
+        });
+    }
+</script>
+
+<script>
+    function openPdfUpload() {
+        document.getElementById("pdfUpload").click();
+    }
+
+    document.getElementById("pdfUpload").addEventListener("change", function () {
+        var file = this.files[0];
+        if (!file) return;
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Admin/TinTuc/UploadPdf",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                if (!res.uploaded) {
+                    alert(res.error);
+                    return;
+                }
+                insertPdfToEditor(res.url);
+            },
+            error: function () {
+                alert("Lỗi upload PDF");
+            }
+        });
+    });
+
+    function insertPdfToEditor(pdfUrl) {
+        var editor = CKEDITOR.instances.NoiDung;
+        if (!editor) {
+            alert("CKEditor chưa sẵn sàng");
+            return;
+        }
+        var viewerUrl = '/pdfjs/web/viewer.html?file=' + encodeURIComponent(pdfUrl);
+        var html = `
+            <div class="pdf-wrapper" contenteditable="false" style="margin:15px 0;background:#fff;border-radius:6px;overflow:hidden">
+                <iframe src="${viewerUrl}" width="100%" height="850" style="border:1px solid #ccc;background:#fff" allowfullscreen></iframe>
+            </div>`;
+        editor.insertHtml(html);
+    }
+
+    function openVideoUpload() {
+        document.getElementById("videoUpload").click();
+    }
+
+    document.getElementById("videoUpload").addEventListener("change", function () {
+        var file = this.files[0];
+        if (!file) return;
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Admin/TinTuc/UploadVideo",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                if (!res.uploaded) {
+                    alert(res.error);
+                    return;
+                }
+                insertVideoToEditor(res.url);
+            },
+            error: function () {
+                alert("Lỗi upload video");
+            }
+        });
+    });
+
+    function insertVideoToEditor(videoUrl) {
+        var editor = CKEDITOR.instances.NoiDung;
+        if (!editor) {
+            alert("CKEditor chưa sẵn sàng");
+            return;
+        }
+        var html = `
+            <div class="video-wrapper" contenteditable="false" style="margin:15px 0;text-align:center">
+                <video controls style="max-width:100%;height:auto;border:1px solid #ccc;border-radius:6px">
+                    <source src="${videoUrl}" type="video/mp4">
+                </video>
+            </div>`;
+        editor.insertHtml(html);
+    }
+
+    $(document).ready(function () {
+        $('#Tags').select2({
+            tags: true,
+            width: '100%',
+            tokenSeparators: [','],
+            placeholder: "Nhập hoặc chọn tags",
+            ajax: {
+                url: '/Admin/TinTuc/GetTags',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return { q: params.term || "" };
+                },
+                processResults: function (data) {
+                    return { results: data };
+                }
+            },
+            createTag: function (params) {
+                var term = $.trim(params.term);
+                if (term === '') return null;
+                return { id: term, text: term, newTag: true };
+            }
+        });
+
+        $('#Tags').on('keypress', function (e) {
+            if (e.which === 13) e.preventDefault();
+        });
+
+        loadOldTags(@Model.ID);
+    });
+
+    function loadOldTags(postId) {
+        $.ajax({
+            url: '/Admin/TinTuc/GetTagsByPost',
+            type: 'GET',
+            data: { postId: postId },
+            success: function (data) {
+                data.forEach(function (tag) {
+                    var option = new Option(tag.text, tag.id, true, true);
+                    $('#Tags').append(option).trigger('change');
+                });
+            }
+        });
+    }
+</script>
+
+<script>
+    let stt = parseInt($('#stt').val()) || 0;
+    function themcm() {
+        stt = stt + 1;
+        $('#stt').val(stt);
+        $.ajax({
+            url: "/Admin/TinTuc/Add?STT=" + stt,
+            type: "GET",
+            success: function (data) {
+                $("#addCM").append(data);
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi tải menu:", error);
+            }
+        });
+    }
+    function xoa(tt) {
+        $(`#${tt}`).remove();
+    }
+</script>

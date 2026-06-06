@@ -1,0 +1,139 @@
+﻿@model PagedList.IPagedList<web_luat.Models.tbl_LuanAn>
+@using PagedList.Mvc;
+@using PagedList;
+@using web_luat.Models;
+@{
+    ViewBag.Title = "Quản trị kho Luận án số";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+}
+<div class="flex-grow-1 container-p-y" style="padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    <div class="card">
+        <div class="row" style="display: flex; justify-content: flex-end; padding: 10px 25px;">
+            <h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Quản trị kho luận án số Học viện</h4>
+            @Ajax.ActionLink(
+                " Thêm ",
+                "Create",
+                "LuanAn",
+                new AjaxOptions
+                {
+                    UpdateTargetId = "responsive",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    OnComplete = "load"
+                },
+                new { @class = "btn btn-primary col-md-1" }
+            )
+            <a href="@Url.Action("Index", new { isTrash = false })" class="btn btn-success col-md-1" style="margin:0 10px">
+                Danh sách
+            </a>
+            <a href="@Url.Action("Index", new { isTrash = true })" class="btn btn-danger col-md-1">
+                Thùng rác
+            </a>
+        </div>
+        <div class="row" style="padding: 10px 25px;">
+            <div class="col-md-3">
+                <input name="Key" id="Key" class="form-control" placeholder="Tìm tên đề tài, NCS, ngành..." value="@ViewBag.Key" />
+            </div>
+        </div>
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th style="width: 5%">STT</th>
+                        <th style="width: 45%">Tên đề tài luận án</th>
+                        <th style="width: 15%">Nghiên cứu sinh</th>
+                        <th style="width: 15%">Chuyên ngành</th>
+                        <th style="width: 20%">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr>
+                            <td class="text-center">@stt</td>
+                            <td style="white-space: normal; word-break: break-word;"><strong>@item.TieuDe</strong></td>
+                            <td class="text-center">@item.NCS</td>
+                            <td class="text-center">@item.ChuyenNganh</td>
+                            <td class="text-center">
+                                @if (ViewBag.isTrash == true)
+                                {
+                                    <a class="btn btn-sm btn-outline-success" onclick="btnRestoreSingle(@item.ID, 'LuanAn')">Khôi phục</a>
+                                    <a class="btn btn-sm btn-outline-danger" onclick="btndeletetvc(@item.ID, 'LuanAn')">Xóa vĩnh viễn</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-sm btn-outline-success"
+                                       href="@Url.Action("Edit","LuanAn", new { id = item.ID })"
+                                       data-ajax="true"
+                                       data-ajax-update="#responsive"
+                                       data-ajax-method="GET"
+                                       data-ajax-complete="loadfrmEditSussess">Sửa</a>
+                                    <a class="btn btn-sm btn-outline-danger" onclick="btndelete(@item.ID, 'LuanAn')">Xóa</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div style="padding: 15px 0;">
+            <div class="col-md-12" style="text-align:right;color:black">
+                Tổng số bản ghi: @ViewBag.total &nbsp;
+            </div>
+            @{
+                int currentPage = Convert.ToInt32(ViewBag.pageNumber);
+                int totalPages = Model.PageCount;
+                int showStart = 3;
+                int showMiddle = 2;
+                int showEnd = 3;
+
+                List<int> displayedPages = new List<int>();
+
+                for (int i = 1; i <= Math.Min(showStart, totalPages); i++) { displayedPages.Add(i); }
+                for (int i = currentPage - 1; i <= currentPage + 1; i++)
+                {
+                    if (i > showStart && i <= totalPages - showEnd && !displayedPages.Contains(i)) { displayedPages.Add(i); }
+                }
+                for (int i = totalPages - showEnd + 1; i <= totalPages; i++)
+                {
+                    if (i > 0 && !displayedPages.Contains(i)) { displayedPages.Add(i); }
+                }
+                displayedPages = displayedPages.Distinct().OrderBy(x => x).ToList();
+            }
+
+            <ul class="pagination" style="float:right;margin-right:20px">
+                @{
+                    int lastPage = 0;
+                    foreach (var page in displayedPages)
+                    {
+                        if (lastPage != 0 && page - lastPage > 1)
+                        {
+                            <li><span class="page-link">...</span></li>
+                        }
+                        <li>
+                            <a class="page-link @(currentPage == page ? "active" : "")" href="@Url.Action("Index", new { page = page, isTrash=ViewBag.isTrash, Key=ViewBag.Key })">@page</a>
+                        </li>
+                        lastPage = page;
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(document).on("keypress", function (e) {
+                if (e.which === 13) { timkiem(); }
+            });
+        });
+        function timkiem() {
+            var url = "/Admin/LuanAn/Index?Key=" + encodeURIComponent($('#Key').val());
+            window.location.href = url;
+        }
+    </script>
+}

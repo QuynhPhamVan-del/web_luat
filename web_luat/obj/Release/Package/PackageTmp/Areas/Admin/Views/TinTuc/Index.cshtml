@@ -1,0 +1,485 @@
+﻿@model PagedList.IPagedList<web_luat.Models.tbl_Post>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Danh sách tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+    var loaitin = ViewData["loaitin"] as List<web_luat.Models.tbl_ChuyenMuc>;
+    var IdUsser = Convert.ToInt32(Session["Id"].ToString());
+}
+<div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    <div class="card">
+        <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
+            <h4 class="py-3 mb-4"><span class="text-muted fw-light">Trang chủ /</span> Tin tức   </h4>
+
+            @Ajax.ActionLink(
+
+         " Thêm ",
+         "Create",
+         "TinTuc",
+         new AjaxOptions
+         {
+             UpdateTargetId = "responsive",
+             InsertionMode = InsertionMode.Replace,
+             HttpMethod = "GET",
+             OnComplete = "load"
+         },
+         new { @class = "btn btn-primary col-md-1" }
+         )
+
+        </div>
+        <div class="row" style="padding: 10px 25px; ">
+            <div class="col-md-3">
+                <input class="form-control" id="KeyWord" value="@ViewBag.Keyword" style="margin-right:10px;" />
+
+            </div>
+            <div class="col-md-3">
+                <select class=" form-control" name="IdChuyenMuc" id="IdChuyenMuc" onchange="timkiem()">
+                    <option>-- Chọn chuyên mục --</option>
+                    @foreach (var item in loaitin)
+                    {
+                        <option value="@item.Id" @(ViewBag.IdChuyenMuc == item.Id ? "selected" : "")>@item.TenChuyenMuc</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-primary w-100"
+                        onclick="timkiem()" title="Tìm kiếm">
+
+                    <i class="bx bx-search"></i> 
+
+                </button>
+            </div>
+        </div>
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th style="width:50px">STT</th>
+
+
+                        <th class="text-center">Tiêu đề</th>
+                            <th class="text-center">
+                                Ảnh đại diện
+                            </th>
+                            <th class="text-center">
+                                Ngày đăng
+                            </th>
+                            <th class="text-center">
+                                Chuyên mục
+                            </th>
+
+                            <th class="text-center">
+                                Trạng thái
+                            </th>
+
+                            <th class="text-center">Thao tác</th>
+                        </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        var linkTin = "/chi-tiet-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TieuDe).Replace(" ", "_") + "_" + item.ID + ".html";
+                        stt++;
+                        <tr class="text-center">
+                            <td>
+                                @stt
+                            </td>
+                            <td style=" max-width: 200px; word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+                                @item.TieuDe
+                            </td>
+             
+                            <td>
+                                <img loading="lazy" alt="" src="@item.Image" height="100" />
+                            </td>
+                            <td>@item.NgayPhatHanh.Value.ToString("dd-MM-yyyy")</td>
+                            <td>
+                                @(loaitin.Count(g=>g.Id==item.IdChuyenMuc)>0?loaitin.FirstOrDefault(g=>g.Id==item.IdChuyenMuc).TenChuyenMuc:"")
+                            </td>
+                            <td>
+                                @{
+                                    string tt = "";
+                                    switch (item.TrangThai)
+                                    {
+                                        case 0: tt = "Nháp"; break;
+                                        case 1: tt = "Chờ duyệt"; break;
+                                        case 2: tt = "Bị từ chối"; break;
+                                        case 3: tt = "Đã duyệt"; break;
+                                    }
+                                }
+                                <span class="badge bg-info">@tt</span>
+                            </td>
+                            <td>
+
+
+                                <a href="@linkTin" class="btn btn-warning" target="_blank">
+                                    Xem trước
+                                </a>
+
+                                @if (item.TrangThai == 0 || item.TrangThai == 2)
+                                {
+                                    <button onclick="guiDuyet(@item.ID)" class="btn btn-warning">Gửi duyệt</button>
+                                }
+
+                                @if (item.TrangThai == 1)
+                                {
+                                    <button onclick="duyet(@item.ID,1)" class="btn btn-success">Duyệt</button>
+                                    <button onclick="duyet(@item.ID,2)" class="btn btn-danger">Từ chối</button>
+                                }
+                                <a href="@Url.Action("Edit", "TinTuc", new { id = item.ID })"
+                                   class="btn btn-sm btn-outline-success"
+                                   title="Sửa"
+                                   data-ajax="true"
+                                   data-ajax-mode="replace"
+                                   data-ajax-update="#responsive"
+                                   data-ajax-method="GET"
+                                   data-ajax-complete="loadfrmEditSussess">
+                                    Sửa
+                                </a>
+                                <a class="btn btn-sm btn-outline-dark" title="Xóa" onclick="btndelete(@item.ID,'TinTuc')">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="col-md-12" style="text-align:right;color:black">
+                Tổng số bản ghi: @ViewBag.total &nbsp;
+            </div>
+        @{
+    int currentPage = Convert.ToInt32(ViewBag.pageNumber);
+    int totalPages = Model.PageCount;
+}
+
+<ul class="pagination" style="float:right;margin-right:20px">
+
+    @* Hiển thị trang đầu tiên *@
+    <li style="margin:2px">
+        <a class="page-link @(currentPage == 1 ? "active" : "")" href="@Url.Action("Index", new { page = 1, IdChuyenMuc = ViewBag.IdChuynMuc, Keyword = ViewBag.Keyword , isNoiBat = ViewBag.isNoiBat == 1})">1</a>
+    </li>
+
+    @* Hiển thị dấu ... nếu cần *@
+    @if (currentPage > 3)
+    {
+        <li class="page-link disabled" style="margin:2px">...</li>
+    }
+
+    @* Hiển thị các trang lân cận trang hiện tại (trang -1, trang, trang +1) *@
+    @for (int i = currentPage - 1; i <= currentPage + 1; i++)
+    {
+        if (i > 1 && i < totalPages)
+        {
+            <li style="margin:2px">
+                <a class="page-link @(i == currentPage ? "active" : "")" href="@Url.Action("Index", new { page = i, IdChuyenMuc = ViewBag.IdChuynMuc, Keyword = ViewBag.Keyword, isNoiBat = ViewBag.isNoiBat == 1 })">@i</a>
+            </li>
+        }
+    }
+
+    @* Hiển thị dấu ... nếu còn cách xa trang cuối *@
+    @if (currentPage < totalPages - 2)
+    {
+        <li class="page-link disabled" style="margin:2px">...</li>
+    }
+
+    @* Hiển thị trang cuối *@
+    @if (totalPages > 1)
+    {
+        <li style="margin:2px">
+            <a class="page-link @(currentPage == totalPages ? "active" : "")" href="@Url.Action("Index", new { page = totalPages, IdChuyenMuc = ViewBag.IdChuynMuc, Keyword = ViewBag.Keyword, isNoiBat = ViewBag.isNoiBat == 1 })">@totalPages</a>
+        </li>
+    }
+</ul>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="modalSTT" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width:100%">
+
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Cập nhật STT nổi bật
+                </h5>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="postIdSTT" />
+
+                <label>Nhập số thứ tự</label>
+
+                <input type="number"
+                       id="txtSTT"
+                       class="form-control"
+                       min="1"
+                       placeholder="Ví dụ: 1" />
+
+            </div>
+
+            <div class="modal-footer">
+
+
+
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="saveSTT()">
+                    Lưu
+                </button>
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Đóng
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalNgayPhatHanh" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width:100%">
+
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Cập nhật ngày phát hành
+                </h5>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="postIdNgayPhatHanh" />
+
+                <label>Chọn ngày phát hành</label>
+
+                <input type="datetime-local"
+                       id="txtNgayPhatHanh"
+                       class="form-control" />
+                <input type="text"
+                       id="txtTacGia"
+                       class="form-control" />
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="saveNgayPhatHanh()">
+                    Lưu
+                </button>
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Đóng
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function showNgayPhatHanh(id, ngay) {
+
+            $('#postIdNgayPhatHanh').val(id);
+
+            $('#txtNgayPhatHanh').val(ngay);
+
+            $('#modalNgayPhatHanh').modal('show');
+        }
+
+        function saveNgayPhatHanh() {
+
+            var id = $('#postIdNgayPhatHanh').val();
+
+            var ngay = $('#txtNgayPhatHanh').val();
+            var tacgia = $('#txtTacGia').val();
+
+            if (ngay == '') {
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Thông báo',
+                    text: 'Vui lòng chọn ngày phát hành'
+                });
+
+                return;
+            }
+
+            $.post('/Admin/TinTuc/CapNhatNgayPhatHanh',
+                {
+                    id: id,
+                    ngayPhatHanh: ngay,
+                    tacgia: tacgia
+                },
+                function (res) {
+
+                    if (res.status) {
+
+                        $('#modalNgayPhatHanh').modal('hide');
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: res.message || 'Cập nhật ngày phát hành thành công',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+
+                            location.reload();
+
+                        });
+
+                    }
+                    else {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lỗi',
+                            text: res.message
+                        });
+
+                    }
+
+                }).fail(function () {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Có lỗi xảy ra khi cập nhật'
+                    });
+
+                });
+        }
+        const input = document.getElementById('KeyWord');
+
+        input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                var isNoiBat = $('#isNoiBat').is(':checked');
+
+                window.location.href =
+                    "/Admin/TinTuc/Index?Keyword=" + $('#KeyWord').val()
+                    + "&IdChuyenMuc=" + $('#IdChuyenMuc').val()
+                    + "&isNoiBat=" + isNoiBat;
+            }
+        });
+        function timkiem() {
+
+            var isNoiBat = $('#isNoiBat').is(':checked');
+
+            window.location.href =
+                "/Admin/TinTuc/Index?Keyword=" + $('#KeyWord').val()
+                + "&IdChuyenMuc=" + $('#IdChuyenMuc').val()
+                + "&isNoiBat=" + isNoiBat;
+        }
+        function guiDuyet(id) {
+            $.post('/Admin/TinTuc/GuiDuyet', { id: id }, function (res) {
+                if (res.status) location.reload();
+            });
+        }
+
+        function duyet(id, action) {
+            var ghichu = prompt("Nhập ghi chú:");
+
+            $.post('/Admin/TinTuc/Duyet', {
+                id: id,
+                action: action,
+                ghiChu: ghichu
+            }, function (res) {
+                if (res.status) location.reload();
+            });
+        }
+        function setSTT(id, stt = '') {
+
+            $('#postIdSTT').val(id);
+
+            $('#txtSTT').val(stt);
+
+            $('#modalSTT').modal('show');
+        }
+        function saveSTT() {
+
+            var id = $('#postIdSTT').val();
+
+            var stt = $('#txtSTT').val();
+
+            if (stt == '' || stt <= 0) {
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Thông báo',
+                    text: 'Vui lòng nhập STT hợp lệ'
+                });
+
+                return;
+            }
+
+            if (stt < 1 || stt > 5) {
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Thông báo',
+                    text: 'STT chỉ được từ 1 đến 5'
+                });
+
+                return;
+            }
+
+            $.post('/Admin/TinTuc/SetSTTNoiBat',
+                {
+                    id: id,
+                    stt: stt
+                },
+                function (res) {
+
+                    if (res.status) {
+
+                        $('#modalSTT').modal('hide');
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: res.message || 'Cập nhật STT thành công',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+
+                            location.reload();
+
+                        });
+
+                    }
+                    else {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lỗi',
+                            text: res.message
+                        });
+
+                    }
+
+                }).fail(function () {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Có lỗi xảy ra khi cập nhật'
+                    });
+
+                });
+        }
+    </script>
+}

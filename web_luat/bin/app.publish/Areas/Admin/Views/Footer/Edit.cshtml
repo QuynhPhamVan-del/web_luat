@@ -1,0 +1,120 @@
+﻿
+@model web_luat.Models.tbl_Footer
+
+@{
+    ViewBag.Title = "Sửa Footer";
+    <style>
+        #preview {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+
+            #preview img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+
+        .dialog-grid-center .infor-details {
+            margin-bottom: 15px;
+        }
+    </style>
+}
+
+@using (Ajax.BeginForm("Edit", "Footer", null,
+                       new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           OnSuccess = "onEditSuccess",
+                           UpdateTargetId = "response",
+                           InsertionMode = InsertionMode.Replace,
+                       },
+                       new { enctype = "multipart/form-data" }
+                       ))
+{
+    <input name="Id" value="@Model.Id" hidden />
+    <div class="dialog-model"></div>
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <div class="header-content">THÔNG TIN FOOTER</div>
+        </div>
+        <div class="dialog-main">
+            <div class="dialog-grid">
+                <div class="dialog-grid-center">
+
+                    <div class="infor-details">
+                        <label>Địa chỉ</label>
+                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Điện thoại</label>
+                        @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Email (<span style="color:red">*</span>)</label>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Website (<span style="color:red">*</span>)</label>
+                        @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Website cũ</label>
+                        @Html.EditorFor(model => model.WebOld, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.WebOld, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Bản đồ</label>
+                        @Html.EditorFor(model => model.BanDo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BanDo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Link Facebook</label>
+                        @Html.EditorFor(model => model.LinkFace, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LinkFace, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Link Youtube</label>
+                        @Html.EditorFor(model => model.LinkYoutube, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LinkYoutube, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Link Instagram</label>
+                        @Html.EditorFor(model => model.LinkInstagram, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LinkInstagram, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="infor-details">
+                        <label>Link TikTok</label>
+                        @Html.EditorFor(model => model.LinkTikTok, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LinkTikTok, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-primary" type="submit">Lưu</button>
+            &nbsp;
+            <a class="btn btn-success" style="color:white;margin-right:10px" onclick="closedialog()">Đóng</a>
+        </div>
+    </div>
+}

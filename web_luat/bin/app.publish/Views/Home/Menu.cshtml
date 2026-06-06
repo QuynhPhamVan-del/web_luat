@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Menu";
+    Layout = null;
+    var menu = ViewData["menu"] as List<web_luat.Models.tbl_MenuPage>;
+}
+
+<ul class="navbar-nav align-items-center">
+    @if (menu != null)
+    {
+        foreach (var item in menu.Where(g => g.IdCha == 0 || g.IdCha == null).OrderBy(g => g.STT))
+        {
+            var childMenu = menu.Where(g => g.IdCha == item.Id).OrderBy(g => g.STT).ToList();
+
+            var link = "#";
+            if (item.IdChuyenMuc > 0)
+            {
+                link = "/danh-sach-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TenDonVi) + "_" + item.IdChuyenMuc + ".html";
+            }
+            if (!string.IsNullOrEmpty(item.Link))
+            {
+                link = item.Link;
+            }
+
+            if (childMenu.Any())
+            {
+                // Giữ class 'dropdown', loại bỏ data-bs-toggle để click vẫn ăn link
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@link" id="navbarDropdown_@item.Id" role="button">
+                        @item.TenDonVi
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown_@item.Id">
+                        @foreach (var child in childMenu)
+                        {
+                            var childLink = "#";
+                            if (child.IdChuyenMuc > 0)
+                            {
+                                childLink = "/danh-sach-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(child.TenDonVi) + "_" + child.IdChuyenMuc + ".html";
+                            }
+                            if (!string.IsNullOrEmpty(child.Link))
+                            {
+                                childLink = child.Link;
+                            }
+
+                            <li><a class="dropdown-item" href="@childLink">@child.TenDonVi</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item"><a class="nav-link" href="@link">@item.TenDonVi</a></li>
+            }
+        }
+    }
+</ul>

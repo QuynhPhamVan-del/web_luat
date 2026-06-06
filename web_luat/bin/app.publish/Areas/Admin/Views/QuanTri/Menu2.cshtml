@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+    var lst = ViewData["lst"] as List<web_luat.Models.LoadMenu>;
+}
+@if (lst.Where(g => g.IdCha == null).Count() == 0)
+{
+    <ul class="menu-inner py-1" id="menu_quantri">
+        @foreach (var item in lst)
+        {
+            <li class="menu-item">
+                <a href="@item.Link" class="menu-link">
+                    <div data-i18n="Without menu">@item.TenMenu</div>
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <ul class="menu-inner py-1" id="menu_quantri">
+        @foreach (var item in lst.Where(g => g.IdCha == null))
+        {
+            var lstMN2 = lst.Where(g => g.IdCha == item.Id).ToList();
+            if (lstMN2.Count() > 0)
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        @Html.Raw(item.Icon)
+                        <div data-i18n="Layouts">@item.TenMenu</div>
+                    </a>
+
+                    <ul class="menu-sub">
+                        @foreach (var item2 in lstMN2)
+                        {
+                            <li class="menu-item">
+                                <a href="@item2.Link" class="menu-link">
+                                    <div data-i18n="Without menu">@item2.TenMenu</div>
+                                </a>
+                            </li>
+                        }
+
+
+
+                    </ul>
+                </li>
+            }
+        }
+    </ul>
+}
+<script>
+    $('.menu-toggle').on('click', function () {
+        $(this).next('.menu-sub').slideToggle();
+    });
+</script>

@@ -1,0 +1,177 @@
+﻿.dialog {
+    display: none;
+}
+/* Căn chỉnh Dialog */
+.dialog-model {
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    top: 0;
+    opacity: .4;
+    position: fixed;
+    z-index:2;
+}
+
+.dialog-content {
+    height: auto;
+    width: 60%;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index:5;
+}
+/* Tiêu đề dialog */
+.dialog-header {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background: #126338;
+    color: white;
+}
+
+.header-content {
+    padding-left: 16px;
+    font-size: 20px;
+    font-weight: bold
+}
+
+.btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    border: none;
+    outline: none;
+    background-image: url('../../common/icon/x.svg');
+    background-position: center;
+    background-size: 20px 20px;
+    background-repeat: no-repeat
+}
+
+    .btn-close:hover {
+        background-color: #e5e5e5;
+        border-radius: 4px 0 4px;
+    }
+/* Nội dung chính dialog */
+.dialog-main {
+    overflow-y: scroll;
+    padding: 16px;
+    margin-bottom:60px;
+    max-height:80vh;
+}
+
+.dialog-grid {
+    height: auto;
+    width: 100%;
+    display: flex;
+}
+
+.dialog-grid-left {
+    width: 200px;
+    height: auto;
+}
+
+.dialog-avatar {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: auto;
+    background-image: url('../../common/image/default-avatar.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #e5e5e5;
+}
+
+.avatar-note {
+    text-align: center
+}
+
+.dialog-grid-center {
+    width: 100%;
+    height: auto;
+    padding-left: 16px;
+    padding-bottom: 16px;
+}
+
+.infor-details {
+    width: 100%;
+    margin-top: 10px;
+}
+
+    .infor-details input, select {
+        height: 40px;
+        width: 100%;
+        padding-left: 16px;
+        border-radius: 4px;
+        margin-top: 5px;
+        border: 1px solid #e5e5e5
+    }
+
+.title-underline {
+    height: 5px;
+    width: 80px;
+    background-color: #019160;
+}
+
+.dialog-grid-right {
+    padding-top: 30px;
+    padding-left: 16px;
+    padding-bottom: 16px;
+    width: 300px;
+    height: auto;
+}
+
+#specific {
+    margin-top: 82px;
+}
+/* Dialog footer */
+.dialog-footer {
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #e5e5e5;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    left: 0;
+}
+
+    .dialog-footer button {
+        height: 40px;
+        width: 100px;
+        margin-right: 5px;
+        border-radius: 4px;
+        border: none;
+        outline: none;
+    }
+
+.btn-save {
+    background-color: #019160;
+}
+
+    .btn-save:hover {
+        background-color: #2FBE8E
+    }
+
+.btn-cancel {
+    background-color: #e5e5e5;
+}
+
+    .btn-cancel:hover {
+        background-color: #BBBBBB
+    }
+
+input.boder-red {
+    border: 1px solid red;
+}
+.maNV{
+    display:block;
+}

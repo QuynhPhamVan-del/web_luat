@@ -1,0 +1,195 @@
+﻿@model PagedList.IPagedList<web_luat.Models.tbl_CongLienKet>
+@using PagedList.Mvc;
+@using PagedList;
+@using web_luat.Models;
+@{
+    ViewBag.Title = "Danh sách liên kết";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var stt = 0;
+}
+<div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
+    @*<h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Banner trang chính   </h4>*@
+    <div class="card">
+        <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
+            <h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Quản trị cổng liên kết </h4>
+            @Ajax.ActionLink(
+
+         " Thêm ",
+         "Create",
+         "CongLienKet",
+         new AjaxOptions
+         {
+             UpdateTargetId = "responsive",
+             InsertionMode = InsertionMode.Replace,
+             HttpMethod = "GET",
+             OnComplete = "load"
+         },
+         new { @class = "btn btn-primary col-md-1" }
+         )
+            <a href="@Url.Action("Index", new { isTrash = false })"
+               class="btn  btn-success col-md-1" style="margin:0 10px">
+                Danh sách
+            </a>
+
+            <a href="@Url.Action("Index", new { isTrash = true })"
+               class="btn btn-danger col-md-1">
+                Thùng rác
+            </a>
+        </div>
+        <div style="padding:10px 25px">
+
+            @using (Html.BeginForm("Index", "CongLienKet", FormMethod.Get))
+            {
+                <div style="display:flex; gap:10px; align-items:center">
+
+                    <input type="text"
+                           name="keyword"
+                           value="@ViewBag.keyword"
+                           class="form-control"
+                           placeholder="Nhập tiêu đề..."
+                           style="width:250px" />
+
+                    <button type="submit" class="btn btn-primary">
+                        Tìm kiếm
+                    </button>
+
+                    <a href="@Url.Action("Index","CongLienKet")"
+                       class="btn btn-secondary">
+                        Reset
+                    </a>
+
+                </div>
+            }
+
+        </div>
+        <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th class="text-center">STT</th>
+                        <th class="text-center">Tiêu đề</th>
+                        <th class="text-center">Logo</th>
+
+                        <th class="text-center">
+                            Link
+                        </th>
+
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr class="text-center">
+                            <td>
+                                @stt
+                            </td>
+                            <td>
+                                @item.TieuDe
+                            </td>
+                            <td>
+                                <img loading="lazy" alt="" src="@item.Image" height="100" alt="" />
+                            </td>
+                            <td>
+                                @item.Link
+                            </td>
+                            <td>
+                                @if (ViewBag.isTrash == true)
+                                {
+                                    <a class="btn btn-sm btn-outline-success" onclick="btnRestoreSingle(@item.Id, 'CongLienKet')">
+                                        Khôi phục
+                                    </a>
+
+                                    <a class="btn btn-sm btn-outline-danger" onclick="btndeletetvc(@item.Id, 'CongLienKet')">
+                                        Xóa vĩnh viễn
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-sm btn-outline-success"
+                                       href="@Url.Action("Edit","CongLienKet", new { id = item.Id })"
+                                       data-ajax="true"
+                                       data-ajax-update="#responsive"
+                                       data-ajax-method="GET"
+                                       data-ajax-complete="loadfrmEditSussess">
+                                        Sửa
+                                    </a>
+
+                                    <a class="btn btn-sm btn-outline-danger"
+                                       onclick="btndelete(@item.Id,'CongLienKet')">
+                                        Xóa
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="col-md-12" style="text-align:right;color:black">
+                Tổng số bản ghi: @ViewBag.total &nbsp;
+            </div>
+            @{
+                int currentPage = Convert.ToInt32(ViewBag.pageNumber);
+                int totalPages = Model.PageCount;
+
+                // Số trang cần hiển thị
+                int showStart = 3;
+                int showMiddle = 2;
+                int showEnd = 3;
+
+                List<int> displayedPages = new List<int>();
+
+                // 3 trang đầu
+                for (int i = 1; i <= Math.Min(showStart, totalPages); i++)
+                {
+                    displayedPages.Add(i);
+                }
+
+                // 2 trang giữa (trang hiện tại +/- 1)
+                for (int i = currentPage - 1; i <= currentPage + 1; i++)
+                {
+                    if (i > showStart && i <= totalPages - showEnd && !displayedPages.Contains(i))
+                    {
+                        displayedPages.Add(i);
+                    }
+                }
+
+                // 3 trang cuối
+                for (int i = totalPages - showEnd + 1; i <= totalPages; i++)
+                {
+                    if (i > 0 && !displayedPages.Contains(i))
+                    {
+                        displayedPages.Add(i);
+                    }
+                }
+
+                // Sắp xếp danh sách trang để hiển thị theo thứ tự
+                displayedPages = displayedPages.Distinct().OrderBy(x => x).ToList();
+            }
+
+            <ul class="pagination" style="float:right;margin-right:20px">
+                @{
+                    int lastPage = 0;
+                    foreach (var page in displayedPages)
+                    {
+                        if (lastPage != 0 && page - lastPage > 1)
+                        {
+                            <li><span class="page-link">...</span></li>
+                        }
+
+                        <li>
+                            <a class="page-link @(currentPage == page ? "active" : "")" href="@Url.Action("Index", new { page = page, keyword = ViewBag.keyword,isTrash=ViewBag.isTrash })">@page</a>
+                        </li>
+
+                        lastPage = page;
+                    }
+                }
+            </ul>
+
+        </div>
+    </div>
+
+</div>

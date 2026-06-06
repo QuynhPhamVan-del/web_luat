@@ -1,0 +1,65 @@
+﻿@model web_luat.Models.tbl_LuanAn
+@using web_luat.Models
+@{
+    Layout = null;
+}
+
+@using (Ajax.BeginForm("Create", "LuanAn", null,
+    new AjaxOptions
+    {
+        HttpMethod = "Post",
+        OnSuccess = "onAddSuccess",
+        UpdateTargetId = "response",
+        InsertionMode = InsertionMode.Replace,
+    },
+    new { enctype = "multipart/form-data" } // Khởi tạo giao thức truyền tải nhị phân tập tin
+))
+{
+    <div class="dialog-model"></div>
+    <div class="dialog-content" style="max-width: 650px;">
+        <div class="dialog-header">
+            <div class="header-content">THÊM MỚI LUẬN ÁN VÀO KHO SỐ</div>
+        </div>
+        <div class="dialog-main">
+            <div class="dialog-grid">
+                <div class="dialog-grid-center">
+                    <div class="infor-details">
+                        <label>Tên đề tài luận án (<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập tên đề tài nghiên cứu..." } })
+                        @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details mt-2">
+                        <label>Nghiên cứu sinh thực hiện (<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.NCS, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ví dụ: NCS. Nguyễn Văn A" } })
+                        @Html.ValidationMessageFor(model => model.NCS, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details mt-2">
+                        <label>Chuyên ngành đào tạo</label>
+                        @Html.EditorFor(model => model.ChuyenNganh, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ví dụ: Kế toán, Tài chính..." } })
+                    </div>
+
+                    <div class="infor-details mt-3">
+                        <label class="fw-bold text-success">Tải lên các tệp Bản Tóm Tắt (Có thể chọn nhiều file)</label>
+                        <div class="input-group mt-1">
+                            <input type="file" name="fileTomTatInput" id="fileTomTatInput" class="form-control" multiple accept=".pdf" />
+                        </div>
+                        <small class="text-muted d-block mt-1">Hệ thống chấp nhận các file định dạng văn bản chuẩn cấu trúc .pdf</small>
+                    </div>
+
+                    <div class="infor-details mt-3">
+                        <label class="fw-bold text-primary">Tải lên các tệp Bản Toàn Văn (Có thể chọn nhiều file)</label>
+                        <div class="input-group mt-1">
+                            <input type="file" name="fileToanVanInput" id="fileToanVanInput" class="form-control" multiple accept=".pdf,.doc,.docx" />
+                        </div>
+                        <small class="text-muted d-block mt-1">Hệ thống chấp nhận các file định dạng tệp .pdf, .doc, .docx</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-primary" type="submit">Lưu dữ liệu</button>
+            &nbsp;
+            <a class="btn btn-success" style="color:white;margin-right:10px" onclick="closedialog()">Đóng</a>
+        </div>
+    </div>
+}
