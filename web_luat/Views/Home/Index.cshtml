@@ -13,423 +13,435 @@
     var lst = ViewData["lst"] as List<web_luat.Models.tbl_Post>;
 }
 
-<section class="mv-hero-slider">
-    <div class="mv-slider-viewport">
-        <div class="mv-slider-track">
-            @foreach (var item in banner)
-            {
-                <div class="mv-slide">
-                    <img src="@item.Image" alt="Banner 1" class="mv-banner-img">
+<!-- 2. HERO BANNER BAN ĐẦU -->
+<div id="heroSliders" class="carousel slide carousel-fade hero-premium" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-indicators" style="z-index: 5;">
+        <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80');">
+            <div class="carousel-caption-custom hero-premium">
+                <div class="container text-start">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="hero-tag mb-3"><i class="fa-solid fa-industry me-2"></i>MÁY MÓC TỰ ĐỘNG ĐỒNG BỘ</div>
+                            <h1 class="mb-4">Xưởng Gia Công Gỗ<br>Công Nghiệp <span style="color: var(--luxury-amber); font-style: italic;">Đỉnh Cao Sắc Nét</span></h1>
+                            <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Giải pháp cắt tấm Nesting CNC và dán cạnh không đường line hàng đầu. Trợ thủ sản xuất đáng tin cậy cho các Kiến trúc sư.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="#du-an" class="btn btn-luxury">Xem Dự Án <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                                <a href="tel:0900000000" class="btn btn-outline-light px-4 py-2 border-secondary text-white text-decoration-none" style="border-radius: 4px;"><i class="fa-solid fa-phone me-2 text-warning"></i>090.000.0000</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            }
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1920&q=80');">
+            <div class="carousel-caption-custom hero-premium">
+                <div class="container text-start">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="hero-tag mb-3"><i class="fa-solid fa-robot me-2"></i>CÔNG NGHỆ NESTING 2026</div>
+                            <h1 class="mb-4">Tối Ưu Hóa Vật Tư<br>Đạt Độ Chính Xác <span style="color: var(--luxury-amber); font-style: italic;">Đến Từng Milimet</span></h1>
+                            <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Bóc tách tự động bằng phần mềm chuyên dụng, tối ưu hóa sơ đồ xếp ván giúp tiết kiệm chi phí tối đa cho nhà thầu.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="#quy-trinh" class="btn btn-luxury">Tìm Hiểu Quy Trình <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=1920&q=80');">
+            <div class="carousel-caption-custom hero-premium">
+                <div class="container text-start">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="hero-tag mb-3"><i class="fa-solid fa-gem me-2"></i>VẬT LIỆU CAO CẤP CHÍNH HÃNG</div>
+                            <h1 class="mb-4">Bề Mặt Hoàn Thiện<br>Mịn Màng <span style="color: var(--luxury-amber); font-style: italic;">Không Đường Line</span></h1>
+                            <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Chuyên xử lý dán nẹp kháng nước Acrylic, Laminate phẳng tuyệt đối, không bong tróc, kiến tạo vẻ đẹp không gian thượng lưu.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="#ky-ket" class="btn btn-luxury">Hợp Tác Chiến Lược <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroSliders" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroSliders" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+
+    <a href="#du-an" class="scroll-down-hint"><i class="fa-solid fa-chevron-down"></i></a>
+</div>
+
+<!-- KHỐI 1: GALLERY DỰ ÁN TIÊU BIỂU (HỆ THỐNG TRƯỢT NGANG SMOOTH SLIDE) -->
+<section id="du-an" class="project-section">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
+            <div>
+                <span class="text-uppercase text-muted fw-bold small tracking-widest d-block mb-1">// KHÔNG GIAN SÁNG TẠO</span>
+                <h2 class="section-title">Dự Án <span>Tiêu Biểu</span></h2>
+            </div>
+
+            <div class="mt-3 mt-md-0 d-flex gap-1 flex-wrap align-items-center">
+                <!-- Các nút bấm kích hoạt bộ lọc loại hình -->
+                <button class="project-filter-btn active" onclick="filterProjects('all', this)">Tất Cả</button>
+                <button class="project-filter-btn" onclick="filterProjects('villa', this)">Biệt Thự</button>
+                <button class="project-filter-btn" onclick="filterProjects('apartment', this)">Căn Hộ</button>
+                <button class="project-filter-btn" onclick="filterProjects('office', this)">Văn Phòng</button>
+
+                <div class="d-none d-md-flex gap-2 ms-3">
+                    <div class="swiper-nav-ctrl project-swiper-prev"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div class="swiper-nav-ctrl project-swiper-next"><i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Khung trượt Swiper chính -->
+        <div class="swiper project-swiper">
+            <div class="swiper-wrapper" id="swiperProjectWrapper">
+                <!-- Danh sách slide gốc sẽ được quản lý hoàn toàn bằng cơ chế mảng dữ liệu JS phía dưới -->
+            </div>
+            <div class="swiper-pagination project-swiper-pagination"></div>
         </div>
     </div>
 </section>
 
-<section class="about-section">
+<!-- KHỐI 2: TẠI SAO CHỌN XƯỞNG NỘI THẤT TÂM AN -->
+<section id="tai-sao-chon" class="why-choose-sec">
     <div class="container">
-        <div class="row g-4 align-items-stretch">
-            <div class="col-lg-5 col-xl-5">
-                <div class="about-content-card">
-                    <div class="about-sub">@vechungtoi.TieuDePhu</div>
-                    <h2 class="about-title">@vechungtoi.TieuDeChinh</h2>
-                    <p class="about-text">
-                        @Html.Raw(vechungtoi.NoiDung)
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="why-image-container">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Không gian kiến trúc Tâm An" class="why-main-img">
+                    <div class="why-floating-badge">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Đối Tác Tin Cậy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="why-content-zone">
+                    <div class="why-subtitle">Tại sao chọn xưởng nội thất Tâm An?</div>
+                    <h2 class="why-title">Biến ý tưởng của bạn<br>thành hiện thực</h2>
+                    <p class="why-desc">
+                        <strong>NỘI THẤT TÂM AN</strong> là nhà xưởng chế tác mộc công nghiệp tự động hoá CNC quy mô lớn, đối tác đáng tin cậy cung cấp dịch vụ <strong>THIẾT KẾ KIẾN TRÚC - NỘI THẤT & THI CÔNG TRỌN GÓI</strong>. Từ nét vẽ phác thảo đầu tiên đến sản phẩm lắp ráp hoàn thiện kịch trần, chúng tôi đồng hành kiến tạo công trình hội tụ:
                     </p>
-                </div>
-            </div>
-            <div class="col-lg-7 col-xl-7">
-                <div class="about-image-wrapper">
-                    <img src="@vechungtoi.Image" alt="Đội ngũ nhân sự công ty Luật MV" class="about-img">
+
+                    <div class="why-feature-box">
+                        <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
+                        <div>
+                            <h4 class="why-feature-title">Chất Lượng Cao</h4>
+                            <p class="why-feature-desc">An safe cốt ván chống ẩm – Đúng kỹ thuật bóc tách – Vách gỗ chịu lực vượt trội.</p>
+                        </div>
+                    </div>
+
+                    <div class="why-feature-box">
+                        <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
+                        <div>
+                            <h4 class="why-feature-title">Thẩm Mỹ Tinh Tế</h4>
+                            <p class="why-feature-desc">Phối màu vật liệu hoàn hảo, xử lý dán nẹp chỉ kháng nước tinh xảo không đường line.</p>
+                        </div>
+                    </div>
+
+                    <div class="why-feature-box">
+                        <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
+                        <div>
+                            <h4 class="why-feature-title">Bền Vững Theo Thời Gian</h4>
+                            <p class="why-feature-desc">Giải pháp kết cấu module liên kết cam chốt âm thông minh, tối ưu công năng, tiết kiệm vật tư.</p>
+                        </div>
+                    </div>
+
+                    <div class="why-quote">
+                        "Mỗi bức tường không chỉ giới hạn không gian – đó là bệ đỡ cho kỷ niệm, nơi lưu giữ niềm tự hào và hạnh phúc gia đình bạn."
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="services-section">
+<!-- KHỐI 3: QUY TRÌNH GIA CÔNG TIMELINE DỌC -->
+<section id="quy-trinh" class="process-section">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <span class="section-tagline d-block mb-2">Tư vấn dịch vụ</span>
-                <h2 class="section-main-title">Dịch vụ của chúng tôi</h2>
+        <div class="modern-process-sec">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="process-left-sub">Quy Trình Làm Việc</div>
+                    <h2 class="process-left-title">Vận Hành Đồng Bộ<br>Quy Chuẩn Cao</h2>
+                    <p class="process-left-desc">
+                        Nhờ hệ thống tự động hoá khép kín từ bản vẽ đến máy cắt Nesting CNC, xưởng Tâm An cam kết quy trình tối ưu vật tư, hạn chế rủi ro sai sót tối đa cho công trình.
+                    </p>
+                    <div class="process-left-quote">
+                        "Mỗi bước vận hành là một cam kết bằng chuyên môn – không chỉ là sản xuất, mà là sự an tâm tuyệt đối cho chủ đầu tư."
+                    </div>
+                    <div class="process-left-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Mô phỏng vận hành máy móc CNC">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <div class="timeline-icon-node"> <i class="fa-solid fa-desktop"></i> </div>
+                            <div class="timeline-content-box">
+                                <h4 class="timeline-node-title">01. Số Hóa Bản Vẽ Kỹ Thuật</h4>
+                                <p class="timeline-node-desc">Chuyển đổi file phối cảnh 3D sang sơ đồ gia công liên kết cam chốt âm tự động bằng phần mềm chuyên dụng, tối ưu hoá sơ đồ xếp ván tiết kiệm chi phí vật tư tối đa.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon-node"> <i class="fa-solid fa-gears"></i> </div>
+                            <div class="timeline-content-box">
+                                <h4 class="timeline-node-title">02. Cắt Nesting CNC & Dán Cạnh Không Line</h4>
+                                <p class="timeline-node-desc">Vận hành dây chuyền cắt tự động đạt độ chính xác milimet. Xử lý dán nẹp cạnh kháng nước bằng công nghệ keo Pur cao cấp giúp bề mặt phẳng mịn vô hình, không lo bong tróc.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon-node"> <i class="fa-solid fa-box-open"></i> </div>
+                            <div class="timeline-content-box">
+                                <h4 class="timeline-node-title">03. Đóng Gói Định Danh & Lắp Ráp Nghiệm Thu</h4>
+                                <p class="timeline-node-desc">Gắn tem mã vạch định danh từng chi tiết tấm ván. Đóng gói bọc bảo vệ góc chuyên nghiệp trước khi vận chuyển ráp khối hoàn thiện tại xưởng hoặc bàn giao lắp đặt đúng tiến độ công trình.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- KHỐI 4: KHU VỰC KÝ KẾT HỢP ĐỒNG -->
+<section id="ky-ket" class="signing-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-uppercase text-muted fw-bold small tracking-widest d-block mb-1">// UY TÍN KHẲNG ĐỊNH</span>
+            <h2 class="section-title">Ký Kết Hợp Đồng <span>& Sự Kiện</span></h2>
+            <p class="text-muted mt-2 mx-auto small" style="max-width: 550px;">Minh chứng cho năng lực thực thi, tiến độ chuẩn xác và niềm tin của các chủ đầu tư lớn dành cho xưởng Nội Thất Tâm An.</p>
+        </div>
+
         <div class="row g-4">
-            @foreach (var item in dichvu)
-            {
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card">
-                        <div class="service-icon-box">
-                            <img src="@item.Icon" alt="" loading="lazy" />
-                        </div>
-                        <h3 class="service-card-title">@item.TieuDe</h3>
-                        <p class="service-card-text">
-                            @item.GioiThieu
-                        </p>
-                        <a href="@item.Link" class="service-btn-link">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+            <div class="col-md-4">
+                <div class="signing-card">
+                    <div class="signing-img-wrapper">
+                        <span class="signing-badge">Hợp Tác Chiến Lược</span>
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80" alt="Lễ ký kết">
+                    </div>
+                    <div class="p-4">
+                        <h5 class="text-dark mb-2">Ký Kết Cung Ứng Gỗ Dự Án Căn Hộ Cao Cấp</h5>
+                        <p class="text-muted small mb-0">Lễ ký kết biên bản ghi nhớ cung ứng độc quyền toàn bộ hạng mục gỗ công nghiệp An Cường cho chuỗi căn hộ hạng sang.</p>
                     </div>
                 </div>
-            }
+            </div>
+            <div class="col-md-4">
+                <div class="signing-card">
+                    <div class="signing-img-wrapper">
+                        <span class="signing-badge">Bàn Giao Bản Vẽ</span>
+                        <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80" alt="Chốt kỹ thuật">
+                    </div>
+                    <div class="p-4">
+                        <h5 class="text-dark mb-2">Chốt Phương Án Kỹ Thuật Đơn Vị Thiết Kế</h5>
+                        <p class="text-muted small mb-0">Đội ngũ kỹ sư trưởng Tâm An họp bàn chi tiết cùng Giám đốc thiết kế đối tác để chốt sơ đồ bóc tách liên kết cam chốt âm.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="signing-card">
+                    <div class="signing-img-wrapper">
+                        <span class="signing-badge">Nghiệm Thu Thành Phẩm</span>
+                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80" alt="Nghiệm thu căn hộ mẫu">
+                    </div>
+                    <div class="p-4">
+                        <h5 class="text-dark mb-2">Bàn Giao Nghiệm Thu Đúng Tiến Độ</h5>
+                        <p class="text-muted small mb-0">Đại diện chủ đầu tư đánh giá rất cao độ sắc nét của góc cạnh ván và sự chính xác khớp nối của hệ tủ kịch trần.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="team-section">
+<!-- KHỐI 5: THÔNG SỐ STATS -->
+<section class="stats-section">
     <div class="container">
-        <div class="team-title-area">
-            <div class="team-section-sub">Đội ngũ chuyên gia</div>
-            <h2 class="team-section-title">Chuyên Gia Pháp Lý</h2>
-            <a href="#" class="team-see-all">Xem Tất Cả ➔</a>
-        </div>
-        <div class="mv-team-viewport">
-            <div class="mv-team-track">
-                @foreach (var item in nhansu)
-                {
-                    <div class="mv-team-slide">
-                        <div class="team-card">
-                            <div class="team-img-wrapper">
-                                <img src="@item.Image" alt="@item.TenNhanSu" class="team-img-modern">
-                            </div>
-                            <div class="team-content">
-                                <h3 class="team-member-name">@item.TenNhanSu</h3>
-                                <p class="team-member-title">@item.ChucVu</p>
-                                <p class="team-member-desc">
-                                    @item.GioiThieu
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-        <div class="team-pagination">
-            <button class="pag-btn team-prev-btn"><i class="fas fa-chevron-left"></i></button>
-            <button class="pag-btn team-next-btn"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </div>
-</section>
-
-<section class="history-section">
-    <div class="container">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-6">
-                <div class="history-card-custom">
-                    <h2 class="history-title-custom">Lịch Sử Hình Thành</h2>
-                    <p class="history-text-custom mb-0">
-                        Công ty Luật TNHH MV được thành lập vào ngày 21/01/2021 theo Giấy chứng nhận Đăng ký hoạt động số 01021200 / TP-DKHD do Sở Tư pháp Thành phố Hà Nội cấp. Trải qua quá trình hình thành và phát triển, chúng tôi luôn nỗ lực không ngừng để bảo vệ tối đa quyền lợi hợp pháp cho khách hàng.
-                    </p>
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="stat-box-ultra">
+                    <div class="stat-big">500+</div>
+                    <div class="stat-label text-uppercase text-muted">Dự án bàn giao</div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="row g-3">
-                    @foreach (var item in thongso)
-                    {
-                        <div class="col-6">
-                            <div class="stat-box-modern">
-                                <div class="stat-num">@item.ThongSo@item.KiHieu</div>
-                                <p class="stat-info">@item.TieuDe</p>
-                            </div>
-                        </div>
-                    }
+            <div class="col-6 col-md-3">
+                <div class="stat-box-ultra">
+                    <div class="stat-big">10+</div>
+                    <div class="stat-label text-uppercase text-muted">Năm phát triển</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-box-ultra">
+                    <div class="stat-big">100%</div>
+                    <div class="stat-label text-uppercase text-muted">Ván chuẩn An Cường</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-box-ultra">
+                    <div class="stat-big">2000m²</div>
+                    <div class="stat-label text-uppercase text-muted">Diện tích nhà xưởng</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<!-- KHỐI FORM ĐĂNG KÝ TƯ VẤN MIỄN PHÍ (ĐÃ ĐỒNG BỘ ĐẦY ĐỦ LOGIC BẢO MẬT) -->
-<section class="consultation-section">
-    <div class="container">
-        <div class="form-wrapper-modern">
-            <h2 class="form-title-modern text-center">Đăng Ký Tư Vấn Miễn Phí</h2>
-            <p class="text-muted text-center small mb-4" style="max-width: 600px; margin: 0 auto 25px;">Quý khách vui lòng điền đầy đủ các thông tin dưới đây. Yêu cầu của quý khách sẽ được chuyển trực tiếp đến Luật sư để bảo mật thông tin và phản hồi sớm nhất.</p>
-
-            <form id="consultationForm" action="/Home/LienHe" method="POST" class="contact-page-form-element">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="custom-input-group">
-                            <input type="text" name="HoTen" class="form-control-custom" placeholder="Họ và tên của bạn*" required>
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="custom-input-group">
-                            <input type="tel" name="SoDienThoai" class="form-control-custom" placeholder="Số điện thoại liên hệ*" required>
-                            <i class="fas fa-phone"></i>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="custom-input-group">
-                            <input type="email" name="Email" class="form-control-custom" placeholder="Địa chỉ Email của bạn*" required>
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="custom-input-group">
-                            <input type="text" name="TieuDe" class="form-control-custom" placeholder="Tiêu đề vụ việc cần hỗ trợ (Ví dụ: Doanh nghiệp, Đất đai, Hôn nhân...)*" required>
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-2">
-                        <textarea name="NoiDung" class="form-control-custom" rows="5" placeholder="Tóm tắt nội dung sự việc hoặc câu hỏi pháp lý cần tư vấn chi tiết*" required></textarea>
-                    </div>
-
-                    <!-- TÍCH HỢP IMAGE CAPTCHA CHỐNG SPAM -->
-                    <div class="col-12 mb-2">
-                        <div class="d-flex align-items-center gap-2 flex-wrap">
-                            <div class="rounded-3 overflow-hidden border" style="height: 45px;">
-                                <img id="imgHomeCaptcha" src="/Home/GetCaptchaImage" alt="Captcha" style="display:block; height:100%; cursor: pointer;" />
-                            </div>
-                            <button type="button" id="btnRefreshHomeCaptcha" class="btn btn-light border p-2 px-3" style="height: 45px;" title="Đổi mã khác">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
-                            <div class="custom-input-group flex-grow-1" style="min-width: 180px;">
-                                <input type="text" id="HomeCaptchaCode" name="CaptchaCode" class="form-control-custom" style="padding-left: 16px;" placeholder="Nhập 5 ký tự trong hình bên*" autocomplete="off" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 text-center">
-                        <button type="submit" id="btnHomeSubmit" class="btn-submit-modern py-3 text-uppercase w-100">Gửi Yêu Cầu Tư Vấn</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
-
-<section class="commitment-section">
-    <div class="container">
-        <div class="commitment-grid">
-            <div class="col-right">
-                <div class="commitment-content-card">
-                    <div class="commitment-section-sub">Chúng tôi cam kết</div>
-                    <h2 class="commitment-title">Tại sao khách hàng lựa chọn chúng tôi</h2>
-                    <ul class="commitment-list">
-                        @foreach (var item in taisao)
-                        {
-                            <li class="commitment-item">@item.TieuDe</li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="partner-section">
-    <div class="container-fluid px-0">
-        <div class="partner-slider-track">
-            @foreach (var item in doitac)
-            {
-                <div class="partner-logo-wrapper">
-                    <img src="@item.AnhDaiDien" alt="@item.TenDoiTac" class="partner-logo-modern">
-                </div>
-            }
-            @foreach (var item in doitac)
-            {
-                <div class="partner-logo-wrapper">
-                    <img src="@item.AnhDaiDien" alt="@item.TenDoiTac" class="partner-logo-modern">
-                </div>
-            }
-        </div>
-    </div>
-</section>
-
-<section class="testimonial-section-modern">
-    <div class="container-fluid px-0">
-        <div class="row mb-2 mx-0">
-            <div class="col-12 text-center">
-                <span class="testimonial-tagline d-block mb-2">Lời chứng thực</span>
-                <h2 class="testimonial-main-title">Khách hàng nói gì về chúng tôi</h2>
-            </div>
-        </div>
-        <div class="testimonial-marquee-track">
-            @foreach (var item in camnhan)
-            {
-                string initials = string.Concat(item.HoTen.Split(' ')
-                                            .Where(w => !string.IsNullOrEmpty(w))
-                                            .Select(w => w[0]))
-                                        .ToUpper();
-                <div class="testimonial-box-card">
-                    <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-card-text">
-                        @Html.Raw(item.NoiDung)
-                    </p>
-                    <div class="testimonial-author-info">
-                        <div class="author-avatar-circle">@initials</div>
-                        <div class="author-meta">
-                            <h4 class="author-name-modern">@item.HoTen</h4>
-                            <p class="author-job-modern">Khách hàng Cá nhân</p>
-                        </div>
-                    </div>
-                </div>
-            }
-            @foreach (var item in camnhan)
-            {
-                string initials = string.Concat(item.HoTen.Split(' ')
-                                            .Where(w => !string.IsNullOrEmpty(w))
-                                            .Select(w => w[0]))
-                                        .ToUpper();
-                <div class="testimonial-box-card">
-                    <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-card-text">
-                        @Html.Raw(item.NoiDung)
-                    </p>
-                    <div class="testimonial-author-info">
-                        <div class="author-avatar-circle">@initials</div>
-                        <div class="author-meta">
-                            <h4 class="author-name-modern">@item.HoTen</h4>
-                            <p class="author-job-modern">Khách hàng Cá nhân</p>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</section>
-
-<section class="news-section-modern">
-    <div class="container-fluid px-0">
-        <div class="row g-0 align-items-stretch">
-            <div class="col-lg-6 bg-news-left py-5 px-4 px-md-5">
-                <h2 class="news-block-title text-uppercase mb-4">Tin tức pháp luật</h2>
-                <div class="news-list-wrapper">
-                    @foreach (var item in lst)
-                    {
-                        var link = "/chi-tiet-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TieuDe) + "_" + item.ID + ".html";
-                        <div class="news-item-horizontal border-bottom-dashed pb-3 mb-3">
-                            <div class="news-thumb-box">
-                                <img src="@item.Image" alt="@item.TieuDe">
-                            </div>
-                            <div class="news-info-box">
-                                <h3 class="news-item-title"><a href="@link" class="text-dark-link">@item.TieuDe</a></h3>
-                                <div class="news-meta-data text-muted-dark">@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)  •  Dịch vụ, Hôn nhân gia đình, Tin tức, Tin tức thế giới</div>
-                            </div>
-                        </div>
-                    }
-
-                </div>
-            </div>
-
-            <div class="col-lg-6 bg-news-right py-5 px-4 px-md-5 d-flex flex-column justify-content-between">
-                <div>
-                    <h2 class="news-block-title text-uppercase mb-4 text-white">Tin tức gần đây</h2>
-                    <div class="news-list-wrapper bg-white-card p-4 rounded-4 shadow-sm">
-                        @foreach (var item in lstMoiNhat)
-                        {
-                            var link = "/chi-tiet-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TieuDe) + "_" + item.ID + ".html";
-                            <div class="news-item-horizontal border-bottom-dashed pb-3 mb-3">
-                                <div class="news-thumb-box">
-                                    <img src="@item.Image" alt="@item.TieuDe">
-                                </div>
-                                <div class="news-info-box">
-                                    <h3 class="news-item-title"><a href="@link" class="text-dark-link">@item.TieuDe</a></h3>
-                                    <div class="news-meta-data text-muted-dark">@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)  •  Dịch vụ, Hôn nhân gia đình, Tin tức, Tin tức thế giới</div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <a href="/danh-sach-tin-tuc.html" class="view-more-news-btn text-uppercase">Xem nhiều tin tức hơn ➔</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@section scripts {
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+@section scripts{
     <script>
-        $(document).ready(function () {
-            // Hàm tải mới mã Captcha tại Trang chủ
-            function refreshHomeCaptcha() {
-                $("#imgHomeCaptcha").attr("src", "/Home/GetCaptchaImage?t=" + new Date().getTime());
-                $("#HomeCaptchaCode").val("");
+        // Mảng cơ sở dữ liệu gốc để tránh việc dùng display:none làm gãy animation của Swiper
+        const MASTER_PROJECTS = [
+            { type: 'villa', title: 'Penthouse Ciputra', desc: 'MDF chống ẩm phủ Acrylic bóng gương', img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'apartment', title: 'Vinhomes Ocean Park', desc: 'Hệ tủ âm trần cánh kính cao cấp', img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'office', title: 'HQ Techcombank', desc: 'Bàn họp lớn ghép vân Veneer Óc Chó', img: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'villa', title: 'Luxury Villa Phú Quốc', desc: 'Cốt nhựa Picomat kháng nước tuyệt đối', img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'apartment', title: 'Gateway Thảo Điền', desc: 'Hệ tủ bếp Module thông minh cam chốt', img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'apartment', title: 'Liền Kề Hà Đông', desc: 'Vách nan trang trí chạy CNC uốn lượn', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'] }
+        ];
+
+        let currentAlbum = [];
+        let currentImgIndex = 0;
+        let myModal = null;
+        let projectSwiper = null;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Khởi tạo Swiper Core ban đầu
+            projectSwiper = new Swiper('.project-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 24,
+                grabCursor: true,
+                observer: true,
+                observeParents: true,
+                pagination: { el: '.project-swiper-pagination', clickable: true },
+                navigation: { nextEl: '.project-swiper-next', prevEl: '.project-swiper-prev' },
+                breakpoints: {
+                    576: { slidesPerView: 2 },
+                    992: { slidesPerView: 3 },
+                    1400: { slidesPerView: 4 }
+                }
+            });
+
+            // Giao tiếp render danh sách "Tất cả" ngay khi mở trang
+            renderProjectSlides('all');
+
+            if (typeof bootstrap !== 'undefined') {
+                myModal = new bootstrap.Modal(document.getElementById('projectAlbumModal'));
             }
-
-            // Click vào ảnh hoặc nút reload để đổi mã
-            $("#btnRefreshHomeCaptcha, #imgHomeCaptcha").on("click", function () {
-                refreshHomeCaptcha();
-            });
-
-            // XỬ LÝ GỬI FORM QUA AJAX
-            $("#consultationForm").on("submit", function (e) {
-                e.preventDefault();
-
-                var $form = $(this);
-                var $btn = $("#btnHomeSubmit");
-
-                // 1. Kiểm tra định dạng dữ liệu phía Client
-                var emailVal = $form.find("input[name='Email']").val().trim();
-                var phoneVal = $form.find("input[name='SoDienThoai']").val().trim();
-
-                var emailRegex = /^([\w\.\-]+)@@([\w\-]+)((\.(\w){2,3})+)$/;
-                if (!emailRegex.test(emailVal)) {
-                    Swal.fire({
-                        title: "Email không hợp lệ!",
-                        text: "Vui lòng nhập đúng định dạng Email (Ví dụ: thongtin@mvlawfirm.vn).",
-                        icon: "warning",
-                        confirmButtonColor: "#C29900"
-                    });
-                    return false;
-                }
-
-                var phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
-                if (!phoneRegex.test(phoneVal)) {
-                    Swal.fire({
-                        title: "Số điện thoại không hợp lệ!",
-                        text: "Số điện thoại phải gồm 10 chữ số và thuộc các nhà mạng Việt Nam.",
-                        icon: "warning",
-                        confirmButtonColor: "#C29900"
-                    });
-                    return false;
-                }
-
-                // Đổi trạng thái hiển thị nút gửi dữ liệu
-                $btn.prop("disabled", true).text("Đang gửi yêu cầu...");
-
-                // 2. Gửi dữ liệu đồng bộ đến Action xử lý chung /Home/LienHe
-                $.ajax({
-                    url: $form.attr("action"),
-                    type: $form.attr("method"),
-                    data: $form.serialize(),
-                    success: function (response) {
-                        if (response.success) {
-                            Swal.fire({
-                                title: "Đăng Ký Thành Công!",
-                                text: "Thông tin của quý khách đã được ghi nhận. Luật sư phụ trách sẽ liên hệ hỗ trợ trong thời gian sớm nhất!",
-                                icon: "success",
-                                confirmButtonColor: "#0F172A"
-                            });
-                            $form[0].reset(); // Xóa sạch dữ liệu trên Form
-                        } else {
-                            Swal.fire({
-                                title: "Thông báo lỗi!",
-                                text: response.message,
-                                icon: "warning",
-                                confirmButtonColor: "#C29900"
-                            });
-                        }
-                        refreshHomeCaptcha();
-                    },
-                    error: function () {
-                        Swal.fire({
-                            title: "Lỗi hệ thống!",
-                            text: "Không thể kết nối với máy chủ lúc này. Vui lòng thử lại sau hoặc liên hệ Hotline.",
-                            icon: "error",
-                            confirmButtonColor: "#EF4444"
-                        });
-                        refreshHomeCaptcha();
-                    },
-                    complete: function () {
-                        $btn.prop("disabled", false).text("Gửi Yêu Cầu Tư Vấn");
-                    }
-                });
-            });
         });
-    </script>
-}
+
+        // HÀM CHUYỂN ĐỔI CHUẨN ANIMATION SLIDE TRƯỢT NGANG KHI BẤM NÚT LỌC LOẠI HÌNH
+        function filterProjects(type, buttonElement) {
+            const filterBtns = document.querySelectorAll('.project-filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            buttonElement.classList.add('active');
+
+            // 1. Tạo hiệu ứng đẩy/thu các slide cũ trượt lùi mịn màng ra khỏi tầm nhìn trước
+            projectSwiper.init();
+
+            // 2. Nạp dữ liệu mới vào Swiper sau khi lọc để kích hoạt animation lướt ngang mượt mà
+            renderProjectSlides(type);
+        }
+
+        function renderProjectSlides(typeFilter) {
+            const wrapper = document.getElementById('swiperProjectWrapper');
+            wrapper.innerHTML = ''; // Làm sạch bộ khung để nạp animation mới
+
+            // Lọc phần tử từ mảng Master
+            const filteredData = MASTER_PROJECTS.filter(item => typeFilter === 'all' || item.type === typeFilter);
+
+            // Xây dựng chuỗi thẻ HTML động chuẩn Swiper
+            filteredData.forEach(item => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'swiper-slide';
+
+                // Mã hóa mảng album sang chuỗi an toàn
+                const albumStr = JSON.stringify(item.album);
+
+                slideDiv.innerHTML = `
+                        <div class="project-card" onclick="openAlbumDirect(this, '${item.title}')" data-album='${albumStr}'>
+                            <img src="${item.img}" alt="${item.title}">
+                            <div class="project-overlay">
+                                <h5>${item.title}</h5>
+                                <p class="text-white-50 small mb-0">${item.desc}</p>
+                            </div>
+                        </div>
+                    `;
+                wrapper.appendChild(slideDiv);
+            });
+
+            // Ép Swiper tính toán lại trục đứng, chỉ số tọa độ trượt ngang ngay lập tức
+            projectSwiper.updateFields();
+            projectSwiper.update();
+            projectSwiper.slideTo(0, 400, true); // Thực hiện hoạt ảnh lướt về slide số 1 với thời gian 400ms mượt mà
+        }
+
+        // Xử lý cuộn sticky menu
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+        });
+
+        function openAlbumDirect(cardElement, title) {
+            const albumData = cardElement.getAttribute('data-album');
+            if (!albumData) return;
+
+            currentAlbum = JSON.parse(albumData);
+            currentImgIndex = 0;
+            document.getElementById('modalAlbumTitle').innerText = "Album: " + title;
+
+            const thumbGrid = document.getElementById('modalThumbGrid');
+            thumbGrid.innerHTML = '';
+
+            currentAlbum.forEach((imgUrl, index) => {
+                const thumbItem = document.createElement('div');
+                thumbItem.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+                thumbItem.onclick = function () { changeMainImage(index); };
+
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                thumbItem.appendChild(img);
+                thumbGrid.appendChild(thumbItem);
+            });
+
+            changeMainImage(0);
+            if (myModal) { myModal.show(); }
+        }
+
+        function changeMainImage(index) {
+            currentImgIndex = index;
+            document.getElementById('modalMainImg').src = currentAlbum[currentImgIndex];
+            const thumbs = document.querySelectorAll('.thumb-item');
+            thumbs.forEach(thumb => thumb.classList.remove('active'));
+            if (thumbs[index]) {
+                thumbs[index].classList.add('active');
+                thumbs[index].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function navigateAlbum(direction) {
+            if (currentAlbum.length === 0) return;
+            currentImgIndex += direction;
+            if (currentImgIndex >= currentAlbum.length) { currentImgIndex = 0; }
+            else if (currentImgIndex < 0) { currentImgIndex = currentAlbum.length - 1; }
+            changeMainImage(currentImgIndex);
+        }
+    </script>}
