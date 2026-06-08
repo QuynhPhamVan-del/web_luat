@@ -2,7 +2,6 @@
 @using web_luat.Models;
 @{
     ViewBag.Title = "Thêm banner mới";
-            var donvi = ViewData["donvi"] as List<web_luat.Models.tbl_DonVi>;
 
     <style>
         #preview {
@@ -56,17 +55,6 @@
                         <label>Email(<span style="color: red">*</span>)</label>
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="infor-details">
-                        <label for="txtmaKH">Đơn vị</label>
-                        <select class="form-control" name="IdDonVi" id="IdDonVi">
-                            <option value="0">-- Chọn đơn vị --</option>
-                            @foreach (var item in donvi)
-                            {
-                                <option value="@item.Id" @(Model.IdDonVi == item.Id ? "selected" : "")>@item.TenDonVi</option>
-                            }
-                        </select>
-
                     </div>
                     <div class="infor-details">
                         <label>Hình ảnh</label>
