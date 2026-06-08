@@ -94,53 +94,29 @@ namespace web_luat.Controllers
         }
 
         [HttpPost]
-        public JsonResult LienHe(string HoTen, string SoDienThoai, string Email, string TieuDe, string NoiDung, string CaptchaCode)
+        public JsonResult GuiLienHe(string fullname, string phone, string email, string service, string message, string captcha)
         {
-            // --- LỚP BẢO MẬT 1: KIỂM TRA ĐỊNH DẠNG DỮ LIỆU ĐẦU VÀO ---
-
-            // Kiểm tra định dạng Email chuẩn quốc tế
-            string emailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-            if (string.IsNullOrEmpty(Email) || !Regex.IsMatch(Email, emailPattern))
+            // 1. Kiểm tra dữ liệu đầu vào phía Server (Server-side Validation)
+            if (string.IsNullOrEmpty(fullname) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email))
             {
-                return Json(new { success = false, message = "Địa chỉ Email không đúng định dạng hợp lệ!" });
+                return Json(new { success = false, message = "Vui lòng nhập đầy đủ các trường bắt buộc (*)." });
             }
 
-            // Kiểm tra định dạng Số điện thoại Việt Nam (10 chữ số, bắt đầu bằng số 0)
-            string phonePattern = @"^(0[3|5|7|8|9])[0-9]{8}$";
-            if (string.IsNullOrEmpty(SoDienThoai) || !Regex.IsMatch(SoDienThoai, phonePattern))
-            {
-                return Json(new { success = false, message = "Số điện thoại không hợp lệ! Vui lòng nhập số điện thoại Việt Nam gồm 10 chữ số." });
-            }
+            // 2. [Tùy chọn] Logic xác thực mã 'captcha' gửi lên với Google API
+            // Nếu mã Captcha không hợp lệ, bạn trả về:
+            // return Json(new { success = false, message = "Xác minh mã Captcha thất bại, vui lòng thử lại!" });
 
-
-            // --- LỚP BẢO MẬT 2: KIỂM TRA MÃ CAPTCHA ---
-            string sessionCaptcha = Session["CaptchaText"] as string;
-            if (string.IsNullOrEmpty(CaptchaCode) || !CaptchaCode.Equals(sessionCaptcha, StringComparison.OrdinalIgnoreCase))
-            {
-                return Json(new { success = false, message = "Mã xác thực Captcha không chính xác hoặc đã hết hạn, vui lòng thử lại!" });
-            }
-
-
-            // --- THỰC HIỆN LƯU DATABASE KHI MỌI ĐIỀU KIỆN ĐÃ HỢP LỆ ---
             try
             {
                 GuiLienHe a = new GuiLienHe();
-                a.HoTen = HoTen;
-                a.TieuDe = TieuDe;
-                a.SDT = SoDienThoai;
-                a.Email = Email;
-                a.NoiDung = NoiDung;
-                a.NgayGui = DateTime.Now;
+                a.HoTen = fullname;a.SDT = phone;a.Email = email;a.NgayGui=DateTime.Now;a.NoiDung = message;a.DichVu = service;
                 db.GuiLienHes.Add(a);
                 db.SaveChanges();
-
-                // Xóa mã Captcha cũ trong Session sau khi dùng thành công
-                Session["CaptchaText"] = null;
-
-                return Json(new { success = true, message = "Gửi thành công" });
+                return Json(new { success = true, message = "Gửi thông tin liên hệ thành công!" });
             }
             catch (Exception ex)
             {
+                // Trả về thông báo lỗi nếu quá trình lưu DB gặp trục trặc
                 return Json(new { success = false, message = "Lỗi hệ thống: " + ex.Message });
             }
         }

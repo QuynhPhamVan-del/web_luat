@@ -14,65 +14,31 @@
 }
 
 <!-- 2. HERO BANNER BAN ĐẦU -->
-<div id="heroSliders" class="carousel slide carousel-fade hero-premium" data-bs-ride="carousel" data-bs-interval="5000">
-    <div class="carousel-indicators" style="z-index: 5;">
-        <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="0" class="active" aria-current="true"></button>
-        <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="2"></button>
-    </div>
-
+<div id="heroSliders" class="carousel slide carousel-fade hero-premium" data-bs-ride="carousel" data-bs-interval="5000"> 
     <div class="carousel-inner">
-        <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80');">
-            <div class="carousel-caption-custom hero-premium">
-                <div class="container text-start">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="hero-tag mb-3"><i class="fa-solid fa-industry me-2"></i>MÁY MÓC TỰ ĐỘNG ĐỒNG BỘ</div>
-                            <h1 class="mb-4">Xưởng Gia Công Gỗ<br>Công Nghiệp <span style="color: var(--luxury-amber); font-style: italic;">Đỉnh Cao Sắc Nét</span></h1>
-                            <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Giải pháp cắt tấm Nesting CNC và dán cạnh không đường line hàng đầu. Trợ thủ sản xuất đáng tin cậy cho các Kiến trúc sư.</p>
-                            <div class="d-flex gap-3 flex-wrap">
-                                <a href="#du-an" class="btn btn-luxury">Xem Dự Án <i class="fa-solid fa-arrow-down ms-2"></i></a>
-                                <a href="tel:0900000000" class="btn btn-outline-light px-4 py-2 border-secondary text-white text-decoration-none" style="border-radius: 4px;"><i class="fa-solid fa-phone me-2 text-warning"></i>090.000.0000</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1920&q=80');">
-            <div class="carousel-caption-custom hero-premium">
-                <div class="container text-start">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="hero-tag mb-3"><i class="fa-solid fa-robot me-2"></i>CÔNG NGHỆ NESTING 2026</div>
-                            <h1 class="mb-4">Tối Ưu Hóa Vật Tư<br>Đạt Độ Chính Xác <span style="color: var(--luxury-amber); font-style: italic;">Đến Từng Milimet</span></h1>
-                            <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Bóc tách tự động bằng phần mềm chuyên dụng, tối ưu hóa sơ đồ xếp ván giúp tiết kiệm chi phí tối đa cho nhà thầu.</p>
-                            <div class="d-flex gap-3 flex-wrap">
-                                <a href="#quy-trinh" class="btn btn-luxury">Tìm Hiểu Quy Trình <i class="fa-solid fa-arrow-down ms-2"></i></a>
+        @foreach (var item in banner)
+        {
+            <div class="carousel-item active" style="background-image: url('@item.Image');">
+                @*<div class="carousel-caption-custom hero-premium">
+                    <div class="container text-start">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-tag mb-3"><i class="fa-solid fa-industry me-2"></i>MÁY MÓC TỰ ĐỘNG ĐỒNG BỘ</div>
+                                <h1 class="mb-4">Xưởng Gia Công Gỗ<br>Công Nghiệp <span style="color: var(--luxury-amber); font-style: italic;">Đỉnh Cao Sắc Nét</span></h1>
+                                <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Giải pháp cắt tấm Nesting CNC và dán cạnh không đường line hàng đầu. Trợ thủ sản xuất đáng tin cậy cho các Kiến trúc sư.</p>
+                                <div class="d-flex gap-3 flex-wrap">
+                                    <a href="#du-an" class="btn btn-luxury">Xem Dự Án <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                                    <a href="tel:0900000000" class="btn btn-outline-light px-4 py-2 border-secondary text-white text-decoration-none" style="border-radius: 4px;"><i class="fa-solid fa-phone me-2 text-warning"></i>090.000.0000</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
-        </div>
+        }
 
-        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=1920&q=80');">
-            <div class="carousel-caption-custom hero-premium">
-                <div class="container text-start">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="hero-tag mb-3"><i class="fa-solid fa-gem me-2"></i>VẬT LIỆU CAO CẤP CHÍNH HÃNG</div>
-                            <h1 class="mb-4">Bề Mặt Hoàn Thiện<br>Mịn Màng <span style="color: var(--luxury-amber); font-style: italic;">Không Đường Line</span></h1>
-                            <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Chuyên xử lý dán nẹp kháng nước Acrylic, Laminate phẳng tuyệt đối, không bong tróc, kiến tạo vẻ đẹp không gian thượng lưu.</p>
-                            <div class="d-flex gap-3 flex-wrap">
-                                <a href="#ky-ket" class="btn btn-luxury">Hợp Tác Chiến Lược <i class="fa-solid fa-arrow-down ms-2"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#heroSliders" data-bs-slide="prev">
@@ -141,30 +107,16 @@
                     <p class="why-desc">
                         <strong>NỘI THẤT TÂM AN</strong> là nhà xưởng chế tác mộc công nghiệp tự động hoá CNC quy mô lớn, đối tác đáng tin cậy cung cấp dịch vụ <strong>THIẾT KẾ KIẾN TRÚC - NỘI THẤT & THI CÔNG TRỌN GÓI</strong>. Từ nét vẽ phác thảo đầu tiên đến sản phẩm lắp ráp hoàn thiện kịch trần, chúng tôi đồng hành kiến tạo công trình hội tụ:
                     </p>
-
-                    <div class="why-feature-box">
-                        <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
-                        <div>
-                            <h4 class="why-feature-title">Chất Lượng Cao</h4>
-                            <p class="why-feature-desc">An safe cốt ván chống ẩm – Đúng kỹ thuật bóc tách – Vách gỗ chịu lực vượt trội.</p>
+                    @foreach (var item in taisao)
+                    {
+                        <div class="why-feature-box">
+                            <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
+                            <div>
+                                <h4 class="why-feature-title">@item.TieuDe</h4>
+                                <p class="why-feature-desc">@item.NoiDung</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="why-feature-box">
-                        <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
-                        <div>
-                            <h4 class="why-feature-title">Thẩm Mỹ Tinh Tế</h4>
-                            <p class="why-feature-desc">Phối màu vật liệu hoàn hảo, xử lý dán nẹp chỉ kháng nước tinh xảo không đường line.</p>
-                        </div>
-                    </div>
-
-                    <div class="why-feature-box">
-                        <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
-                        <div>
-                            <h4 class="why-feature-title">Bền Vững Theo Thời Gian</h4>
-                            <p class="why-feature-desc">Giải pháp kết cấu module liên kết cam chốt âm thông minh, tối ưu công năng, tiết kiệm vật tư.</p>
-                        </div>
-                    </div>
+                    }
 
                     <div class="why-quote">
                         "Mỗi bức tường không chỉ giới hạn không gian – đó là bệ đỡ cho kỷ niệm, nơi lưu giữ niềm tự hào và hạnh phúc gia đình bạn."
@@ -278,28 +230,117 @@
 <section class="stats-section">
     <div class="container">
         <div class="row g-4">
-            <div class="col-6 col-md-3">
-                <div class="stat-box-ultra">
-                    <div class="stat-big">500+</div>
-                    <div class="stat-label text-uppercase text-muted">Dự án bàn giao</div>
+            @foreach (var item in thongso)
+                {
+                    var chia = 12 / (thongso.Count());
+                <div class="col-6 col-md-@chia">
+                    <div class="stat-box-ultra">
+                        <div class="stat-big">@item.ThongSo @item.KiHieu</div>
+                        <div class="stat-label text-uppercase text-muted">@item.TieuDe</div>
+                    </div>
+                </div>
+            }
+
+           
+        </div>
+    </div>
+</section>
+
+
+
+<section class="consultation-form-section py-5" id="lien-he" style="background-color: #0A0F18; border-top: 1px solid rgba(217, 160, 91, 0.1);">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="brand-intro-zone text-white pe-lg-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="apex-logo-icon me-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; border: 1px solid var(--luxury-amber, #BA9465); border-radius: 4px; background: rgba(217, 160, 91, 0.05);">
+                            <i class="fa-solid fa-house-chimney text-warning" style="color: var(--luxury-amber, #BA9465) !important;"></i>
+                        </div>
+                        <span class="text-uppercase fw-bold tracking-widest" style="font-family: var(--font-body); font-size: 1.2rem; letter-spacing: 2px;">Nội thất tâm an</span>
+                    </div>
+
+                    <h2 class="mb-4" style="font-family: var(--font-heading); font-size: 3.5rem; line-height: 1.2; font-weight: 500;">
+                        Khởi công tương lai<br><span style="color: var(--luxury-amber, #BA9465); font-style: italic;">Gửi trọn niềm tin.</span>
+                    </h2>
+
+                    <p class="text-white-50 mb-5" style="max-width: 480px; font-size: 0.95rem; line-height: 1.6;">
+                        Liên hệ với chuyên gia của Nội Thất Tâm An để nhận tư vấn phác thảo sơ bộ và báo giá dự toán hoàn toàn miễn phí.
+                    </p>
+
+                    <div class="contact-quick-list d-flex flex-column gap-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icon-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.06); color: var(--luxury-amber, #BA9465);">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="d-block text-white-50 small text-uppercase" style="letter-spacing: 1px; font-size: 0.75rem;">Hotline tư vấn (Mr.Tâm)</span>
+                                <a href="tel:0968967383" class="text-white text-decoration-none fw-bold" style="font-size: 1.1rem; letter-spacing: 0.5px;">0968.967.383</a>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icon-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.06); color: var(--luxury-amber, #BA9465);">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="d-block text-white-50 small text-uppercase" style="letter-spacing: 1px; font-size: 0.75rem;">Hotline tư vấn (Mr.Trung)</span>
+                                <a href="tel:0388192323" class="text-white text-decoration-none fw-bold" style="font-size: 1.1rem; letter-spacing: 0.5px;">0388.192.323</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-box-ultra">
-                    <div class="stat-big">10+</div>
-                    <div class="stat-label text-uppercase text-muted">Năm phát triển</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-box-ultra">
-                    <div class="stat-big">100%</div>
-                    <div class="stat-label text-uppercase text-muted">Ván chuẩn An Cường</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-box-ultra">
-                    <div class="stat-big">2000m²</div>
-                    <div class="stat-label text-uppercase text-muted">Diện tích nhà xưởng</div>
+
+            <div class="col-lg-6">
+                <div class="consult-card p-4 p-sm-5" style="background: #111622; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                    <div class="text-center mb-4">
+                        <span class="text-uppercase tracking-wider d-block mb-1" style="color: #BA9465; font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px;">ĐĂNG KÝ NGAY HÔM NAY</span>
+                        <h3 class="text-white" style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; letter-spacing: 0.5px;">ĐĂNG KÝ TƯ VẤN 0Đ</h3>
+                        <p class="text-white-50 small mt-1 mb-0">NHẬN NGAY BỘ THIẾT KẾ Ý TƯỞNG CÁ NHÂN HÓA!</p>
+                    </div>
+
+                    <form id="consultationForm" action="#" method="POST">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label text-white-50 small mb-2" style="font-size: 0.85rem;">Họ và tên *</label>
+                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Nguyễn Văn A" required style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="form-label text-white-50 small mb-2" style="font-size: 0.85rem;">Số điện thoại *</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="0968..." required style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="form-label text-white-50 small mb-2" style="font-size: 0.85rem;">Địa chỉ Email *</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="name@gmail.com" required style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label text-white-50 small mb-2" style="font-size: 0.85rem;">Nhu cầu của bạn</label>
+                                <select id="services" name="services" class="form-select" style="background: #1B2130 url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e&quot;) no-repeat right 12px center/10px 10px; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;">
+                                    <option value="Thiết kế Kiến trúc">Thiết kế Kiến trúc</option>
+                                    <option value="Thiết kế & Thi công Nội thất" selected>Thiết kế & Thi công Nội thất</option>
+                                    <option value="Thi công Trọn gói Kiến trúc - Nội thất">Thi công Trọn gói Kiến trúc - Nội thất</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label text-white-50 small mb-2" style="font-size: 0.85rem;">Nội dung chi tiết (tùy chọn)</label>
+                                <textarea id="message" name="message" class="form-control" rows="3" placeholder="Chia sẻ về diện tích, phong cách mong muốn..." style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px; resize: none;"></textarea>
+                            </div>
+
+                            <div class="col-12 my-2 d-flex justify-content-center">
+                                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-theme="dark"></div>
+                            </div>
+
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn w-100 py-3 fw-bold text-uppercase" style="background-color: var(--luxury-amber, #BA9465); color: #111622; border: none; border-radius: 30px; font-size: 0.9rem; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(217,160,91,0.2);">
+                                    Gửi yêu cầu tư vấn
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -307,6 +348,136 @@
 </section>
 @section scripts{
     <script>
+    $(document).ready(function () {
+        const form = document.getElementById("consultationForm");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // Chặn load lại trang mặc định của form
+
+            // 1. Thu thập dữ liệu thô từ form
+            const fullname = $("#fullname").val().trim();
+            const phoneNumber = $("#phoneNumber").val().trim();
+            const email = $("#email").val().trim();
+            const services = $("#services").val();
+            const message = $("#message").val().trim();
+
+            // Lấy token phản hồi mã Captcha từ Google
+            const captchaResponse = grecaptcha.getResponse();
+
+            // 2. Hệ thống kiểm định định dạng (Regex Validation)
+            const nameRegex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲÝỴÝỶỸửữựỳýỵỷỹ\s]{2,50}$/;
+            const phoneRegex = /^(03|05|07|08|09)\d{8}$/;
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            // Kiểm định trường Họ Tên
+            if (!nameRegex.test(fullname)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Họ tên không hợp lệ',
+                    text: 'Họ tên từ 2 - 50 ký tự, viết bằng chữ và không chứa ký tự đặc biệt, chữ số.',
+                    confirmButtonColor: '#BA9465'
+                });
+                return;
+            }
+
+            // Kiểm định trường Số Điện Thoại
+            if (!phoneRegex.test(phoneNumber)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Số điện thoại sai định dạng',
+                    text: 'Vui lòng nhập đúng số điện thoại di động Việt Nam (Ví dụ: 0968967383).',
+                    confirmButtonColor: '#BA9465'
+                });
+                return;
+            }
+
+            // Kiểm định trường Email
+            if (!emailRegex.test(email)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Email không hợp lệ',
+                    text: 'Vui lòng nhập đúng cấu trúc email thực tế (Ví dụ: noithattaman@gmail.com).',
+                    confirmButtonColor: '#BA9465'
+                });
+                return;
+            }
+
+            // 3. Kiểm định tích chọn mã CAPTCHA
+            if (captchaResponse.length === 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Xác minh danh tính',
+                    text: 'Vui lòng tích chọn vào ô "Tôi không phải là người máy" để xác nhận bạn không phải robot gửi spam.',
+                    confirmButtonColor: '#BA9465'
+                });
+                return;
+            }
+
+            // 4. Bật màn hình chờ xử lý (Loading screen bằng Swal)
+            Swal.fire({
+                title: 'Đang gửi thông tin...',
+                text: 'Hệ thống Nội Thất Tâm An đang ghi nhận yêu cầu của bạn, vui lòng đợi trong giây lát.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            // 5. Đóng gói dữ liệu đối tượng gửi đi
+            const sendData = {
+                fullname: fullname,
+                phone: phoneNumber,
+                email: email,
+                service: services,
+                message: message,
+                captcha: captchaResponse
+            };
+
+            // 6. THỰC HIỆN AJAX POST LÊN CONTROLLER
+            $.ajax({
+                url: '/Home/GuiLienHe',
+                type: 'POST',
+                data: sendData,
+                dataType: 'json',
+                success: function (response) {
+                    // Nếu Controller xử lý lưu Database thành công trả về { success: true }
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Đăng ký thành công!',
+                            html: `Cảm ơn anh/chị <b>${fullname}</b>.<br>Đội ngũ <b>Nội Thất Tâm An</b> đã nhận được yêu cầu và sẽ gọi tư vấn trực tiếp qua số <b>${phoneNumber}</b> ngay!`,
+                            confirmButtonColor: '#BA9465',
+                            timer: 6000
+                        });
+
+                        // Xóa dữ liệu cũ trên Form & Reset trạng thái Captcha
+                        form.reset();
+                        grecaptcha.reset();
+                    }
+                    // Nếu Controller xử lý lỗi (ví dụ backend xác thực captcha lỗi) trả về { success: false, message: "..." }
+                    else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gửi thất bại',
+                            text: response.message || 'Đã xảy ra lỗi hệ thống, vui lòng thử lại sau.',
+                            confirmButtonColor: '#BA9465'
+                        });
+                        grecaptcha.reset(); // Người dùng cần tích lại captcha
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Báo lỗi nếu server chết (Lỗi 500, lỗi 404, hoặc đứt mạng)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi đường truyền',
+                        text: 'Không thể gửi yêu cầu vì kết nối tới máy chủ bị gián đoạn. Vui lòng kiểm tra lại mạng!',
+                        confirmButtonColor: '#BA9465'
+                    });
+                    grecaptcha.reset();
+                }
+            });
+        });
+    });
         // Mảng cơ sở dữ liệu gốc để tránh việc dùng display:none làm gãy animation của Swiper
         const MASTER_PROJECTS = [
             { type: 'villa', title: 'Penthouse Ciputra', desc: 'MDF chống ẩm phủ Acrylic bóng gương', img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'] },

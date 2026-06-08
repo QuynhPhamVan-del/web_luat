@@ -35,7 +35,7 @@ namespace web_luat.Areas.Admin.Controllers
             return PartialView();
         }
         [HttpPost]
-        public JsonResult Create([Bind(Include = "Id,TieuDe")] tbl_TaiSao banner)
+        public JsonResult Create([Bind(Include = "Id,TieuDe,NoiDung")] tbl_TaiSao banner)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace web_luat.Areas.Admin.Controllers
             return PartialView(banner);
         }
         [HttpPost]
-        public JsonResult Edit([Bind(Include = "Id,TieuDe")] tbl_TaiSao banner)
+        public JsonResult Edit([Bind(Include = "Id,TieuDe,NoiDung")] tbl_TaiSao banner)
         {
             try
             {

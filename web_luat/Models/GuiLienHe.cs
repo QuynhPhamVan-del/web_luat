@@ -21,5 +21,6 @@ namespace web_luat.Models
         public string SDT { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> NgayGui { get; set; }
+        public string DichVu { get; set; }
     }
 }

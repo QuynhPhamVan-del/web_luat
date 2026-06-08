@@ -11,6 +11,7 @@
     <Property Name="SDT" Type="nvarchar" MaxLength="50" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="NgayGui" Type="datetime" />
+    <Property Name="DichVu" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="QuyTrinhDuyet">
     <Key>
@@ -308,6 +309,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="tbl_ThongBao">
     <Key>
@@ -422,7 +424,7 @@
     <Property Name="NguoiKy" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_Luat.dbo.LoadMenu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'DB_XuongThietKe.dbo.LoadMenu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="LoadMenu">
     <Key>
       <PropertyRef Name="Id" />
@@ -436,7 +438,7 @@ warning 6002: The table/view 'DB_Luat.dbo.LoadMenu' does not have a primary key 
     <Property Name="IdUser" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_Luat.dbo.LogUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'DB_XuongThietKe.dbo.LogUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="LogUser">
     <Key>
       <PropertyRef Name="Id" />
@@ -450,7 +452,7 @@ warning 6002: The table/view 'DB_Luat.dbo.LogUser' does not have a primary key d
     <Property Name="NgayThucHien" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_Luat.dbo.TinMoiNhat_CheckTrung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'DB_XuongThietKe.dbo.TinMoiNhat_CheckTrung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="TinMoiNhat_CheckTrung">
     <Key>
       <PropertyRef Name="ID" />

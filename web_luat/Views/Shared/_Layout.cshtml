@@ -2,21 +2,43 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nội Thất Tâm An</title>
-    <!-- Google Fonts: Cormorant Garamond (Sang trọng) & Be Vietnam Pro (Hiện đại, dễ đọc) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- === THE SEO META TAGS === -->
+    <title>Xưởng Nội Thất Tâm An - Thiết Kế & Thi Công Trọn Gói Giá Gốc</title>
+    <meta name="description" content="Xưởng Nội Thất Tâm An chuyên thiết kế, thi công nội thất căn hộ, nhà phố, biệt thự trọn gói. Sản xuất trực tiếp tại xưởng không qua trung gian, cam kết giá gốc, chất lượng cao cấp, bảo hành dài hạn.">
+    <meta name="keywords" content="nội thất tâm an, xưởng nội thất tâm an, thiết kế nội thất, thi công nội thất, xưởng sản xuất nội thất, nội thất giá xưởng, nội thất trọn gói">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://noithattaman.vn/" /> <!-- Thay bằng URL thật của website -->
+    <!-- === OPEN GRAPH (Tối ưu hiển thị khi share Facebook, Zalo) === -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Xưởng Nội Thất Tâm An - Thiết Kế & Thi Công Trọn Gói Giá Gốc">
+    <meta property="og:description" content="Sản xuất trực tiếp tại xưởng không qua trung gian. Cam kết chất lượng, đúng tiến độ, bảo hành dài hạn. Liên hệ nhận báo giá ngay!">
+    <meta property="og:image" content="https://noithattaman.vn/css-moi/logo_ta.png"> <!-- Đường dẫn tuyệt đối tới ảnh logo hoặc ảnh đại diện xưởng -->
+    <meta property="og:url" content="https://noithattaman.vn/">
+    <meta property="og:site_name" content="Nội Thất Tâm An">
+
+    <!-- === FAVICON === -->
+    <link rel="icon" type="image/x-icon" href="~/css-moi/logo_ta.png">
+
+    <!-- === FONTS & LIBRARIES === -->
+    <!-- Google Fonts: Cormorant Garamond & Be Vietnam Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5.3.2 CSS & JS Bundle -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 
-    <!-- Swiper 11 CSS & JS (Thư viện xử lý slide trượt ngang mượt mà nhất) -->
+    <!-- Swiper 11 CSS & JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Custom CSS -->
     <link href="~/css-moi/style.css" rel="stylesheet" />
 </head>
 <body>
@@ -25,11 +47,7 @@
     <nav class="navbar navbar-expand-lg py-4">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <svg width="42" height="42" viewBox="0 0 100 100" class="me-2">
-                    <polygon points="50,12 88,45 78,45 78,85 22,85 22,45 12,45" fill="none" stroke="#FFFFFF" stroke-width="5" />
-                    <text x="26" y="75" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="bold" fill="#FFFFFF">T</text>
-                    <text x="48" y="75" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="bold" fill="#D9A05B">A</text>
-                </svg>
+                <img src="~/css-moi/logo_ta.png" alt="" loading="lazy" style="width: 50px; border-radius: 50%;margin-right:10px" />
                 <div class="d-flex flex-column">
                     <span class="fw-bold lh-1 text-white" style="font-size: 1.4rem; letter-spacing: 0.5px;">NỘI THẤT TÂM AN</span>
                     <span class="text-uppercase" style="font-size: 0.6rem; color: var(--luxury-amber); letter-spacing: 2px; font-weight:600;">Xưởng sản xuất công nghệ cao</span>
@@ -40,48 +58,92 @@
             </button>
             <div class="collapse navbar-collapse" id="luxuryNav">
                 @{ Html.RenderAction("Menu", "Home"); }
-            
+
             </div>
         </div>
     </nav>
 
-
+    @RenderBody()
 
     <!-- 7. FOOTER -->
     <footer id="lien-he" class="footer-luxury">
         <div class="container">
             <div class="row g-5">
-                <div class="col-lg-5">
+                <div class="col-lg-4">
                     <div class="d-flex align-items-center mb-4">
-                        <svg width="38" height="38" viewBox="0 0 100 100" class="me-2">
-                            <polygon points="50,12 88,45 78,45 78,85 22,85 22,45 12,45" fill="none" stroke="#FFFFFF" stroke-width="5" />
-                            <text x="26" y="75" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="bold" fill="#FFFFFF">T</text>
-                            <text x="48" y="75" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="bold" fill="#D9A05B">A</text>
-                        </svg>
-                        <span class="text-white h4 m-0">TÂM AN</span>
+                        <img src="~/css-moi/logo_ta.png" alt="" loading="lazy" style="width:100px;border-radius:50%" />
                     </div>
                     <p class="small text-white-50">Nhà xưởng gia công chế tác mộc công nghiệp tự động hóa CNC quy mô lớn. Đối tác cung ứng uy tín của các văn phòng kiến trúc sư.</p>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <h5 class="text-white mb-4" style="font-size: 1.1rem; letter-spacing: 0.5px;">DỊCH VỤ CHÍNH</h5>
-                    <ul class="list-unstyled small d-flex flex-column gap-2">
-                        <li><a href="#" class="footer-link">Cắt gỗ CNC Nesting hàng loạt</a></li>
-                        <li><a href="#" class="footer-link">Dán nẹp chỉ đuôi dài không đường line</a></li>
-                    </ul>
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Dịch Vụ Chính</h5>
+                    <p class="d-flex align-items-start mb-3" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span>
+                            <strong class="text-white">Thiết kế nội thất</strong> <br>
+                        </span>
+                    </p>
+                    <p class="d-flex align-items-start mb-3" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span>
+                            <strong class="text-white">Thi công trọn gói</strong> <br>
+                        </span>
+                    </p>
+                    <p class="d-flex align-items-start mb-3" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span>
+                            <strong class="text-white">Nội thất gỗ công nghiệp</strong> <br>
+                        </span>
+                    </p>
+                    <p class="d-flex align-items-start mb-3" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span>
+                            <strong class="text-white">Nội thất gỗ tự nhiên</strong> <br>
+                        </span>
+                    </p>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <h5 class="text-white mb-4" style="font-size: 1.1rem; letter-spacing: 0.5px;">THÔNG TIN NHÀ XƯỞNG</h5>
-                    <ul class="list-unstyled small d-flex flex-column gap-3">
-                        <li class="d-flex align-items-start"><i class="fa-solid fa-location-dot text-warning me-2 mt-1"></i> <span>Khu Công Nghiệp Thạch Thất, Thạch Thất, Hà Nội</span></li>
-                    </ul>
+                <div class="col-md-6 col-lg-5">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Thông Tin Liên Hệ</h5>
+
+                    <!-- Địa chỉ (Chuẩn Schema Local Business) -->
+                    <p class="d-flex align-items-start mb-3" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <i class="fas fa-home me-3 text-warning mt-1"></i>
+                        <span>
+                            <strong class="text-white">Địa chỉ:</strong> <br>
+                            <span itemprop="streetAddress">Đội 15, Thôn Ngọc Lâm, Xã Tân Kỳ</span>,
+                            <span itemprop="addressLocality">Thành Phố Hải Phòng</span>
+                        </span>
+                    </p>
+
+                    <!-- Số điện thoại (Thẻ a tel: giúp khách hàng bấm vào là gọi được luôn trên điện thoại) -->
+                    <p class="d-flex align-items-center mb-2">
+                        <i class="fas fa-phone-alt me-3 text-warning"></i>
+                        <span>
+                            <strong class="text-white">Hotline kĩ thuật:</strong> <br>
+                            <a href="tel:0968967383" class="text-white text-decoration-none hover-warning" itemprop="telephone">0968.967.383</a> (Mr. Tâm)
+                        </span>
+                    </p>
+                    <p class="d-flex align-items-center mb-3">
+                        <i class="fas fa-phone-alt me-3 text-warning"></i>
+                        <span>
+                            <strong class="text-white">Hotline kinh doanh:</strong> <br>
+                            <a href="tel:0388192323" class="text-white text-decoration-none hover-warning" itemprop="telephone">0388.192.323</a> (Mr. Trung)
+                        </span>
+                    </p>
+                    <p class="d-flex align-items-center mb-3">
+                        <i class="fa-brands fa-facebook me-3 text-warning"></i>
+                        <span>
+                            <strong class="text-white">Fanpage:</strong> <br>
+                            <a href="https://www.facebook.com/profile.php?id=61579102721100" class="text-white text-decoration-none hover-warning" itemprop="telephone">Facebook</a>
+                        </span>
+                    </p>
                 </div>
             </div>
             <hr class="mt-5 mb-4 border-secondary opacity-25">
-            <div class="d-flex flex-column flex-md-row justify-content-between text-white-50 small">
-                <p class="m-0">&copy; 2026 Nội Thất Tâm An. Bảo lưu mọi quyền.</p>
+            <div class="d-flex flex-column flex-md-row justify-content-between text-white-50 small" style="width:100%; text-align:center">
+                <p class="m-0" style="width:100%">&copy; 2026 Nội Thất Tâm An</p>
             </div>
         </div>
     </footer>
+
+
+
 
     <!-- POPUP MODAL XEM ALBUM HÌNH ẢNH DỰ ÁN -->
     <div class="modal fade album-modal" id="projectAlbumModal" tabindex="-1" aria-hidden="true">
@@ -109,7 +171,13 @@
         </div>
     </div>
 
-    <!-- SCRIPT ĐIỀU KHIỂN HOẠT ẢNH TRƯỢT NGANG (SWIPER RE-LOGIC) -->
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

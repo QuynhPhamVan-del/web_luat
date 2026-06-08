@@ -4,6 +4,7 @@
     <EntitySetMapping Name="GuiLienHes">
       <EntityTypeMapping TypeName="DB_LuatModel.GuiLienHe">
         <MappingFragment StoreEntitySet="GuiLienHe">
+          <ScalarProperty Name="DichVu" ColumnName="DichVu" />
           <ScalarProperty Name="NgayGui" ColumnName="NgayGui" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="SDT" ColumnName="SDT" />
@@ -48,11 +49,31 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_CamNhan">
+      <EntityTypeMapping TypeName="DB_LuatModel.tbl_CamNhan">
+        <MappingFragment StoreEntitySet="tbl_CamNhan">
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_ChuyenMuc">
       <EntityTypeMapping TypeName="DB_LuatModel.tbl_ChuyenMuc">
         <MappingFragment StoreEntitySet="tbl_ChuyenMuc">
           <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
           <ScalarProperty Name="TenChuyenMuc" ColumnName="TenChuyenMuc" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_DoiTac">
+      <EntityTypeMapping TypeName="DB_LuatModel.tbl_DoiTac">
+        <MappingFragment StoreEntitySet="tbl_DoiTac">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="TenDoiTac" ColumnName="TenDoiTac" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -184,6 +205,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_NhanSu">
+      <EntityTypeMapping TypeName="DB_LuatModel.tbl_NhanSu">
+        <MappingFragment StoreEntitySet="tbl_NhanSu">
+          <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+          <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="TenNhanSu" ColumnName="TenNhanSu" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_NhomQuyen">
       <EntityTypeMapping TypeName="DB_LuatModel.tbl_NhomQuyen">
         <MappingFragment StoreEntitySet="tbl_NhomQuyen">
@@ -220,6 +252,17 @@
           <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
           <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Post_Category">
+      <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post_Category">
+        <MappingFragment StoreEntitySet="tbl_Post_Category">
+          <ScalarProperty Name="IdPostCu" ColumnName="IdPostCu" />
+          <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+          <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+          <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -284,6 +327,15 @@
         <MappingFragment StoreEntitySet="tbl_Tag">
           <ScalarProperty Name="Slug" ColumnName="Slug" />
           <ScalarProperty Name="TenTag" ColumnName="TenTag" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_TaiSao">
+      <EntityTypeMapping TypeName="DB_LuatModel.tbl_TaiSao">
+        <MappingFragment StoreEntitySet="tbl_TaiSao">
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -460,56 +512,6 @@
           <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
           <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_NhanSu">
-      <EntityTypeMapping TypeName="DB_LuatModel.tbl_NhanSu">
-        <MappingFragment StoreEntitySet="tbl_NhanSu">
-          <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
-          <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="TenNhanSu" ColumnName="TenNhanSu" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_TaiSao">
-      <EntityTypeMapping TypeName="DB_LuatModel.tbl_TaiSao">
-        <MappingFragment StoreEntitySet="tbl_TaiSao">
-          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_DoiTac">
-      <EntityTypeMapping TypeName="DB_LuatModel.tbl_DoiTac">
-        <MappingFragment StoreEntitySet="tbl_DoiTac">
-          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-          <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
-          <ScalarProperty Name="Link" ColumnName="Link" />
-          <ScalarProperty Name="TenDoiTac" ColumnName="TenDoiTac" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_CamNhan">
-      <EntityTypeMapping TypeName="DB_LuatModel.tbl_CamNhan">
-        <MappingFragment StoreEntitySet="tbl_CamNhan">
-          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_Post_Category">
-      <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post_Category">
-        <MappingFragment StoreEntitySet="tbl_Post_Category">
-          <ScalarProperty Name="IdPostCu" ColumnName="IdPostCu" />
-          <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
-          <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-          <ScalarProperty Name="IdPost" ColumnName="IdPost" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
