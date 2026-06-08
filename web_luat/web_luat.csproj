@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Controllers\NhanSuController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhomQuyenController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanTriController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuyTrinhDuyetBaiController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiSaoController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongSoController.cs" />
     <Compile Include="Areas\Admin\Controllers\TinTucController.cs" />
