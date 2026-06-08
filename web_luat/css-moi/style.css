@@ -1,1419 +1,840 @@
-/* ==========================================================================
-   0. BẢNG MÀU PHỐI THEO LOGO & CONFIG CHUNG
-   ========================================================================== */
+
 :root {
-    --logo-yellow: #E5B800;
-    --logo-yellow-dark: #C29900;
-    --logo-gray-light: #F8F9FA; /* Đổi sang xám siêu nhẹ để giao diện sạch sẽ */
-    --logo-gray-main: #E2E8F0; /* Xám tinh tế làm đường viền phân cách */
-    --text-dark: #1E293B; /* Xanh đen Slate đậm cho text chuẩn UI hiện đại */
-    --text-muted: #64748B; /* Màu chữ phụ */
+    --primary-dark: #2B2421; /* Đen cafe đậm - Ấm áp, sâu lắng */
+    --luxury-amber: #D9A05B; /* Vàng hổ phách - Sang trọng, sinh động */
+    --bright-bg: #FFFFFF; /* Nền trắng sáng tinh khiết */
+    --soft-sand: #F7F4F0; /* Màu cát mịn nhẹ - Tone gỗ sáng Bắc Âu */
+    --text-muted: #8E847E; /* Chữ phụ màu xám đất ấm */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Be Vietnam Pro', sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    color: var(--text-dark);
+    font-family: var(--font-body);
+    background-color: var(--soft-sand);
+    color: var(--primary-dark);
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
-/* ==========================================================================
-   1. MENU & HERO BANNER SLIDESHOW (LƯỚT NGANG TỰ ĐỘNG - TỐI GIẢN CHỈ ẢNH)
-   ========================================================================== */
+h1, h2, h3, h4, .section-title, .navbar-brand {
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--soft-sand);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--luxury-amber);
+    border-radius: 3px;
+}
+
+/* --- NAVBAR --- */
 .navbar {
-    background-color: #ffffff !important;
-    border-bottom: 1px solid var(--logo-gray-main);
-}
-
-.navbar-brand img {
-    height: 45px;
-    width: auto;
-}
-
-.nav-link {
-    color: var(--text-dark) !important;
-    font-weight: 600;
-    font-size: 14px;
-    text-transform: uppercase;
-    padding: 10px 15px !important;
-}
-
-    .nav-link:hover, .nav-link.active {
-        color: var(--logo-yellow-dark) !important;
-    }
-
-/* Khung ngoài cùng chứa Slider */
-.mv-hero-slider {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    background: #ffffff;
-    display: block;
-}
-
-/* Khung nhìn giữ tỷ lệ banner */
-.mv-slider-viewport {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1920 / 700; /* Tỷ lệ rộng/cao tự co giãn theo màn hình */
-    overflow: hidden;
-    display: block;
-}
-
-/* Băng chuyền chứa các slide xếp hàng ngang */
-.mv-slider-track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    /* Hiệu ứng lướt mượt tăng tốc phần cứng (GPU) */
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform;
-}
-
-/* Mỗi slide chiếm trọn vẹn 100% chiều rộng màn hình */
-.mv-slide {
-    flex: 0 0 100%;
-    width: 100%;
-    height: 100%;
-}
-
-/* Ép ảnh phủ kín khung, không bị méo hình trên mobile */
-.mv-banner-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* ==========================================================================
-   2. KHỐI VỀ CHÚNG TÔI (ABOUT SECTION) - SỬA LỖI ĐÈ NỀN & TÁCH BIỆT KHOẢNG CÁCH
-   ========================================================================== */
-.about-section {
-    padding: 80px 0; /* Khoảng cách trên dưới rộng rãi, sang trọng */
-    background-color: #ffffff;
-    position: relative;
-    display: block;
-    width: 100%;
-    clear: both; /* Triệt tiêu hoàn toàn hiện tượng đè nền từ slider phía trên */
-}
-
-/* Khung nội dung chữ bên trái */
-.about-content-card {
-    background-color: var(--logo-gray-light);
-    padding: 40px 30px;
-    border-radius: 24px;
-    border-left: 6px solid var(--logo-yellow);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.about-sub {
-    color: var(--logo-yellow-dark);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-.about-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 25px;
-    position: relative;
-    text-transform: uppercase;
-}
-
-/* Đoạn văn mô tả pháp lý */
-.about-text {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    text-align: justify;
-    margin-bottom: 0;
-}
-
-/* Điểm nhấn highlight cho tên công ty trong đoạn văn */
-.text-highlight {
-    color: var(--text-dark);
-    font-weight: 600;
-}
-
-/* Khung hình ảnh bên phải tràn viền hiện đại */
-.about-image-wrapper {
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    height: 100%;
-    min-height: 350px;
-}
-
-.about-img {
-    width: 100%;
-    max-height:350px;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Hiệu ứng phóng to nhẹ khi di chuột vào ảnh */
-.about-image-wrapper:hover .about-img {
-    transform: scale(1.04);
-}
-
-/* Lớp phủ dải màu nhẹ lên ảnh để tăng chiều sâu thiết kế */
-.about-image-wrapper::after {
-    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(30, 41, 59, 0.2), transparent);
-    pointer-events: none;
+    z-index: 1050;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 0;
+    transition: all 0.4s ease;
 }
 
-/* Tối ưu hóa phản hồi (Responsive) cho phần About */
-@media (max-width: 991.98px) {
-    .about-section {
-        padding: 60px 0;
+    .navbar.scrolled {
+        position: fixed;
+        background-color: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(217, 160, 91, 0.15);
+        padding: 12px 0;
+        box-shadow: 0 10px 30px rgba(43,36,33,0.05);
     }
 
-    .about-content-card {
-        padding: 30px 20px;
-        border-radius: 16px;
-        margin-bottom: 30px; /* Tạo khoảng cách an toàn khi co dòng trên mobile thành 1 cột */
-    }
-
-    .about-title {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
-    }
-
-    .about-image-wrapper {
-        min-height: 300px;
-        border-radius: 16px;
-    }
-}
-
-/* ==========================================================================
-   3. KHỐI DỊCH VỤ (SERVICES SECTION)
-   ========================================================================== */
-.services-section {
-    padding: 80px 0;
-    background-color: var(--logo-gray-light);
-}
-
-.section-tagline {
-    color: var(--logo-yellow-dark);
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.section-main-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    text-transform: uppercase;
-    position: relative;
-    padding-bottom: 15px;
-}
-
-    .section-main-title::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 4px;
-        background-color: var(--logo-yellow);
-        border-radius: 2px;
-    }
-
-.service-card {
-    background-color: #ffffff;
-    border: 1px solid rgba(166, 166, 166, 0.15);
-    border-radius: 20px;
-    padding: 40px 30px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-}
-
-.service-icon-box {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #FFFDF3 0%, rgba(229, 184, 0, 0.1) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
-    font-size: 1.8rem;
-    color: var(--logo-yellow-dark);
-    transition: all 0.3s ease;
-}
-
-.service-card-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    text-transform: uppercase;
-    margin-bottom: 15px;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-}
-
-.service-card-text {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    flex-grow: 1;
-}
-
-.service-btn-link {
-    color: var(--text-dark);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-    padding: 8px 20px;
-    border-radius: 20px;
-    background-color: var(--logo-gray-light);
-}
-
-    .service-btn-link i {
-        font-size: 0.8rem;
-        transition: transform 0.3s ease;
-    }
-
-.service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(44, 62, 80, 0.12);
-    border-color: rgba(229, 184, 0, 0.3);
-}
-
-    .service-card:hover .service-icon-box {
-        background: var(--logo-yellow);
-        color: #ffffff;
-        transform: scale(1.05);
-    }
-
-    .service-card:hover .service-btn-link {
-        background-color: var(--logo-yellow);
-        color: #ffffff;
-    }
-
-        .service-card:hover .service-btn-link i {
-            transform: translateX(4px);
+        .navbar.scrolled .nav-link {
+            color: var(--primary-dark) !important;
         }
 
-.service-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
+            .navbar.scrolled .nav-link:hover, .navbar.scrolled .nav-link.active {
+                color: var(--luxury-amber) !important;
+            }
+
+        .navbar.scrolled .navbar-brand span.text-white {
+            color: var(--primary-dark) !important;
+        }
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    margin: 0 12px;
+    transition: all 0.3s ease;
+}
+
+    .nav-link:hover, .nav-link.active {
+        color: var(--luxury-amber) !important;
+    }
+
+/* --- HERO SLIDESHOW BANNER --- */
+.hero-carousel, .carousel-inner, .carousel-item {
+    height: 100vh;
     width: 100%;
-    height: 4px;
-    background-color: var(--logo-yellow);
-    transform: scaleX(0);
+}
+
+.carousel-item {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+    .carousel-item::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(43, 36, 33, 0.7) 0%, rgba(43, 36, 33, 0.35) 100%);
+        z-index: 1;
+    }
+
+.carousel-caption-custom {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bright-bg);
+    width: 100%;
+}
+
+.hero-premium h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    font-weight: 500;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.hero-tag {
+    background: rgba(217, 160, 91, 0.2);
+    border: 1px solid rgba(217, 160, 91, 0.6);
+    color: #FCD299;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    display: inline-block;
+}
+
+.btn-luxury {
+    background-color: var(--luxury-amber);
+    color: var(--bright-bg);
+    font-weight: 500;
+    padding: 12px 30px;
+    border-radius: 4px;
+    border: 1px solid var(--luxury-amber);
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+    .btn-luxury:hover {
+        background-color: transparent;
+        color: var(--luxury-amber);
+        transform: translateY(-2px);
+    }
+
+.scroll-down-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 10;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translate(-50%, 0);
+    }
+
+    40% {
+        transform: translate(-50%, -10px);
+    }
+
+    60% {
+        transform: translate(-50%, -5px);
+    }
+}
+
+/* --- SECTION TITLE --- */
+.section-title {
+    font-size: 3rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+}
+
+    .section-title span {
+        color: var(--luxury-amber);
+        font-style: italic;
+    }
+
+/* --- KHỐI 1: GALLERY DỰ ÁN TIÊU BIỂU (HIỆU ỨNG TRƯỢT NGANG CHUẨN) --- */
+.project-section {
+    background-color: var(--soft-sand);
+    padding: 90px 0;
+    overflow: hidden;
+}
+
+.project-filter-btn {
+    background: var(--bright-bg);
+    border: 1px solid rgba(43, 36, 33, 0.1);
+    color: var(--primary-dark);
+    padding: 6px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin: 0 4px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+}
+
+    .project-filter-btn.active, .project-filter-btn:hover {
+        background: var(--luxury-amber);
+        color: var(--bright-bg);
+        border-color: var(--luxury-amber);
+        box-shadow: 0 4px 10px rgba(217, 160, 91, 0.25);
+    }
+
+.project-swiper {
+    width: 100%;
+    padding: 20px 5px 50px 5px !important;
+}
+
+.project-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 400px;
+    box-shadow: 0 10px 30px rgba(43,36,33,0.06);
+    cursor: pointer;
     transition: transform 0.4s ease;
 }
 
-.service-card:hover::before {
-    transform: scaleX(1);
-}
-
-@media (max-width: 767.98px) {
-    .services-section {
-        padding: 50px 0;
-    }
-
-    .section-main-title {
-        font-size: 1.8rem;
-    }
-
-    .service-card {
-        padding: 30px 20px;
-    }
-}
-
-/* ==========================================================================
-   4. KHỐI ĐỘI NGŨ (TEAM SECTION)
-   ========================================================================== */
-.team-section {
-    padding: 80px 0;
-    background-color: var(--logo-gray-light);
-    position: relative;
-}
-
-.team-title-area {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.team-section-sub {
-    color: var(--logo-yellow-dark);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-.team-section-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.team-see-all {
-    display: block;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
-}
-
-    .team-see-all:hover {
-        color: var(--logo-yellow-dark);
-    }
-
-.team-card {
-    background-color: #ffffff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-    height: 100%;
-    transition: all 0.4s ease;
-    position: relative;
-    border: 1px solid transparent;
-}
-
-    .team-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-        border-color: var(--logo-gray-main);
-    }
-
-.team-img-wrapper {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px 20px 0 0;
-}
-
-    .team-img-wrapper::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
+    .project-card img {
         width: 100%;
         height: 100%;
-        background: linear-gradient(to top, rgba(30, 41, 59, 0.1), transparent);
-        pointer-events: none;
+        object-fit: cover;
+        transition: transform 0.6s ease;
     }
 
-.team-img-modern {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.team-card:hover .team-img-modern {
-    transform: scale(1.03);
-}
-
-.team-content {
-    padding: 25px 20px;
-    text-align: center;
-}
-
-.team-member-name {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
-.team-member-title {
-    color: var(--logo-yellow-dark);
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-.team-member-desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 0;
-    text-align: justify;
-    text-align-last: center;
-}
-
-.desc-sep {
-    margin-top: 15px;
-    display: none;
-}
-
-.team-card:hover .desc-sep {
-    display: block;
-}
-
-.team-pagination {
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(43, 36, 33, 0.95) 0%, rgba(43, 36, 33, 0) 70%);
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 50px;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 25px;
+    opacity: 1;
 }
 
-.pag-btn {
-    width: 45px;
-    height: 45px;
+.project-card:hover img {
+    transform: scale(1.06);
+}
+
+.project-overlay h5 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.swiper-nav-ctrl {
+    width: 44px;
+    height: 44px;
+    background: var(--bright-bg);
+    border: 1px solid rgba(43,36,33,0.1);
+    color: var(--primary-dark);
     border-radius: 50%;
-    border: 2px solid var(--logo-gray-main);
-    background-color: transparent;
-    color: var(--text-muted);
-    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
 }
 
-    .pag-btn:hover, .pag-btn.active {
-        background-color: var(--logo-yellow);
-        color: #ffffff;
-        border-color: var(--logo-yellow);
+    .swiper-nav-ctrl:hover {
+        background: var(--luxury-amber);
+        color: #fff;
+        border-color: var(--luxury-amber);
     }
 
-@media (max-width: 991.98px) {
-    .team-section {
-        padding: 50px 0;
-    }
-
-    .team-section-title {
-        font-size: 1.8rem;
-    }
-
-    .team-card {
-        border-radius: 16px;
-    }
-
-    .team-img-wrapper {
-        border-radius: 16px 16px 0 0;
-    }
-
-    .team-member-name {
-        font-size: 1.15rem;
-    }
-
-    .team-member-title {
-        font-size: 0.8rem;
-    }
-
-    .team-member-desc {
-        font-size: 0.9rem;
-    }
+.swiper-pagination-bullet-active {
+    background-color: var(--luxury-amber) !important;
 }
 
-/* ==========================================================================
-   5. KHỐI LỊCH SỬ & THỐNG KÊ (HISTORY & STATS SECTION)
-   ========================================================================== */
-.history-section {
-    padding: 80px 0;
-    background: linear-gradient(rgba(30, 41, 59, 0.88), rgba(30, 41, 59, 0.92)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1200') no-repeat center center/cover;
-    color: #ffffff;
-}
-
-.history-card-custom {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 20px;
-    height: 100%;
-}
-
-.history-title-custom {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--logo-yellow);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
-
-.history-text-custom {
-    color: #cbd5e1;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    text-align: justify;
-}
-
-.stat-box-modern {
-    background: linear-gradient(135deg, var(--logo-yellow) 0%, var(--logo-yellow-dark) 100%);
-    padding: 30px 20px;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-    .stat-box-modern:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(229, 184, 0, 0.25);
-    }
-
-.stat-num {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 5px;
-}
-
-.stat-info {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #2c3e50;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0;
-}
-
-/* ==========================================================================
-   6. KHỐI ĐĂNG KÝ TƯ VẤN (CONSULTATION FORM SECTION)
-   ========================================================================== */
-.consultation-section {
-    padding: 80px 0;
-    background-color: #ffffff;
-}
-
-.form-wrapper-modern {
-    background-color: var(--logo-gray-light);
-    border: 1px solid var(--logo-gray-main);
-    padding: 50px 40px;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-.form-title-modern {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    text-transform: uppercase;
-    margin-bottom: 35px;
+/* --- KHỐI 2: TẠI SAO CHỌN TÂM AN --- */
+.why-choose-sec {
+    background-color: var(--bright-bg);
+    color: var(--primary-dark);
+    padding: 100px 0;
     position: relative;
 }
 
-    .form-title-modern::after {
+.why-image-container {
+    position: relative;
+    padding-bottom: 30px;
+    padding-right: 30px;
+}
+
+    .why-image-container::before {
         content: '';
         position: absolute;
-        bottom: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50px;
-        height: 4px;
-        background-color: var(--logo-yellow);
-        border-radius: 2px;
-    }
-
-.custom-input-group {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-    .custom-input-group i {
-        position: absolute;
-        left: 18px;
-        top: 18px;
-        color: var(--text-muted);
-        transition: color 0.3s ease;
-    }
-
-.form-control-custom {
-    width: 100%;
-    padding: 14px 15px 14px 48px;
-    background-color: #ffffff;
-    border: 1px solid rgba(166, 166, 166, 0.25);
-    border-radius: 12px;
-    font-size: 1rem;
-    color: var(--text-dark);
-    transition: all 0.3s ease;
-}
-
-    .form-control-custom:focus {
-        outline: none;
-        border-color: var(--logo-yellow-dark);
-        box-shadow: 0 0 0 4px rgba(229, 184, 0, 0.15);
-    }
-
-        .form-control-custom:focus + i {
-            color: var(--logo-yellow-dark);
-        }
-
-textarea.form-control-custom {
-    padding-left: 20px;
-    resize: none;
-}
-
-.btn-submit-modern {
-    background: linear-gradient(135deg, var(--logo-yellow) 0%, var(--logo-yellow-dark) 100%);
-    color: var(--text-dark);
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 15px 40px;
-    border: none;
-    border-radius: 12px;
-    width: 100%;
-    box-shadow: 0 6px 20px rgba(229, 184, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-    .btn-submit-modern:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(229, 184, 0, 0.35);
-        color: #000000;
-    }
-
-@media (max-width: 991.98px) {
-    .history-section, .consultation-section {
-        padding: 50px 0;
-    }
-
-    .history-title-custom {
-        font-size: 1.6rem;
-    }
-
-    .form-wrapper-modern {
-        padding: 35px 20px;
-        border-radius: 16px;
-    }
-
-    .form-title-modern {
-        font-size: 1.7rem;
-    }
-}
-
-/* ==========================================================================
-   7. KHỐI TẠI SAO LỰA CHỌN CHÚNG TÔI (COMMITMENT SECTION)
-   ========================================================================== */
-.commitment-section {
-    padding: 80px 0;
-    background-color: var(--logo-gray-light);
-}
-
-.commitment-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    align-items: center;
-}
-
-.lady-justice-card {
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-}
-
-.lady-justice-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.commitment-content-card {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-    height: 100%;
-}
-
-.commitment-section-sub {
-    color: var(--logo-yellow-dark);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-.commitment-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    position: relative;
-    padding-bottom: 15px;
-}
-
-    .commitment-title::after {
-        content: '';
-        position: absolute;
+        right: 0;
         bottom: 0;
-        left: 0;
-        width: 60px;
-        height: 4px;
-        background-color: var(--logo-yellow);
-        border-radius: 2px;
+        width: 85%;
+        height: 85%;
+        border: 2px solid var(--luxury-amber);
+        border-radius: 12px;
+        z-index: 1;
+        opacity: 0.35;
     }
 
-.commitment-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.commitment-item {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 15px;
+.why-main-img {
+    width: 100%;
+    border-radius: 12px;
     position: relative;
-    padding-left: 25px;
+    z-index: 2;
+    object-fit: cover;
+    height: 480px;
+    box-shadow: 0 15px 35px rgba(43,36,33,0.06);
 }
 
-    .commitment-item::before {
-        content: '–';
-        position: absolute;
-        left: 0;
-        color: var(--logo-yellow);
-        font-weight: 800;
-    }
-
-/* ==========================================================================
-   8. KHỐI ĐỐI TÁC (PARTNER SECTION)
-   ========================================================================== */
-.partner-section {
-    padding: 60px 0;
-    background-color: #ffffff;
-    border-top: 1px solid var(--logo-gray-main);
-    overflow: hidden;
-    position: relative;
-}
-
-.partner-slider-track {
-    display: flex;
-    width: max-content;
-    animation: scrollLogos 25s linear infinite;
-}
-
-    .partner-slider-track:hover {
-        animation-play-state: paused;
-    }
-
-.partner-logo-wrapper {
-    padding: 0 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 200px;
-}
-
-.partner-logo-modern {
-    max-height: 50px;
-    width: auto;
-    max-width: 100%;
-
-    transition: all 0.3s ease;
-}
-
-    .partner-logo-modern:hover {
-        filter: grayscale(0%);
-        opacity: 1;
-        transform: scale(1.08);
-    }
-
-@keyframes scrollLogos {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-@media (min-width: 992px) {
-    .partner-logo-modern {
-        max-height: 60px;
-    }
-}
-
-/* ==========================================================================
-   9. KHỐI NHẬN XÉT (TESTIMONIAL)
-   ========================================================================== */
-.testimonial-section-modern {
-    padding: 80px 0;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%), url('image_d6af7e.jpg') no-repeat center center/cover;
-    position: relative;
-    overflow: hidden;
-}
-
-.testimonial-tagline {
-    color: var(--logo-yellow);
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-.testimonial-main-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #ffffff;
-    text-transform: uppercase;
-    margin-bottom: 45px;
-}
-
-.testimonial-marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marqueeTestimonials 35s linear infinite;
-}
-
-    .testimonial-marquee-track:hover {
-        animation-play-state: paused;
-    }
-
-.testimonial-box-card {
-    background-color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 35px 25px;
-    width: 380px;
-    margin: 0 15px;
+.why-floating-badge {
+    position: absolute;
+    left: -20px;
+    bottom: 10px;
+    background-color: var(--primary-dark);
+    border: 1px solid var(--luxury-amber);
+    padding: 15px 25px;
+    border-radius: 4px;
+    z-index: 3;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s ease;
+    align-items: center;
+    gap: 5px;
 }
 
-.testimonial-quote-icon {
-    font-size: 1.8rem;
-    color: var(--logo-yellow-dark);
-    margin-bottom: 15px;
+    .why-floating-badge i {
+        color: var(--luxury-amber);
+        font-size: 1.4rem;
+    }
+
+    .why-floating-badge span {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--bright-bg);
+    }
+
+.why-subtitle {
+    color: var(--luxury-amber);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.testimonial-card-text {
-    color: var(--text-dark);
+    .why-subtitle::before {
+        content: '';
+        width: 30px;
+        height: 1px;
+        background-color: var(--luxury-amber);
+        display: inline-block;
+    }
+
+.why-title {
+    font-family: var(--font-heading);
+    font-size: 3.2rem;
+    line-height: 1.15;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 15px 0 25px;
+}
+
+.why-desc {
+    color: var(--text-muted);
+    font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.7;
-    text-align: justify;
-    margin-bottom: 25px;
-    flex-grow: 1;
+    margin-bottom: 35px;
 }
 
-.testimonial-author-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-top: 1px solid var(--logo-gray-main);
-    padding-top: 15px;
-}
-
-.author-avatar-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--logo-gray-light);
-    color: var(--logo-yellow-dark);
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.95rem;
-    border: 1px solid rgba(229, 184, 0, 0.2);
-}
-
-.author-meta {
-    text-align: left;
-}
-
-.author-name-modern {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 2px;
-}
-
-.author-job-modern {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-bottom: 0;
-}
-
-.testimonial-box-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--logo-yellow);
-    box-shadow: 0 15px 35px rgba(229, 184, 0, 0.15);
-}
-
-@keyframes marqueeTestimonials {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-@media (max-width: 767.98px) {
-    .testimonial-section-modern {
-        padding: 50px 0;
-    }
-
-    .testimonial-main-title {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-    }
-
-    .testimonial-box-card {
-        width: 290px;
-        padding: 25px 20px;
-    }
-}
-
-/* ==========================================================================
-   10. KHỐI TIN TỨC & SOCIAL BUTTONS
-   ========================================================================== */
-.news-section-modern {
-    border-top: 1px solid var(--logo-gray-main);
-    position: relative;
-}
-
-.bg-news-left {
-    background-color: #E2E8F0;
-}
-
-.bg-news-right {
-    background-color: var(--logo-yellow);
-}
-
-.news-block-title {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    letter-spacing: 0.5px;
-    position: relative;
-}
-
-.bg-white-card {
-    background-color: #ffffff;
-}
-
-.news-item-horizontal {
+.why-feature-box {
+    background-color: var(--soft-sand);
+    border-radius: 8px;
+    padding: 22px 25px;
+    margin-bottom: 15px;
     display: flex;
     align-items: flex-start;
-    gap: 15px;
-    padding: 12px 0;
+    gap: 20px;
+    border-left: 4px solid transparent;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    transition: all 0.3s ease;
 }
 
-.news-thumb-box {
-    width: 100px;
-    height: 75px;
-    flex-shrink: 0;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-}
-
-    .news-thumb-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-.news-item-horizontal:hover .news-thumb-box img {
-    transform: scale(1.08);
-}
-
-.news-info-box {
-    flex-grow: 1;
-}
-
-.news-item-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 5px;
-}
-
-    .news-item-title a {
-        text-decoration: none;
-        color: var(--text-dark);
-        transition: color 0.2s ease;
-    }
-
-        .news-item-title a:hover, .news-item-title a.text-dark-link:hover {
-            color: var(--logo-yellow-dark) !important;
-        }
-
-        .news-item-title a.text-dark-link {
-            color: #0f172a !important;
-        }
-
-.news-meta-data {
-    font-size: 0.8rem;
-    color: #64748b;
-    font-weight: 500;
-}
-
-.text-muted-dark {
-    color: #94a3b8 !important;
-}
-
-.border-bottom-dashed {
-    border-bottom: 1px dashed #e2e8f0;
-}
-
-.view-more-news-btn {
-    color: var(--text-dark);
-    font-weight: 800;
-    font-size: 0.9rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    transition: all 0.2s ease;
-}
-
-    .view-more-news-btn:hover {
-        color: #ffffff;
+    .why-feature-box:hover {
+        border-left-color: var(--luxury-amber);
         transform: translateX(5px);
+        background-color: var(--bright-bg);
+        box-shadow: 0 10px 25px rgba(217,160,91,0.1);
     }
 
-/* WIDGETS NÚT LIÊN HỆ NỔI */
-.sticky-social-widgets {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 9999;
-}
-
-.widget-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 1.4rem;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-    .widget-icon:hover {
-        transform: scale(1.12);
-        color: #ffffff;
-    }
-
-.zalo-bg {
-    background: #0068FF;
-}
-
-.phone-bg {
-    background: #FF3B30;
-}
-
-.animate-shake {
-    animation: shakeEffect 2.5s infinite;
-}
-
-@keyframes shakeEffect {
-    0%, 100% {
-        transform: rotate(0);
-    }
-
-    10%, 30%, 50% {
-        transform: rotate(-10deg);
-    }
-
-    20%, 40%, 60% {
-        transform: rotate(10deg);
-    }
-
-    70% {
-        transform: rotate(0);
-    }
-}
-
-@media (max-width: 991.98px) {
-    .news-block-title {
-        font-size: 1.5rem;
-    }
-
-    .news-item-title {
-        font-size: 0.95rem;
-    }
-
-    .widget-icon {
-        width: 45px;
-        height: 45px;
-        font-size: 1.2rem;
-    }
-}
-/* Khung nhìn giới hạn hiển thị, ẩn phần tràn */
-.mv-team-viewport {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    padding: 15px 5px; /* Tránh mất bóng shadow đổ dưới card */
-}
-
-/* Băng tải xếp ngang toàn bộ card */
-.mv-team-track {
-    display: flex;
-    gap: 24px; /* Khoảng cách giữa các thẻ (tương đương g-4 của bootstrap) */
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform;
-}
-
-/* Cấu hình hiển thị số card trên các màn hình */
-.mv-team-slide {
-    flex: 0 0 100%; /* Mặc định Mobile: hiển thị 1 card */
-    width: 100%;
-}
-
-@media (min-width: 768px) {
-    .mv-team-slide {
-        /* Màn hình Tablet: hiển thị 2 card (trừ hao đi khoảng gap 24px) */
-        flex: 0 0 calc((100% - 24px) / 2);
-    }
-}
-
-@media (min-width: 992px) {
-    .mv-team-slide {
-        /* Màn hình PC Desktop: hiển thị 3 card (trừ hao đi 2 khoảng gap) */
-        flex: 0 0 calc((100% - (24px * 2)) / 3);
-    }
-}
-
-/* Loại bỏ class hover cũ làm ẩn chữ nếu không thích, giữ style của bạn */
-.team-card {
-    height: 100%;
-}
-.main-footer-modern {
-    background-color: #18181B; /* Màu đen carbon huyền bí sang trọng thay cho màu đen tuyền cũ */
-    color: #E4E4E7;
-    padding: 70px 0 50px 0;
-    border-top: 4px solid var(--primary-yellow); /* Dải line vàng gold mảnh định hình phía trên top footer giống như mẫu */
-    font-size: 0.925rem;
-}
-
-/* Khối nhận diện thương hiệu cột 1 */
-.footer-logo {
-    max-height: 65px;
-    width: auto;
-}
-
-.footer-brand-name {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--primary-yellow);
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-}
-
-.footer-brand-slogan {
-    font-size: 0.85rem;
-    color: #A1A1AA;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-}
-
-.footer-copyright {
-    font-size: 0.8rem;
-    color: #71717A;
-    margin-bottom: 15px;
-}
-
-/* Các biểu tượng MXH của cột thương hiệu */
-.footer-social-links a.social-icon-item {
-    color: #A1A1AA;
-    font-size: 1.1rem;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.why-feature-icon {
+    background-color: rgba(217, 160, 91, 0.08);
+    border: 1px solid rgba(217, 160, 91, 0.2);
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--luxury-amber);
+    font-size: 0.85rem;
+    margin-top: 2px;
+    flex-shrink: 0;
 }
 
-    .footer-social-links a.social-icon-item:hover {
-        color: var(--slate-dark);
-        background-color: var(--primary-yellow);
-        border-color: var(--primary-yellow);
-        transform: translateY(-3px);
+.why-feature-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    letter-spacing: 0.3px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.why-feature-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.why-quote {
+    border-left: 3px solid var(--luxury-amber);
+    padding-left: 20px;
+    margin-top: 35px;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--primary-dark);
+    line-height: 1.45;
+}
+
+/* --- KHỐI 3: QUY TRÌNH GIA CÔNG (TIMELINE DỌC) --- */
+.process-section {
+    background-color: var(--primary-dark);
+    color: var(--bright-bg);
+    padding: 100px 0;
+}
+
+.modern-process-sec {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 60px 40px;
+}
+
+.process-left-sub {
+    color: var(--luxury-amber);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+    .process-left-sub::before {
+        content: '';
+        width: 30px;
+        height: 1px;
+        background-color: var(--luxury-amber);
+        display: inline-block;
     }
 
-/* Tiêu đề cột */
-.footer-column-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #FFFFFF;
+.process-left-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--bright-bg);
     margin-bottom: 25px;
+}
+
+.process-left-desc {
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 300;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+.process-left-quote {
+    border-left: 3px solid var(--luxury-amber);
+    padding-left: 20px;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 35px;
+    line-height: 1.4;
+}
+
+.process-left-img-wrapper {
     position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 280px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+    .process-left-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.timeline-container {
+    position: relative;
+    padding-left: 40px;
+}
+
+    .timeline-container::before {
+        content: '';
+        position: absolute;
+        left: 17px;
+        top: 25px;
+        bottom: 25px;
+        width: 1px;
+        background-color: rgba(255, 255, 255, 0.12);
+        z-index: 1;
+    }
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 45px;
+}
+
+    .timeline-item:last-child {
+        padding-bottom: 0;
+    }
+
+.timeline-icon-node {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--primary-dark);
+    border: 1px solid var(--luxury-amber);
+    color: var(--luxury-amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-icon-node {
+    background-color: var(--luxury-amber);
+    color: var(--primary-dark);
+    box-shadow: 0 0 12px rgba(217, 160, 91, 0.4);
+}
+
+.timeline-content-box {
+    padding-left: 20px;
+}
+
+.timeline-node-title {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--bright-bg);
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.timeline-node-desc {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* --- KHỐI 4: KHU VỰC KÝ KẾT --- */
+.signing-section {
+    background-color: var(--soft-sand);
+    padding: 100px 0;
+}
+
+.signing-card {
+    background: var(--bright-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(43, 36, 33, 0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    height: 100%;
+}
+
+.signing-img-wrapper {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+    .signing-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.signing-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--luxury-amber);
+    padding: 4px 14px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--bright-bg);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.signing-card h5 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+}
+
+/* --- KHỐI 5: THÔNG SỐ STATS --- */
+.stats-section {
+    background-color: var(--bright-bg);
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(43, 36, 33, 0.05);
+}
+
+.stat-box-ultra {
+    background: var(--soft-sand);
+    border: 1px solid rgba(217, 160, 91, 0.1);
+    padding: 35px 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat-big {
+    font-size: 3.5rem;
+    color: var(--primary-dark);
+    font-family: var(--font-heading);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* --- POPUP MODAL THEO DÕI ALBUM ẢNH --- */
+.album-modal .modal-dialog {
+    max-width: 95vw;
+    width: 1350px;
+}
+
+.album-modal .modal-content {
+    background-color: #000000;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.album-main-zone {
+    position: relative;
+    background-color: #080808;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.album-main-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.album-sidebar {
+    background-color: #ffffff;
+    height: 75vh;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.sidebar-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0d6efd;
+    border-bottom: 2px solid #0d6efd;
+    padding-bottom: 6px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-/* Cột danh sách liên kết nhanh (Quick Links) */
-.footer-links-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+.thumb-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
 }
 
-    .footer-links-list li a {
-        color: #A1A1AA;
-        text-decoration: none;
-        transition: var(--transition);
-        display: inline-block;
-        font-weight: 500;
-    }
-
-        .footer-links-list li a:hover {
-            color: var(--primary-yellow);
-            transform: translateX(4px);
-        }
-
-/* Cột Thông tin liên hệ */
-.footer-contact-info {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-    .footer-contact-info li {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        color: #D4D4D8;
-        line-height: 1.5;
-    }
-
-        .footer-contact-info li .contact-icon {
-            color: var(--primary-yellow);
-            font-size: 1rem;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .footer-contact-info li a {
-            color: #D4D4D8;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-            .footer-contact-info li a:hover {
-                color: var(--primary-yellow);
-            }
-
-/* Hộp bản đồ cột phải */
-.footer-map-card {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
+.thumb-item {
+    aspect-ratio: 4/3;
+    border-radius: 4px;
     overflow: hidden;
-    background: #27272A;
-    padding: 4px;
-    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
 }
 
-    .footer-map-card:hover {
-        border-color: rgba(229, 184, 0, 0.3);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+    .thumb-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-/* Tối ưu hóa phản hồi hiển thị trên các thiết bị di động nhỏ */
-@media (max-width: 767.98px) {
-    .main-footer-modern {
-        padding: 50px 0 40px 0;
-        text-align: center;
+    .thumb-item.active {
+        border-color: #0d6efd;
+        box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
     }
 
-    .footer-column-title {
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-
-    .footer-contact-info li {
-        justify-content: center;
-    }
+.album-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-/* Sử dụng thuộc tính hover để hiển thị menu cấp 2 */
-@media (min-width: 992px) { /* Chỉ áp dụng trên máy tính (Desktop), trên điện thoại vẫn nên chạm */
-    .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
-        display: block;
-        margin-top: 0; /* Tránh khoảng trống khiến menu bị mất khi di chuột xuống */
-        visibility: visible;
+
+    .album-nav-btn:hover {
+        background: var(--luxury-amber);
+        scale: 1.05;
+    }
+
+.album-prev {
+    left: 20px;
+}
+
+.album-next {
+    right: 20px;
+}
+
+.close-album-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    z-index: 10;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+    .close-album-modal:hover {
         opacity: 1;
-        transform: translateY(0);
-        transition: all 0.3s ease;
     }
 
-    /* Hiệu ứng mượt mà khi ẩn/hiện (Tùy chọn) */
-    .navbar-nav .nav-item.dropdown .dropdown-menu {
-        display: block;
-        visibility: hidden;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.3s ease;
+@media (max-width: 991px) {
+    .album-main-zone {
+        height: 50vh;
+    }
+
+    .album-sidebar {
+        height: auto;
+        max-height: 35vh;
+    }
+
+    .why-choose-sec, .project-section, .process-section, .signing-section {
+        padding: 60px 0;
+    }
+
+    .why-title, .process-left-title {
+        font-size: 2.2rem;
+    }
+
+    .why-main-img {
+        height: 350px;
+    }
+
+    .timeline-container {
+        margin-top: 20px;
     }
 }
+
+/* --- FOOTER --- */
+.footer-luxury {
+    background-color: #191412;
+    color: rgba(255,255,255,0.5);
+    padding: 70px 0 30px;
+    border-radius: 24px 24px 0 0;
+}
+
+.footer-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    .footer-link:hover {
+        color: var(--luxury-amber);
+    }
+
+

@@ -3,81 +3,548 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Công ty Luật TNHH MV | Trách nhiệm tạo niềm tin</title>
-    <meta name="description" content="Công ty Luật TNHH MTV - Cung cấp dịch vụ tư vấn pháp luật chuyên nghiệp, bào chữa, tranh tụng và hỗ trợ thủ tục pháp lý uy tín, hiệu quả hàng đầu.">
-    <meta name="keywords" content="Cong ty Luat TNHH MTV">
-    <meta name="author" content="Công ty Luật TNHH MTV">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="~/css-moi/style.css">
-    <link rel="icon" type="image/x-icon" href="~/css-moi/logo_luat.png">
+    <title>Nội Thất Tâm An</title>
+    <!-- Google Fonts: Cormorant Garamond (Sang trọng) & Be Vietnam Pro (Hiện đại, dễ đọc) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Bootstrap 5.3.2 CSS & JS Bundle -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Swiper 11 CSS & JS (Thư viện xử lý slide trượt ngang mượt mà nhất) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="~/css-moi/style.css" rel="stylesheet" />
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg py-3 sticky-top">
+    <!-- 1. THANH ĐIỀU HƯỚNG ĐÈ LÊN BANNER -->
+    <nav class="navbar navbar-expand-lg py-4">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="~/css-moi/logo_luat.png" alt="Logo Luật MV">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <svg width="42" height="42" viewBox="0 0 100 100" class="me-2">
+                    <polygon points="50,12 88,45 78,45 78,85 22,85 22,45 12,45" fill="none" stroke="#FFFFFF" stroke-width="5" />
+                    <text x="26" y="75" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="bold" fill="#FFFFFF">T</text>
+                    <text x="48" y="75" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="bold" fill="#D9A05B">A</text>
+                </svg>
+                <div class="d-flex flex-column">
+                    <span class="fw-bold lh-1 text-white" style="font-size: 1.4rem; letter-spacing: 0.5px;">NỘI THẤT TÂM AN</span>
+                    <span class="text-uppercase" style="font-size: 0.6rem; color: var(--luxury-amber); letter-spacing: 2px; font-weight:600;">Xưởng sản xuất công nghệ cao</span>
+                </div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mvNavbar">
+            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#luxuryNav" style="filter: invert(1);">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="mvNavbar">
-                @{ Html.RenderAction("Menu", "Home"); }
+            <div class="collapse navbar-collapse" id="luxuryNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#du-an">Dự Án Thực Tế</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tai-sao-chon">Ưu Điểm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quy-trinh">Quy Trình</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ky-ket">Hợp Đồng & Sự Kiện</a></li>
+                    <li class="nav-item ms-lg-3"><a href="#lien-he" class="btn btn-luxury py-2 px-4 text-white text-decoration-none">Nhận Báo Giá</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    @RenderBody()
+    <!-- 2. HERO BANNER BAN ĐẦU -->
+    <div id="heroSliders" class="carousel slide carousel-fade hero-premium" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators" style="z-index: 5;">
+            <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="0" class="active" aria-current="true"></button>
+            <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroSliders" data-bs-slide-to="2"></button>
+        </div>
 
-    <footer class="main-footer-modern">
-        <div class="container">
-            <div class="row g-4 justify-content-between">
-                <div class="col-lg-3 col-md-6 footer-brand-column text-center text-md-start">
-                    <div class="footer-logo-wrapper mb-3">
-                        <img src="~/css-moi/logo_luat.png" alt="Công Ty Luật TNHH MV" class="img-fluid footer-logo" style="filter: brightness(0) invert(1); max-height: 50px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80');">
+                <div class="carousel-caption-custom hero-premium">
+                    <div class="container text-start">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-tag mb-3"><i class="fa-solid fa-industry me-2"></i>MÁY MÓC TỰ ĐỘNG ĐỒNG BỘ</div>
+                                <h1 class="mb-4">Xưởng Gia Công Gỗ<br>Công Nghiệp <span style="color: var(--luxury-amber); font-style: italic;">Đỉnh Cao Sắc Nét</span></h1>
+                                <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Giải pháp cắt tấm Nesting CNC và dán cạnh không đường line hàng đầu. Trợ thủ sản xuất đáng tin cậy cho các Kiến trúc sư.</p>
+                                <div class="d-flex gap-3 flex-wrap">
+                                    <a href="#du-an" class="btn btn-luxury">Xem Dự Án <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                                    <a href="tel:0900000000" class="btn btn-outline-light px-4 py-2 border-secondary text-white text-decoration-none" style="border-radius: 4px;"><i class="fa-solid fa-phone me-2 text-warning"></i>090.000.0000</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="footer-brand-name text-uppercase">Công Ty Luật TNHH MV</h3>
-                    <p class="footer-brand-slogan">Trách nhiệm tạo niềm tin</p>
-                    <p class="footer-copyright">Copyright 2025 © Công ty Luật TNHH MV</p>
                 </div>
-                <div class="col-lg-2 col-md-6 ps-lg-4">
-                    <h4 class="footer-column-title text-uppercase">Giới thiệu</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="#">Dịch vụ</a></li>
-                        <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">Kiến thức</a></li>
-                        <li><a href="#">Liên hệ</a></li>
-                    </ul>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1920&q=80');">
+                <div class="carousel-caption-custom hero-premium">
+                    <div class="container text-start">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-tag mb-3"><i class="fa-solid fa-robot me-2"></i>CÔNG NGHỆ NESTING 2026</div>
+                                <h1 class="mb-4">Tối Ưu Hóa Vật Tư<br>Đạt Độ Chính Xác <span style="color: var(--luxury-amber); font-style: italic;">Đến Từng Milimet</span></h1>
+                                <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Bóc tách tự động bằng phần mềm chuyên dụng, tối ưu hóa sơ đồ xếp ván giúp tiết kiệm chi phí tối đa cho nhà thầu.</p>
+                                <div class="d-flex gap-3 flex-wrap">
+                                    <a href="#quy-trinh" class="btn btn-luxury">Tìm Hiểu Quy Trình <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <h4 class="footer-column-title text-uppercase">Công Ty Luật TNHH MV</h4>
-                    <ul class="footer-contact-info">
-                        <li><i class="fas fa-map-marker-alt contact-icon"></i><span><strong>Địa chỉ:</strong> Tòa K1, Chung cư Khai Sơn City, Thượng Thanh, Long Biên, Hà Nội</span></li>
-                        <li><i class="fas fa-phone-alt contact-icon"></i><span><strong>Số điện thoại:</strong> 0903 492 866</span></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-map-card shadow-sm">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4736691456107!2d105.88298787595353!3d21.053735986835263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a975765089ef%3A0x6b8aa7571cc2ee1b!2zQ2h1bmcgY8awIEtoYWkgU8ahbiBDaXR5!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s" width="100%" height="180" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=1920&q=80');">
+                <div class="carousel-caption-custom hero-premium">
+                    <div class="container text-start">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-tag mb-3"><i class="fa-solid fa-gem me-2"></i>VẬT LIỆU CAO CẤP CHÍNH HÃNG</div>
+                                <h1 class="mb-4">Bề Mặt Hoàn Thiện<br>Mịn Màng <span style="color: var(--luxury-amber); font-style: italic;">Không Đường Line</span></h1>
+                                <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Chuyên xử lý dán nẹp kháng nước Acrylic, Laminate phẳng tuyệt đối, không bong tróc, kiến tạo vẻ đẹp không gian thượng lưu.</p>
+                                <div class="d-flex gap-3 flex-wrap">
+                                    <a href="#ky-ket" class="btn btn-luxury">Hợp Tác Chiến Lược <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    <div class="sticky-social-widgets">
-        <a href="https://zalo.me/0903492866" target="_blank" class="widget-icon zalo-bg" title="Chat Zalo">
-            <i class="fa-solid fa-comment-dots"></i>
-        </a>
-        <a href="tel:0903492866" class="widget-icon phone-bg" title="Gọi ngay">
-            <i class="fa-solid fa-phone animate-shake"></i>
-        </a>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/css-moi/script.js"></script>
-    @RenderSection("scripts", required: false)
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroSliders" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroSliders" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+        <a href="#du-an" class="scroll-down-hint"><i class="fa-solid fa-chevron-down"></i></a>
+    </div>
+
+    <!-- KHỐI 1: GALLERY DỰ ÁN TIÊU BIỂU (HỆ THỐNG TRƯỢT NGANG SMOOTH SLIDE) -->
+    <section id="du-an" class="project-section">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
+                <div>
+                    <span class="text-uppercase text-muted fw-bold small tracking-widest d-block mb-1">// KHÔNG GIAN SÁNG TẠO</span>
+                    <h2 class="section-title">Dự Án <span>Tiêu Biểu</span></h2>
+                </div>
+
+                <div class="mt-3 mt-md-0 d-flex gap-1 flex-wrap align-items-center">
+                    <!-- Các nút bấm kích hoạt bộ lọc loại hình -->
+                    <button class="project-filter-btn active" onclick="filterProjects('all', this)">Tất Cả</button>
+                    <button class="project-filter-btn" onclick="filterProjects('villa', this)">Biệt Thự</button>
+                    <button class="project-filter-btn" onclick="filterProjects('apartment', this)">Căn Hộ</button>
+                    <button class="project-filter-btn" onclick="filterProjects('office', this)">Văn Phòng</button>
+
+                    <div class="d-none d-md-flex gap-2 ms-3">
+                        <div class="swiper-nav-ctrl project-swiper-prev"><i class="fa-solid fa-arrow-left"></i></div>
+                        <div class="swiper-nav-ctrl project-swiper-next"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Khung trượt Swiper chính -->
+            <div class="swiper project-swiper">
+                <div class="swiper-wrapper" id="swiperProjectWrapper">
+                    <!-- Danh sách slide gốc sẽ được quản lý hoàn toàn bằng cơ chế mảng dữ liệu JS phía dưới -->
+                </div>
+                <div class="swiper-pagination project-swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KHỐI 2: TẠI SAO CHỌN XƯỞNG NỘI THẤT TÂM AN -->
+    <section id="tai-sao-chon" class="why-choose-sec">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="why-image-container">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Không gian kiến trúc Tâm An" class="why-main-img">
+                        <div class="why-floating-badge">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Đối Tác Tin Cậy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="why-content-zone">
+                        <div class="why-subtitle">Tại sao chọn xưởng nội thất Tâm An?</div>
+                        <h2 class="why-title">Biến ý tưởng của bạn<br>thành hiện thực</h2>
+                        <p class="why-desc">
+                            <strong>NỘI THẤT TÂM AN</strong> là nhà xưởng chế tác mộc công nghiệp tự động hoá CNC quy mô lớn, đối tác đáng tin cậy cung cấp dịch vụ <strong>THIẾT KẾ KIẾN TRÚC - NỘI THẤT & THI CÔNG TRỌN GÓI</strong>. Từ nét vẽ phác thảo đầu tiên đến sản phẩm lắp ráp hoàn thiện kịch trần, chúng tôi đồng hành kiến tạo công trình hội tụ:
+                        </p>
+
+                        <div class="why-feature-box">
+                            <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
+                            <div>
+                                <h4 class="why-feature-title">Chất Lượng Cao</h4>
+                                <p class="why-feature-desc">An safe cốt ván chống ẩm – Đúng kỹ thuật bóc tách – Vách gỗ chịu lực vượt trội.</p>
+                            </div>
+                        </div>
+
+                        <div class="why-feature-box">
+                            <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
+                            <div>
+                                <h4 class="why-feature-title">Thẩm Mỹ Tinh Tế</h4>
+                                <p class="why-feature-desc">Phối màu vật liệu hoàn hảo, xử lý dán nẹp chỉ kháng nước tinh xảo không đường line.</p>
+                            </div>
+                        </div>
+
+                        <div class="why-feature-box">
+                            <div class="why-feature-icon"> <i class="fa-solid fa-check"></i> </div>
+                            <div>
+                                <h4 class="why-feature-title">Bền Vững Theo Thời Gian</h4>
+                                <p class="why-feature-desc">Giải pháp kết cấu module liên kết cam chốt âm thông minh, tối ưu công năng, tiết kiệm vật tư.</p>
+                            </div>
+                        </div>
+
+                        <div class="why-quote">
+                            "Mỗi bức tường không chỉ giới hạn không gian – đó là bệ đỡ cho kỷ niệm, nơi lưu giữ niềm tự hào và hạnh phúc gia đình bạn."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KHỐI 3: QUY TRÌNH GIA CÔNG TIMELINE DỌC -->
+    <section id="quy-trinh" class="process-section">
+        <div class="container">
+            <div class="modern-process-sec">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="process-left-sub">Quy Trình Làm Việc</div>
+                        <h2 class="process-left-title">Vận Hành Đồng Bộ<br>Quy Chuẩn Cao</h2>
+                        <p class="process-left-desc">
+                            Nhờ hệ thống tự động hoá khép kín từ bản vẽ đến máy cắt Nesting CNC, xưởng Tâm An cam kết quy trình tối ưu vật tư, hạn chế rủi ro sai sót tối đa cho công trình.
+                        </p>
+                        <div class="process-left-quote">
+                            "Mỗi bước vận hành là một cam kết bằng chuyên môn – không chỉ là sản xuất, mà là sự an tâm tuyệt đối cho chủ đầu tư."
+                        </div>
+                        <div class="process-left-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Mô phỏng vận hành máy móc CNC">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="timeline-container">
+                            <div class="timeline-item">
+                                <div class="timeline-icon-node"> <i class="fa-solid fa-desktop"></i> </div>
+                                <div class="timeline-content-box">
+                                    <h4 class="timeline-node-title">01. Số Hóa Bản Vẽ Kỹ Thuật</h4>
+                                    <p class="timeline-node-desc">Chuyển đổi file phối cảnh 3D sang sơ đồ gia công liên kết cam chốt âm tự động bằng phần mềm chuyên dụng, tối ưu hoá sơ đồ xếp ván tiết kiệm chi phí vật tư tối đa.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon-node"> <i class="fa-solid fa-gears"></i> </div>
+                                <div class="timeline-content-box">
+                                    <h4 class="timeline-node-title">02. Cắt Nesting CNC & Dán Cạnh Không Line</h4>
+                                    <p class="timeline-node-desc">Vận hành dây chuyền cắt tự động đạt độ chính xác milimet. Xử lý dán nẹp cạnh kháng nước bằng công nghệ keo Pur cao cấp giúp bề mặt phẳng mịn vô hình, không lo bong tróc.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon-node"> <i class="fa-solid fa-box-open"></i> </div>
+                                <div class="timeline-content-box">
+                                    <h4 class="timeline-node-title">03. Đóng Gói Định Danh & Lắp Ráp Nghiệm Thu</h4>
+                                    <p class="timeline-node-desc">Gắn tem mã vạch định danh từng chi tiết tấm ván. Đóng gói bọc bảo vệ góc chuyên nghiệp trước khi vận chuyển ráp khối hoàn thiện tại xưởng hoặc bàn giao lắp đặt đúng tiến độ công trình.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KHỐI 4: KHU VỰC KÝ KẾT HỢP ĐỒNG -->
+    <section id="ky-ket" class="signing-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="text-uppercase text-muted fw-bold small tracking-widest d-block mb-1">// UY TÍN KHẲNG ĐỊNH</span>
+                <h2 class="section-title">Ký Kết Hợp Đồng <span>& Sự Kiện</span></h2>
+                <p class="text-muted mt-2 mx-auto small" style="max-width: 550px;">Minh chứng cho năng lực thực thi, tiến độ chuẩn xác và niềm tin của các chủ đầu tư lớn dành cho xưởng Nội Thất Tâm An.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="signing-card">
+                        <div class="signing-img-wrapper">
+                            <span class="signing-badge">Hợp Tác Chiến Lược</span>
+                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80" alt="Lễ ký kết">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="text-dark mb-2">Ký Kết Cung Ứng Gỗ Dự Án Căn Hộ Cao Cấp</h5>
+                            <p class="text-muted small mb-0">Lễ ký kết biên bản ghi nhớ cung ứng độc quyền toàn bộ hạng mục gỗ công nghiệp An Cường cho chuỗi căn hộ hạng sang.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="signing-card">
+                        <div class="signing-img-wrapper">
+                            <span class="signing-badge">Bàn Giao Bản Vẽ</span>
+                            <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80" alt="Chốt kỹ thuật">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="text-dark mb-2">Chốt Phương Án Kỹ Thuật Đơn Vị Thiết Kế</h5>
+                            <p class="text-muted small mb-0">Đội ngũ kỹ sư trưởng Tâm An họp bàn chi tiết cùng Giám đốc thiết kế đối tác để chốt sơ đồ bóc tách liên kết cam chốt âm.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="signing-card">
+                        <div class="signing-img-wrapper">
+                            <span class="signing-badge">Nghiệm Thu Thành Phẩm</span>
+                            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80" alt="Nghiệm thu căn hộ mẫu">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="text-dark mb-2">Bàn Giao Nghiệm Thu Đúng Tiến Độ</h5>
+                            <p class="text-muted small mb-0">Đại diện chủ đầu tư đánh giá rất cao độ sắc nét của góc cạnh ván và sự chính xác khớp nối của hệ tủ kịch trần.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KHỐI 5: THÔNG SỐ STATS -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-box-ultra">
+                        <div class="stat-big">500+</div>
+                        <div class="stat-label text-uppercase text-muted">Dự án bàn giao</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box-ultra">
+                        <div class="stat-big">10+</div>
+                        <div class="stat-label text-uppercase text-muted">Năm phát triển</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box-ultra">
+                        <div class="stat-big">100%</div>
+                        <div class="stat-label text-uppercase text-muted">Ván chuẩn An Cường</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box-ultra">
+                        <div class="stat-big">2000m²</div>
+                        <div class="stat-label text-uppercase text-muted">Diện tích nhà xưởng</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer id="lien-he" class="footer-luxury">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <svg width="38" height="38" viewBox="0 0 100 100" class="me-2">
+                            <polygon points="50,12 88,45 78,45 78,85 22,85 22,45 12,45" fill="none" stroke="#FFFFFF" stroke-width="5" />
+                            <text x="26" y="75" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="bold" fill="#FFFFFF">T</text>
+                            <text x="48" y="75" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="bold" fill="#D9A05B">A</text>
+                        </svg>
+                        <span class="text-white h4 m-0">TÂM AN</span>
+                    </div>
+                    <p class="small text-white-50">Nhà xưởng gia công chế tác mộc công nghiệp tự động hóa CNC quy mô lớn. Đối tác cung ứng uy tín của các văn phòng kiến trúc sư.</p>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4" style="font-size: 1.1rem; letter-spacing: 0.5px;">DỊCH VỤ CHÍNH</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="#" class="footer-link">Cắt gỗ CNC Nesting hàng loạt</a></li>
+                        <li><a href="#" class="footer-link">Dán nẹp chỉ đuôi dài không đường line</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <h5 class="text-white mb-4" style="font-size: 1.1rem; letter-spacing: 0.5px;">THÔNG TIN NHÀ XƯỞNG</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-3">
+                        <li class="d-flex align-items-start"><i class="fa-solid fa-location-dot text-warning me-2 mt-1"></i> <span>Khu Công Nghiệp Thạch Thất, Thạch Thất, Hà Nội</span></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4 border-secondary opacity-25">
+            <div class="d-flex flex-column flex-md-row justify-content-between text-white-50 small">
+                <p class="m-0">&copy; 2026 Nội Thất Tâm An. Bảo lưu mọi quyền.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- POPUP MODAL XEM ALBUM HÌNH ẢNH DỰ ÁN -->
+    <div class="modal fade album-modal" id="projectAlbumModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white">
+                <div class="row g-0 position-relative">
+                    <button type="button" class="close-album-modal" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="col-lg-9 album-main-zone">
+                        <button class="album-nav-btn album-prev" onclick="navigateAlbum(-1)">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <img id="modalMainImg" src="" alt="Dự án phóng to" class="album-main-img">
+                        <button class="album-nav-btn album-next" onclick="navigateAlbum(1)">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="col-lg-3 album-sidebar">
+                        <div class="sidebar-title" id="modalAlbumTitle">Album</div>
+                        <div class="thumb-grid" id="modalThumbGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT ĐIỀU KHIỂN HOẠT ẢNH TRƯỢT NGANG (SWIPER RE-LOGIC) -->
+    <script>
+        // Mảng cơ sở dữ liệu gốc để tránh việc dùng display:none làm gãy animation của Swiper
+        const MASTER_PROJECTS = [
+            { type: 'villa', title: 'Penthouse Ciputra', desc: 'MDF chống ẩm phủ Acrylic bóng gương', img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'apartment', title: 'Vinhomes Ocean Park', desc: 'Hệ tủ âm trần cánh kính cao cấp', img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'office', title: 'HQ Techcombank', desc: 'Bàn họp lớn ghép vân Veneer Óc Chó', img: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'villa', title: 'Luxury Villa Phú Quốc', desc: 'Cốt nhựa Picomat kháng nước tuyệt đối', img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'apartment', title: 'Gateway Thảo Điền', desc: 'Hệ tủ bếp Module thông minh cam chốt', img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'] },
+            { type: 'apartment', title: 'Liền Kề Hà Đông', desc: 'Vách nan trang trí chạy CNC uốn lượn', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'] }
+        ];
+
+        let currentAlbum = [];
+        let currentImgIndex = 0;
+        let myModal = null;
+        let projectSwiper = null;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Khởi tạo Swiper Core ban đầu
+            projectSwiper = new Swiper('.project-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 24,
+                grabCursor: true,
+                observer: true,
+                observeParents: true,
+                pagination: { el: '.project-swiper-pagination', clickable: true },
+                navigation: { nextEl: '.project-swiper-next', prevEl: '.project-swiper-prev' },
+                breakpoints: {
+                    576: { slidesPerView: 2 },
+                    992: { slidesPerView: 3 },
+                    1400: { slidesPerView: 4 }
+                }
+            });
+
+            // Giao tiếp render danh sách "Tất cả" ngay khi mở trang
+            renderProjectSlides('all');
+
+            if (typeof bootstrap !== 'undefined') {
+                myModal = new bootstrap.Modal(document.getElementById('projectAlbumModal'));
+            }
+        });
+
+        // HÀM CHUYỂN ĐỔI CHUẨN ANIMATION SLIDE TRƯỢT NGANG KHI BẤM NÚT LỌC LOẠI HÌNH
+        function filterProjects(type, buttonElement) {
+            const filterBtns = document.querySelectorAll('.project-filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            buttonElement.classList.add('active');
+
+            // 1. Tạo hiệu ứng đẩy/thu các slide cũ trượt lùi mịn màng ra khỏi tầm nhìn trước
+            projectSwiper.init();
+
+            // 2. Nạp dữ liệu mới vào Swiper sau khi lọc để kích hoạt animation lướt ngang mượt mà
+            renderProjectSlides(type);
+        }
+
+        function renderProjectSlides(typeFilter) {
+            const wrapper = document.getElementById('swiperProjectWrapper');
+            wrapper.innerHTML = ''; // Làm sạch bộ khung để nạp animation mới
+
+            // Lọc phần tử từ mảng Master
+            const filteredData = MASTER_PROJECTS.filter(item => typeFilter === 'all' || item.type === typeFilter);
+
+            // Xây dựng chuỗi thẻ HTML động chuẩn Swiper
+            filteredData.forEach(item => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'swiper-slide';
+
+                // Mã hóa mảng album sang chuỗi an toàn
+                const albumStr = JSON.stringify(item.album);
+
+                slideDiv.innerHTML = `
+                        <div class="project-card" onclick="openAlbumDirect(this, '${item.title}')" data-album='${albumStr}'>
+                            <img src="${item.img}" alt="${item.title}">
+                            <div class="project-overlay">
+                                <h5>${item.title}</h5>
+                                <p class="text-white-50 small mb-0">${item.desc}</p>
+                            </div>
+                        </div>
+                    `;
+                wrapper.appendChild(slideDiv);
+            });
+
+            // Ép Swiper tính toán lại trục đứng, chỉ số tọa độ trượt ngang ngay lập tức
+            projectSwiper.updateFields();
+            projectSwiper.update();
+            projectSwiper.slideTo(0, 400, true); // Thực hiện hoạt ảnh lướt về slide số 1 với thời gian 400ms mượt mà
+        }
+
+        // Xử lý cuộn sticky menu
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+        });
+
+        function openAlbumDirect(cardElement, title) {
+            const albumData = cardElement.getAttribute('data-album');
+            if (!albumData) return;
+
+            currentAlbum = JSON.parse(albumData);
+            currentImgIndex = 0;
+            document.getElementById('modalAlbumTitle').innerText = "Album: " + title;
+
+            const thumbGrid = document.getElementById('modalThumbGrid');
+            thumbGrid.innerHTML = '';
+
+            currentAlbum.forEach((imgUrl, index) => {
+                const thumbItem = document.createElement('div');
+                thumbItem.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+                thumbItem.onclick = function () { changeMainImage(index); };
+
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                thumbItem.appendChild(img);
+                thumbGrid.appendChild(thumbItem);
+            });
+
+            changeMainImage(0);
+            if (myModal) { myModal.show(); }
+        }
+
+        function changeMainImage(index) {
+            currentImgIndex = index;
+            document.getElementById('modalMainImg').src = currentAlbum[currentImgIndex];
+            const thumbs = document.querySelectorAll('.thumb-item');
+            thumbs.forEach(thumb => thumb.classList.remove('active'));
+            if (thumbs[index]) {
+                thumbs[index].classList.add('active');
+                thumbs[index].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function navigateAlbum(direction) {
+            if (currentAlbum.length === 0) return;
+            currentImgIndex += direction;
+            if (currentImgIndex >= currentAlbum.length) { currentImgIndex = 0; }
+            else if (currentImgIndex < 0) { currentImgIndex = currentAlbum.length - 1; }
+            changeMainImage(currentImgIndex);
+        }
+    </script>
 </body>
 </html>
