@@ -20,5 +20,6 @@ namespace web_luat.Models
         public string TieuDe { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public string Link { get; set; }
+        public Nullable<int> STT { get; set; }
     }
 }

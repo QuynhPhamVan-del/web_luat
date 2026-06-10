@@ -51,6 +51,11 @@
                         @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
                     </div>
                     <div class="infor-details">
+                        <label for="txtmaKH">Bước</label>
+                        @Html.EditorFor(model => model.STT, new { htmlAttributes = new { @class = "form-control", @type = "numbers" } })
+                        @Html.ValidationMessageFor(model => model.STT, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
                         <label for="txthoTen">Icon(<span style="color: red">*</span>)</label>
                         <input type="file" name="file" class="form-control" id="imageInput" />
                         <br />
@@ -62,7 +67,7 @@
                         </div>
                     </div>
                     <div class="infor-details">
-                        <label for="txtmaKH">Giới thiệu</label>
+                        <label for="txtmaKH">Mô tả</label>
                         @Html.EditorFor(model => model.GioiThieu, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.GioiThieu, "", new { @class = "text-danger" })
                     </div>

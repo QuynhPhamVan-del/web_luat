@@ -123,6 +123,7 @@
     <EntitySetMapping Name="tbl_LienKetKhoa">
       <EntityTypeMapping TypeName="DB_LuatModel.tbl_LienKetKhoa">
         <MappingFragment StoreEntitySet="tbl_LienKetKhoa">
+          <ScalarProperty Name="STT" ColumnName="STT" />
           <ScalarProperty Name="Link" ColumnName="Link" />
           <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
           <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />

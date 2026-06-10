@@ -124,6 +124,7 @@
           <Property Name="TieuDe" Type="nvarchar" MaxLength="500" />
           <Property Name="IsDelete" Type="bit" />
           <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="STT" Type="int" />
         </EntityType>
         <EntityType Name="tbl_Log">
           <Key>
@@ -739,6 +740,7 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <Property Name="TieuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STT" Type="Int32" />
         </EntityType>
         <EntityType Name="tbl_Log">
           <Key>
@@ -1224,6 +1226,7 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <EntitySetMapping Name="tbl_LienKetKhoa">
             <EntityTypeMapping TypeName="DB_LuatModel.tbl_LienKetKhoa">
               <MappingFragment StoreEntitySet="tbl_LienKetKhoa">
+                <ScalarProperty Name="STT" ColumnName="STT" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />

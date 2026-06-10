@@ -11,30 +11,96 @@
     var camnhan = ViewData["camnhan"] as List<web_luat.Models.tbl_CamNhan>;
     var lstMoiNhat = ViewData["lstMoiNhat"] as List<web_luat.Models.tbl_Post>;
     var lst = ViewData["lst"] as List<web_luat.Models.tbl_Post>;
+    var tvc = ViewBag.tvc as List<web_luat.Models.tbl_ThuVienAnh_Album>;
+    <style>
+        /* Custom CSS cho Slide dự án */
+   
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .project-img-box {
+            width: 100%;
+            height: 320px; /* Định hình chiều cao cố định cho 4 khung hình */
+        }
+
+            .project-img-box img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+
+        .project-card:hover .project-img-box img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+
+
+    
+
+
+        .thumb-item {
+            width: 60px;
+            height: 45px;
+            opacity: 0.5;
+            cursor: pointer;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+            .thumb-item.active {
+                opacity: 1;
+                border-color: #BA9465;
+            }
+
+            .thumb-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+    </style>
 }
 
 <!-- 2. HERO BANNER BAN ĐẦU -->
-<div id="heroSliders" class="carousel slide carousel-fade hero-premium" data-bs-ride="carousel" data-bs-interval="5000"> 
+<div id="heroSliders" class="carousel slide carousel-fade hero-premium" data-bs-ride="carousel" data-bs-interval="5000">
     <div class="carousel-inner">
 
         @foreach (var item in banner)
         {
             <div class="carousel-item active" style="background-image: url('@item.Image');">
                 @*<div class="carousel-caption-custom hero-premium">
-                    <div class="container text-start">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="hero-tag mb-3"><i class="fa-solid fa-industry me-2"></i>MÁY MÓC TỰ ĐỘNG ĐỒNG BỘ</div>
-                                <h1 class="mb-4">Xưởng Gia Công Gỗ<br>Công Nghiệp <span style="color: var(--luxury-amber); font-style: italic;">Đỉnh Cao Sắc Nét</span></h1>
-                                <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Giải pháp cắt tấm Nesting CNC và dán cạnh không đường line hàng đầu. Trợ thủ sản xuất đáng tin cậy cho các Kiến trúc sư.</p>
-                                <div class="d-flex gap-3 flex-wrap">
-                                    <a href="#du-an" class="btn btn-luxury">Xem Dự Án <i class="fa-solid fa-arrow-down ms-2"></i></a>
-                                    <a href="tel:0900000000" class="btn btn-outline-light px-4 py-2 border-secondary text-white text-decoration-none" style="border-radius: 4px;"><i class="fa-solid fa-phone me-2 text-warning"></i>090.000.0000</a>
+                        <div class="container text-start">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="hero-tag mb-3"><i class="fa-solid fa-industry me-2"></i>MÁY MÓC TỰ ĐỘNG ĐỒNG BỘ</div>
+                                    <h1 class="mb-4">Xưởng Gia Công Gỗ<br>Công Nghiệp <span style="color: var(--luxury-amber); font-style: italic;">Đỉnh Cao Sắc Nét</span></h1>
+                                    <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Giải pháp cắt tấm Nesting CNC và dán cạnh không đường line hàng đầu. Trợ thủ sản xuất đáng tin cậy cho các Kiến trúc sư.</p>
+                                    <div class="d-flex gap-3 flex-wrap">
+                                        <a href="#du-an" class="btn btn-luxury">Xem Dự Án <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                                        <a href="tel:0900000000" class="btn btn-outline-light px-4 py-2 border-secondary text-white text-decoration-none" style="border-radius: 4px;"><i class="fa-solid fa-phone me-2 text-warning"></i>090.000.0000</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
             </div>
         }
 
@@ -54,7 +120,7 @@
 </div>
 
 <!-- KHỐI 1: GALLERY DỰ ÁN TIÊU BIỂU (HỆ THỐNG TRƯỢT NGANG SMOOTH SLIDE) -->
-<section id="du-an" class="project-section">
+<section id="du-an" class="project-section py-5">
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
             <div>
@@ -63,28 +129,107 @@
             </div>
 
             <div class="mt-3 mt-md-0 d-flex gap-1 flex-wrap align-items-center">
-                <!-- Các nút bấm kích hoạt bộ lọc loại hình -->
-                <button class="project-filter-btn active" onclick="filterProjects('all', this)">Tất Cả</button>
-                <button class="project-filter-btn" onclick="filterProjects('villa', this)">Biệt Thự</button>
-                <button class="project-filter-btn" onclick="filterProjects('apartment', this)">Căn Hộ</button>
-                <button class="project-filter-btn" onclick="filterProjects('office', this)">Văn Phòng</button>
+                <button class="project-filter-btn active" onclick="filterProjects(0, this)">Tất Cả</button>
+                <button class="project-filter-btn" onclick="filterProjects(1, this)">Biệt Thự</button>
+                <button class="project-filter-btn" onclick="filterProjects(2, this)">Căn Hộ</button>
+                <button class="project-filter-btn" onclick="filterProjects(3, this)">Văn Phòng</button>
 
-                <div class="d-none d-md-flex gap-2 ms-3">
-                    <div class="swiper-nav-ctrl project-swiper-prev"><i class="fa-solid fa-arrow-left"></i></div>
-                    <div class="swiper-nav-ctrl project-swiper-next"><i class="fa-solid fa-arrow-right"></i></div>
-                </div>
             </div>
         </div>
 
-        <!-- Khung trượt Swiper chính -->
         <div class="swiper project-swiper">
             <div class="swiper-wrapper" id="swiperProjectWrapper">
-                <!-- Danh sách slide gốc sẽ được quản lý hoàn toàn bằng cơ chế mảng dữ liệu JS phía dưới -->
+                @if (ViewBag.DuAn != null)
+                {
+                    foreach (var item in ViewBag.DuAn as List<web_luat.Models.tbl_ThuVienAnh>)
+                    {
+                        // Tạo mảng danh sách ảnh con từ tbl_thuviencon của item hiện tại thành chuỗi JSON an toàn
+                        var albumUrls = tvc != null
+                                        ? Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(tvc.Select(x => x.FileImage).ToList()))
+                                        : Html.Raw("[]");
+
+                        <div class="swiper-slide"
+                             data-type="@(item.IdDonVi.HasValue ? item.IdDonVi.ToString() : "")">
+                            <div class="project-card" onclick="openAlbumDirect(this, '@item.TieuDe')" data-album='@albumUrls'>
+                                <div class="project-img-box">
+                                    <img src="@item.Image" alt="@item.TieuDe" loading="lazy" class="img-fluid w-100">
+                                </div>
+                                <div class="project-overlay">
+                                    <h5>@item.TieuDe</h5>
+                                    <p class="text-white-50 small mb-0">@item.MoTa</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    foreach (var item in ViewBag.DuAn as List<web_luat.Models.tbl_ThuVienAnh>)
+                    {
+                        // Tạo mảng danh sách ảnh con từ tbl_thuviencon của item hiện tại thành chuỗi JSON an toàn
+                        var albumUrls = tvc != null
+                                        ? Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(tvc.Select(x => x.FileImage).ToList()))
+                                        : Html.Raw("[]");
+
+                        <div class="swiper-slide"
+                             data-type="@(item.IdDonVi.HasValue ? item.IdDonVi.ToString() : "")">
+                            <div class="project-card" onclick="openAlbumDirect(this, '@item.TieuDe')" data-album='@albumUrls'>
+                                <div class="project-img-box">
+                                    <img src="@item.Image" alt="@item.TieuDe" loading="lazy" class="img-fluid w-100">
+                                </div>
+                                <div class="project-overlay">
+                                    <h5>@item.TieuDe</h5>
+                                    <p class="text-white-50 small mb-0">@item.MoTa</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    foreach (var item in ViewBag.DuAn as List<web_luat.Models.tbl_ThuVienAnh>)
+                    {
+                        // Tạo mảng danh sách ảnh con từ tbl_thuviencon của item hiện tại thành chuỗi JSON an toàn
+                        var albumUrls = tvc != null
+                                        ? Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(tvc.Select(x => x.FileImage).ToList()))
+                                        : Html.Raw("[]");
+
+                        <div class="swiper-slide"
+                             data-type="@(item.IdDonVi.HasValue ? item.IdDonVi.ToString() : "")">
+                            <div class="project-card" onclick="openAlbumDirect(this, '@item.TieuDe')" data-album='@albumUrls'>
+                                <div class="project-img-box">
+                                    <img src="@item.Image" alt="@item.TieuDe" loading="lazy" class="img-fluid w-100">
+                                </div>
+                                <div class="project-overlay">
+                                    <h5>@item.TieuDe</h5>
+                                    <p class="text-white-50 small mb-0">@item.MoTa</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
             <div class="swiper-pagination project-swiper-pagination"></div>
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="projectAlbumModal" tabindex="-1" aria-hidden="true" style="background: rgba(0,0,0,0.9);">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="modalAlbumTitle">Album Dự Án</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-0 position-relative">
+                <div class="main-img-wrapper p-3">
+                    <img id="modalMainImg" src="" class="img-fluid" style="max-height: 500px; object-fit: contain;">
+                </div>
+
+                <button class="btn position-absolute top-50 start-0 translate-middle-y text-white fs-3 bg-dark bg-opacity-50 border-0" onclick="navigateAlbum(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="btn position-absolute top-50 end-0 translate-middle-y text-white fs-3 bg-dark bg-opacity-50 border-0" onclick="navigateAlbum(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="modal-footer border-secondary justify-content-center bg-black bg-opacity-50">
+                <div id="modalThumbGrid" class="d-flex gap-2 overflow-auto py-2 w-100 justify-content-center" style="max-height: 80px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- KHỐI 2: TẠI SAO CHỌN XƯỞNG NỘI THẤT TÂM AN -->
 <section id="tai-sao-chon" class="why-choose-sec">
@@ -148,27 +293,17 @@
 
                 <div class="col-lg-6">
                     <div class="timeline-container">
-                        <div class="timeline-item">
-                            <div class="timeline-icon-node"> <i class="fa-solid fa-desktop"></i> </div>
-                            <div class="timeline-content-box">
-                                <h4 class="timeline-node-title">01. Số Hóa Bản Vẽ Kỹ Thuật</h4>
-                                <p class="timeline-node-desc">Chuyển đổi file phối cảnh 3D sang sơ đồ gia công liên kết cam chốt âm tự động bằng phần mềm chuyên dụng, tối ưu hoá sơ đồ xếp ván tiết kiệm chi phí vật tư tối đa.</p>
+                        @foreach (var item in dichvu.OrderBy(g=>g.STT))
+                        {
+                            <div class="timeline-item">
+                                <div class="timeline-icon-node"> <img src="@item.Icon" style="width:60%"/></div>
+                                <div class="timeline-content-box">
+                                    <h4 class="timeline-node-title">@item.TieuDe</h4>
+                                    <p class="timeline-node-desc">@item.GioiThieu</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-icon-node"> <i class="fa-solid fa-gears"></i> </div>
-                            <div class="timeline-content-box">
-                                <h4 class="timeline-node-title">02. Cắt Nesting CNC & Dán Cạnh Không Line</h4>
-                                <p class="timeline-node-desc">Vận hành dây chuyền cắt tự động đạt độ chính xác milimet. Xử lý dán nẹp cạnh kháng nước bằng công nghệ keo Pur cao cấp giúp bề mặt phẳng mịn vô hình, không lo bong tróc.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-icon-node"> <i class="fa-solid fa-box-open"></i> </div>
-                            <div class="timeline-content-box">
-                                <h4 class="timeline-node-title">03. Đóng Gói Định Danh & Lắp Ráp Nghiệm Thu</h4>
-                                <p class="timeline-node-desc">Gắn tem mã vạch định danh từng chi tiết tấm ván. Đóng gói bọc bảo vệ góc chuyên nghiệp trước khi vận chuyển ráp khối hoàn thiện tại xưởng hoặc bàn giao lắp đặt đúng tiến độ công trình.</p>
-                            </div>
-                        </div>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -186,42 +321,24 @@
         </div>
 
         <div class="row g-4">
-            <div class="col-md-4">
-                <div class="signing-card">
-                    <div class="signing-img-wrapper">
-                        <span class="signing-badge">Hợp Tác Chiến Lược</span>
-                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80" alt="Lễ ký kết">
-                    </div>
-                    <div class="p-4">
-                        <h5 class="text-dark mb-2">Ký Kết Cung Ứng Gỗ Dự Án Căn Hộ Cao Cấp</h5>
-                        <p class="text-muted small mb-0">Lễ ký kết biên bản ghi nhớ cung ứng độc quyền toàn bộ hạng mục gỗ công nghiệp An Cường cho chuỗi căn hộ hạng sang.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="signing-card">
-                    <div class="signing-img-wrapper">
-                        <span class="signing-badge">Bàn Giao Bản Vẽ</span>
-                        <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80" alt="Chốt kỹ thuật">
-                    </div>
-                    <div class="p-4">
-                        <h5 class="text-dark mb-2">Chốt Phương Án Kỹ Thuật Đơn Vị Thiết Kế</h5>
-                        <p class="text-muted small mb-0">Đội ngũ kỹ sư trưởng Tâm An họp bàn chi tiết cùng Giám đốc thiết kế đối tác để chốt sơ đồ bóc tách liên kết cam chốt âm.</p>
+            @foreach (var item in lstMoiNhat)
+            {
+                var link = "/chi-tiet-tin/" + web_luat.Models.convertChuoi.convertToUnSign2_2(item.TieuDe) + "_" + item.ID + ".html";
+                <div class="col-md-4">
+                    <div  class="signing-card">
+                        <div class="signing-img-wrapper">
+                            <span class="signing-badge">Hợp đồng và sự kiện</span>
+                            <img src="@item.Image" alt="@item.TieuDe">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="text-dark mb-2"><a href="@link" style="text-decoration:none;color:black">@item.TieuDe</a></h5>
+                            <p class="text-muted small mb-0">@item.MoTaNgan</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="signing-card">
-                    <div class="signing-img-wrapper">
-                        <span class="signing-badge">Nghiệm Thu Thành Phẩm</span>
-                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80" alt="Nghiệm thu căn hộ mẫu">
-                    </div>
-                    <div class="p-4">
-                        <h5 class="text-dark mb-2">Bàn Giao Nghiệm Thu Đúng Tiến Độ</h5>
-                        <p class="text-muted small mb-0">Đại diện chủ đầu tư đánh giá rất cao độ sắc nét của góc cạnh ván và sự chính xác khớp nối của hệ tủ kịch trần.</p>
-                    </div>
-                </div>
-            </div>
+            }
+
+           
         </div>
     </div>
 </section>
@@ -231,8 +348,8 @@
     <div class="container">
         <div class="row g-4">
             @foreach (var item in thongso)
-                {
-                    var chia = 12 / (thongso.Count());
+            {
+                var chia = 12 / (thongso.Count());
                 <div class="col-6 col-md-@chia">
                     <div class="stat-box-ultra">
                         <div class="stat-big">@item.ThongSo @item.KiHieu</div>
@@ -241,7 +358,7 @@
                 </div>
             }
 
-           
+
         </div>
     </div>
 </section>
@@ -348,240 +465,228 @@
 </section>
 @section scripts{
     <script>
-    $(document).ready(function () {
-        const form = document.getElementById("consultationForm");
+        $(document).ready(function () {
+            const form = document.getElementById("consultationForm");
 
-        form.addEventListener("submit", function (e) {
-            e.preventDefault(); // Chặn load lại trang mặc định của form
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // Chặn load lại trang mặc định của form
 
-            // 1. Thu thập dữ liệu thô từ form
-            const fullname = $("#fullname").val().trim();
-            const phoneNumber = $("#phoneNumber").val().trim();
-            const email = $("#email").val().trim();
-            const services = $("#services").val();
-            const message = $("#message").val().trim();
+                // 1. Thu thập dữ liệu thô từ form
+                const fullname = $("#fullname").val().trim();
+                const phoneNumber = $("#phoneNumber").val().trim();
+                const email = $("#email").val().trim();
+                const services = $("#services").val();
+                const message = $("#message").val().trim();
 
-            // Lấy token phản hồi mã Captcha từ Google
-            const captchaResponse = grecaptcha.getResponse();
+                // Lấy token phản hồi mã Captcha từ Google
+                const captchaResponse = grecaptcha.getResponse();
 
-            // 2. Hệ thống kiểm định định dạng (Regex Validation)
-            const nameRegex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲÝỴÝỶỸửữựỳýỵỷỹ\s]{2,50}$/;
-            const phoneRegex = /^(03|05|07|08|09)\d{8}$/;
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                // 2. Hệ thống kiểm định định dạng (Regex Validation)
+                const nameRegex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲÝỴÝỶỸửữựỳýỵỷỹ\s]{2,50}$/;
+                const phoneRegex = /^(03|05|07|08|09)\d{8}$/;
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-            // Kiểm định trường Họ Tên
-            if (!nameRegex.test(fullname)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Họ tên không hợp lệ',
-                    text: 'Họ tên từ 2 - 50 ký tự, viết bằng chữ và không chứa ký tự đặc biệt, chữ số.',
-                    confirmButtonColor: '#BA9465'
-                });
-                return;
-            }
-
-            // Kiểm định trường Số Điện Thoại
-            if (!phoneRegex.test(phoneNumber)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Số điện thoại sai định dạng',
-                    text: 'Vui lòng nhập đúng số điện thoại di động Việt Nam (Ví dụ: 0968967383).',
-                    confirmButtonColor: '#BA9465'
-                });
-                return;
-            }
-
-            // Kiểm định trường Email
-            if (!emailRegex.test(email)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Email không hợp lệ',
-                    text: 'Vui lòng nhập đúng cấu trúc email thực tế (Ví dụ: noithattaman@gmail.com).',
-                    confirmButtonColor: '#BA9465'
-                });
-                return;
-            }
-
-            // 3. Kiểm định tích chọn mã CAPTCHA
-            if (captchaResponse.length === 0) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Xác minh danh tính',
-                    text: 'Vui lòng tích chọn vào ô "Tôi không phải là người máy" để xác nhận bạn không phải robot gửi spam.',
-                    confirmButtonColor: '#BA9465'
-                });
-                return;
-            }
-
-            // 4. Bật màn hình chờ xử lý (Loading screen bằng Swal)
-            Swal.fire({
-                title: 'Đang gửi thông tin...',
-                text: 'Hệ thống Nội Thất Tâm An đang ghi nhận yêu cầu của bạn, vui lòng đợi trong giây lát.',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-
-            // 5. Đóng gói dữ liệu đối tượng gửi đi
-            const sendData = {
-                fullname: fullname,
-                phone: phoneNumber,
-                email: email,
-                service: services,
-                message: message,
-                captcha: captchaResponse
-            };
-
-            // 6. THỰC HIỆN AJAX POST LÊN CONTROLLER
-            $.ajax({
-                url: '/Home/GuiLienHe',
-                type: 'POST',
-                data: sendData,
-                dataType: 'json',
-                success: function (response) {
-                    // Nếu Controller xử lý lưu Database thành công trả về { success: true }
-                    if (response.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Đăng ký thành công!',
-                            html: `Cảm ơn anh/chị <b>${fullname}</b>.<br>Đội ngũ <b>Nội Thất Tâm An</b> đã nhận được yêu cầu và sẽ gọi tư vấn trực tiếp qua số <b>${phoneNumber}</b> ngay!`,
-                            confirmButtonColor: '#BA9465',
-                            timer: 6000
-                        });
-
-                        // Xóa dữ liệu cũ trên Form & Reset trạng thái Captcha
-                        form.reset();
-                        grecaptcha.reset();
-                    }
-                    // Nếu Controller xử lý lỗi (ví dụ backend xác thực captcha lỗi) trả về { success: false, message: "..." }
-                    else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gửi thất bại',
-                            text: response.message || 'Đã xảy ra lỗi hệ thống, vui lòng thử lại sau.',
-                            confirmButtonColor: '#BA9465'
-                        });
-                        grecaptcha.reset(); // Người dùng cần tích lại captcha
-                    }
-                },
-                error: function (xhr, status, error) {
-                    // Báo lỗi nếu server chết (Lỗi 500, lỗi 404, hoặc đứt mạng)
+                // Kiểm định trường Họ Tên
+                if (!nameRegex.test(fullname)) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Lỗi đường truyền',
-                        text: 'Không thể gửi yêu cầu vì kết nối tới máy chủ bị gián đoạn. Vui lòng kiểm tra lại mạng!',
+                        title: 'Họ tên không hợp lệ',
+                        text: 'Họ tên từ 2 - 50 ký tự, viết bằng chữ và không chứa ký tự đặc biệt, chữ số.',
                         confirmButtonColor: '#BA9465'
                     });
-                    grecaptcha.reset();
+                    return;
                 }
+
+                // Kiểm định trường Số Điện Thoại
+                if (!phoneRegex.test(phoneNumber)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Số điện thoại sai định dạng',
+                        text: 'Vui lòng nhập đúng số điện thoại di động Việt Nam (Ví dụ: 0968967383).',
+                        confirmButtonColor: '#BA9465'
+                    });
+                    return;
+                }
+
+                // Kiểm định trường Email
+                if (!emailRegex.test(email)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Email không hợp lệ',
+                        text: 'Vui lòng nhập đúng cấu trúc email thực tế (Ví dụ: noithattaman@gmail.com).',
+                        confirmButtonColor: '#BA9465'
+                    });
+                    return;
+                }
+
+                // 3. Kiểm định tích chọn mã CAPTCHA
+                if (captchaResponse.length === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Xác minh danh tính',
+                        text: 'Vui lòng tích chọn vào ô "Tôi không phải là người máy" để xác nhận bạn không phải robot gửi spam.',
+                        confirmButtonColor: '#BA9465'
+                    });
+                    return;
+                }
+
+                // 4. Bật màn hình chờ xử lý (Loading screen bằng Swal)
+                Swal.fire({
+                    title: 'Đang gửi thông tin...',
+                    text: 'Hệ thống Nội Thất Tâm An đang ghi nhận yêu cầu của bạn, vui lòng đợi trong giây lát.',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                // 5. Đóng gói dữ liệu đối tượng gửi đi
+                const sendData = {
+                    fullname: fullname,
+                    phone: phoneNumber,
+                    email: email,
+                    service: services,
+                    message: message,
+                    captcha: captchaResponse
+                };
+
+                // 6. THỰC HIỆN AJAX POST LÊN CONTROLLER
+                $.ajax({
+                    url: '/Home/GuiLienHe',
+                    type: 'POST',
+                    data: sendData,
+                    dataType: 'json',
+                    success: function (response) {
+                        // Nếu Controller xử lý lưu Database thành công trả về { success: true }
+                        if (response.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Đăng ký thành công!',
+                                html: `Cảm ơn anh/chị <b>${fullname}</b>.<br>Đội ngũ <b>Nội Thất Tâm An</b> đã nhận được yêu cầu và sẽ gọi tư vấn trực tiếp qua số <b>${phoneNumber}</b> ngay!`,
+                                confirmButtonColor: '#BA9465',
+                                timer: 6000
+                            });
+
+                            // Xóa dữ liệu cũ trên Form & Reset trạng thái Captcha
+                            form.reset();
+                            grecaptcha.reset();
+                        }
+                        // Nếu Controller xử lý lỗi (ví dụ backend xác thực captcha lỗi) trả về { success: false, message: "..." }
+                        else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gửi thất bại',
+                                text: response.message || 'Đã xảy ra lỗi hệ thống, vui lòng thử lại sau.',
+                                confirmButtonColor: '#BA9465'
+                            });
+                            grecaptcha.reset(); // Người dùng cần tích lại captcha
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Báo lỗi nếu server chết (Lỗi 500, lỗi 404, hoặc đứt mạng)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lỗi đường truyền',
+                            text: 'Không thể gửi yêu cầu vì kết nối tới máy chủ bị gián đoạn. Vui lòng kiểm tra lại mạng!',
+                            confirmButtonColor: '#BA9465'
+                        });
+                        grecaptcha.reset();
+                    }
+                });
             });
         });
-    });
-        // Mảng cơ sở dữ liệu gốc để tránh việc dùng display:none làm gãy animation của Swiper
-        const MASTER_PROJECTS = [
-            { type: 'villa', title: 'Penthouse Ciputra', desc: 'MDF chống ẩm phủ Acrylic bóng gương', img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'] },
-            { type: 'apartment', title: 'Vinhomes Ocean Park', desc: 'Hệ tủ âm trần cánh kính cao cấp', img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'] },
-            { type: 'office', title: 'HQ Techcombank', desc: 'Bàn họp lớn ghép vân Veneer Óc Chó', img: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'] },
-            { type: 'villa', title: 'Luxury Villa Phú Quốc', desc: 'Cốt nhựa Picomat kháng nước tuyệt đối', img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80'] },
-            { type: 'apartment', title: 'Gateway Thảo Điền', desc: 'Hệ tủ bếp Module thông minh cam chốt', img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'] },
-            { type: 'apartment', title: 'Liền Kề Hà Đông', desc: 'Vách nan trang trí chạy CNC uốn lượn', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80', album: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'] }
-        ];
+
+
 
         let currentAlbum = [];
         let currentImgIndex = 0;
-        let myModal = null;
+        let projectModal = null;
         let projectSwiper = null;
 
-        document.addEventListener("DOMContentLoaded", function () {
-            // Khởi tạo Swiper Core ban đầu
+        $(document).ready(function () {
+            // 1. KHỞI TẠO SWIPER CHẠY NGANG (Mặc định hiển thị 4 khung hình trên màn hình lớn)
             projectSwiper = new Swiper('.project-swiper', {
                 slidesPerView: 1,
                 spaceBetween: 24,
                 grabCursor: true,
-                observer: true,
-                observeParents: true,
+                loop: true,               /* Chế độ chạy đuổi vòng lặp vô hạn */
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
                 pagination: { el: '.project-swiper-pagination', clickable: true },
                 navigation: { nextEl: '.project-swiper-next', prevEl: '.project-swiper-prev' },
                 breakpoints: {
                     576: { slidesPerView: 2 },
                     992: { slidesPerView: 3 },
-                    1400: { slidesPerView: 4 }
+                    1400: { slidesPerView: 4 } /* Trên màn hình máy tính hiển thị đúng 4 khung */
                 }
             });
 
-            // Giao tiếp render danh sách "Tất cả" ngay khi mở trang
-            renderProjectSlides('all');
-
+            // Khởi tạo Bootstrap Modal để xem Album ảnh
             if (typeof bootstrap !== 'undefined') {
-                myModal = new bootstrap.Modal(document.getElementById('projectAlbumModal'));
+                projectModal = new bootstrap.Modal(document.getElementById('projectAlbumModal'));
             }
         });
 
-        // HÀM CHUYỂN ĐỔI CHUẨN ANIMATION SLIDE TRƯỢT NGANG KHI BẤM NÚT LỌC LOẠI HÌNH
+        // 2. HÀM LỌC SẢN PHẨM KHÔNG BỊ LỖI BREAK GIAO DIỆN SWIPER
         function filterProjects(type, buttonElement) {
-            const filterBtns = document.querySelectorAll('.project-filter-btn');
-            filterBtns.forEach(btn => btn.classList.remove('active'));
+
+            document.querySelectorAll('.project-filter-btn')
+                .forEach(btn => btn.classList.remove('active'));
+
             buttonElement.classList.add('active');
 
-            // 1. Tạo hiệu ứng đẩy/thu các slide cũ trượt lùi mịn màng ra khỏi tầm nhìn trước
-            projectSwiper.init();
+            const slides = document.querySelectorAll('#swiperProjectWrapper .swiper-slide');
 
-            // 2. Nạp dữ liệu mới vào Swiper sau khi lọc để kích hoạt animation lướt ngang mượt mà
-            renderProjectSlides(type);
-        }
+            slides.forEach(slide => {
 
-        function renderProjectSlides(typeFilter) {
-            const wrapper = document.getElementById('swiperProjectWrapper');
-            wrapper.innerHTML = ''; // Làm sạch bộ khung để nạp animation mới
+                const slideType = slide.getAttribute('data-type');
 
-            // Lọc phần tử từ mảng Master
-            const filteredData = MASTER_PROJECTS.filter(item => typeFilter === 'all' || item.type === typeFilter);
+                // Tất cả
+                if (type == 0) {
+                    slide.style.display = '';
+                    return;
+                }
 
-            // Xây dựng chuỗi thẻ HTML động chuẩn Swiper
-            filteredData.forEach(item => {
-                const slideDiv = document.createElement('div');
-                slideDiv.className = 'swiper-slide';
+                // Null => luôn hiện
+                if (!slideType || slideType === "null") {
+                    slide.style.display = '';
+                    return;
+                }
 
-                // Mã hóa mảng album sang chuỗi an toàn
-                const albumStr = JSON.stringify(item.album);
-
-                slideDiv.innerHTML = `
-                        <div class="project-card" onclick="openAlbumDirect(this, '${item.title}')" data-album='${albumStr}'>
-                            <img src="${item.img}" alt="${item.title}">
-                            <div class="project-overlay">
-                                <h5>${item.title}</h5>
-                                <p class="text-white-50 small mb-0">${item.desc}</p>
-                            </div>
-                        </div>
-                    `;
-                wrapper.appendChild(slideDiv);
+                // Đúng loại
+                if (slideType == type) {
+                    slide.style.display = '';
+                }
+                else {
+                    slide.style.display = 'none';
+                }
             });
 
-            // Ép Swiper tính toán lại trục đứng, chỉ số tọa độ trượt ngang ngay lập tức
-            projectSwiper.updateFields();
             projectSwiper.update();
-            projectSwiper.slideTo(0, 400, true); // Thực hiện hoạt ảnh lướt về slide số 1 với thời gian 400ms mượt mà
         }
 
-        // Xử lý cuộn sticky menu
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
-            else { navbar.classList.remove('scrolled'); }
-        });
-
+        // 3. HÀM MỞ POPUP TRỰC TIẾP ALBUM CON (tbl_thuviencon)
         function openAlbumDirect(cardElement, title) {
             const albumData = cardElement.getAttribute('data-album');
             if (!albumData) return;
 
             currentAlbum = JSON.parse(albumData);
+
+            // Nếu dự án không có ảnh con nào, dùng luôn ảnh chính đại diện
+            if (currentAlbum.length === 0) {
+                const mainImgSrc = cardElement.querySelector('img').src;
+                currentAlbum.push(mainImgSrc);
+            }
+
             currentImgIndex = 0;
-            document.getElementById('modalAlbumTitle').innerText = "Album: " + title;
+            document.getElementById('modalAlbumTitle').innerText = "Dự án: " + title;
 
             const thumbGrid = document.getElementById('modalThumbGrid');
             thumbGrid.innerHTML = '';
 
+            // Tạo các chấm Thumbnail nhỏ phía dưới
             currentAlbum.forEach((imgUrl, index) => {
                 const thumbItem = document.createElement('div');
                 thumbItem.className = `thumb-item ${index === 0 ? 'active' : ''}`;
@@ -594,9 +699,10 @@
             });
 
             changeMainImage(0);
-            if (myModal) { myModal.show(); }
+            if (projectModal) { projectModal.show(); }
         }
 
+        // Thay đổi ảnh chính trong Modal
         function changeMainImage(index) {
             currentImgIndex = index;
             document.getElementById('modalMainImg').src = currentAlbum[currentImgIndex];
@@ -604,10 +710,10 @@
             thumbs.forEach(thumb => thumb.classList.remove('active'));
             if (thumbs[index]) {
                 thumbs[index].classList.add('active');
-                thumbs[index].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
 
+        // Trượt ảnh sang Trái / Phải trong Modal bằng nút bấm điều hướng
         function navigateAlbum(direction) {
             if (currentAlbum.length === 0) return;
             currentImgIndex += direction;
@@ -615,4 +721,5 @@
             else if (currentImgIndex < 0) { currentImgIndex = currentAlbum.length - 1; }
             changeMainImage(currentImgIndex);
         }
-    </script>}
+    </script>
+}

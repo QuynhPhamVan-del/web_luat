@@ -34,7 +34,6 @@
 {
     <input name="Id" value="@Model.Id" hidden />
     <input name="Image" value="@Model.Image" hidden />
-    <input name="IdDonVi" value="@Model.IdDonVi" hidden />
     <input name="IsDelete" value="@Model.IsDelete" hidden />
     <div class="dialog-model"></div>
     <div class="dialog-content">
@@ -73,6 +72,15 @@
                         <label for="txtmaKH">Mô tả</label>
                         @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Loại dự án</label>
+                        <select class="form-control" name="IdDonVi">
+                            <option value="0">-- Chọn loai dự án --</option>
+                            <option value="1" @(Model.IdDonVi==1?"selected":"")>Biệt thự</option>
+                            <option value="2"  @(Model.IdDonVi==2?"selected":"")>Căn hộ</option>
+                            <option value="3"  @(Model.IdDonVi==3?"selected":"")>Văn phòng</option>
+                        </select>
                     </div>
                 </div>
             </div>

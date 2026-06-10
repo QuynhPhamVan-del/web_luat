@@ -161,6 +161,7 @@
     <Property Name="TieuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="IsDelete" Type="Boolean" />
     <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="STT" Type="Int32" />
   </EntityType>
   <EntityType Name="tbl_Log">
     <Key>

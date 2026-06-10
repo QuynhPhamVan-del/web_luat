@@ -191,7 +191,7 @@ namespace web_luat.Areas.Admin.Controllers
                 banner.View = 0;
                 banner.TacGia = Session["HoTen"].ToString();
                 banner.IsDelete = false;
-                banner.IsActive = false; // chưa public
+                banner.IsActive = true; // chưa public
                 if (dem == 0)
                 {
                     banner.IsActive = true;

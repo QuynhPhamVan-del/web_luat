@@ -36,7 +36,7 @@ namespace web_luat.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult Create([Bind(Include = "Id,GioiThieu,Icon,TieuDe,Link")] tbl_LienKetKhoa banner)
+        public JsonResult Create([Bind(Include = "Id,GioiThieu,Icon,TieuDe,Link,STT")] tbl_LienKetKhoa banner)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace web_luat.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult Edit([Bind(Include = "Id,GioiThieu,Icon,TieuDe,Link")] tbl_LienKetKhoa banner)
+        public JsonResult Edit([Bind(Include = "Id,GioiThieu,Icon,TieuDe,Link,STT")] tbl_LienKetKhoa banner)
         {
             try
             {

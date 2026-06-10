@@ -119,6 +119,7 @@
     <Property Name="TieuDe" Type="nvarchar" MaxLength="500" />
     <Property Name="IsDelete" Type="bit" />
     <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="STT" Type="int" />
   </EntityType>
   <EntityType Name="tbl_Log">
     <Key>

@@ -26,8 +26,10 @@ namespace web_luat.Controllers
             ViewData["taisao"] = db.tbl_TaiSao.ToList();
             ViewData["doitac"] = db.tbl_DoiTac.Where(g => g.IsDelete == false).ToList();
             ViewData["camnhan"] = db.tbl_CamNhan.ToList();
-            var lstId = db.tbl_Post_Category.Where(g => g.IdCategory == 1).Select(g => g.IdPost).ToList();
-            ViewData["lstMoiNhat"] = db.tbl_Post.OrderByDescending(g => g.NgayPhatHanh).Take(3).ToList();
+            var lstId = db.tbl_Post_Category.Where(g => g.IdCategory == 3).Select(g => g.IdPost).ToList();
+            ViewData["lstMoiNhat"] = db.tbl_Post.Where(g =>lstId.Contains(g.ID)).OrderByDescending(g => g.NgayPhatHanh).ToList();
+            ViewBag.DuAn = db.tbl_ThuVienAnh.ToList();
+            ViewBag.tvc = db.tbl_ThuVienAnh_Album.ToList();
             ViewData["lst"] = db.tbl_Post.Where(g => lstId.Contains(g.ID)).OrderByDescending(g => g.NgayPhatHanh).Take(3).ToList();
             return View();
         }
@@ -122,13 +124,10 @@ namespace web_luat.Controllers
         }
         public ActionResult TinTuc(int IdChuyenMuc = 0, string Key = "",int IdTag=0)
         {
-            // Lấy 3 bài viết mới nhất cho Sidebar
-            ViewData["lstMoiNhat"] = db.tbl_Post.OrderByDescending(g => g.NgayPhatHanh).Take(3).ToList();
-
-            // Truyền dữ liệu bộ lọc ban đầu xuống Giao diện (nếu có)
             ViewBag.IdChuyenMucBanDau = IdChuyenMuc;
             ViewBag.KeyBanDau = Key;
             ViewBag.IdTag = IdTag;
+            ViewData["chuyenmuc"] = db.tbl_ChuyenMuc.Where(g=>g.IsDelete==false).ToList();
             return View();
         }
 
@@ -226,6 +225,8 @@ namespace web_luat.Controllers
             ViewData["lstMoiNhat"] = db.tbl_Post.OrderByDescending(g => g.NgayPhatHanh).Take(3).ToList();
             ViewData["lstIdTag"] = db.tbl_Post_Tag.Where(g => g.PostId == Id).ToList();
             ViewData["tag"] = db.tbl_Tag.ToList();
+            ViewData["chuyenmuc"] = db.tbl_ChuyenMuc.Where(g => g.IsDelete == false).ToList();
+
             return View(db.tbl_Post.Find(Id));
         }
 

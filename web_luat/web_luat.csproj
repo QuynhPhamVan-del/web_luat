@@ -175,6 +175,8 @@
     <Compile Include="Areas\Admin\Controllers\QuanTriController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiSaoController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongSoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThuVienAnhController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThuVienConController.cs" />
     <Compile Include="Areas\Admin\Controllers\TinTucController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2121,6 +2123,7 @@
     <Folder Include="Upload\DoiTac\" />
     <Folder Include="Upload\GioiThieu\" />
     <Folder Include="Upload\NhanSu\" />
+    <Folder Include="Upload\ThuVienAnh\" />
     <Folder Include="Upload\TinTuc\" />
   </ItemGroup>
   <ItemGroup>

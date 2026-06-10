@@ -40,6 +40,96 @@
 
     <!-- Custom CSS -->
     <link href="~/css-moi/style.css" rel="stylesheet" />
+    <style>
+        .fab-container {
+            position: fixed;
+            right: 0rem;
+            z-index: 9999;
+        }
+
+        .fab1 {
+            top: 40%;
+        }
+
+        .fab2 {
+            top: calc(40% + 4.0625rem);
+        }
+
+        .fab3 {
+            top: calc(40% + 8.125rem);
+        }
+
+        .fab4 {
+            top: calc(40% + 12.1875rem);
+        }
+
+        /* ITEM */
+        .fab-item {
+            display: flex;
+            align-items: center;
+            width: 3.125rem;
+            height: 3.125rem;
+            background: var(--luxury-amber);
+            border-radius: 3.125rem 0 0 3.125rem;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            padding: 5px 0 5px 5px;
+            text-decoration: none; /* bỏ gạch chân */
+        }
+
+            /* ICON WRAP */
+            .fab-item .icon {
+                width: 2.5rem;
+                height: 2.5rem;
+                background: #fff;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+                /* ICON */
+                .fab-item .icon i {
+                    color: var(--luxury-amber);
+                    font-size: 1.125rem;
+                }
+
+            /* TEXT */
+            .fab-item span {
+                opacity: 0;
+                width: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                margin-left: 0.625rem;
+                transition: 0.3s;
+                color: #fff;
+            }
+
+            /* ACTIVE */
+            .fab-item.active {
+                width: 11.25rem;
+            }
+
+                /* SHOW TEXT */
+                .fab-item.active span {
+                    opacity: 1;
+                    width: auto;
+                    margin-right: 0.9375rem;
+                }
+
+            .fab-item:hover {
+                width: 11.25rem;
+            }
+                /* show text */
+
+                .fab-item:hover span {
+                    opacity: 1;
+                    width: auto;
+                    margin-right: 0.9375rem;
+                }
+    </style>
 </head>
 <body>
 
@@ -67,15 +157,15 @@
 
     <!-- 7. FOOTER -->
     <footer id="lien-he" class="footer-luxury">
-        <div class="container">
+        <div class="container" style=" width: 80% !important; max-width: 100%;">
             <div class="row g-5">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="d-flex align-items-center mb-4">
                         <img src="~/css-moi/logo_ta.png" alt="" loading="lazy" style="width:100px;border-radius:50%" />
                     </div>
                     <p class="small text-white-50">Nhà xưởng gia công chế tác mộc công nghiệp tự động hóa CNC quy mô lớn. Đối tác cung ứng uy tín của các văn phòng kiến trúc sư.</p>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-2">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Dịch Vụ Chính</h5>
                     <p class="d-flex align-items-start mb-3" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
                         <span>
@@ -98,7 +188,7 @@
                         </span>
                     </p>
                 </div>
-                <div class="col-md-6 col-lg-5">
+                <div class="col-md-6 col-lg-4">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Thông Tin Liên Hệ</h5>
 
                     <!-- Địa chỉ (Chuẩn Schema Local Business) -->
@@ -134,6 +224,10 @@
                         </span>
                     </p>
                 </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d932.3020599527193!2d106.3561134!3d20.8232959!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31358f007b890459%3A0x3c353fe76524a5a0!2zWMav4bueTkcgTuG7mEkgVEjhuqRUIFTDgk0gQU4!5e0!3m2!1svi!2s!4v1781102719952!5m2!1svi!2s" width="350" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
             <hr class="mt-5 mb-4 border-secondary opacity-25">
             <div class="d-flex flex-column flex-md-row justify-content-between text-white-50 small" style="width:100%; text-align:center">
@@ -142,7 +236,27 @@
         </div>
     </footer>
 
+    <div class="fab-container fab1">
+        <a href="https://www.facebook.com/profile.php?id=61579102721100" target="_blank" class="fab-item">
+            <div class="icon">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <span>Chat Facebook</span>
+        </a>
+    </div>
+    <div class="fab-container fab2">
+        <a href="tel:0968967383" class="fab-item">
+            <div class="icon"><i class="fa fa-phone"></i></div>
+            <span>Mr.Tâm</span>
+        </a>
+    </div>
 
+    <div class="fab-container fab3">
+        <a href="mailto:tamantk123@gmail.com" class="fab-item">
+            <div class="icon"><i class="fa fa-envelope"></i></div>
+            <span>Email</span>
+        </a>
+    </div>
 
 
     <!-- POPUP MODAL XEM ALBUM HÌNH ẢNH DỰ ÁN -->

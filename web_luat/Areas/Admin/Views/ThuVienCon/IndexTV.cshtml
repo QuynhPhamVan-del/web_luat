@@ -26,41 +26,6 @@
          },
          new { @class = "btn btn-primary col-md-1" }
          )
-            <a href="@Url.Action("IndexTV", new { isTrash = false ,Id=ViewBag.Id})"
-               class="btn  btn-success col-md-1" style="margin:0 10px">
-                Danh sách
-            </a>
-
-            <a href="@Url.Action("IndexTV", new { isTrash = true,Id=ViewBag.Id })"
-               class="btn btn-danger col-md-1">
-                Thùng rác
-            </a>
-        </div>
-        <div style="padding:10px 25px">
-
-            @using (Html.BeginForm("Index", "ThuVienCon", FormMethod.Get))
-            {
-                <div style="display:flex; gap:10px; align-items:center">
-
-                    <input type="text"
-                           name="keyword"
-                           value="@ViewBag.keyword"
-                           class="form-control"
-                           placeholder="Nhập tên đối tác..."
-                           style="width:250px" />
-                    <input name="Id" value="@ViewBag.Id" hidden />
-                    <input name="isTrash" value="@ViewBag.isTrash" hidden />
-                    <button type="submit" class="btn btn-primary">
-                        Tìm kiếm
-                    </button>
-
-                    <a href="@Url.Action("Index","ThuVienCon")"
-                       class="btn btn-secondary">
-                        Reset
-                    </a>
-
-                </div>
-            }
 
         </div>
 
@@ -92,33 +57,20 @@
                             </td>
 
                             <td>
-                                @if (ViewBag.isTrash == true)
-                                {
-                                    <a class="btn btn-sm btn-outline-success" onclick="btnRestoreSingle(@item.Id, 'ThuVienCon')">
-                                        Khôi phục
-                                    </a>
+                                <a href="@Url.Action("EditTVC", "ThuVienCon", new { id = item.Id })"
+                                   class="btn btn-sm btn-outline-success"
+                                   title="Sửa"
+                                   data-ajax="true"
+                                   data-ajax-mode="replace"
+                                   data-ajax-update="#responsive"
+                                   data-ajax-method="GET"
+                                   data-ajax-complete="loadfrmEditSussess">
+                                    Sửa
+                                </a>
 
-                                    <a class="btn btn-sm btn-outline-danger" onclick="btndeletetvc(@item.Id, 'ThuVienCon')">
-                                        Xóa vĩnh viễn
-                                    </a>
-                                }
-                                else
-                                {
-
-                                    <a class="btn btn-sm btn-outline-success"
-                                       href="@Url.Action("EditTVC","ThuVienCon", new { id = item.Id })"
-                                       data-ajax="true"
-                                       data-ajax-update="#responsive"
-                                       data-ajax-method="GET"
-                                       data-ajax-complete="loadfrmEditSussess">
-                                        Sửa
-                                    </a>
-
-                                    <a class="btn btn-sm btn-outline-danger"
-                                       onclick="btndelete(@item.Id,'ThuVienCon')">
-                                        Xóa
-                                    </a>
-                                }
+                                <a class="btn btn-sm btn-outline-dark" title="Xóa" onclick="btndelete(@item.Id,'ThuVienCon')">
+                                    Xóa
+                                </a>
                             </td>
                         </tr>
                     }
@@ -129,64 +81,15 @@
             <div class="col-md-12" style="text-align:right;color:black">
                 Tổng số bản ghi: @ViewBag.total &nbsp;
             </div>
-            @{
-                int currentPage = Convert.ToInt32(ViewBag.pageNumber);
-                int totalPages = Model.PageCount;
-
-                // Số trang cần hiển thị
-                int showStart = 3;
-                int showMiddle = 2;
-                int showEnd = 3;
-
-                List<int> displayedPages = new List<int>();
-
-                // 3 trang đầu
-                for (int i = 1; i <= Math.Min(showStart, totalPages); i++)
-                {
-                    displayedPages.Add(i);
-                }
-
-                // 2 trang giữa (trang hiện tại +/- 1)
-                for (int i = currentPage - 1; i <= currentPage + 1; i++)
-                {
-                    if (i > showStart && i <= totalPages - showEnd && !displayedPages.Contains(i))
-                    {
-                        displayedPages.Add(i);
-                    }
-                }
-
-                // 3 trang cuối
-                for (int i = totalPages - showEnd + 1; i <= totalPages; i++)
-                {
-                    if (i > 0 && !displayedPages.Contains(i))
-                    {
-                        displayedPages.Add(i);
-                    }
-                }
-
-                // Sắp xếp danh sách trang để hiển thị theo thứ tự
-                displayedPages = displayedPages.Distinct().OrderBy(x => x).ToList();
-            }
-
             <ul class="pagination" style="float:right;margin-right:20px">
-                @{
-                    int lastPage = 0;
-                    foreach (var page in displayedPages)
-                    {
-                        if (lastPage != 0 && page - lastPage > 1)
-                        {
-                            <li><span class="page-link">...</span></li>
-                        }
 
-                        <li>
-                            <a class="page-link @(currentPage == page ? "active" : "")" href="@Url.Action("IndexTV", new { page = page,Id=ViewBag.Id,isTrash=ViewBag.isTrash,keyword=ViewBag.keyword })">@page</a>
-                        </li>
-
-                        lastPage = page;
-                    }
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li>
+                        <a class="page-link @(Convert.ToInt32(ViewBag.pageNumber)==i?"active1":"")" href="@Url.Action("Index", new { page = i })">@i</a>
+                    </li>
                 }
             </ul>
-
         </div>
     </div>
 
