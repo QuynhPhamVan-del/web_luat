@@ -5,29 +5,48 @@
 @{
     ViewBag.Title = "Danh sách banner";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var stt = 0;
+
     var user = ViewData["user"] as List<tbl_User>;
+    int currentSize = ViewBag.CurrentPageSize ?? 10;
+
+    // Tính toán số thứ tự tăng dần chuẩn xác khi chuyển trang
+    int currentPage = Convert.ToInt32(ViewBag.pageNumber);
+    var stt = (currentPage - 1) * currentSize;
 }
+
 <div class="flex-grow-1 container-p-y" style=" padding: 20px 30px !important; width: 99% !important; margin: 0px !important;">
-    @*<h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Banner trang chính   </h4>*@
     <div class="card">
         <div class="row" style=" display: flex; justify-content: flex-end; padding: 10px 25px; ">
             <h4 class=""><span class="text-muted fw-light">Trang chủ /</span> Quản trị người dùng</h4>
             @Ajax.ActionLink(
+                 " Thêm ",
+                 "Create",
+                 "NguoiDung",
+                 new AjaxOptions
+                 {
+                     UpdateTargetId = "responsive",
+                     InsertionMode = InsertionMode.Replace,
+                     HttpMethod = "GET",
+                     OnComplete = "load"
+                 },
+                 new { @class = "btn btn-primary col-md-1" }
+             )
+        </div>
 
-         " Thêm ",
-         "Create",
-         "NguoiDung",
-         new AjaxOptions
-         {
-             UpdateTargetId = "responsive",
-             InsertionMode = InsertionMode.Replace,
-             HttpMethod = "GET",
-             OnComplete = "load"
-         },
-         new { @class = "btn btn-primary col-md-1" }
-         )
+        <div class="row" style="padding: 10px 25px;">
+            <div class="col-md-3">
+                <input name="Key" id="Key" class="form-control" value="@ViewBag.Key" placeholder="Từ khóa tìm kiếm..." />
+            </div>
 
+            <div class="col-md-2 offset-md-7">
+                <select class="form-control" id="PageSize" onchange="timkiem()">
+                    <option value="10" @(currentSize == 10 ? "selected" : "")>10 dòng / trang</option>
+                    <option value="15" @(currentSize == 15 ? "selected" : "")>15 dòng / trang</option>
+                    <option value="20" @(currentSize == 20 ? "selected" : "")>20 dòng / trang</option>
+                    <option value="50" @(currentSize == 50 ? "selected" : "")>50 dòng / trang</option>
+                    <option value="100" @(currentSize == 100 ? "selected" : "")>100 dòng / trang</option>
+                </select>
+            </div>
         </div>
 
         <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
@@ -37,102 +56,90 @@
                         <th class="text-center">Số thứ tự</th>
                         <th class="text-center">Tài khoản</th>
                         <th class="text-center">Họ và tên</th>
-                        <th class="text-center">Ảnh đại diện</th>
                         <th class="text-center">Email</th>
                         <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach (var item in Model)
+                    @if (Model != null && Model.Count > 0)
                     {
-                        stt++;
-                        <tr class="text-center">
-                            <td>
-                                @stt
-                            </td>
-                            <td>
-                                @item.UserName
-                            </td>
-                            <td>
-                                @item.FullName
-                            </td>
-                            <td>
-                                <img loading="lazy" alt="" src="@item.Image" height="100" alt="" />
-                            </td>
-                            <td>
-                                @item.Email
-                            </td>
-                       
-                            <td>
-                                <a href="@Url.Action("AddNhomQuyen", "NguoiDung", new { IdUser = item.ID })"
-                                   class="btn btn-sm btn-outline-primary"
-                                   title="Phân quyền"
-                                   data-ajax="true"
-                                   data-ajax-mode="replace"
-                                   data-ajax-update="#responsive"
-                                   data-ajax-method="GET"
-                                   data-ajax-complete="loadfrmEditSussess">
-                                    Add Nhóm quyền
-                                </a>
-                                <a href="@Url.Action("Edit", "NguoiDung", new { id = item.ID })"
-                                   class="btn btn-sm btn-outline-success"
-                                   title="Sửa"
-                                   data-ajax="true"
-                                   data-ajax-mode="replace"
-                                   data-ajax-update="#responsive"
-                                   data-ajax-method="GET"
-                                   data-ajax-complete="loadfrmEditSussess">
-                                    Sửa
-                                </a>
-                                <a class="btn btn-sm btn-outline-dark" title="Xóa" onclick="btndelete(@item.ID,'NguoiDung')">
-                                    Xóa
-                                </a>
-                            </td>
+                        foreach (var item in Model)
+                        {
+                            stt++;
+                            <tr class="text-center">
+                                <td>@stt</td>
+                                <td>@item.UserName</td>
+                                <td>@item.FullName</td>
+                                <td>@item.Email</td>
+                                <td>
+                                    @if (Session["Admin"] != null && Session["Admin"].ToString() == "1")
+                                    {
+                                        <a class="btn btn-sm btn-outline-dark" title="Reset mật khẩu" onclick="btnResetPassword(@item.ID)">
+                                            Reset mật khẩu
+                                        </a>
+                                    }
+                                    <a href="@Url.Action("AddNhomQuyen", "NguoiDung", new { IdUser = item.ID })"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="Phân quyền"
+                                       data-ajax="true"
+                                       data-ajax-mode="replace"
+                                       data-ajax-update="#responsive"
+                                       data-ajax-method="GET"
+                                       data-ajax-complete="loadfrmEditSussess">
+                                        Add Nhóm quyền
+                                    </a>
+                                    <a href="@Url.Action("Edit", "NguoiDung", new { id = item.ID })"
+                                       class="btn btn-sm btn-outline-success"
+                                       title="Sửa"
+                                       data-ajax="true"
+                                       data-ajax-mode="replace"
+                                       data-ajax-update="#responsive"
+                                       data-ajax-method="GET"
+                                       data-ajax-complete="loadfrmEditSussess">
+                                        Sửa
+                                    </a>
+                                    <a class="btn btn-sm btn-outline-dark" title="Xóa" onclick="btndelete(@item.ID,'NguoiDung')">
+                                        Xóa
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center" style="color: red; padding: 15px;">Không tìm thấy kết quả phù hợp!</td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-        <div>
+
+        <div style="padding: 10px 0;">
             <div class="col-md-12" style="text-align:right;color:black">
                 Tổng số bản ghi: @ViewBag.total &nbsp;
             </div>
             @{
-                int currentPage = Convert.ToInt32(ViewBag.pageNumber);
                 int totalPages = Model.PageCount;
 
-                // Số trang cần hiển thị
                 int showStart = 3;
                 int showMiddle = 2;
                 int showEnd = 3;
 
                 List<int> displayedPages = new List<int>();
 
-                // 3 trang đầu
-                for (int i = 1; i <= Math.Min(showStart, totalPages); i++)
-                {
-                    displayedPages.Add(i);
-                }
+                for (int i = 1; i <= Math.Min(showStart, totalPages); i++) { displayedPages.Add(i); }
 
-                // 2 trang giữa (trang hiện tại +/- 1)
                 for (int i = currentPage - 1; i <= currentPage + 1; i++)
                 {
-                    if (i > showStart && i <= totalPages - showEnd && !displayedPages.Contains(i))
-                    {
-                        displayedPages.Add(i);
-                    }
+                    if (i > showStart && i <= totalPages - showEnd && !displayedPages.Contains(i)) { displayedPages.Add(i); }
                 }
 
-                // 3 trang cuối
                 for (int i = totalPages - showEnd + 1; i <= totalPages; i++)
                 {
-                    if (i > 0 && !displayedPages.Contains(i))
-                    {
-                        displayedPages.Add(i);
-                    }
+                    if (i > 0 && !displayedPages.Contains(i)) { displayedPages.Add(i); }
                 }
 
-                // Sắp xếp danh sách trang để hiển thị theo thứ tự
                 displayedPages = displayedPages.Distinct().OrderBy(x => x).ToList();
             }
 
@@ -147,15 +154,101 @@
                         }
 
                         <li>
-                            <a class="page-link @(currentPage == page ? "active" : "")" href="@Url.Action("Index", new { page = page })">@page</a>
+                            <a class="page-link @(currentPage == page ? "active" : "")"
+                               href="@Url.Action("Index", new { page = page, pageSize = currentSize, Key = ViewBag.Key })">@page</a>
                         </li>
 
                         lastPage = page;
                     }
                 }
             </ul>
-
         </div>
     </div>
-
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Lắng nghe sự kiện gõ phím Enter trên ô input tìm kiếm
+            $("#Key").on("keypress", function (e) {
+                if (e.which === 13) {
+                    timkiem();
+                }
+            });
+        });
+
+        // Hàm xử lý tìm kiếm và gom các tham số URL điều hướng lại trang 1
+        function timkiem() {
+            var pageSize = $('#PageSize').val();
+            var key = $('#Key').val();
+
+            var url = "@Url.Action("Index", "NguoiDung")"
+                + "?page=1"
+                + "&pageSize=" + pageSize
+                + "&Key=" + encodeURIComponent(key);
+
+            window.location.href = url;
+        }
+
+        // Hàm Reset Password sẵn có của bạn
+        function btnResetPassword(id) {
+            Swal.fire({
+                title: 'Reset mật khẩu',
+                input: 'password',
+                inputLabel: 'Nhập mật khẩu mới cho tài khoản này:',
+                inputPlaceholder: 'Mật khẩu mới...',
+                inputAttributes: {
+                    maxlength: 50,
+                    autocapitalize: 'off',
+                    autocorrect: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Xác nhận',
+                cancelButtonText: 'Hủy bỏ',
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Bạn không được để trống mật khẩu!';
+                    }
+                    if (value.length < 6) {
+                        return 'Mật khẩu phải có độ dài từ 6 ký tự trở lên!';
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    var newPassword = result.value;
+
+                    $.ajax({
+                        url: '/Admin/NguoiDung/ResetPassword',
+                        type: 'POST',
+                        data: {
+                            id: id,
+                            password: newPassword
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Thành công!',
+                                    text: response.message
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thất bại!',
+                                    text: response.message
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Lỗi kết nối!',
+                                text: 'Không thể kết nối tới máy chủ. Vui lòng thử lại.'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

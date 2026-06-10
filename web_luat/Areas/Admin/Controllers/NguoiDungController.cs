@@ -15,19 +15,38 @@ namespace web_luat.Areas.Admin.Controllers
     public class NguoiDungController : Controller
     {
         dbcontext db = new dbcontext();
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, int? pageSize, string Key)
         {
+            // 1. Xác định số lượng bản ghi hiển thị trên trang
+            int selectedPageSize = pageSize ?? 10;
+            ViewBag.CurrentPageSize = selectedPageSize;
 
-            var list = db.tbl_User.ToList();
-            if (page == null) page = 1;
-            var books = list.OrderBy(g => g.ID);
-            int pageSize = 10;
+            // Giữ lại từ khóa tìm kiếm để hiển thị lên ô input ở View
+            ViewBag.Key = Key;
+
+            // 2. Lấy dữ liệu dạng IQueryable để tối ưu hiệu năng cơ sở dữ liệu
+            var list = db.tbl_User.AsQueryable();
+
+            // 3. Thực hiện lọc dữ liệu nếu người dùng có nhập từ khóa tìm kiếm
+            if (!string.IsNullOrEmpty(Key))
+            {
+                Key = Key.Trim().ToLower();
+                list = list.Where(g => g.UserName.ToLower().Contains(Key)
+                                    || g.FullName.ToLower().Contains(Key)
+                                    || g.Email.ToLower().Contains(Key));
+            }
+
+            // 4. Sắp xếp danh sách
+            list = list.OrderBy(g => g.ID);
+
+            // 5. Tính toán số trang và tổng số dòng sau khi đã lọc
             int pageNumber = (page ?? 1);
-            ViewBag.pageNumber = page;
-            ViewBag.total = list.ToList().Count();
-            return View(books.ToPagedList(pageNumber, pageSize));
-        }
+            ViewBag.pageNumber = pageNumber;
+            ViewBag.total = list.Count();
 
+            // 6. Trả về View kết hợp dữ liệu đã được phân trang
+            return View(list.ToPagedList(pageNumber, selectedPageSize));
+        }
         public PartialViewResult Create()
         {
             var IsLanguage = Convert.ToInt32(Session["Language"]);
@@ -200,6 +219,38 @@ namespace web_luat.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 return Json(new { status = false, message = "Lỗi dữ liệu" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult ResetPassword(int id, string password)
+        {
+            try
+            {
+                // 1. Kiểm tra dữ liệu đầu vào cơ bản
+                if (string.IsNullOrEmpty(password) || password.Length < 6)
+                {
+                    return Json(new { success = false, message = "Mật khẩu không hợp lệ hoặc quá ngắn!" });
+                }
+
+                // 2. Tìm người dùng trong DB
+                var user = db.tbl_User.Find(id);
+                if (user == null)
+                {
+                    return Json(new { success = false, message = "Không tìm thấy người dùng này!" });
+                }
+
+                user.Password = PasswordHelper.HashPassword(password);
+
+                db.tbl_User.AddOrUpdate(user);
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "Đã thay đổi mật khẩu thành công!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Lỗi hệ thống: " + ex.Message });
             }
         }
     }
