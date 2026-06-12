@@ -124,7 +124,6 @@
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
             <div>
-                <span class="text-uppercase text-muted fw-bold small tracking-widest d-block mb-1">// KHÔNG GIAN SÁNG TẠO</span>
                 <h2 class="section-title">Dự Án <span>Tiêu Biểu</span></h2>
             </div>
 
@@ -133,7 +132,6 @@
                 <button class="project-filter-btn" onclick="filterProjects(1, this)">Biệt Thự</button>
                 <button class="project-filter-btn" onclick="filterProjects(2, this)">Căn Hộ</button>
                 <button class="project-filter-btn" onclick="filterProjects(3, this)">Văn Phòng</button>
-
             </div>
         </div>
 
@@ -143,53 +141,12 @@
                 {
                     foreach (var item in ViewBag.DuAn as List<web_luat.Models.tbl_ThuVienAnh>)
                     {
-                        // Tạo mảng danh sách ảnh con từ tbl_thuviencon của item hiện tại thành chuỗi JSON an toàn
+                        // Tạo mảng danh sách ảnh con thành chuỗi JSON an toàn
                         var albumUrls = tvc != null
                                         ? Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(tvc.Select(x => x.FileImage).ToList()))
                                         : Html.Raw("[]");
 
-                        <div class="swiper-slide"
-                             data-type="@(item.IdDonVi.HasValue ? item.IdDonVi.ToString() : "")">
-                            <div class="project-card" onclick="openAlbumDirect(this, '@item.TieuDe')" data-album='@albumUrls'>
-                                <div class="project-img-box">
-                                    <img src="@item.Image" alt="@item.TieuDe" loading="lazy" class="img-fluid w-100">
-                                </div>
-                                <div class="project-overlay">
-                                    <h5>@item.TieuDe</h5>
-                                    <p class="text-white-50 small mb-0">@item.MoTa</p>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    foreach (var item in ViewBag.DuAn as List<web_luat.Models.tbl_ThuVienAnh>)
-                    {
-                        // Tạo mảng danh sách ảnh con từ tbl_thuviencon của item hiện tại thành chuỗi JSON an toàn
-                        var albumUrls = tvc != null
-                                        ? Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(tvc.Select(x => x.FileImage).ToList()))
-                                        : Html.Raw("[]");
-
-                        <div class="swiper-slide"
-                             data-type="@(item.IdDonVi.HasValue ? item.IdDonVi.ToString() : "")">
-                            <div class="project-card" onclick="openAlbumDirect(this, '@item.TieuDe')" data-album='@albumUrls'>
-                                <div class="project-img-box">
-                                    <img src="@item.Image" alt="@item.TieuDe" loading="lazy" class="img-fluid w-100">
-                                </div>
-                                <div class="project-overlay">
-                                    <h5>@item.TieuDe</h5>
-                                    <p class="text-white-50 small mb-0">@item.MoTa</p>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    foreach (var item in ViewBag.DuAn as List<web_luat.Models.tbl_ThuVienAnh>)
-                    {
-                        // Tạo mảng danh sách ảnh con từ tbl_thuviencon của item hiện tại thành chuỗi JSON an toàn
-                        var albumUrls = tvc != null
-                                        ? Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(tvc.Select(x => x.FileImage).ToList()))
-                                        : Html.Raw("[]");
-
-                        <div class="swiper-slide"
-                             data-type="@(item.IdDonVi.HasValue ? item.IdDonVi.ToString() : "")">
+                        <div class="swiper-slide" data-type="@(item.IdDonVi.HasValue ? item.IdDonVi.ToString() : "")">
                             <div class="project-card" onclick="openAlbumDirect(this, '@item.TieuDe')" data-album='@albumUrls'>
                                 <div class="project-img-box">
                                     <img src="@item.Image" alt="@item.TieuDe" loading="lazy" class="img-fluid w-100">
@@ -209,7 +166,7 @@
 </section>
 
 <div class="modal fade" id="projectAlbumModal" tabindex="-1" aria-hidden="true" style="background: rgba(0,0,0,0.9);">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="min-width:70%">
         <div class="modal-content bg-dark text-white border-secondary">
             <div class="modal-header border-secondary">
                 <h5 class="modal-title" id="modalAlbumTitle">Album Dự Án</h5>
@@ -435,7 +392,7 @@
 
                             <div class="col-12">
                                 <label class="form-label text-white-50 small mb-2" style="font-size: 0.85rem;">Nhu cầu của bạn</label>
-                                <select id="services" name="services" class="form-select" style="background: #1B2130 url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e&quot;) no-repeat right 12px center/10px 10px; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;">
+                                <select id="services" name="services" class="form-select" style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;">
                                     <option value="Thiết kế Kiến trúc">Thiết kế Kiến trúc</option>
                                     <option value="Thiết kế & Thi công Nội thất" selected>Thiết kế & Thi công Nội thất</option>
                                     <option value="Thi công Trọn gói Kiến trúc - Nội thất">Thi công Trọn gói Kiến trúc - Nội thất</option>
@@ -444,14 +401,14 @@
 
                             <div class="col-12">
                                 <label class="form-label text-white-50 small mb-2" style="font-size: 0.85rem;">Nội dung chi tiết (tùy chọn)</label>
-                                <textarea id="message" name="message" class="form-control" rows="3" placeholder="Chia sẻ về diện tích, phong cách mong muốn..." style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px; resize: none;"></textarea>
+                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="Chia sẻ về diện tích, phong cách mong muốn..." style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px; resize: none;"></textarea>
                             </div>
 
-                            <div class="col-12 my-2 d-flex justify-content-center">
+                            <div class="col-12 my-4 d-flex justify-content-center" style="margin-top:10px">
                                 <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-theme="dark"></div>
                             </div>
 
-                            <div class="col-12 mt-3">
+                            <div class="col-12">
                                 <button type="submit" class="btn w-100 py-3 fw-bold text-uppercase" style="background-color: var(--luxury-amber, #BA9465); color: #111622; border: none; border-radius: 30px; font-size: 0.9rem; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(217,160,91,0.2);">
                                     Gửi yêu cầu tư vấn
                                 </button>

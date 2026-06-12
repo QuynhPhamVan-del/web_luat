@@ -1799,6 +1799,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="css-moi\banner-goi-thieu.jpg" />
+    <Content Include="css-moi\logo-zalo-vector.png" />
     <Content Include="css-moi\logo_ta.png" />
     <Content Include="css-moi\script.js" />
     <Content Include="css-moi\style.css" />
