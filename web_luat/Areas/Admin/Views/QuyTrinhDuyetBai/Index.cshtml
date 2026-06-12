@@ -40,14 +40,12 @@
                             Tên bước
                         </th>
 
-                        <th class="text-center">
-                            Nhóm quyền
-                        </th>
+
                         <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Select(g => new { g.TenBuoc, g.STT }).GroupBy(g => new { g.STT, g.TenBuoc }))
                     {
                         stt++;
                         <tr class="text-center">
@@ -55,14 +53,13 @@
                                 @stt
                             </td>
                             <td>
-                               @item.STT
+                                @item.Key.STT
                             </td>
                             <td>
-                                @item.TenBuoc
+                                @item.Key.TenBuoc
                             </td>
-                            <td>@donvi.FirstOrDefault(g=>g.Id==item.IdNhomQuyen).TenNhomQuyen</td>
                             <td>
-                                <a href="@Url.Action("Edit", "QuyTrinhDuyetBai", new { id = item.Id })"
+                                <a href="@Url.Action("Edit", "QuyTrinhDuyetBai", new { id = item.Key.STT })"
                                    class="btn btn-sm btn-outline-success"
                                    title="Sửa"
                                    data-ajax="true"
@@ -72,7 +69,7 @@
                                    data-ajax-complete="loadfrmEditSussess">
                                     Sửa
                                 </a>
-                                <a class="btn btn-sm btn-outline-dark" title="Xóa" onclick="btndelete(@item.Id,'QuyTrinhDuyetBai')">
+                                <a class="btn btn-sm btn-outline-dark" title="Xóa" onclick="btndelete(@item.Key.STT, 'QuyTrinhDuyetBai')">
                                     Xóa
                                 </a>
                             </td>

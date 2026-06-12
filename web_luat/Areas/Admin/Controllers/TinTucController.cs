@@ -388,7 +388,7 @@ namespace web_luat.Areas.Admin.Controllers
             int IdDV = Convert.ToInt32(Session["IdDV"]);
             int IdUser = Convert.ToInt32(Session["Id"]);
 
-            // Lấy danh sách chuyên mục theo đơn vị
+            // 1. Lấy danh sách chuyên mục theo đơn vị
             var lstId = db.tbl_DonViChuyenMuc
                           .Where(x => x.IdDonVi == IdDV)
                           .Select(x => x.IdChuyenMuc);
@@ -399,43 +399,58 @@ namespace web_luat.Areas.Admin.Controllers
 
             ViewData["loaitin"] = lstCM;
 
-            // Lấy nhóm quyền
-            var nhomQuyen = db.tbl_User_NhomQuyen
-                              .FirstOrDefault(x => x.IdUser == IdUser);
+            // 2. Lấy tất cả IdNhómQuyền của User (Do 1 user có nhiều nhóm quyền)
+            var nhomQuyenIds = db.tbl_User_NhomQuyen
+                                 .Where(x => x.IdUser == IdUser)
+                                 .Select(g => g.IdNhomQuyen)
+                                 .ToList(); // ToList để tránh query lặp lại nhiều lần
 
-            if (nhomQuyen == null)
+            if (nhomQuyenIds == null || !nhomQuyenIds.Any())
                 return View();
 
-            var quyTrinh = db.QuyTrinhDuyets
-                             .FirstOrDefault(x => x.IdNhomQuyen == nhomQuyen.IdNhomQuyen);
+            // Kiểm tra nhanh xem user có thuộc nhóm quyền nào có quyền IsFull không
+            var IsFull = db.tbl_NhomQuyen
+                           .Any(g => nhomQuyenIds.Contains(g.Id));
 
-            if (quyTrinh == null)
+            // 3. Lấy TẤT CẢ các bước duyệt thuộc các nhóm quyền của User này
+            var lstBuocDuyet = db.QuyTrinhDuyets
+                                 .Where(x => nhomQuyenIds.Contains(x.IdNhomQuyen) && x.STT != null)
+                                 .Select(x => x.STT)
+                                 .Distinct()
+                                 .ToList();
+
+            // Nếu các nhóm quyền của user không được phân vào bước duyệt nào, không hiển thị bài viết
+            if (!lstBuocDuyet.Any())
                 return View();
 
-            int? buoc = quyTrinh.STT;
-
-            // Query chính (GIỮ IQueryable)
+            // 4. Khởi tạo Query lọc bài viết
             var query = db.tbl_Post.Where(g =>
                             g.IsDelete == false &&
                             g.TrangThai == 1 &&
-                            g.BuocDuyet == buoc
-                        );
+                            lstBuocDuyet.Contains(g.BuocDuyet) // Sửa ở đây: Lấy tất cả bài viết thuộc các bước được quyền
+                        ).Distinct();
 
-            // Filter theo chuyên mục
+            // 5. Lọc theo chuyên mục nếu có
             if (IdChuyenMuc > 0)
             {
 
-                query = query.Where(g => g.IdChuyenMuc == IdChuyenMuc);
+                query = query.Where(g => g.ID==IdChuyenMuc);
             }
 
-            // Filter theo keyword
+            // 6. Lọc theo từ khóa tìm kiếm
             if (!string.IsNullOrEmpty(Keyword))
             {
                 Keyword = Keyword.ToLower();
                 query = query.Where(g => g.TieuDe.ToLower().Contains(Keyword));
             }
 
-            // Paging
+            // 7. Nếu không phải quyền IsFull, chỉ xem được bài viết do chính mình tạo
+            if (!IsFull)
+            {
+                query = query.Where(g => g.IdUser == IdUser);
+            }
+
+            // 8. Phân trang và trả kết quả
             int pageSize = 10;
             int pageNumber = page ?? 1;
 

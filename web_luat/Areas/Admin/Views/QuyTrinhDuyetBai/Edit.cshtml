@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Thêm banner mới";
     var donvi = ViewData["nhomquyen"] as List<web_luat.Models.tbl_NhomQuyen>;
+    var lst = ViewData["int"] as List<int?>;
     <style>
 
         #preview {
@@ -55,11 +56,20 @@
                         @Html.ValidationMessageFor(model => model.TenBuoc, "", new { @class = "text-danger" })
                     </div>
                     <div class="infor-details">
-                        <label for="txtmaKH">Nhóm quyền</label>
-                        <select class="form-control" name="IdNhomQuyen">
-                            @foreach (var item in donvi)
+                        <label for="IdNhomQuyen">Nhóm quyền</label>
+                        <select class="form-control" name="IdNhomQuyen" multiple>
+                            <option value="">-- Chọn nhóm quyền --</option>
+                            @if (donvi != null)
                             {
-                                <option value="@item.Id" @(item.Id==Model.IdNhomQuyen?"selected":"")>@item.TenNhomQuyen</option>
+                                foreach (var item in donvi)
+                                {
+                                    // SỬA LỖI Ở ĐÂY: Dùng Contains để kiểm tra item.Id có nằm trong List<int?> hay không
+                                    bool isSelected = lst != null && lst.Contains(item.Id);
+
+                                    <option value="@item.Id" @(isSelected ? "selected" : "")>
+                                        @item.TenNhomQuyen
+                                    </option>
+                                }
                             }
                         </select>
                     </div>

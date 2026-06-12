@@ -46,7 +46,7 @@
                     </div>
                     <div class="infor-details">
                         <label for="txtmaKH">Thứ tự duyệt(<span style="color: red">*</span>)</label>
-                        @Html.EditorFor(model => model.STT, new { htmlAttributes = new { @class = "form-control",@type="number" } })
+                        @Html.EditorFor(model => model.STT, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                         @Html.ValidationMessageFor(model => model.STT, "", new { @class = "text-danger" })
                     </div>
                     <div class="infor-details">
@@ -56,7 +56,7 @@
                     </div>
                     <div class="infor-details">
                         <label for="txtmaKH">Nhóm quyền</label>
-                        <select class="form-control" name="IdNhomQuyen">
+                        <select class="form-control" name="IdNhomQuyen" multiple>
                             @foreach (var item in donvi)
                             {
                                 <option value="@item.Id">@item.TenNhomQuyen</option>
