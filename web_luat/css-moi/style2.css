@@ -21,18 +21,6 @@
     border-bottom: 1px solid var(--border-color);
     padding: 15px 0;
 }
-.navbar-brand img { height: 45px; }
-.nav-link {
-    color: var(--slate-dark) !important;
-    font-weight: 600;
-    font-size: 14px;
-    text-transform: uppercase;
-    padding: 8px 16px !important;
-    transition: var(--transition);
-}
-.nav-link:hover, .nav-link.active {
-    color: var(--primary-yellow-dark) !important;
-}
 
 /* 2. HERO SECTION */
 .hero-section {
@@ -1354,9 +1342,218 @@ textarea.form-control-custom { padding-left: 16px; }
 }
 
     .lawyer-meta-box .lawyer-brief-info {
-        font-size: 0.925rem;
+        font-size: 18px;
         line-height: 1.6;
         text-align: justify;
         text-align-last: center;
         flex-grow: 1; /* Đẩy nội dung chiếm trọn không gian trống, giúp các card bằng hàng nhau */
     }
+/* Style bổ sung cho danh sách Giá trị cốt lõi */
+.value-card-list p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.value-card-list strong {
+    color: var(--text-dark) !important;
+    font-weight: 600;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+/* Đồng bộ khung chứa Icon theo bảng màu thương hiệu của bạn */
+.value-icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFFDF3 0%, rgba(229, 184, 0, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--logo-yellow-dark);
+}
+
+.value-card-title {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+/* ==========================================================================
+   BỔ SUNG: KHỐI LĨCH VỰC HOẠT ĐỘNG CHUYÊN SÂU
+   ========================================================================== */
+.services-page-section {
+    padding: 80px 0;
+}
+
+.section-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Card Dịch Vụ Kiểu Dáng Luật Sư Chuyên Nghiệp */
+.law-service-card {
+    background-color: #ffffff;
+    border: 1px solid var(--logo-gray-main);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+    .law-service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(30, 41, 59, 0.08);
+        border-color: rgba(229, 184, 0, 0.3);
+    }
+
+    /* Thanh line vàng gold mảnh trên đỉnh card khi hover */
+    .law-service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--logo-yellow);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+    }
+
+    .law-service-card:hover::before {
+        transform: scaleX(1);
+    }
+
+/* Header của Card */
+.law-service-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px dashed var(--logo-gray-main);
+    padding-bottom: 15px;
+}
+
+.law-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background-color: var(--logo-gray-light);
+    color: var(--logo-yellow-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.law-service-card:hover .law-icon-box {
+    background-color: var(--logo-yellow);
+    color: #ffffff;
+}
+
+.law-service-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Badges phân loại nhóm khách hàng */
+.badge-client {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+    .badge-client.personal {
+        background-color: #EFF6FF;
+        color: #1D4ED8; /* Xanh dương lịch lãm cho Cá nhân */
+    }
+
+    .badge-client.business {
+        background-color: #FEF3C7;
+        color: #B45309; /* Vàng hổ phách cho Doanh nghiệp */
+    }
+
+/* Danh sách dịch vụ */
+.law-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+    .law-list li {
+        font-size: 0.925rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        position: relative;
+        padding-left: 15px;
+        margin-bottom: 6px;
+        text-align: justify;
+    }
+
+        .law-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--logo-yellow);
+            font-weight: bold;
+        }
+
+/* CSS đặc thù cho khối Trợ giúp Pháp lý Miễn phí */
+.charity-card {
+    background: linear-gradient(to bottom right, #ffffff, #FFFDF5);
+    border-left: 5px solid #EF4444; /* Tạo điểm nhấn màu đỏ nhân đạo */
+}
+
+.charity-text {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.charity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-item {
+    background-color: var(--logo-gray-light);
+    border: 1px solid var(--logo-gray-main);
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.charity-footer-note {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #475569;
+    background-color: #F8FAFC;
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 3px solid var(--logo-yellow);
+}
+
+.small-text {
+    font-size: 0.9rem;
+}

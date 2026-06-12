@@ -35,7 +35,7 @@ namespace web_luat.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult Create([Bind(Include = "TenNhanSu,Image,ChucVu,GioiThieu")] tbl_NhanSu banner)
+        public JsonResult Create([Bind(Include = "TenNhanSu,Image,ChucVu,GioiThieu,SDT")] tbl_NhanSu banner)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace web_luat.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult Edit([Bind(Include = "Id,TenNhanSu,Image,ChucVu,GioiThieu")] tbl_NhanSu banner)
+        public JsonResult Edit([Bind(Include = "Id,TenNhanSu,Image,ChucVu,GioiThieu,SDT")] tbl_NhanSu banner)
         {
             try
             {

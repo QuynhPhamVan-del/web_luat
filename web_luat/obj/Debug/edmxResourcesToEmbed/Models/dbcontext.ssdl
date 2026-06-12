@@ -195,6 +195,7 @@
     <Property Name="Image" Type="nvarchar(max)" />
     <Property Name="ChucVu" Type="nvarchar(max)" />
     <Property Name="GioiThieu" Type="nvarchar(max)" />
+    <Property Name="SDT" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tbl_NhomQuyen">
     <Key>
@@ -308,6 +309,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="Icon" Type="nvarchar(max)" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="tbl_ThongBao">
     <Key>

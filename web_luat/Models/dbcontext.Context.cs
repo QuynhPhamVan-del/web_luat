@@ -29,7 +29,9 @@ namespace web_luat.Models
         public DbSet<QuyTrinhDuyet> QuyTrinhDuyets { get; set; }
         public DbSet<tbl_Banner> tbl_Banner { get; set; }
         public DbSet<tbl_BoCuc> tbl_BoCuc { get; set; }
+        public DbSet<tbl_CamNhan> tbl_CamNhan { get; set; }
         public DbSet<tbl_ChuyenMuc> tbl_ChuyenMuc { get; set; }
+        public DbSet<tbl_DoiTac> tbl_DoiTac { get; set; }
         public DbSet<tbl_DonVi> tbl_DonVi { get; set; }
         public DbSet<tbl_DonViChuyenMuc> tbl_DonViChuyenMuc { get; set; }
         public DbSet<tbl_GioiThieu> tbl_GioiThieu { get; set; }
@@ -40,14 +42,17 @@ namespace web_luat.Models
         public DbSet<tbl_Menu_User> tbl_Menu_User { get; set; }
         public DbSet<tbl_MenuAdmin> tbl_MenuAdmin { get; set; }
         public DbSet<tbl_MenuPage> tbl_MenuPage { get; set; }
+        public DbSet<tbl_NhanSu> tbl_NhanSu { get; set; }
         public DbSet<tbl_NhomQuyen> tbl_NhomQuyen { get; set; }
         public DbSet<tbl_Post> tbl_Post { get; set; }
+        public DbSet<tbl_Post_Category> tbl_Post_Category { get; set; }
         public DbSet<tbl_Post_DonVi> tbl_Post_DonVi { get; set; }
         public DbSet<tbl_Post_DuyetLog> tbl_Post_DuyetLog { get; set; }
         public DbSet<tbl_Post_Tag> tbl_Post_Tag { get; set; }
         public DbSet<tbl_SoLuotTruyCap> tbl_SoLuotTruyCap { get; set; }
         public DbSet<tbl_SuKien> tbl_SuKien { get; set; }
         public DbSet<tbl_Tag> tbl_Tag { get; set; }
+        public DbSet<tbl_TaiSao> tbl_TaiSao { get; set; }
         public DbSet<tbl_ThongBao> tbl_ThongBao { get; set; }
         public DbSet<tbl_ThongSo> tbl_ThongSo { get; set; }
         public DbSet<tbl_ThuVienAnh> tbl_ThuVienAnh { get; set; }
@@ -60,10 +65,5 @@ namespace web_luat.Models
         public DbSet<LoadMenu> LoadMenus { get; set; }
         public DbSet<LogUser> LogUsers { get; set; }
         public DbSet<TinMoiNhat_CheckTrung> TinMoiNhat_CheckTrung { get; set; }
-        public DbSet<tbl_NhanSu> tbl_NhanSu { get; set; }
-        public DbSet<tbl_TaiSao> tbl_TaiSao { get; set; }
-        public DbSet<tbl_DoiTac> tbl_DoiTac { get; set; }
-        public DbSet<tbl_CamNhan> tbl_CamNhan { get; set; }
-        public DbSet<tbl_Post_Category> tbl_Post_Category { get; set; }
     }
 }

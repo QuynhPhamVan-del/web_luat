@@ -70,6 +70,11 @@
                         @Html.EditorFor(model => model.GioiThieu, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.GioiThieu, "", new { @class = "text-danger" })
                     </div>
+                    <div class="infor-details">
+                        <label>Điện thoại</label>
+                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>

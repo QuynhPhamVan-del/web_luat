@@ -16,5 +16,7 @@ namespace web_luat.Models
     {
         public int Id { get; set; }
         public string TieuDe { get; set; }
+        public string Icon { get; set; }
+        public string MoTa { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace web_luat.Areas.Admin.Controllers
             return PartialView();
         }
         [HttpPost]
-        public JsonResult Create([Bind(Include = "Id,TieuDe")] tbl_TaiSao banner)
+        public JsonResult Create([Bind(Include = "Id,TieuDe,Icon,MoTa")] tbl_TaiSao banner)
         {
             try
             {
@@ -43,6 +43,14 @@ namespace web_luat.Areas.Admin.Controllers
                 {
                     return Json(new { status = false, message = "Không được để trống các dữ liệu bắt buộc." }, JsonRequestBehavior.AllowGet);
 
+                }
+                var f = Request.Files["file"];
+                if (f != null && f.ContentLength > 0)
+                {
+                    string FileName = System.IO.Path.GetFileName(DateTime.Now.ToString("ddMMyyyyhhmmss") + f.FileName);
+                    string UploadPath = Server.MapPath("~/Upload/TaiSao/" + FileName);
+                    f.SaveAs(UploadPath);
+                    banner.Icon = "/Upload/TaiSao/" + FileName;
                 }
                 db.tbl_TaiSao.Add(banner);
                 db.SaveChanges();
@@ -69,7 +77,7 @@ namespace web_luat.Areas.Admin.Controllers
             return PartialView(banner);
         }
         [HttpPost]
-        public JsonResult Edit([Bind(Include = "Id,TieuDe")] tbl_TaiSao banner)
+        public JsonResult Edit([Bind(Include = "Id,TieuDe,Icon,MoTa")] tbl_TaiSao banner)
         {
             try
             {
@@ -77,6 +85,20 @@ namespace web_luat.Areas.Admin.Controllers
                 {
                     return Json(new { status = false, message = "Không được để trống các dữ liệu bắt buộc." }, JsonRequestBehavior.AllowGet);
 
+                }
+                var f = Request.Files["file"];
+
+                if (f != null && f.ContentLength > 0)
+                {
+                    string folderPath = Server.MapPath("~" + banner.Icon);
+                    if (System.IO.File.Exists(folderPath))
+                    {
+                        System.IO.File.Delete(folderPath);
+                    }
+                    string FileName = System.IO.Path.GetFileName(DateTime.Now.ToString("ddMMyyyyhhmmss") + f.FileName);
+                    string UploadPath = Server.MapPath("~/Upload/TaiSao/" + FileName);
+                    f.SaveAs(UploadPath);
+                    banner.Icon = "/Upload/TaiSao/" + FileName;
                 }
                 db.tbl_TaiSao.AddOrUpdate(banner);
                 db.SaveChanges();

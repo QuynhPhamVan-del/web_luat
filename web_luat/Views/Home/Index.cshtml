@@ -31,8 +31,7 @@
         <div class="row g-4 align-items-stretch">
             <div class="col-lg-5 col-xl-5">
                 <div class="about-content-card">
-                    <div class="about-sub">@vechungtoi.TieuDePhu</div>
-                    <h2 class="about-title">@vechungtoi.TieuDeChinh</h2>
+                    <h3 class="about-sub">@vechungtoi.TieuDePhu</h3>
                     <p class="about-text">
                         @Html.Raw(vechungtoi.NoiDung)
                     </p>
@@ -51,7 +50,6 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <span class="section-tagline d-block mb-2">Tư vấn dịch vụ</span>
                 <h2 class="section-main-title">Dịch vụ của chúng tôi</h2>
             </div>
         </div>
@@ -78,8 +76,7 @@
 <section class="team-section">
     <div class="container">
         <div class="team-title-area">
-            <div class="team-section-sub">Đội ngũ chuyên gia</div>
-            <h2 class="team-section-title">Chuyên Gia Pháp Lý</h2>
+            <h2 class="team-section-title">ĐỘI NGŨ NHÂN SỰ</h2>
             <a href="#" class="team-see-all">Xem Tất Cả ➔</a>
         </div>
         <div class="mv-team-viewport">
@@ -117,103 +114,52 @@
                 <div class="history-card-custom">
                     <h2 class="history-title-custom">Lịch Sử Hình Thành</h2>
                     <p class="history-text-custom mb-0">
-                        Công ty Luật TNHH MV được thành lập vào ngày 21/01/2021 theo Giấy chứng nhận Đăng ký hoạt động số 01021200 / TP-DKHD do Sở Tư pháp Thành phố Hà Nội cấp. Trải qua quá trình hình thành và phát triển, chúng tôi luôn nỗ lực không ngừng để bảo vệ tối đa quyền lợi hợp pháp cho khách hàng.
+                        Công ty Luật TNHH MV thành lập theo Giấy đăng ký hoạt động số 01022500/TP/ĐKHĐ do Sở Tư pháp thành phố Hà Nội cấp. Trong quá trình hoạt động, chúng tôi luôn nỗ lực không ngừng để bảo vệ tối đa quyền lợi hợp pháp cho khách hàng.
                     </p>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="row g-3">
-                    @foreach (var item in thongso)
-                    {
-                        <div class="col-6">
-                            <div class="stat-box-modern">
-                                <div class="stat-num">@item.ThongSo@item.KiHieu</div>
-                                <p class="stat-info">@item.TieuDe</p>
-                            </div>
-                        </div>
-                    }
+                <img src="~/css-moi/giamdoc.jpg" alt="" loading="lazy"/>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- KHỐI FORM ĐĂNG KÝ TƯ VẤN MIỄN PHÍ (ĐÃ ĐỒNG BỘ ĐẦY ĐỦ LOGIC BẢO MẬT) -->
-<section class="consultation-section">
-    <div class="container">
-        <div class="form-wrapper-modern">
-            <h2 class="form-title-modern text-center">Đăng Ký Tư Vấn Miễn Phí</h2>
-            <p class="text-muted text-center small mb-4" style="max-width: 600px; margin: 0 auto 25px;">Quý khách vui lòng điền đầy đủ các thông tin dưới đây. Yêu cầu của quý khách sẽ được chuyển trực tiếp đến Luật sư để bảo mật thông tin và phản hồi sớm nhất.</p>
 
-            <form id="consultationForm" action="/Home/LienHe" method="POST" class="contact-page-form-element">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="custom-input-group">
-                            <input type="text" name="HoTen" class="form-control-custom" placeholder="Họ và tên của bạn*" required>
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="custom-input-group">
-                            <input type="tel" name="SoDienThoai" class="form-control-custom" placeholder="Số điện thoại liên hệ*" required>
-                            <i class="fas fa-phone"></i>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="custom-input-group">
-                            <input type="email" name="Email" class="form-control-custom" placeholder="Địa chỉ Email của bạn*" required>
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="custom-input-group">
-                            <input type="text" name="TieuDe" class="form-control-custom" placeholder="Tiêu đề vụ việc cần hỗ trợ (Ví dụ: Doanh nghiệp, Đất đai, Hôn nhân...)*" required>
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-2">
-                        <textarea name="NoiDung" class="form-control-custom" rows="5" placeholder="Tóm tắt nội dung sự việc hoặc câu hỏi pháp lý cần tư vấn chi tiết*" required></textarea>
-                    </div>
-
-                    <!-- TÍCH HỢP IMAGE CAPTCHA CHỐNG SPAM -->
-                    <div class="col-12 mb-2">
-                        <div class="d-flex align-items-center gap-2 flex-wrap">
-                            <div class="rounded-3 overflow-hidden border" style="height: 45px;">
-                                <img id="imgHomeCaptcha" src="/Home/GetCaptchaImage" alt="Captcha" style="display:block; height:100%; cursor: pointer;" />
-                            </div>
-                            <button type="button" id="btnRefreshHomeCaptcha" class="btn btn-light border p-2 px-3" style="height: 45px;" title="Đổi mã khác">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
-                            <div class="custom-input-group flex-grow-1" style="min-width: 180px;">
-                                <input type="text" id="HomeCaptchaCode" name="CaptchaCode" class="form-control-custom" style="padding-left: 16px;" placeholder="Nhập 5 ký tự trong hình bên*" autocomplete="off" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 text-center">
-                        <button type="submit" id="btnHomeSubmit" class="btn-submit-modern py-3 text-uppercase w-100">Gửi Yêu Cầu Tư Vấn</button>
-                    </div>
-                </div>
-            </form>
+<section class="commitment-section-v2">
+    <!-- 1. Khung Banner Tiêu Đề Phía Trên -->
+    <div class="commitment-banner-header">
+        <div class="commitment-banner-img">
+            <!-- Thay bằng đường dẫn ảnh thực tế của bạn, ví dụ ảnh nắm tay đồng đội -->
+            <img src="~/css-moi/img_táiao.png" alt="MV Law Firm Team">
+        </div>
+        <div class="commitment-banner-title">
+            <h2>TẠI SAO CHỌN<br>CHÚNG TÔI?</h2>
         </div>
     </div>
-</section>
 
-<section class="commitment-section">
-    <div class="container">
-        <div class="commitment-grid">
-            <div class="col-right">
-                <div class="commitment-content-card">
-                    <div class="commitment-section-sub">Chúng tôi cam kết</div>
-                    <h2 class="commitment-title">Tại sao khách hàng lựa chọn chúng tôi</h2>
-                    <ul class="commitment-list">
-                        @foreach (var item in taisao)
-                        {
-                            <li class="commitment-item">@item.TieuDe</li>
-                        }
-                    </ul>
+    <!-- 2. Khung Lưới Nội Dung 4 Khối Phía Dưới -->
+    <div class="container my-5">
+        <div class="row g-5">
+            @foreach (var item in taisao)
+            {
+                <div class="col-md-6">
+                    <div class="commitment-box-item">
+                        <div class="commitment-item-header d-flex align-items-center mb-3">
+                            <!-- Icon tròn màu vàng -->
+                            <div class="commitment-icon-circle me-3">
+                           <img src="@item.Icon" alt="" loading="lazy" style="width:50%"/>
+                            </div>
+                            <!-- Tiêu đề chữ in hoa -->
+                            <h3 class="commitment-item-title m-0">@item.TieuDe.ToUpper()</h3>
+                        </div>
+                        <!-- Đoạn văn mô tả -->
+                        <p class="commitment-item-desc">@item.MoTa</p>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </section>
@@ -293,7 +239,7 @@
 <section class="news-section-modern">
     <div class="container-fluid px-0">
         <div class="row g-0 align-items-stretch">
-            <div class="col-lg-6 bg-news-left py-5 px-4 px-md-5">
+            <div class="col-lg-6 bg-news-left py-5 px-4 px-md-5" style="padding:48px 120px !important">
                 <h2 class="news-block-title text-uppercase mb-4">Tin tức pháp luật</h2>
                 <div class="news-list-wrapper">
                     @foreach (var item in lst)
@@ -313,7 +259,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 bg-news-right py-5 px-4 px-md-5 d-flex flex-column justify-content-between">
+            <div class="col-lg-6 bg-news-right py-5 px-4 px-md-5 d-flex flex-column justify-content-between" style="padding:48px 120px !important">
                 <div>
                     <h2 class="news-block-title text-uppercase mb-4 text-white">Tin tức gần đây</h2>
                     <div class="news-list-wrapper bg-white-card p-4 rounded-4 shadow-sm">

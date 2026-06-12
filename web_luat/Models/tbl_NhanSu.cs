@@ -19,5 +19,6 @@ namespace web_luat.Models
         public string Image { get; set; }
         public string ChucVu { get; set; }
         public string GioiThieu { get; set; }
+        public string SDT { get; set; }
     }
 }

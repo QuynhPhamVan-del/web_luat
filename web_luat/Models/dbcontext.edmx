@@ -200,6 +200,7 @@
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="ChucVu" Type="nvarchar(max)" />
           <Property Name="GioiThieu" Type="nvarchar(max)" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_NhomQuyen">
           <Key>
@@ -313,6 +314,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TieuDe" Type="nvarchar(max)" />
+          <Property Name="Icon" Type="nvarchar(max)" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_ThongBao">
           <Key>
@@ -581,7 +584,9 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <EntitySet Name="QuyTrinhDuyets" EntityType="DB_LuatModel.QuyTrinhDuyet" />
           <EntitySet Name="tbl_Banner" EntityType="DB_LuatModel.tbl_Banner" />
           <EntitySet Name="tbl_BoCuc" EntityType="DB_LuatModel.tbl_BoCuc" />
+          <EntitySet Name="tbl_CamNhan" EntityType="DB_LuatModel.tbl_CamNhan" />
           <EntitySet Name="tbl_ChuyenMuc" EntityType="DB_LuatModel.tbl_ChuyenMuc" />
+          <EntitySet Name="tbl_DoiTac" EntityType="DB_LuatModel.tbl_DoiTac" />
           <EntitySet Name="tbl_DonVi" EntityType="DB_LuatModel.tbl_DonVi" />
           <EntitySet Name="tbl_DonViChuyenMuc" EntityType="DB_LuatModel.tbl_DonViChuyenMuc" />
           <EntitySet Name="tbl_GioiThieu" EntityType="DB_LuatModel.tbl_GioiThieu" />
@@ -592,14 +597,17 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <EntitySet Name="tbl_Menu_User" EntityType="DB_LuatModel.tbl_Menu_User" />
           <EntitySet Name="tbl_MenuAdmin" EntityType="DB_LuatModel.tbl_MenuAdmin" />
           <EntitySet Name="tbl_MenuPage" EntityType="DB_LuatModel.tbl_MenuPage" />
+          <EntitySet Name="tbl_NhanSu" EntityType="DB_LuatModel.tbl_NhanSu" />
           <EntitySet Name="tbl_NhomQuyen" EntityType="DB_LuatModel.tbl_NhomQuyen" />
           <EntitySet Name="tbl_Post" EntityType="DB_LuatModel.tbl_Post" />
+          <EntitySet Name="tbl_Post_Category" EntityType="DB_LuatModel.tbl_Post_Category" />
           <EntitySet Name="tbl_Post_DonVi" EntityType="DB_LuatModel.tbl_Post_DonVi" />
           <EntitySet Name="tbl_Post_DuyetLog" EntityType="DB_LuatModel.tbl_Post_DuyetLog" />
           <EntitySet Name="tbl_Post_Tag" EntityType="DB_LuatModel.tbl_Post_Tag" />
           <EntitySet Name="tbl_SoLuotTruyCap" EntityType="DB_LuatModel.tbl_SoLuotTruyCap" />
           <EntitySet Name="tbl_SuKien" EntityType="DB_LuatModel.tbl_SuKien" />
           <EntitySet Name="tbl_Tag" EntityType="DB_LuatModel.tbl_Tag" />
+          <EntitySet Name="tbl_TaiSao" EntityType="DB_LuatModel.tbl_TaiSao" />
           <EntitySet Name="tbl_ThongBao" EntityType="DB_LuatModel.tbl_ThongBao" />
           <EntitySet Name="tbl_ThongSo" EntityType="DB_LuatModel.tbl_ThongSo" />
           <EntitySet Name="tbl_ThuVienAnh" EntityType="DB_LuatModel.tbl_ThuVienAnh" />
@@ -612,11 +620,6 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <EntitySet Name="LoadMenus" EntityType="DB_LuatModel.LoadMenu" />
           <EntitySet Name="LogUsers" EntityType="DB_LuatModel.LogUser" />
           <EntitySet Name="TinMoiNhat_CheckTrung" EntityType="DB_LuatModel.TinMoiNhat_CheckTrung" />
-          <EntitySet Name="tbl_NhanSu" EntityType="DB_LuatModel.tbl_NhanSu" />
-          <EntitySet Name="tbl_TaiSao" EntityType="DB_LuatModel.tbl_TaiSao" />
-          <EntitySet Name="tbl_DoiTac" EntityType="DB_LuatModel.tbl_DoiTac" />
-          <EntitySet Name="tbl_CamNhan" EntityType="DB_LuatModel.tbl_CamNhan" />
-          <EntitySet Name="tbl_Post_Category" EntityType="DB_LuatModel.tbl_Post_Category" />
         </EntityContainer>
         <EntityType Name="GuiLienHe">
           <Key>
@@ -661,12 +664,30 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <Property Name="ẢnhBoCuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="STT" Type="Int32" />
         </EntityType>
+        <EntityType Name="tbl_CamNhan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tbl_ChuyenMuc">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenChuyenMuc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_DoiTac">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDoiTac" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnhDaiDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDelete" Type="Boolean" />
         </EntityType>
         <EntityType Name="tbl_DonVi">
@@ -786,6 +807,17 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <Property Name="TrenDuoi" Type="Int32" />
           <Property Name="IsDelete" Type="Boolean" />
         </EntityType>
+        <EntityType Name="tbl_NhanSu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhanSu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GioiThieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tbl_NhomQuyen">
           <Key>
             <PropertyRef Name="Id" />
@@ -822,6 +854,16 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <Property Name="IdPostCu" Type="Int32" />
           <Property Name="CatID" Type="Int32" />
           <Property Name="PageID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Post_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPost" Type="Int32" />
+          <Property Name="IdCategory" Type="Int32" />
+          <Property Name="IdDonVi" Type="Int32" />
+          <Property Name="IdPostCu" Type="Int32" />
         </EntityType>
         <EntityType Name="tbl_Post_DonVi">
           <Key>
@@ -881,6 +923,15 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenTag" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Slug" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_TaiSao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_ThongBao">
           <Key>
@@ -1047,51 +1098,6 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
           <Property Name="CatID" Type="Int32" />
           <Property Name="PageID" Type="Int32" />
         </EntityType>
-        <EntityType Name="tbl_NhanSu">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenNhanSu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChucVu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GioiThieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="tbl_TaiSao">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="tbl_DoiTac">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDoiTac" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AnhDaiDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsDelete" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="tbl_CamNhan">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HoTen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="tbl_Post_Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdPost" Type="Int32" />
-          <Property Name="IdCategory" Type="Int32" />
-          <Property Name="IdDonVi" Type="Int32" />
-          <Property Name="IdPostCu" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1145,11 +1151,31 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CamNhan">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_CamNhan">
+              <MappingFragment StoreEntitySet="tbl_CamNhan">
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_ChuyenMuc">
             <EntityTypeMapping TypeName="DB_LuatModel.tbl_ChuyenMuc">
               <MappingFragment StoreEntitySet="tbl_ChuyenMuc">
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="TenChuyenMuc" ColumnName="TenChuyenMuc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DoiTac">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_DoiTac">
+              <MappingFragment StoreEntitySet="tbl_DoiTac">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="TenDoiTac" ColumnName="TenDoiTac" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1281,6 +1307,18 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbl_NhanSu">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_NhanSu">
+              <MappingFragment StoreEntitySet="tbl_NhanSu">
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="TenNhanSu" ColumnName="TenNhanSu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_NhomQuyen">
             <EntityTypeMapping TypeName="DB_LuatModel.tbl_NhomQuyen">
               <MappingFragment StoreEntitySet="tbl_NhomQuyen">
@@ -1317,6 +1355,17 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
                 <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Post_Category">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post_Category">
+              <MappingFragment StoreEntitySet="tbl_Post_Category">
+                <ScalarProperty Name="IdPostCu" ColumnName="IdPostCu" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1381,6 +1430,16 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
               <MappingFragment StoreEntitySet="tbl_Tag">
                 <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="TenTag" ColumnName="TenTag" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TaiSao">
+            <EntityTypeMapping TypeName="DB_LuatModel.tbl_TaiSao">
+              <MappingFragment StoreEntitySet="tbl_TaiSao">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1557,56 +1616,6 @@ FROM [dbo].[TinMoiNhat_CheckTrung] AS [TinMoiNhat_CheckTrung]</DefiningQuery>
                 <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_NhanSu">
-            <EntityTypeMapping TypeName="DB_LuatModel.tbl_NhanSu">
-              <MappingFragment StoreEntitySet="tbl_NhanSu">
-                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
-                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="TenNhanSu" ColumnName="TenNhanSu" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_TaiSao">
-            <EntityTypeMapping TypeName="DB_LuatModel.tbl_TaiSao">
-              <MappingFragment StoreEntitySet="tbl_TaiSao">
-                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_DoiTac">
-            <EntityTypeMapping TypeName="DB_LuatModel.tbl_DoiTac">
-              <MappingFragment StoreEntitySet="tbl_DoiTac">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="TenDoiTac" ColumnName="TenDoiTac" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_CamNhan">
-            <EntityTypeMapping TypeName="DB_LuatModel.tbl_CamNhan">
-              <MappingFragment StoreEntitySet="tbl_CamNhan">
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_Post_Category">
-            <EntityTypeMapping TypeName="DB_LuatModel.tbl_Post_Category">
-              <MappingFragment StoreEntitySet="tbl_Post_Category">
-                <ScalarProperty Name="IdPostCu" ColumnName="IdPostCu" />
-                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
-                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

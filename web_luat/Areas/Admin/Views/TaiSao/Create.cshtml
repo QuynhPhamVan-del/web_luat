@@ -47,6 +47,17 @@
                         @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
                     </div>
+                    <div class="infor-details">
+                        <label for="txthoTen">Hình ảnh (<span style="color: red">*</span>)</label>
+                        <input type="file" name="file" class="form-control" id="imageInput" />
+                        <br />
+                        <div id="preview">Ảnh sẽ hiển thị ở đây</div>
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Mô tả(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,3 +69,15 @@
     </div>
 
 }
+<script>
+    document.getElementById("imageInput").addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("preview").innerHTML = `<img alt="" loading="lazy" src="${e.target.result}" alt="Ảnh xem trước">`;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
