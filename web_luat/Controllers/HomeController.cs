@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Google.Apis.Sheets.v4;
+using Google.Apis.Sheets.v4.Data;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Drawing;
@@ -67,11 +71,11 @@ namespace web_luat.Controllers
             using (Graphics g = Graphics.FromImage(bitmap))
             {
                 // Tạo nền màu xám nhạt mịn màng hòa hợp với giao diện
-                g.Clear(Color.FromArgb(241, 245, 249));
+                g.Clear(System.Drawing.Color.FromArgb(241, 245, 249));
 
                 // Vẽ các đường kẻ nhiễu sóng mắt ngăn chặn các bot quét ký tự (OCR)
                 Random rand = new Random();
-                using (Pen noisePen = new Pen(Color.FromArgb(226, 232, 240), 2))
+                using (Pen noisePen = new Pen(System.Drawing.Color.FromArgb(226, 232, 240), 2))
                 {
                     for (int i = 0; i < 6; i++)
                     {
@@ -81,7 +85,7 @@ namespace web_luat.Controllers
 
                 // Vẽ chuỗi ký tự Captcha lên hình ảnh với font chữ đậm nghệ thuật
                 using (Font font = new Font("Arial", 20, FontStyle.Bold | FontStyle.Italic))
-                using (Brush brush = new SolidBrush(Color.FromArgb(15, 23, 42))) // Màu Slate Dark trùng màu công ty bạn
+                using (Brush brush = new SolidBrush(System.Drawing.Color.FromArgb(15, 23, 42))) // Màu Slate Dark trùng màu công ty bạn
                 {
                     g.DrawString(text, font, brush, 15, 6);
                 }
@@ -95,6 +99,59 @@ namespace web_luat.Controllers
             }
         }
 
+        private static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
+        private static readonly string ApplicationName = "Web_Luat_Contact_Form";
+        // Thay ID Google Sheet của bạn vào đây
+        private static readonly string SpreadsheetId = "1Giv26N7YMYgrWRyrsjsPVgvn7JB7DNerobU129fYQmk";
+        private static readonly string SheetName = "thongtin";
+
+        private void AppendToGoogleSheet(string name, string phone, string email, string service, string message)
+        {
+            // Tìm đường dẫn vật lý tới file JSON chứa chứng chỉ Google Cloud
+            string credentialsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "json-web-noi-that.json");
+
+            // Thay vì viết: if (!File.Exists(credentialsPath))
+            // Bạn hãy sửa thành:
+
+            if (!System.IO.File.Exists(credentialsPath))
+            {
+                throw new FileNotFoundException("Không tìm thấy file json trong thư mục App_Data.");
+            }
+
+            GoogleCredential credential;
+            using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+
+            // Khởi tạo dịch vụ Google Sheets API
+            var serviceSheet = new SheetsService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            // Định nghĩa vùng append dữ liệu (Sẽ tự động tìm hàng trống tiếp theo dưới cùng của bảng)
+            var range = $"{SheetName}!A:F";
+            var valueRange = new ValueRange();
+
+            // Sắp xếp các cột dữ liệu theo thứ tự hiển thị mong muốn trên hàng của Google Sheet
+            var rowValues = new List<object> {
+                DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), // Cột A: Thời gian
+                name,                                         // Cột B: Họ tên
+                phone,                                        // Cột C: Số điện thoại
+                email,                                        // Cột D: Email
+                service,                                      // Cột E: Dịch vụ
+                message                                       // Cột F: Nội dung lời nhắn
+            };
+
+            valueRange.Values = new List<IList<object>> { rowValues };
+
+            // Thực hiện lệnh Append dữ liệu xuống cuối bảng dữ liệu hiện có
+            var appendRequest = serviceSheet.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);
+            appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
+            appendRequest.Execute();
+        }
         [HttpPost]
         public JsonResult GuiLienHe(string fullname, string phone, string email, string service, string message, string captcha)
         {
@@ -114,6 +171,7 @@ namespace web_luat.Controllers
                 a.HoTen = fullname;a.SDT = phone;a.Email = email;a.NgayGui=DateTime.Now;a.NoiDung = message;a.DichVu = service;
                 db.GuiLienHes.Add(a);
                 db.SaveChanges();
+                AppendToGoogleSheet(fullname, phone, email, service, message);
                 return Json(new { success = true, message = "Gửi thông tin liên hệ thành công!" });
             }
             catch (Exception ex)
