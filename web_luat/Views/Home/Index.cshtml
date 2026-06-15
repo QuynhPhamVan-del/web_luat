@@ -239,7 +239,8 @@
 <section class="news-section-modern">
     <div class="container-fluid px-0">
         <div class="row g-0 align-items-stretch">
-            <div class="col-lg-6 bg-news-left py-5 px-4 px-md-5" style="padding:48px 120px !important">
+            <!-- CỘT TRÁI: TIN TỨC PHÁP LUẬT -->
+            <div class="col-lg-6 bg-news-left">
                 <h2 class="news-block-title text-uppercase mb-4">Tin tức pháp luật</h2>
                 <div class="news-list-wrapper">
                     @foreach (var item in lst)
@@ -251,15 +252,15 @@
                             </div>
                             <div class="news-info-box">
                                 <h3 class="news-item-title"><a href="@link" class="text-dark-link">@item.TieuDe</a></h3>
-                                <div class="news-meta-data text-muted-dark">@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)  •  Dịch vụ, Hôn nhân gia đình, Tin tức, Tin tức thế giới</div>
+                                <div class="news-meta-data text-muted-dark">@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)  •  Dịch vụ, Hôn nhân gia đình</div>
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
 
-            <div class="col-lg-6 bg-news-right py-5 px-4 px-md-5 d-flex flex-column justify-content-between" style="padding:48px 120px !important">
+            <!-- CỘT PHẢI: TIN TỨC GẦN ĐÂY -->
+            <div class="col-lg-6 bg-news-right d-flex flex-column justify-content-between">
                 <div>
                     <h2 class="news-block-title text-uppercase mb-4 text-white">Tin tức gần đây</h2>
                     <div class="news-list-wrapper bg-white-card p-4 rounded-4 shadow-sm">
@@ -272,13 +273,13 @@
                                 </div>
                                 <div class="news-info-box">
                                     <h3 class="news-item-title"><a href="@link" class="text-dark-link">@item.TieuDe</a></h3>
-                                    <div class="news-meta-data text-muted-dark">@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)  •  Dịch vụ, Hôn nhân gia đình, Tin tức, Tin tức thế giới</div>
+                                    <div class="news-meta-data text-muted-dark">@item.NgayPhatHanh.Value.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)  •  Dịch vụ, Hôn nhân gia đình</div>
                                 </div>
                             </div>
                         }
                     </div>
                 </div>
-                <div class="mt-4">
+                <div class="mt-4 text-center text-lg-start">
                     <a href="/danh-sach-tin-tuc.html" class="view-more-news-btn text-uppercase">Xem nhiều tin tức hơn ➔</a>
                 </div>
             </div>

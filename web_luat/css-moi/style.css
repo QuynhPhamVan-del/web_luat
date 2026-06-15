@@ -1024,10 +1024,12 @@ textarea.form-control-custom {
 
 .bg-news-left {
     background-color: #E2E8F0;
+    padding: 48px 120px;
 }
 
 .bg-news-right {
     background-color: var(--logo-yellow);
+    padding: 48px 120px;
 }
 
 .news-block-title {
@@ -1536,5 +1538,82 @@ textarea.form-control-custom {
 
     .commitment-item-title {
         font-size: 1.1rem;
+    }
+}
+@media (max-width: 767.98px) {
+    /* 1. Xử lý phần nền vàng bên phải và nền xám bên trái không bị ép cứng chiều rộng */
+    .bg-news-left, .bg-news-right {
+        padding: 32px 16px !important; /* Thu nhỏ padding ngoài để dành chỗ cho card trắng */
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* 2. Ép khung card trắng tự động khít 100% chiều rộng màn hình mobile, không cố định width */
+    .bg-white-card {
+        padding: 16px !important; /* Giảm padding trong card để tăng diện tích chứa chữ */
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+        overflow: hidden; /* Đảm bảo không có gì lọt được ra ngoài */
+    }
+
+    /* 3. Sửa cấu trúc flexbox của hàng tin tức */
+    .news-item-horizontal {
+        display: flex !important;
+        align-items: flex-start !important; /* Căn đỉnh ảnh và chữ */
+        width: 100% !important;
+        gap: 12px !important; /* Tạo khoảng cách an toàn giữa ảnh và chữ */
+        margin-bottom: 16px !important;
+    }
+
+    /* 4. Fix cứng kích thước khối ảnh - Không cho flexbox bóp méo hoặc đẩy ảnh */
+    .news-thumb-box {
+        flex: 0 0 90px !important; /* Giữ cố định ảnh rộng 90px */
+        width: 90px !important;
+        height: 70px !important;
+    }
+
+        .news-thumb-box img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+    /* 5. Ép vùng chứa chữ nhận diện đúng 100% không gian còn lại */
+    .news-info-box {
+        flex: 1 !important; /* Chiếm trọn phần diện tích còn lại bên phải */
+        min-width: 0 !important; /* Thuộc tính quan trọng bắt buộc phải có để text-overflow hoạt động */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* 6. Tiêu đề tin tức */
+    .news-item-title {
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
+        margin-top: 0 !important;
+        margin-bottom: 4px !important;
+        font-weight: 600;
+    }
+
+        .news-item-title a {
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Chỉ cho phép hiển thị tối đa 2 dòng chữ, thừa tự cắt */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-word; /* Tự bẻ từ dài nếu không đủ chỗ */
+        }
+
+    /* 7. Xử lý dòng ngày tháng / danh mục (Thủ phạm chính gây tràn hàng) */
+    .news-meta-data {
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+        display: block !important;
+        white-space: nowrap; /* Giữ chữ trên một hàng */
+        overflow: hidden; /* Ẩn phần thừa */
+        text-overflow: ellipsis; /* Biến phần chữ bị tràn thành dấu ... */
+        width: 100% !important;
     }
 }
