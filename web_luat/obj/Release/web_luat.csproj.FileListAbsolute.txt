@@ -100,3 +100,15 @@ F:\du an ngoai\lutamv.vn\web_luat\web_luat\obj\Release\web_luat.csproj.CoreCompi
 F:\du an ngoai\lutamv.vn\web_luat\web_luat\obj\Release\web_luat.csproj.Up2Date
 F:\du an ngoai\lutamv.vn\web_luat\web_luat\obj\Release\web_luat.dll
 F:\du an ngoai\lutamv.vn\web_luat\web_luat\obj\Release\web_luat.pdb
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Auth.dll
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Core.dll
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.dll
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Sheets.v4.dll
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.pdb
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.xml
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Auth.pdb
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Auth.xml
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Core.pdb
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Core.xml
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Sheets.v4.pdb
+F:\du an ngoai\lutamv.vn\web_luat\web_luat\bin\Google.Apis.Sheets.v4.xml

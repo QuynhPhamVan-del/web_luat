@@ -48,6 +48,11 @@
                         @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
                     </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Nội dung(<span style="color: red">*</span>)</label>
+                        @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>

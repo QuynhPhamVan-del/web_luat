@@ -33,9 +33,10 @@
         <div class="table-responsive text-nowrap" style="padding: 5px 10px;">
             <table class="table table-bordered">
                 <thead>
-                    <tr >
+                    <tr>
                         <th class="text-center">Số thứ tự</th>
-                        <th class="text-center" >Tiêu đề</th>
+                        <th class="text-center">Tiêu đề</th>
+                        <th class="text-center">Nội dung</th>
                         <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
@@ -51,21 +52,24 @@
                                 @item.TieuDe
                             </td>
                             <td>
-                      
-                                    <a class="btn btn-sm btn-outline-success"
-                                       href="@Url.Action("Edit","TaiSao", new { id = item.Id })"
-                                       data-ajax="true"
-                                       data-ajax-update="#responsive"
-                                       data-ajax-method="GET"
-                                       data-ajax-complete="loadfrmEditSussess">
-                                        Sửa
-                                    </a>
+                                @item.NoiDung
+                            </td>
+                            <td>
 
-                                    <a class="btn btn-sm btn-outline-danger"
-                                       onclick="btndelete(@item.Id,'TaiSao')">
-                                        Xóa
-                                    </a>
-                                
+                                <a class="btn btn-sm btn-outline-success"
+                                   href="@Url.Action("Edit","TaiSao", new { id = item.Id })"
+                                   data-ajax="true"
+                                   data-ajax-update="#responsive"
+                                   data-ajax-method="GET"
+                                   data-ajax-complete="loadfrmEditSussess">
+                                    Sửa
+                                </a>
+
+                                <a class="btn btn-sm btn-outline-danger"
+                                   onclick="btndelete(@item.Id,'TaiSao')">
+                                    Xóa
+                                </a>
+
                             </td>
                         </tr>
                     }
