@@ -1823,8 +1823,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\dbcontext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>dbcontext.Context.cs</LastGenOutput>
       <DependentUpon>dbcontext.edmx</DependentUpon>
+      <LastGenOutput>dbcontext.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\dbcontext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1838,13 +1838,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\dbcontext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbcontext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\dbcontext.edmx.diagram">
-      <DependentUpon>dbcontext.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\assets\js\ckeditor\CHANGES.md" />
     <Content Include="Areas\Admin\assets\js\ckeditor\LICENSE.md" />
@@ -2060,6 +2053,13 @@
     <Content Include="Areas\Admin\Views\CamNhan\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CamNhan\Index.cshtml" />
     <Content Include="App_Data\json-web-noi-that.json" />
+    <EntityDeploy Include="Models\dbcontext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbcontext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\dbcontext.edmx.diagram">
+      <DependentUpon>dbcontext.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\Customize.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

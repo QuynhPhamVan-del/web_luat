@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DB_LuatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="db_web_noithatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="GuiLienHe">
     <Key>
       <PropertyRef Name="Id" />
@@ -425,7 +425,7 @@
     <Property Name="NguoiKy" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_XuongThietKe.dbo.LoadMenu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'db_web_noithat.dbo.LoadMenu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="LoadMenu">
     <Key>
       <PropertyRef Name="Id" />
@@ -439,7 +439,7 @@ warning 6002: The table/view 'DB_XuongThietKe.dbo.LoadMenu' does not have a prim
     <Property Name="IdUser" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_XuongThietKe.dbo.LogUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'db_web_noithat.dbo.LogUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="LogUser">
     <Key>
       <PropertyRef Name="Id" />
@@ -453,7 +453,7 @@ warning 6002: The table/view 'DB_XuongThietKe.dbo.LogUser' does not have a prima
     <Property Name="NgayThucHien" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_XuongThietKe.dbo.TinMoiNhat_CheckTrung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'db_web_noithat.dbo.TinMoiNhat_CheckTrung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="TinMoiNhat_CheckTrung">
     <Key>
       <PropertyRef Name="ID" />
@@ -483,7 +483,7 @@ warning 6002: The table/view 'DB_XuongThietKe.dbo.TinMoiNhat_CheckTrung' does no
     <Property Name="CatID" Type="int" />
     <Property Name="PageID" Type="int" />
   </EntityType>
-  <EntityContainer Name="DB_LuatModelStoreContainer">
+  <EntityContainer Name="db_web_noithatModelStoreContainer">
     <EntitySet Name="GuiLienHe" EntityType="Self.GuiLienHe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuyTrinhDuyet" EntityType="Self.QuyTrinhDuyet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Banner" EntityType="Self.tbl_Banner" Schema="dbo" store:Type="Tables" />
