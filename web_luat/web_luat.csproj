@@ -1797,6 +1797,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="css-moi\Anh phan gioi thieu cong ty.png" />
     <Content Include="css-moi\giamdoc.jpg" />
     <Content Include="css-moi\gioi-thieu-banner.jpg" />
     <Content Include="css-moi\img_táiao.png" />
