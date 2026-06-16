@@ -7,7 +7,7 @@
     --logo-gray-light: #F8F9FA; /* Đổi sang xám siêu nhẹ để giao diện sạch sẽ */
     --logo-gray-main: #E2E8F0; /* Xám tinh tế làm đường viền phân cách */
     --text-dark: #1E293B; /* Xanh đen Slate đậm cho text chuẩn UI hiện đại */
-    --text-muted: #64748B; /* Màu chữ phụ */
+    --text-muted:#080808; /* Màu chữ phụ */
 }
 
 body {
@@ -112,10 +112,10 @@ body {
 }
 
 .about-sub {
-    color: var(--logo-yellow-dark);
+    color: var(--logo-yellow);
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 26px;
+    font-size: 1.8rem;
     margin-bottom: 10px;
 }
 
@@ -219,7 +219,7 @@ body {
 .section-main-title {
     font-size: 2.2rem;
     font-weight: 800;
-    color: var(--text-dark);
+    color: var(--logo-yellow);
     text-transform: uppercase;
     position: relative;
     padding-bottom: 15px;
@@ -268,7 +268,7 @@ body {
 }
 
 .service-card-title {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--text-dark);
     text-transform: uppercase;
@@ -280,7 +280,7 @@ body {
 
 .service-card-text {
     color: var(--text-muted);
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.6;
     margin-bottom: 25px;
     flex-grow: 1;
@@ -384,7 +384,7 @@ body {
 .team-section-title {
     font-size: 2.2rem;
     font-weight: 800;
-    color: var(--text-dark);
+    color: var(--logo-yellow);
     margin-bottom: 10px;
     text-transform: uppercase;
 }
@@ -441,6 +441,7 @@ body {
     height: auto;
     object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height:340px;
 }
 
 .team-card:hover .team-img-modern {
@@ -453,7 +454,7 @@ body {
 }
 
 .team-member-name {
-    font-size: 1.25rem;
+    font-size: 1.55rem;
     font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 5px;
@@ -463,7 +464,7 @@ body {
 .team-member-title {
     color: var(--logo-yellow-dark);
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 1rem;
     letter-spacing: 1px;
     margin-bottom: 15px;
     text-transform: uppercase;
@@ -471,7 +472,7 @@ body {
 
 .team-member-desc {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     line-height: 1.7;
     margin-bottom: 0;
     text-align: justify;
@@ -564,7 +565,7 @@ body {
 }
 
 .history-title-custom {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 800;
     color: var(--logo-yellow);
     text-transform: uppercase;
@@ -573,8 +574,8 @@ body {
 }
 
 .history-text-custom {
-    color: #cbd5e1;
-    font-size: 1.1rem;
+    color: #fff;
+    font-size: 1.5rem;
     line-height: 1.8;
     text-align: justify;
 }
@@ -1103,7 +1104,7 @@ textarea.form-control-custom {
 }
 
 .text-muted-dark {
-    color: #94a3b8 !important;
+    color: #080808 !important;
 }
 
 .border-bottom-dashed {
@@ -1492,15 +1493,15 @@ textarea.form-control-custom {
 }
 
 .commitment-item-title {
-    color: var(--logo-yellow-dark);
-    font-size: 1.25rem;
+    color: var(--logo-yellow);
+    font-size: 1.55rem;
     font-weight: 700;
     letter-spacing: 0.5px;
 }
 
 .commitment-item-desc {
     color: var(--text-dark);
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     line-height: 1.7;
     text-align: justify;
     margin-top: 15px;

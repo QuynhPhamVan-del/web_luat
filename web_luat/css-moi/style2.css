@@ -234,7 +234,7 @@ textarea.form-control-custom { padding-left: 16px; }
 .testimonial-author-info { display: flex; align-items: center; gap: 15px; margin-top: 25px; }
 .author-avatar-circle { width: 45px; height: 45px; border-radius: 50%; background: var(--primary-yellow); color: var(--slate-dark); font-weight: 700; display: flex; align-items: center; justify-content: center; }
 .author-name-modern { font-size: 1.05rem; font-weight: 700; margin: 0; }
-.author-job-modern { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+.author-job-modern { font-size: 0.85rem; color: #080808; margin: 0; }
 @keyframes scrollTestimonials { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 /* ==========================================================================
@@ -648,7 +648,7 @@ textarea.form-control-custom { padding-left: 16px; }
     max-width: 650px;
     font-size: 1rem;
     line-height: 1.6;
-    color: #94a3b8 !important;
+    color: #080808 !important;
 }
 
 /* Khối nội dung danh sách */
@@ -687,7 +687,7 @@ textarea.form-control-custom { padding-left: 16px; }
 }
 .card-meta-date {
     font-size: 0.8rem;
-    color: #94a3b8;
+    color: #080808;
     font-weight: 600;
 }
 .card-news-title {
@@ -815,13 +815,14 @@ textarea.form-control-custom { padding-left: 16px; }
 
 /* Khối tổng quan bài viết */
 .lead-text {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
     line-height: 1.7;
     color: var(--slate-dark) !important;
 }
 .normal-text {
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     line-height: 1.8;
+    color: #080808 !important;
 }
 .overview-image-grid {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
@@ -1241,7 +1242,7 @@ textarea.form-control-custom { padding-left: 16px; }
 }
 
 .text-secondary-light {
-    color: #94A3B8;
+    color: #080808;
 }
 
 /* Icons danh sách thông tin */
@@ -1270,7 +1271,7 @@ textarea.form-control-custom { padding-left: 16px; }
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    color: #94A3B8;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1382,6 +1383,8 @@ textarea.form-control-custom { padding-left: 16px; }
     color: var(--text-dark);
     margin-bottom: 15px;
     text-transform: uppercase;
+    border-bottom: 1px solid;
+    padding: 10px 0;
 }
 /* ==========================================================================
    BỔ SUNG: KHỐI LĨCH VỰC HOẠT ĐỘNG CHUYÊN SÂU

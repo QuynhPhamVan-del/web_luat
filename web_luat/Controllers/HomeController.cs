@@ -21,7 +21,7 @@ namespace web_luat.Controllers
             ViewData["banner"]=db.tbl_Banner.Where(g=>g.IsDelete==false).ToList();
             ViewBag.vechungtoi = db.tbl_GioiThieu.First();
             ViewData["dichvu"]= db.tbl_LienKetKhoa.Where(g => g.IsDelete == false).ToList();
-            ViewData["nhansu"] = db.tbl_NhanSu.OrderBy(g => g.Id).Take(5).ToList();
+            ViewData["nhansu"] = db.tbl_NhanSu.OrderBy(g => g.Id).ToList();
             ViewData["thongso"] = db.tbl_ThongSo.ToList();
             ViewData["taisao"] = db.tbl_TaiSao.ToList();
             ViewData["doitac"] = db.tbl_DoiTac.Where(g => g.IsDelete == false).ToList();

@@ -292,7 +292,7 @@ textarea.form-control-custom { padding-left: 16px; }
 .testimonial-author-info { display: flex; align-items: center; gap: 15px; margin-top: 25px; }
 .author-avatar-circle { width: 45px; height: 45px; border-radius: 50%; background: var(--primary-yellow); color: var(--slate-dark); font-weight: 700; display: flex; align-items: center; justify-content: center; }
 .author-name-modern { font-size: 1.05rem; font-weight: 700; margin: 0; }
-.author-job-modern { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+.author-job-modern { font-size: 0.85rem; color: #080808; margin: 0; }
 @keyframes scrollTestimonials { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 /* 11. SPLIT NEWS SECTION */
