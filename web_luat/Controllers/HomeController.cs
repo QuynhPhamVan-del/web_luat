@@ -156,7 +156,7 @@ namespace web_luat.Controllers
         public JsonResult GuiLienHe(string fullname, string phone, string email, string service, string message, string captcha)
         {
             // 1. Kiểm tra dữ liệu đầu vào phía Server (Server-side Validation)
-            if (string.IsNullOrEmpty(fullname) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(fullname) || string.IsNullOrEmpty(phone))
             {
                 return Json(new { success = false, message = "Vui lòng nhập đầy đủ các trường bắt buộc (*)." });
             }
@@ -171,7 +171,7 @@ namespace web_luat.Controllers
                 a.HoTen = fullname;a.SDT = phone;a.Email = email;a.NgayGui=DateTime.Now;a.NoiDung = message;a.DichVu = service;
                 db.GuiLienHes.Add(a);
                 db.SaveChanges();
-                AppendToGoogleSheet(fullname, phone, email, service, message);
+                //AppendToGoogleSheet(fullname, phone, email, service, message);
                 return Json(new { success = true, message = "Gửi thông tin liên hệ thành công!" });
             }
             catch (Exception ex)

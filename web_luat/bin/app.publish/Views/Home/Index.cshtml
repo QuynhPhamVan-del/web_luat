@@ -480,16 +480,6 @@
                     return;
                 }
 
-                // Kiểm định trường Email
-                if (!emailRegex.test(email)) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Email không hợp lệ',
-                        text: 'Vui lòng nhập đúng cấu trúc email thực tế (Ví dụ: noithattaman@gmail.com).',
-                        confirmButtonColor: '#BA9465'
-                    });
-                    return;
-                }
 
                 // 3. Kiểm định tích chọn mã CAPTCHA
                 if (captchaResponse.length === 0) {
