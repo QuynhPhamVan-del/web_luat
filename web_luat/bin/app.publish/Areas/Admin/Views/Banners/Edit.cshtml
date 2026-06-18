@@ -45,7 +45,25 @@
                 <div class="dialog-grid-center">
                     <div class="grid-title">
                     </div>
-
+                    <div class="infor-details">
+                        <label for="txtmaKH">Tiêu đề</label>
+                        @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Nội dung</label>
+                        <textarea name="NoiDung" id="NoiDung" class="form-control" rows="20">@Model.NoiDung</textarea>
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Điện thoại</label>
+                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="infor-details">
+                        <label for="txtmaKH">Link</label>
+                        @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                    </div>
                     <div class="infor-details">
                         <label for="txthoTen">Hình ảnh (<span style="color: red">*</span>)</label>
                         <input type="file" name="file" class="form-control" id="imageInput" />
@@ -57,11 +75,7 @@
                             }
                         </div>
                     </div>
-                    <div class="infor-details">
-                        <label for="txtmaKH">Link</label>
-                        @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
-                    </div>
+    
                     <div class="infor-details">
                         <label for="txtmaKH">Số thứ tự(<span style="color: red">*</span>)</label>
                         @Html.EditorFor(model => model.STT, new { htmlAttributes = new { @class = "form-control" } })
@@ -78,7 +92,32 @@
     </div>
 
 }
+<script>
+    if ($('#NoiDung').length > 0) {
+        var editor = CKEDITOR.replace("NoiDung", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Areas/Admin/assets/js/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Areas/Admin/assets/js/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Areas/Admin/assets/js/ckfinder/ckfinder.html?Type=Flash',
+            height: 300,
+            disallowedContent: 'span; apple-converted-space',
+            pasteFromWordRemoveFontStyles: true,
+            pasteFromWordRemoveStyles: true,
+            allowedContent: true,
+            tabSpaces: 0
+        });
 
+        editor.on('instanceReady', function () {
+            editor.addCommand('insertTabSpace', {
+                exec: function (editor) {
+                    editor.insertHtml('&nbsp;&nbsp;&nbsp;&nbsp;');
+                }
+            });
+            editor.setKeystroke(9, 'insertTabSpace');
+            console.log("Đã kích hoạt phím TAB để thụt lề.");
+        });
+    }
+</script>
 <script>
     document.getElementById("imageInput").addEventListener("change", function (event) {
         const file = event.target.files[0];

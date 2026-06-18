@@ -32,6 +32,11 @@
     <Property Name="Link" Type="nvarchar(max)" />
     <Property Name="STT" Type="int" />
     <Property Name="IdDonVi" Type="int" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="LinkI" Type="nvarchar(max)" />
+    <Property Name="SDT" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tbl_BoCuc">
     <Key>

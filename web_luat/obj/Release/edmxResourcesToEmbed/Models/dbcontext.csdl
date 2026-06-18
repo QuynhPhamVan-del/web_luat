@@ -1,5 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="db_web_noithatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbcontext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="GuiLienHes" EntityType="db_web_noithatModel.GuiLienHe" />
+    <EntitySet Name="QuyTrinhDuyets" EntityType="db_web_noithatModel.QuyTrinhDuyet" />
+    <EntitySet Name="tbl_Banner" EntityType="db_web_noithatModel.tbl_Banner" />
+    <EntitySet Name="tbl_BoCuc" EntityType="db_web_noithatModel.tbl_BoCuc" />
+    <EntitySet Name="tbl_CamNhan" EntityType="db_web_noithatModel.tbl_CamNhan" />
+    <EntitySet Name="tbl_ChuyenMuc" EntityType="db_web_noithatModel.tbl_ChuyenMuc" />
+    <EntitySet Name="tbl_DoiTac" EntityType="db_web_noithatModel.tbl_DoiTac" />
+    <EntitySet Name="tbl_DonVi" EntityType="db_web_noithatModel.tbl_DonVi" />
+    <EntitySet Name="tbl_DonViChuyenMuc" EntityType="db_web_noithatModel.tbl_DonViChuyenMuc" />
+    <EntitySet Name="tbl_GioiThieu" EntityType="db_web_noithatModel.tbl_GioiThieu" />
+    <EntitySet Name="tbl_LienKetKhoa" EntityType="db_web_noithatModel.tbl_LienKetKhoa" />
+    <EntitySet Name="tbl_Log" EntityType="db_web_noithatModel.tbl_Log" />
+    <EntitySet Name="tbl_LuanAn" EntityType="db_web_noithatModel.tbl_LuanAn" />
+    <EntitySet Name="tbl_Menu" EntityType="db_web_noithatModel.tbl_Menu" />
+    <EntitySet Name="tbl_Menu_User" EntityType="db_web_noithatModel.tbl_Menu_User" />
+    <EntitySet Name="tbl_MenuAdmin" EntityType="db_web_noithatModel.tbl_MenuAdmin" />
+    <EntitySet Name="tbl_MenuPage" EntityType="db_web_noithatModel.tbl_MenuPage" />
+    <EntitySet Name="tbl_NhanSu" EntityType="db_web_noithatModel.tbl_NhanSu" />
+    <EntitySet Name="tbl_NhomQuyen" EntityType="db_web_noithatModel.tbl_NhomQuyen" />
+    <EntitySet Name="tbl_Post" EntityType="db_web_noithatModel.tbl_Post" />
+    <EntitySet Name="tbl_Post_Category" EntityType="db_web_noithatModel.tbl_Post_Category" />
+    <EntitySet Name="tbl_Post_DonVi" EntityType="db_web_noithatModel.tbl_Post_DonVi" />
+    <EntitySet Name="tbl_Post_DuyetLog" EntityType="db_web_noithatModel.tbl_Post_DuyetLog" />
+    <EntitySet Name="tbl_Post_Tag" EntityType="db_web_noithatModel.tbl_Post_Tag" />
+    <EntitySet Name="tbl_SoLuotTruyCap" EntityType="db_web_noithatModel.tbl_SoLuotTruyCap" />
+    <EntitySet Name="tbl_SuKien" EntityType="db_web_noithatModel.tbl_SuKien" />
+    <EntitySet Name="tbl_Tag" EntityType="db_web_noithatModel.tbl_Tag" />
+    <EntitySet Name="tbl_TaiSao" EntityType="db_web_noithatModel.tbl_TaiSao" />
+    <EntitySet Name="tbl_ThongBao" EntityType="db_web_noithatModel.tbl_ThongBao" />
+    <EntitySet Name="tbl_ThongSo" EntityType="db_web_noithatModel.tbl_ThongSo" />
+    <EntitySet Name="tbl_ThuVienAnh" EntityType="db_web_noithatModel.tbl_ThuVienAnh" />
+    <EntitySet Name="tbl_ThuVienAnh_Album" EntityType="db_web_noithatModel.tbl_ThuVienAnh_Album" />
+    <EntitySet Name="tbl_ThuVienAnh_DanhMuc" EntityType="db_web_noithatModel.tbl_ThuVienAnh_DanhMuc" />
+    <EntitySet Name="tbl_ThuVienVideo" EntityType="db_web_noithatModel.tbl_ThuVienVideo" />
+    <EntitySet Name="tbl_User" EntityType="db_web_noithatModel.tbl_User" />
+    <EntitySet Name="tbl_User_NhomQuyen" EntityType="db_web_noithatModel.tbl_User_NhomQuyen" />
+    <EntitySet Name="tbl_VanBan" EntityType="db_web_noithatModel.tbl_VanBan" />
+    <EntitySet Name="LoadMenus" EntityType="db_web_noithatModel.LoadMenu" />
+    <EntitySet Name="LogUsers" EntityType="db_web_noithatModel.LogUser" />
+    <EntitySet Name="TinMoiNhat_CheckTrung" EntityType="db_web_noithatModel.TinMoiNhat_CheckTrung" />
+  </EntityContainer>
   <EntityType Name="GuiLienHe">
     <Key>
       <PropertyRef Name="Id" />
@@ -32,6 +74,11 @@
     <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="STT" Type="Int32" />
     <Property Name="IdDonVi" Type="Int32" />
+    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LinkI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbl_BoCuc">
     <Key>
@@ -137,7 +184,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TieuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="NCS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="ChuyenNganh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="LinkTomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -151,7 +198,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Menu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Menu" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="Ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbl_Menu_User">
@@ -212,7 +259,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="MoTaNgan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -301,8 +348,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TenTag" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Slug" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenTag" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Slug" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbl_TaiSao">
     <Key>
@@ -415,7 +462,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="IsDelete" Type="Boolean" />
     <Property Name="LinkFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="LoaiVB" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -454,7 +501,7 @@
       <PropertyRef Name="TieuDe" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="MoTaNgan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -477,46 +524,4 @@
     <Property Name="CatID" Type="Int32" />
     <Property Name="PageID" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="dbcontext" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="GuiLienHes" EntityType="Self.GuiLienHe" />
-    <EntitySet Name="QuyTrinhDuyets" EntityType="Self.QuyTrinhDuyet" />
-    <EntitySet Name="tbl_Banner" EntityType="Self.tbl_Banner" />
-    <EntitySet Name="tbl_BoCuc" EntityType="Self.tbl_BoCuc" />
-    <EntitySet Name="tbl_CamNhan" EntityType="Self.tbl_CamNhan" />
-    <EntitySet Name="tbl_ChuyenMuc" EntityType="Self.tbl_ChuyenMuc" />
-    <EntitySet Name="tbl_DoiTac" EntityType="Self.tbl_DoiTac" />
-    <EntitySet Name="tbl_DonVi" EntityType="Self.tbl_DonVi" />
-    <EntitySet Name="tbl_DonViChuyenMuc" EntityType="Self.tbl_DonViChuyenMuc" />
-    <EntitySet Name="tbl_GioiThieu" EntityType="Self.tbl_GioiThieu" />
-    <EntitySet Name="tbl_LienKetKhoa" EntityType="Self.tbl_LienKetKhoa" />
-    <EntitySet Name="tbl_Log" EntityType="Self.tbl_Log" />
-    <EntitySet Name="tbl_LuanAn" EntityType="Self.tbl_LuanAn" />
-    <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" />
-    <EntitySet Name="tbl_Menu_User" EntityType="Self.tbl_Menu_User" />
-    <EntitySet Name="tbl_MenuAdmin" EntityType="Self.tbl_MenuAdmin" />
-    <EntitySet Name="tbl_MenuPage" EntityType="Self.tbl_MenuPage" />
-    <EntitySet Name="tbl_NhanSu" EntityType="Self.tbl_NhanSu" />
-    <EntitySet Name="tbl_NhomQuyen" EntityType="Self.tbl_NhomQuyen" />
-    <EntitySet Name="tbl_Post" EntityType="Self.tbl_Post" />
-    <EntitySet Name="tbl_Post_Category" EntityType="Self.tbl_Post_Category" />
-    <EntitySet Name="tbl_Post_DonVi" EntityType="Self.tbl_Post_DonVi" />
-    <EntitySet Name="tbl_Post_DuyetLog" EntityType="Self.tbl_Post_DuyetLog" />
-    <EntitySet Name="tbl_Post_Tag" EntityType="Self.tbl_Post_Tag" />
-    <EntitySet Name="tbl_SoLuotTruyCap" EntityType="Self.tbl_SoLuotTruyCap" />
-    <EntitySet Name="tbl_SuKien" EntityType="Self.tbl_SuKien" />
-    <EntitySet Name="tbl_Tag" EntityType="Self.tbl_Tag" />
-    <EntitySet Name="tbl_TaiSao" EntityType="Self.tbl_TaiSao" />
-    <EntitySet Name="tbl_ThongBao" EntityType="Self.tbl_ThongBao" />
-    <EntitySet Name="tbl_ThongSo" EntityType="Self.tbl_ThongSo" />
-    <EntitySet Name="tbl_ThuVienAnh" EntityType="Self.tbl_ThuVienAnh" />
-    <EntitySet Name="tbl_ThuVienAnh_Album" EntityType="Self.tbl_ThuVienAnh_Album" />
-    <EntitySet Name="tbl_ThuVienAnh_DanhMuc" EntityType="Self.tbl_ThuVienAnh_DanhMuc" />
-    <EntitySet Name="tbl_ThuVienVideo" EntityType="Self.tbl_ThuVienVideo" />
-    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
-    <EntitySet Name="tbl_User_NhomQuyen" EntityType="Self.tbl_User_NhomQuyen" />
-    <EntitySet Name="tbl_VanBan" EntityType="Self.tbl_VanBan" />
-    <EntitySet Name="LoadMenus" EntityType="Self.LoadMenu" />
-    <EntitySet Name="LogUsers" EntityType="Self.LogUser" />
-    <EntitySet Name="TinMoiNhat_CheckTrung" EntityType="Self.TinMoiNhat_CheckTrung" />
-  </EntityContainer>
 </Schema>

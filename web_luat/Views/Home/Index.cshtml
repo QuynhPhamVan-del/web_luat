@@ -86,21 +86,36 @@
         @foreach (var item in banner)
         {
             <div class="carousel-item active" style="background-image: url('@item.Image');">
-                @*<div class="carousel-caption-custom hero-premium">
+                <div class="carousel-caption-custom hero-premium">
                         <div class="container text-start">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <div class="hero-tag mb-3"><i class="fa-solid fa-industry me-2"></i>MÁY MÓC TỰ ĐỘNG ĐỒNG BỘ</div>
-                                    <h1 class="mb-4">Xưởng Gia Công Gỗ<br>Công Nghiệp <span style="color: var(--luxury-amber); font-style: italic;">Đỉnh Cao Sắc Nét</span></h1>
-                                    <p class="lead mb-5 text-white-50" style="max-width: 550px; font-weight: 300;">Giải pháp cắt tấm Nesting CNC và dán cạnh không đường line hàng đầu. Trợ thủ sản xuất đáng tin cậy cho các Kiến trúc sư.</p>
+                                    @if (!string.IsNullOrEmpty(item.TieuDe))
+                                    {
+                                        <div class="hero-tag mb-3"><i class="fa-solid fa-industry me-2"></i>@item.TieuDe</div>
+
+                                    }
+
+
+                                    @if (!string.IsNullOrEmpty(item.NoiDung))
+                                    {
+                                        <h1 class="mb-4">
+                                            @Html.Raw(item.NoiDung)
+                                        </h1>
+                                    }
+
                                     <div class="d-flex gap-3 flex-wrap">
                                         <a href="#du-an" class="btn btn-luxury">Xem Dự Án <i class="fa-solid fa-arrow-down ms-2"></i></a>
-                                        <a href="tel:0900000000" class="btn btn-outline-light px-4 py-2 border-secondary text-white text-decoration-none" style="border-radius: 4px;"><i class="fa-solid fa-phone me-2 text-warning"></i>090.000.0000</a>
+                                        @if (!string.IsNullOrEmpty(item.SDT))
+                                        {
+                                            <a href="tel:@item.SDT" class="btn btn-outline-light px-4 py-2 border-secondary text-white text-decoration-none" style="border-radius: 4px;"><i class="fa-solid fa-phone me-2 text-warning"></i>@item.SDT</a>
+
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>*@
+                    </div>
             </div>
         }
 
@@ -369,7 +384,7 @@
                 <div class="consult-card p-4 p-sm-5" style="background: #111622; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
                     <div class="text-center mb-4">
                         <span class="text-uppercase tracking-wider d-block mb-1" style="color: #BA9465; font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px;">ĐĂNG KÝ NGAY HÔM NAY</span>
-                        <h3 class="text-white" style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; letter-spacing: 0.5px;">ĐĂNG KÝ TƯ VẤN 0Đ</h3>
+                        <h3 class="text-white" style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; letter-spacing: 0.5px;">ĐĂNG KÝ TƯ VẤN MIỄN PHÍ</h3>
                         <p class="text-white-50 small mt-1 mb-0">NHẬN NGAY BỘ THIẾT KẾ Ý TƯỞNG CÁ NHÂN HÓA!</p>
                     </div>
 
@@ -387,7 +402,7 @@
 
                             <div class="col-sm-6">
                                 <label class="form-label text-white-50 small mb-2" style="font-size: 0.85rem;">Địa chỉ Email *</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="name@gmail.com" required style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="name@gmail.com" style="background: #1B2130; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;">
                             </div>
 
                             <div class="col-12">

@@ -20,5 +20,10 @@ namespace web_luat.Models
         public string Link { get; set; }
         public Nullable<int> STT { get; set; }
         public Nullable<int> IdDonVi { get; set; }
+        public string TieuDe { get; set; }
+        public string MoTa { get; set; }
+        public string NoiDung { get; set; }
+        public string LinkI { get; set; }
+        public string SDT { get; set; }
     }
 }

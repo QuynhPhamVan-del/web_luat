@@ -44,7 +44,8 @@ namespace web_luat.Areas.Admin.Controllers
             return PartialView();
         }
         [HttpPost]
-        public JsonResult Create([Bind(Include = "Id,Image,Link,STT,IdDonVi")] tbl_Banner banner)
+        [ValidateInput(false)]
+        public JsonResult Create([Bind(Include = "Id,Image,Link,STT,IdDonVi,TieuDe,MoTa,NoiDung,LinkI,SDT")] tbl_Banner banner)
         {
             try
             {
@@ -87,7 +88,9 @@ namespace web_luat.Areas.Admin.Controllers
             return PartialView(banner);
         }
         [HttpPost]
-        public JsonResult Edit([Bind(Include = "Id,Image,Link,STT,IdDonVi")] tbl_Banner banner)
+        [ValidateInput(false)]
+
+        public JsonResult Edit([Bind(Include = "Id,Image,Link,STT,IdDonVi,TieuDe,MoTa,NoiDung,LinkI,SDT")] tbl_Banner banner)
         {
             try
             {
